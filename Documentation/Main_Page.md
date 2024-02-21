@@ -2,7 +2,7 @@ This is your new *vault*.
 
 Make a note of something, [[create a link]], or try [the Importer](https://help.obsidian.md/Plugins/Importer)!
 
-Here is a link to the Second page. [Page 2](Second_Page)
+Here is a link to the Second page. [Page 2](Second_Page.md)
 
 |Collaborateur       |Web                            |Section 2                    |
 |--------------------|-------------------------------|-----------------------------|
