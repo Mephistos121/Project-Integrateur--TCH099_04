@@ -1,0 +1,1 @@
+Test to see how to link pages on obsidian and github.
