@@ -146,14 +146,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e6aa4b9c200f753a",
+  "active": "55949c1e4c9afdcd",
   "lastOpenFiles": [
-    "Use cases/PNG/Use_case_diagram.png",
-    "Use cases/PNG",
-    "Use cases/Use case diagram.md",
+    "Requis",
     "Use cases/Use Case Basic.md",
     "Use cases/Tableau de priorité pour le prototype.md",
-    "Use cases/Récit utilisateur.md",
+    "Use cases/Exigence.md",
+    "Use cases/Use case diagram.md",
+    "Use cases/PNG/Use_case_diagram.png",
+    "Use cases/PNG",
     "Second_Page.md",
     "Main_Page.md",
     "Documentation/PNG/Use_case_diagram.png.md",
