@@ -30,6 +30,16 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "4b1359cfd508b5b3",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Use cases/Use_case_diagram.png"
+              }
+            }
           }
         ],
         "currentTab": 1
@@ -161,10 +171,13 @@
   },
   "active": "cb6617f9c868f308",
   "lastOpenFiles": [
-    "Use.md",
+    "Use cases/Use_case_diagram.png",
     "Use cases/Use case diagram (Start).md",
-    "PNG/Use_case_diagram.png",
     "Main_Page.md",
+    "Documentation/PNG/Use_case_diagram.png.md",
+    "Documentation/PNG",
+    "Documentation",
+    "Use.md",
     "Second_Page.md",
     "Second.md",
     "().md"
