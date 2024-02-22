@@ -7,4 +7,4 @@
 - Pour qu'un account soit considéré un gestionaire, un administrateur doit l'accepter.
 
 
-![[Use case diagram.png]]
+![Use Case Diagramme](Use case diagram.png)  
