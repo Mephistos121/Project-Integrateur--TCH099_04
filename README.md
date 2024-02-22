@@ -2,7 +2,7 @@
 
 ## Collaborateur 
 
-Voici les vollaborateurs et leurs taches.
+Voici les collaborateurs et leurs tâches.
 
 |Collaborateur       |Web                            |Section 2                    |
 |--------------------|-------------------------------|-----------------------------|
