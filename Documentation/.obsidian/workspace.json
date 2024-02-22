@@ -11,8 +11,12 @@
             "id": "e6aa4b9c200f753a",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Use cases/Use case diagram.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Use cases/Use case diagram.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Use cases/Use case diagram.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Use cases/Use case diagram.md"
+              }
             }
           }
         ]
@@ -140,17 +148,18 @@
   },
   "active": "e6aa4b9c200f753a",
   "lastOpenFiles": [
-    "Use cases/Récit utilisateur.md",
-    "Use cases/Tableau de priorité pour le prototype.md",
-    "Use cases/Use Case Basic.md",
-    "Use cases/Use_case_diagram.png",
+    "Use cases/PNG/Use_case_diagram.png",
+    "Use cases/PNG",
     "Use cases/Use case diagram.md",
+    "Use cases/Use Case Basic.md",
+    "Use cases/Tableau de priorité pour le prototype.md",
+    "Use cases/Récit utilisateur.md",
+    "Second_Page.md",
     "Main_Page.md",
     "Documentation/PNG/Use_case_diagram.png.md",
     "Documentation/PNG",
     "Documentation",
     "Use.md",
-    "Second_Page.md",
     "Second.md",
     "().md"
   ]
