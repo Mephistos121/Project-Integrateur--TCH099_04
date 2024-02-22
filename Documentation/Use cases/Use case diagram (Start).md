@@ -6,4 +6,5 @@
 - Les visiteurs peuvent visioner le site web mais ne peuvent pas acheter des billets.
 - Pour qu'un account soit considéré un gestionaire, un administrateur doit l'accepter.
 
- ![](Use_case_diagram.png)
+![](Use_case_diagram.png)  
+
