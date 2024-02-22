@@ -4,45 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "8c9d911092a867cd",
+        "id": "f0b1d1b55eed8cd0",
         "type": "tabs",
         "children": [
           {
-            "id": "6319c38f8dc0ef4b",
+            "id": "e6aa4b9c200f753a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Main_Page.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "cb6617f9c868f308",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Use cases/Use case diagram (Start).md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "4b1359cfd508b5b3",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Use cases/Use_case_diagram.png"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -108,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Use cases/Use case diagram (Start).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Use cases/Use case diagram (Start).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -147,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Use cases/Use case diagram (Start).md"
-              }
+              "state": {}
             }
           }
         ]
@@ -169,10 +138,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cb6617f9c868f308",
+  "active": "e6aa4b9c200f753a",
   "lastOpenFiles": [
+    "Use cases/Récit utilisateur.md",
+    "Use cases/Tableau de priorité pour le prototype.md",
+    "Use cases/Use Case Basic.md",
     "Use cases/Use_case_diagram.png",
-    "Use cases/Use case diagram (Start).md",
+    "Use cases/Use case diagram.md",
     "Main_Page.md",
     "Documentation/PNG/Use_case_diagram.png.md",
     "Documentation/PNG",
