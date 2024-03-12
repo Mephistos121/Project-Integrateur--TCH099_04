@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="compte.js"></script>
+    <title>Compte</title>
+</head>
+<body>
+    <nav>
+        <label id="compte_acceuil">Acceuil</label>
+    </nav>
+    <section>
+        <div>
+            <p>Creer un nouveau compte</p>
+            <form id="creer_form">
+                <div class="form_layout">
+                    <div>
+                        <label for="creer_nom">Nom utilisateur : </label>
+                        <input id = "creer_nom" type="text" name="creer_nom" placeholder="Entrer nom utilisateur" value="" required>
+                    </div> 
+
+                    <div>
+                        <label for="creer_courriel">Courriel : </label>
+                        <input id = "creer_courriel" type="text" name="creer_courriel" placeholder="Entrer courriel" value="" required>
+                    </div> 
+                    
+                    <div>
+                        <label for="creer_pass">Mot de passe : </label>
+                        <input id = "creer_pass" type="password" name="creer_pass" placeholder="Entrer mot de passe" value="" required>
+                    </div> 
+
+                    <div class="bouttons_form">
+                        <input id="creer_submit" class="edit_submit" type="button" value="Creer compte">
+                        <input class="edit_clear" type="reset" value="Effacer">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div>
+            <p>Se connecter a son compte</p>
+
+            <form id="connecter_form">
+                <div class="form_layout">
+                    <div>
+                        <label for="connecter_identifiant">Identifiant : </label>
+                        <input id = "connecter_identifiant" type="text" name="connecter_identifiant" placeholder="Entrer identifiant" value="" required>
+                    </div>
+
+                    <div>
+                        <label for="connecter_pass">Mot de passe : </label>
+                        <input id = "connecter_pass" type="password" name="connecter_pass" placeholder="Entrer mot de passe" value="" required>
+                    </div> 
+                    
+                    <div class="bouttons_form">
+                        <input class="edit_submit" type="button" value="Connecter">
+                        <input class="edit_clear" type="reset" value="Effacer">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+</body>
+</html>
