@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Section */
+#nav_bar_home{
+    background-color: black;
+    color: white;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+}
+#nav_bar_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 2%;
+    margin: 0 auto;
+    width: 100%;
+}
+#account_link{
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.2rem;
+}
+
+/* Navbar Left */
+#nav_bar_home{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+}
+#nav_bar_list_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-e; /* If you want space between items */
+    list-style-type: none; /* This property doesn't apply to flex containers */
+    padding: 0;
+    margin: 0;
+}
+
+#nav_bar_list {
+    display: flex;
+    justify-content: space-between; 
+    list-style: none;
+    width: 25rem;
+}
+
+#nav_bar_list a{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+#search_bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    z-index: 1;
+}
+
+/* Featured Movie Section */
+
+#featured_movie_container{
+    display: flex;
+    align-items: center;
+    padding-top: 10vh;
+    height: 100%;
+    overflow-x:auto;
+}
+
+#featured_movie_list{
+    list-style: none;
+    display: flex;
+}
+
+
+
+
+
