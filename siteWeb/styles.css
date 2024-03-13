@@ -10,8 +10,12 @@
     background-color: black;
     color: white;
     height: 10vh;
-    justify-content: center;
+    display: flex;
+    position: fixed;
     align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
 }
 #nav_bar_container{
     display: flex;
@@ -28,15 +32,6 @@
 }
 
 /* Navbar Left */
-#nav_bar_home{
-    display: flex;
-    position: fixed;
-    align-items: center;
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
-    width: 100%;
-}
 #nav_bar_list_container {
     display: flex;
     align-items: center;
