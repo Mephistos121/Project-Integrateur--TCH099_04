@@ -23,20 +23,35 @@ window.addEventListener("load", (event1) => {
         
     });
 });
-
+async function uniqueEmail(compte){
+    const responeMail = await fetch("http://localhost/api/comptes/"+compte.courriel);
+    const content = await responeMail.json();
+    return content.courriel;
+}
+function error(error){
+    const error_div = document.querySelector("#error_code");
+    console.log(error_div);
+    error_div.innerHTML=error;
+}
 async function ajouterNouveauCompte(compte){
-    const response = await fetch("http://localhost/api/comptes", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(compte),
-    });
-    console.log(response);
-    if (response.ok){
-        alert('Success!');
-        document.querySelector("#creer_form").reset();
-    }else {
-        alert("Le serveur a refuser");
+    const email=uniqueEmail(compte);
+    if(email){
+        error("Ce courriel est déjà utilisé");
+    }else{
+        const response = await fetch("http://localhost/api/comptes", {
+            method: 'POST',
+            
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(compte),
+        });
+        if (response.ok){
+        alert("success");
+        console.log(response);
+        }else {
+            console.log(response);
+            alert("Le serveur a refuser");
+        }
     }
 }
