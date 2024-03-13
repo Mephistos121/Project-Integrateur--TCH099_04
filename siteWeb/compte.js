@@ -27,18 +27,16 @@ window.addEventListener("load", (event1) => {
 async function ajouterNouveauCompte(compte){
     const response = await fetch("http://localhost/api/comptes", {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(compte),
     });
+    console.log(response);
     if (response.ok){
-        let success = document.querySelector("#edit_success");
-        success.textContent="Compte ajouter!";
+        alert('Success!');
         document.querySelector("#creer_form").reset();
     }else {
-        console.log(response);
         alert("Le serveur a refuser");
     }
 }

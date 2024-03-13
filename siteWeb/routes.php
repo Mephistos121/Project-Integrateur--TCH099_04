@@ -7,12 +7,12 @@ require_once __DIR__ . '/router.php';
 
 // A route with a callback
 get('/api/comptes', function () {
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
+    $DBuser = 'root';
+    $DBpass = $_ENV['MYSQL_ROOT_PASSWORD'];
     $pdo = null;
 
     try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $database = 'mysql:host=database:3306;dbname=cinemadata';
         $pdo = new PDO($database, $DBuser, $DBpass);   
     } catch(PDOException $e) {
         echo "Error: Unable to connect to MySQL. Error:\n $e";
@@ -37,20 +37,20 @@ post('/api/comptes', function() {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
 
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
+    $DBuser = 'root';
+    $DBpass = $_ENV['MYSQL_ROOT_PASSWORD'];
     $pdo = null;
 
     try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
+        $database = 'mysql:host=database:3306;dbname=cinemadata';
+        $pdo = new PDO($database, $DBuser, $DBpass); 
     } catch(PDOException $e) {
         echo "Error: Unable to connect to MySQL. Error:\n $e";
     }
 
     $nom = $data["nom"];
     $courriel = $data["courriel"];
-    $mot_passe = $data["mot_passse"];
+    $mot_passe = $data["mot_passe"];
 
     if ($type2==""){
         $type2=null;
