@@ -1,8 +1,8 @@
 window.addEventListener("load", (event1) => {
-    let rbutton = document.querySelector("#compte_acceuil");
+    let rbutton = document.querySelector("#compte_accueil");
 
     rbutton.addEventListener("click", (event2) => {
-        confirm("Veux-tu revenir a la page d'acceuil?") ? window.location = "accueil.html": false;
+        confirm("Veux-tu revenir a la page d'accueil?") ? window.location = "index.html": false;
     });
 
     let sbutton = document.querySelector("#creer_submit");
@@ -27,6 +27,7 @@ window.addEventListener("load", (event1) => {
 async function ajouterNouveauCompte(compte){
     const response = await fetch("http://localhost/api/comptes", {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -37,6 +38,7 @@ async function ajouterNouveauCompte(compte){
         success.textContent="Compte ajouter!";
         document.querySelector("#creer_form").reset();
     }else {
+        console.log(response);
         alert("Le serveur a refuser");
     }
 }
