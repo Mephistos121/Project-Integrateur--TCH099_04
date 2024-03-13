@@ -50,11 +50,7 @@ post('/api/comptes', function() {
 
     $nom = $data["nom"];
     $courriel = $data["courriel"];
-    $mot_passe = $data["mot_passse"];
-
-    if ($type2==""){
-        $type2=null;
-    }
+    $mot_passe = $data["mot_passe"];
     
     $requete = $pdo->prepare(
         "INSERT INTO comptes (nom, courriel, mot_passe) 
