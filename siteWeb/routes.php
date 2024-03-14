@@ -148,3 +148,27 @@ post('/api/cinemas', function(){
             echo json_encode($requete);
         }
 );
+
+get('/api/cinemas/gestionnaire/$id', function($id){
+    $json = file_get_contents('php://input');
+
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $pdo = new PDO($database, $DBuser, $DBpass);   
+    } catch(PDOException $e) {
+        echo "Error: Unable to connect to MySQL. Error:\n $e";
+    }
+
+    $requete = $pdo->prepare(
+        "SELECT  nom, emplacement FROM cinemas WHERE gestionnaire_id = ?;"
+    );
+    $requete->execute([$id]);
+    
+    $cinemas = $requete->fetchAll();
+    header('Content-type: application/json');   
+    echo json_encode($cinemas);
+        
+});
