@@ -73,7 +73,8 @@ async function ajouterNouveauCompte(compte){
 
 async function seConnecter(courriel, mot_passe) {
     try {
-        const url = "http://localhost/api/auth/login";
+        
+        const url = "http://localhost/api/connexion";
 
         const response = await fetch(url, {
             method: 'POST',

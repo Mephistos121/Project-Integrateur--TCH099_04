@@ -111,20 +111,14 @@ post('/api/connexion', function() {
     $mot_passe = $data["mot_passe"];
 
     $requete = $pdo->prepare(
-        "SELECT * FROM comptes WHERE courriel = ? AND mot_passe = ?;"
+        "SELECT id, privilege FROM comptes WHERE courriel = ? AND mot_passe = ?;"
     );
 
     $requete->execute([$courriel, $mot_passe]);
 
     $compte = $requete->fetch();
-
-    if ($compte) {
-        header('Content-type: application/json');
-        echo json_encode(array('message' => 'Authentication successful', 'user' => $compte));
-    } else {
-        header('Content-type: application/json');
-        echo json_encode(array('message' => 'Authentication failed'));
-    }
+    header('Content-type: application/json');   
+    echo json_encode($compte);
 });
 post('/api/cinemas', function(){
     $json = file_get_contents('php://input');
