@@ -51,13 +51,18 @@ post('/api/comptes', function() {
     $nom = $data["nom"];
     $courriel = $data["courriel"];
     $mot_passe = $data["mot_passe"];
+    $privilege = $data["privilege"];
+    $gestionnaire = "default";
+    if($privilege==true){
+        $gestionnaire = "gestionnaire";
+    }
     
     $requete = $pdo->prepare(
-        "INSERT INTO comptes (nom, courriel, mot_passe) 
-        VALUES (?, ?, ?);"
+        "INSERT INTO comptes (nom, courriel, mot_passe, privilege) 
+        VALUES (?, ?, ?, ?);"
         );
     header('Content-type: application/json');
-    $requete->execute([$nom, $courriel, $mot_passe]);
+    $requete->execute([$nom, $courriel, $mot_passe, $gestionnaire]);
     echo json_encode($requete);
 });
 get('/api/comptes/$courriel', function ($courriel) {
