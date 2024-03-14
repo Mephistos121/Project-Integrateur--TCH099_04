@@ -1,9 +1,4 @@
 window.addEventListener("load", (event1) => {
-    //let rbutton = document.querySelector("#compte_accueil");
-
-    //rbutton.addEventListener("click", (event2) => {
-        //    confirm("Veux-tu revenir a la page d'accueil?") ? window.location = "index.html": false;
-    //});
 
     let sbutton = document.querySelector("#creer_submit");
 
@@ -20,7 +15,21 @@ window.addEventListener("load", (event1) => {
             if (info_compte[element]==="") check=false;
         });
                 check ? ajouterNouveauCompte(info_compte) : alert("Veuillez entrer toutes les informations du compte");
-            });
+    });
+
+    let connecterButton = document.querySelector("#connecterButton");
+
+    connecterButton.addEventListener("click", (event4) => {
+        const identifiant = document.querySelector("#connecter_identifiant").value;
+        const motDePasse = document.querySelector("#connecter_pass").value;
+
+        if (identifiant && motDePasse) {
+            seConnecter(identifiant, motDePasse);
+        } 
+        else {
+            alert("Veuillez remplir tous les champs.");
+        }
+    });
 });
 
 async function uniqueEmail(compte){
@@ -35,19 +44,6 @@ function error(error){
     const error_div = document.querySelector("#error_code");
     error_div.innerHTML=error;
 }
-let connecterButton = document.querySelector("#connecter_submit");
-    console.log(connecterButton);
-    connecterButton.addEventListener("click", (event) => {
-        const identifiant = document.querySelector("#connecter_identifiant").value;
-        const motDePasse = document.querySelector("#connecter_pass").value;
-
-        if (identifiant && motDePasse) {
-            seConnecter(identifiant, motDePasse);
-        } 
-        else {
-            alert("Veuillez remplir tous les champs.");
-        }
-    });
 
 
 async function ajouterNouveauCompte(compte){
