@@ -1,5 +1,5 @@
 window.addEventListener("load", (event1) => {
-
+   
     let sbutton = document.querySelector("#creer_submit");
 
     sbutton.addEventListener("click", (event3) => {
@@ -87,7 +87,15 @@ async function seConnecter(courriel, mot_passe) {
         if (response.ok) {
             const responseData = await response.json();
             console.log(responseData);
-            alert('Connexion réussie!');
+            if(responseData===false){
+                console.log("Mauvais mot de passe ou email");
+            }
+            else{
+                const d = new Date();
+                d.setTime(d.getTime()+ (24*60*60*1000));//le temps ajouté est égal à 1 jours. Multiplier par un nombre pour avoir +/- de jours
+                document.cookie = "id="+responseData.id+"; expires="+d+"; path=/;";
+                document.cookie = "privilege="+responseData.privilege+";expires="+d+"; path=/;"; 
+            }
         } else {
             console.error('Échec de la connexion');
             alert('Échec de la connexion. Vérifiez vos identifiants.');
