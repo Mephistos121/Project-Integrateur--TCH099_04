@@ -3,23 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Accueil</title>
 </head>
 <body>
     
-    <nav>
-        <a href="index.html">Films</a>
-        <a href="index.html?type=cinema">Cinémas</a>
-        <input type="text" placeholder="Rechercher">
-        <select multiple>
-            <option value="placeholder">trier</option>
-            <option>trier</option>
-            <option>trier</option>
-        </select>
-        <a href="compte.html">Compte</a>
+    <nav id="nav_bar_home">
+        <div id="nav_bar_container">
+            <div id="nav_bar_list_container">
+                <ul id="nav_bar_list">
+                    <li><a href="accueil.html?type=cinema">Cinémas</a></li>
+                    <li><a href="accueil.html?type=films">Films</a></li>
+                    <li><input id="search_bar" type="text" placeholder="Rechercher"></li>
+                    <li>
+                        <div id="dropdown_container">
+                            <select id="dropdown_menu">
+                                <option value='trier'>trier</option>
+                                <option value='trier'>trier</option>
+                                <option value='trier'>Trier</option>
+                                <option value='' selected>
+                                    Choisir une option
+                                </option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <a id="account_link" href="compte.html">Compte</a>
+        </div>
     </nav>
-    <ul id="movie_list">
-    </ul>
+    <div id="featured_movie_container">
+        <div id="featured_movie_slider"></div>
+        <div id="slider_nav"></div>
+    </div> 
+    <div id="movie_container">
+        <ul id="movie_list"></ul>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
