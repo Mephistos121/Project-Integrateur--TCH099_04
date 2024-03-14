@@ -1,26 +1,73 @@
 .header {
-    padding: 30px;
+    padding: 20px;
     text-align: center;
-    background: black;
+    background: #010020;
     color: rgb(224, 197, 75);
     font-size: 30px;
     h1 {
-        font-size:3em;
+        font-size:2.4em;
         text-transform: uppercase;
         font-family: 'Gambetta', serif;
-        letter-spacing: -3px;
         transition: 700ms ease;
         font-variation-settings: "wght" 311;
-        margin-bottom: 0.8rem;
+        margin-bottom: 0.5rem;
         outline: none;
         text-align: center;
       }
       
       h1:hover {
         font-variation-settings: "wght" 582; 
-        letter-spacing: 1px;
+        letter-spacing: 3px;
       }
 }
+
+
+.dropdown {
+  position: relative;
+  display: flex;
+  width: 60px;
+  height: 60px;
+}
+
+#dropdown_button {
+  background-color: goldenrod;
+  color: black;
+  padding: 16px;
+  font-size: 25px;
+  border-radius: 50%;
+  align-self: flex-end;
+  position: relative;
+  top: 0px;
+  right: 0px;
+}
+
+.dropdown_content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown_content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown_content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown_content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 
 
 .button_section {
@@ -42,7 +89,6 @@
   min-width: 4em;
   min-height: 3em;
   padding: 3px;
-  transition-duration: 0.5s;
   cursor: pointer;
 
   span {
@@ -58,10 +104,11 @@
 }
 
 .form_container{
+    margin-top: 3em;
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 100vh;
+    height: 60%;
 }
 
 .form_layout {
@@ -70,7 +117,7 @@
     border-radius: 20px;
     box-sizing: border-box;
     height: 500px;
-    padding: 20px;
+    padding: 1.3em;
     width: 420px;
 
   }
@@ -96,6 +143,10 @@
     padding: 4px 20px 0;
     width: 100%;
     margin-top: 30px;
+}
+
+#connecter_pass {
+  margin-bottom:  70px;
 }
 
 .edit_submit {

@@ -51,13 +51,18 @@ post('/api/comptes', function() {
     $nom = $data["nom"];
     $courriel = $data["courriel"];
     $mot_passe = $data["mot_passe"];
+    $privilege = $data["privilege"];
+    $gestionnaire = "default";
+    if($privilege==true){
+        $gestionnaire = "gestionnaire";
+    }
     
     $requete = $pdo->prepare(
-        "INSERT INTO comptes (nom, courriel, mot_passe) 
-        VALUES (?, ?, ?);"
+        "INSERT INTO comptes (nom, courriel, mot_passe, privilege) 
+        VALUES (?, ?, ?, ?);"
         );
     header('Content-type: application/json');
-    $requete->execute([$nom, $courriel, $mot_passe]);
+    $requete->execute([$nom, $courriel, $mot_passe, $gestionnaire]);
     echo json_encode($requete);
 });
 get('/api/comptes/$courriel', function ($courriel) {
@@ -83,3 +88,69 @@ get('/api/comptes/$courriel', function ($courriel) {
     header('Content-type: application/json');
     echo json_encode($compte);
 });
+
+
+
+post('/api/connexion', function() {
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+
+    try {
+        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $pdo = new PDO($database, $DBuser, $DBpass);   
+    } catch(PDOException $e) {
+        echo "Error: Unable to connect to MySQL. Error:\n $e";
+        return;
+    }
+
+    $courriel = $data["courriel"];
+    $mot_passe = $data["mot_passe"];
+
+    $requete = $pdo->prepare(
+        "SELECT * FROM comptes WHERE courriel = ? AND mot_passe = ?;"
+    );
+
+    $requete->execute([$courriel, $mot_passe]);
+
+    $compte = $requete->fetch();
+
+    if ($compte) {
+        header('Content-type: application/json');
+        echo json_encode(array('message' => 'Authentication successful', 'user' => $compte));
+    } else {
+        header('Content-type: application/json');
+        echo json_encode(array('message' => 'Authentication failed'));
+    }
+});
+post('/api/cinemas', function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+                $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+                $pdo = new PDO($database, $DBuser, $DBpass);   
+            } catch(PDOException $e) {
+                echo "Error: Unable to connect to MySQL. Error:\n $e";
+            }
+    
+            $nom = $data["nom"];
+            $emplacement = $data["emplacement"];
+            $gestionnaire = $data["gestionnaire"];
+            $image = $data["image"];
+        
+            $requete = $pdo->prepare(
+                "INSERT INTO cinemas (nom, image, emplacement, gestionnaire_id)
+                VALUES (?,?,?,?);"
+            );
+            header('Content-type: application/json');
+            $requete->execute([$nom, $image, $emplacement, $gestionnaire]);
+            echo json_encode($requete);
+        }
+);
