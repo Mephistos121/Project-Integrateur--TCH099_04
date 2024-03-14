@@ -126,3 +126,31 @@ post('/api/connexion', function() {
         echo json_encode(array('message' => 'Authentication failed'));
     }
 });
+post('/api/cinemas', function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+                $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+                $pdo = new PDO($database, $DBuser, $DBpass);   
+            } catch(PDOException $e) {
+                echo "Error: Unable to connect to MySQL. Error:\n $e";
+            }
+    
+            $nom = $data["nom"];
+            $emplacement = $data["emplacement"];
+            $gestionnaire = $data["gestionnaire"];
+            $image = $data["image"];
+        
+            $requete = $pdo->prepare(
+                "INSERT INTO cinemas (nom, image, emplacement, gestionnaire_id)
+                VALUES (?,?,?,?);"
+            );
+            header('Content-type: application/json');
+            $requete->execute([$nom, $image, $emplacement, $gestionnaire]);
+            echo json_encode($requete);
+        }
+);
