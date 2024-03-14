@@ -70,11 +70,6 @@
 
 
 
-
-
-
-
-
 .button_section {
     justify-content: center;
     display: grid;
@@ -94,7 +89,6 @@
   min-width: 4em;
   min-height: 3em;
   padding: 3px;
-  transition-duration: 0.5s;
   cursor: pointer;
 
   span {
@@ -110,10 +104,11 @@
 }
 
 .form_container{
+    margin-top: 3em;
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 60vh;
+    height: 60%;
 }
 
 .form_layout {
@@ -122,7 +117,7 @@
     border-radius: 20px;
     box-sizing: border-box;
     height: 500px;
-    padding: 20px;
+    padding: 1.3em;
     width: 420px;
 
   }
