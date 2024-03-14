@@ -150,6 +150,10 @@
     margin-top: 30px;
 }
 
+#connecter_pass {
+  margin-bottom:  70px;
+}
+
 .edit_submit {
     background-image: linear-gradient(to right, #713b8a 0%,  #4d074d 66%);
     border-radius: 12px;
