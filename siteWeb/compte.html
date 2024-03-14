@@ -4,30 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="compte.js"></script>
+    <link rel="stylesheet" href="compte.css">
     <title>Compte</title>
 </head>
 <body>
-    <nav>
-        <label id="compte_acceuil">Acceuil</label>
+    <nav class="button_section">
+        <button id="compte_accueil" class="button_text">
+            Retour
+        </button>
     </nav>
+    <div class="header">
+        <h1>Création de compte</h1>
+        <p>Place holder text for future :D<p>
+        <div class="button_section">
+            <button class="header_button" role="button">
+                <span class="button_text">Sign In</span>
+            </button>
+            <button class="header_button" role="button">
+                <span class="button_text" >Sign Up</span>
+            </button>
+        </div>
+    </div>     
     <section>
         <div>
-            <p>Creer un nouveau compte</p>
-            <form id="creer_form">
+            <div id="error_code"></div>
+            <form class="form_container">
                 <div class="form_layout">
+                    <div class="title">Créer un nouveau compte</div>
                     <div>
-                        <label for="creer_nom">Nom utilisateur : </label>
-                        <input id = "creer_nom" type="text" name="creer_nom" placeholder="Entrer nom utilisateur" value="" required>
+                        <input id = "creer_nom" class = "input_container" type="text" name="creer_nom" placeholder="Entrer nom utilisateur" value="" required>
                     </div> 
 
                     <div>
-                        <label for="creer_courriel">Courriel : </label>
-                        <input id = "creer_courriel" type="text" name="creer_courriel" placeholder="Entrer courriel" value="" required>
+                        <input id = "creer_courriel" class = "input_container" type="text" name="creer_courriel" placeholder="Entrer courriel" value="" required>
                     </div> 
                     
                     <div>
-                        <label for="creer_pass">Mot de passe : </label>
-                        <input id = "creer_pass" type="password" name="creer_pass" placeholder="Entrer mot de passe" value="" required>
+                        <input id = "creer_pass" class = "input_container" type="password" name="creer_pass" placeholder="Entrer mot de passe" value="" required>
                     </div> 
 
                     <div class="bouttons_form">
@@ -38,10 +51,9 @@
             </form>
         </div>
         <div>
-            <p>Se connecter a son compte</p>
-
-            <form id="connecter_form">
+            <form class="form_container">
                 <div class="form_layout">
+                    <div class="title">Se connecter a son compte</div>
                     <div>
                         <label for="connecter_identifiant">Identifiant : </label>
                         <input id = "connecter_identifiant" type="text" name="connecter_identifiant" placeholder="Entrer identifiant" value="" required>

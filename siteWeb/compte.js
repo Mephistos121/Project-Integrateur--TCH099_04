@@ -1,8 +1,8 @@
 window.addEventListener("load", (event1) => {
-    let rbutton = document.querySelector("#compte_acceuil");
+    let rbutton = document.querySelector("#compte_accueil");
 
     rbutton.addEventListener("click", (event2) => {
-        confirm("Veux-tu revenir a la page d'acceuil?") ? window.location = "accueil.html": false;
+        confirm("Veux-tu revenir a la page d'accueil?") ? window.location = "index.html": false;
     });
 
     let sbutton = document.querySelector("#creer_submit");
@@ -23,20 +23,35 @@ window.addEventListener("load", (event1) => {
         
     });
 });
-
+async function uniqueEmail(compte){
+    const responeMail = await fetch("http://localhost/api/comptes/"+compte.courriel);
+    const content = await responeMail.json();
+    return content.courriel;
+}
+function error(error){
+    const error_div = document.querySelector("#error_code");
+    console.log(error_div);
+    error_div.innerHTML=error;
+}
 async function ajouterNouveauCompte(compte){
-    const response = await fetch("http://localhost/api/comptes", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(compte),
-    });
-    if (response.ok){
-        let success = document.querySelector("#edit_success");
-        success.textContent="Compte ajouter!";
-        document.querySelector("#creer_form").reset();
-    }else {
-        alert("Le serveur a refuser");
+    const email=uniqueEmail(compte);
+    if(email){
+        error("Ce courriel est déjà utilisé");
+    }else{
+        const response = await fetch("http://localhost/api/comptes", {
+            method: 'POST',
+            
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(compte),
+        });
+        if (response.ok){
+        alert("success");
+        console.log(response);
+        }else {
+            console.log(response);
+            alert("Le serveur a refuser");
+        }
     }
 }
