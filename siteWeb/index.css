@@ -81,14 +81,14 @@
 
 /* Featured Movie Section */
 
-#featured_movie_container{
+#featured_index_container{
     display: relative;
     max-width: 100%;
     margin: 0 auto;
     background-color:  	#212124;
 }
 
-#featured_movie_slider{
+#featured_index_slider{
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -99,13 +99,13 @@
     scrollbar-width: none;
 }
 
-#featured_movie_slider img{
+#featured_index_slider img{
     scroll-snap-align: start;
     flex: 1 0 100%;
     object-fit: cover;
 }
 
-#featured_movie_slider::-webkit-scrollbar{
+#featured_index_slider::-webkit-scrollbar{
     display: none;
 }
 
@@ -132,18 +132,18 @@
 }
 
 /* Movie Section */
-#movie_container{
+#index_container{
     display: inline-block;
     padding: 5rem 0;
     background-color:  	#212124;
 }
 
-#movie_container h1{
+#index_container h1{
     text-align: center;
     margin-bottom: 2rem;
 }
 
-#movie_list{
+#index_list{
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -153,14 +153,14 @@
 
 
 
-#movie_list a{
+#index_list a{
     text-decoration: none;
     color: black;
     text-align: center;
     font-size: 1.5rem;
 }
 
-#movie_list li:hover img{
+#index_list li:hover img{
     outline-offset: -0.25rem;
     outline: 0.25rem solid #0e57aa;
 }
