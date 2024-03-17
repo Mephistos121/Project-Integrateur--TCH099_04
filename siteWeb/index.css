@@ -84,7 +84,6 @@
 /* Featured Movie Section */
 
 #featured_index_container{
-    display: relative;
     max-width: 100%;
     margin: 0 auto;
     background-color:  	#212124;
@@ -207,23 +206,50 @@
     flex-direction: column;
 }
 
-#movie_ticket_container {
-    margin-top: 10px; /* Add some space between movie info and ticket button */
-}
 
 #btn_buy_ticket {
     background-color: #0e57aa;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 0.75rem;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
-#movie_info_container {
+#btn_buy_ticket:hover {
+    background-color: #0b407e;
+}
+
+#btn_show_more {
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+#btn_show_more:hover {
+    text-decoration: underline;
+}
+
+#movie_show_more_container{
+    display: none;
+}
+
+.movie_info{
+padding-right: 1rem;
+padding-bottom: 1rem;
+}
+
+.movie_info_container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding-top: 1rem;
     gap: 10px;
 }

@@ -46,18 +46,41 @@
                 <div id="movie_ticket_container">
                     <button id="btn_buy_ticket">Acheter un billet</button>
                 </div>
-                <div id="movie_info_container">
-                    <p>Genre</p>
-                    <p>Durée</p>
-                    <p>Acteurs</p>
-                    <p>Réalisateur</p>
-                    <p>Synopsis</p>
+                <div class="movie_info_container" id="movie_info_title_container">
+                    <div class="movie_info">
+                        <h4 class="movie_layout_title">Genre</h4>
+                        <p id="movie_genre">Genre1,Genre2</p>
+                    </div>
+                        <div class="movie_info">
+                            <h4 class="movie_layout_title">Durée</h4>
+                            <p id="movie_time">Temps</p>
+                        </div>
+                </div>
+                <div id="movie_synopsis_container">
+                    <h4 class="movie_layout_title">Synopsis</h4>
+                    <p id="movie_synopsis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo neque ut orci feugiat facilisis. 
+                        Ut luctus, est eu pellentesque accumsan, sem tortor egestas est, sed consequat ligula eros sit amet lacus. 
+                        Vivamus venenatis id sapien quis efficitur. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+                        Cras quis maximus urna. Sed nisl libero, pharetra sed congue id, porta vel risus. 
+                        Sed diam sem, hendrerit sit amet orci ac, porta scelerisque leo. Donec imperdiet arcu vel varius tempus. 
+                    </p>
+                </div>
+                <button id="btn_show_more">Plus d'information</button>
+                <div id="movie_show_more_container">
+                    <div class="movie_info">
+                        <h4 id="movie_layout_title">Acteurs</h4>
+                        <p id="movie_actor">Acteur1,Acteur2</p>
+                    </div>
+                    <div class="movie_info">
+                        <h4 id="movie_layout_title">Réalisateur</h4>
+                        <p id="movie_director">Réalisateur</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script></script>
+    <script src="film.js"></script>
 </body>
 
 </html>
