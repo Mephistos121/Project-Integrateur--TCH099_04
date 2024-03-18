@@ -121,6 +121,17 @@ post('/api/connexion', function() {
     echo json_encode($compte);
 });
 post('/api/cinemas', function(){
+    function checkRemoteFile($url){ 
+        $headers = @get_headers($url); 
+        if($headers){
+          foreach ($headers as $line){
+            if(strpos( $line, 'image')) { 
+              return true;
+            } 
+          }
+        }
+        return false;
+    } 
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
 
@@ -138,14 +149,20 @@ post('/api/cinemas', function(){
             $localisation = $data["localisation"];
             $gestionnaire = $data["gestionnaire"];
             $image = $data["image"];
-        
-            $requete = $pdo->prepare(
-                "INSERT INTO Eq4_cinema (nom_cinema, image, localisation, gestionnaire_id)
-                VALUES (?,?,?,?);"
-            );
-            header('Content-type: application/json');
-            $requete->execute([$nom, $image, $localisation, $gestionnaire]);
-            echo json_encode($requete);
+            $valid=checkRemoteFile($image);
+            if($valid){
+                $requete = $pdo->prepare(
+                    "INSERT INTO Eq4_cinema (nom_cinema, image, localisation, gestionnaire_id)
+                    VALUES (?,?,?,?);"
+                );
+                header('Content-type: application/json');
+                $requete->execute([$nom, $image, $localisation, $gestionnaire]);
+                echo json_encode($requete);
+            }
+            else{
+                $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+                echo json_encode($error);
+            }
         }
 );
 
@@ -171,4 +188,24 @@ get('/api/cinemas/gestionnaire/$id', function($id){
     header('Content-type: application/json');   
     echo json_encode($cinemas);
         
+});
+get('/api/cinemas', function(){
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $pdo = new PDO($database, $DBuser, $DBpass);   
+    } catch(PDOException $e) {
+        echo "Error: Unable to connect to MySQL. Error:\n $e";
+    }
+
+    $requete = $pdo->prepare(
+        "SELECT  nom_cinema, localisation FROM Eq4_cinema;"
+    );
+    $requete->execute();
+    
+    $cinemas = $requete->fetchAll();
+    header('Content-type: application/json');   
+    echo json_encode($cinemas);
 });

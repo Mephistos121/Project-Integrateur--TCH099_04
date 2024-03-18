@@ -1,6 +1,5 @@
 window.addEventListener("load", (event1) => {
     let ajoutCinema = document.querySelector("#creer_submit");
-    console.log(document.cookie);
     gestionnaireId=cookieGetter("id");
     cinemaGetter(gestionnaireId);
     
@@ -12,7 +11,7 @@ window.addEventListener("load", (event1) => {
         const info_cinema = {
         nom: document.querySelector("#creer_nom").value,
         image: document.querySelector("#creer_image").value,
-        emplacement: document.querySelector("#creer_emplacement").value,
+        localisation: document.querySelector("#creer_localisation").value,
         gestionnaire: document.cookie=gestionnaireId,//PLACEHOLDER
         };
         
@@ -23,10 +22,30 @@ window.addEventListener("load", (event1) => {
         check ? ajouterNouveauCinema(info_cinema) : alert("Veuillez entrer toutes les informations du cinema");
     });
     async function ajouterNouveauCinema(cinema){
+        //validation du nom de cinema
+        const responseCinema = await fetch("http://localhost/api/cinemas");
+        const content = await responseCinema.json();
+        let ajoutValide = true;
+        if(content.length){
+            Object.keys(content).forEach(element => {
+                //console.log("Comparaison entre: "+content[element].nom_cinema +" et "+ cinema.nom);
+                if (content[element].nom_cinema==cinema.nom){
+                    alert("Ce nom de cinéma est déjà utilisé");
+                    ajoutValide = false
+                    //console.log(content[element] + " " + cinema.nom);
+                }
+            });
+        }
+        //validation adresse avec geoapify
+         ajoutValide = validationAdresse(cinema.localisation);
+     
+        //validation droit d'ajout
         if(cookieGetter("privilege")!="gestionnaire"){
             alert("Vous devez être un gestionnaire pour ajouter des cinémas");
         }
-        else{
+
+        //si tout est beau on ajoute
+        else if(ajoutValide){
             const response = await fetch("http://localhost/api/cinemas", {
                     method: 'POST',
                     
@@ -35,22 +54,33 @@ window.addEventListener("load", (event1) => {
                     },
                     body: JSON.stringify(cinema),
                 });
-                if (response.ok){
+                const message = await response.json();
+                console.log(message);
+                if(message.erreur){
+                    alert(message.erreur);
+                }
+                else if (response.ok){
                 alert("success");
-                console.log(response);
+                cinemaGetter(gestionnaireId);
                 }else {
-                    console.log(response);
                     alert("Le serveur a refusé");
                 }
         }
-    }
-   
+    }   
 });
-
+async function validationAdresse(adresse){
+    const response = await fetch("https://api.geoapify.com/v1/geocode/search?text="+adresse+" &format=json&apiKey=c79307b333d645cfba222d71ad09c686")
+    const content2 = await response.json();
+    console.log(content2);
+    if(content2.results.length==0){
+      alert("adresse non valide");
+      return false;
+    }
+    return true;
+}
 async function cinemaGetter(id){
     const responseCinema = await fetch("http://localhost/api/cinemas/gestionnaire/"+id);
     const content = await responseCinema.json();
-    console.log(content);
     if(content.length>0){
         const divList = document.querySelector("div#liste_cinema > div");
         divList.textContent = "";
@@ -59,9 +89,9 @@ async function cinemaGetter(id){
         for (let cinema of content) {
            const li = document.createElement("li");
            const div = document.createElement("div");
-           div.textContent = cinema.nom;
+           div.textContent = cinema.nom_cinema;
            const div2 = document.createElement("div");
-           div2.textContent = cinema.emplacement;
+           div2.textContent = cinema.localisation;
            
            ul.append(li);
            li.append(div);
@@ -76,7 +106,6 @@ function cookieGetter(name){
     for (let cookie of cookies) {
         const [cookieName, cookieValue] = cookie.trim().split('=');
         if(cookieName === name){
-            console.log(cookieValue);
             return cookieValue;
         }
     }
