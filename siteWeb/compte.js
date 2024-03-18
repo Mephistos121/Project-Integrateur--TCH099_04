@@ -1,5 +1,5 @@
 window.addEventListener("load", (event1) => {
-   
+
     let sbutton = document.querySelector("#creer_submit");
 
     sbutton.addEventListener("click", (event3) => {
@@ -17,7 +17,7 @@ window.addEventListener("load", (event1) => {
                 check ? ajouterNouveauCompte(info_compte) : alert("Veuillez entrer toutes les informations du compte");
     });
 
-    let connecterButton = document.querySelector("#connecterButton");
+            let connecterButton = document.querySelector("#connecterButton");
 
     connecterButton.addEventListener("click", (event4) => {
         const identifiant = document.querySelector("#connecter_identifiant").value;
@@ -73,7 +73,6 @@ async function ajouterNouveauCompte(compte){
 
 async function seConnecter(courriel, mot_passe) {
     try {
-        
         const url = "http://localhost/api/connexion";
 
         const response = await fetch(url, {
@@ -104,4 +103,33 @@ async function seConnecter(courriel, mot_passe) {
         console.error('Erreur lors de la connexion:', error);
         alert('Erreur lors de la connexion. Veuillez réessayer plus tard.');
     }
+}
+
+window.addEventListener("DOMContentLoaded", function() {
+    cacherMenuGestionnaire();
+});
+
+function cacherMenuGestionnaire() {
+    var menuGestionnaire = document.querySelector("#menu_gestionnaire");
+    if (hasPrivilege()) {
+        menuGestionnaire.style.display = "block"; 
+    } else {
+        menuGestionnaire.style.display = "none";
+    }
+}
+
+function getPrivilegeCookie() {
+    const cookieArray = document.cookie.split('; ');
+    for (const cookie of cookieArray) {
+        const [name, value] = cookie.split('=');
+        if (name === 'privilege') {
+            return value;
+        }
+    }
+    return null;
+}
+
+function hasPrivilege() {
+    const privilegeValue = getPrivilegeCookie();
+    return privilegeValue === "gestionnaire";
 }
