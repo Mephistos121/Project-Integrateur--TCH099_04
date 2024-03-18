@@ -65,11 +65,6 @@
   display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-
-
 .button_section {
     justify-content: center;
     display: grid;
@@ -163,6 +158,10 @@
     width: 100%;
   }
 
+  #connecterButton{
+    margin-top: 84px;
+  }
+
   .edit_clear {
     background-image: linear-gradient(to right, #713b8a 0%,  #4d074d 66%);
     border-radius: 12px;
@@ -177,6 +176,27 @@
     width: 100%;
   }
 
+  .sub_section_container{
+    border: 0;
+    box-sizing: border-box;
+    color: rgb(224, 197, 75);
+    font-size: 18px;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+    margin-top: 30px;
+
+    input{
+      position: relative;
+      left: 0;
+      top: 0;
+      margin-right: 20px;
+    }
+
+    label{
+      font-size: 22px;
+    }
+  }
 
 
 

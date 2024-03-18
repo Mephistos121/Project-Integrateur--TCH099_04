@@ -14,24 +14,23 @@
                 <i class="fa-solid fa-bars" id="dropdown_button"></i>
                 <div class="dropdown_content">
                   <a href="index.html">Index</a>
-                  <a id="menu_gestionnaire" href="gestionnaire.html">Menu Gestionnaire</a>
+                  <a  id="menu_gestionnaire" href="gestionnaire.html">Menu Gestionnaire</a>
                   <a href="#">Placeholder 3 </a>
                 </div>
             </div>
 
         <h1>Création de compte</h1>
-        <p>Place holder text for future :D<p>
         <div class="button_section">
-            <button class="header_button" role="button">
+            <button class="header_button"  id ="signInButton">
                 <span class="button_text">Sign In</span>
             </button>
-            <button class="header_button" role="button">
+            <button class="header_button" id ="signUpButton">
                 <span class="button_text" >Sign Up</span>
             </button>
         </div>
     </div>     
     <section>
-        <div>
+        <div id = "signUpSection">
             <div id="error_code"></div>
             <form class="form_container">
                 <div class="form_layout">
@@ -48,9 +47,8 @@
                         <input id = "creer_pass" class = "input_container" type="password" name="creer_pass" placeholder="Mot de Passe" value="" required>
                     </div>
                     
-                    <div>
-                        <label class="input_container">Compte Gestionnaire</label>
-                        <input id="privilege" class="input_container" type="checkbox" name="privilege">
+                    <div class = "sub_section_container">
+                        <label><input id="privilege" type="checkbox" name="privilege">Compte Gestionnaire</label>
                     </div>
 
                     <div class="bouttons_form">
@@ -60,7 +58,8 @@
                 </div>
             </form>
         </div>
-        <div>
+
+        <div id = "signInSection">
             <form class="form_container">
                 <div class="form_layout">
                     <div class="title">Se connecter a son compte</div>

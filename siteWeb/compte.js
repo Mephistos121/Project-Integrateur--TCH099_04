@@ -17,7 +17,7 @@ window.addEventListener("load", (event1) => {
                 check ? ajouterNouveauCompte(info_compte) : alert("Veuillez entrer toutes les informations du compte");
     });
 
-            let connecterButton = document.querySelector("#connecterButton");
+    let connecterButton = document.querySelector("#connecterButton");
 
     connecterButton.addEventListener("click", (event4) => {
         const identifiant = document.querySelector("#connecter_identifiant").value;
@@ -30,7 +30,46 @@ window.addEventListener("load", (event1) => {
             alert("Veuillez remplir tous les champs.");
         }
     });
+
+    var signInSection = document.getElementById('signUpSection');
+    closeDiv(signInSection);
+    var signUpSection = document.getElementById('signInSection');
+    closeDiv(signUpSection);
+
+    let signInButton = document.querySelector("#signInButton");
+    let signUpButton = document.querySelector("#signUpButton");
+   
+    signInButton.addEventListener("click", () => {
+        var signInSection = document.getElementById('signInSection');
+        var signUpSection = document.getElementById('signUpSection');
+        showDiv(signInSection);
+        closeDiv(signUpSection)
+    });
+
+    signUpButton.addEventListener("click", () => {
+        var signUpSection = document.getElementById('signUpSection');
+        var signInSection = document.getElementById('signInSection');
+        showDiv(signUpSection);
+        closeDiv(signInSection)
+    });
+    
 });
+
+function showDiv(section) {
+    section.style.display = "block";
+}
+  
+function closeDiv(section) {
+    section.style.display = "none";
+}
+  
+function toggle(section) {
+    if (section.style.display === "block") {
+      closeDiv(section)
+    } else {
+      showDiv(section)
+    }
+}
 
 async function uniqueEmail(compte){
     const responeMail = await fetch("http://localhost/api/comptes/"+compte.courriel);
