@@ -19,7 +19,7 @@ get('/api/comptes', function () {
     }
 
     $requete = $pdo->prepare(
-        "SELECT nom, courriel, mot_passe FROM comptes;"
+        "SELECT nom_usager, email, password FROM Eq4_usager;"
     );
 
     $requete->execute();
@@ -58,7 +58,7 @@ post('/api/comptes', function() {
     }
     
     $requete = $pdo->prepare(
-        "INSERT INTO comptes (nom, courriel, mot_passe, privilege) 
+        "INSERT INTO Eq4_usager (nom_usager, email, password, role) 
         VALUES (?, ?, ?, ?);"
         );
     header('Content-type: application/json');
@@ -78,7 +78,7 @@ get('/api/comptes/$courriel', function ($courriel) {
     }
 
     $requete = $pdo->prepare(
-        "SELECT courriel FROM comptes WHERE courriel = ?;"
+        "SELECT email FROM Eq4_usager WHERE email = ?;"
     );
 
     $requete->execute([$courriel]);
@@ -111,7 +111,7 @@ post('/api/connexion', function() {
     $mot_passe = $data["mot_passe"];
 
     $requete = $pdo->prepare(
-        "SELECT id, privilege FROM comptes WHERE courriel = ? AND mot_passe = ?;"
+        "SELECT id, role FROM Eq4_usager WHERE email = ? AND password = ?;"
     );
 
     $requete->execute([$courriel, $mot_passe]);
@@ -135,16 +135,16 @@ post('/api/cinemas', function(){
             }
     
             $nom = $data["nom"];
-            $emplacement = $data["emplacement"];
+            $localisation = $data["localisation"];
             $gestionnaire = $data["gestionnaire"];
             $image = $data["image"];
         
             $requete = $pdo->prepare(
-                "INSERT INTO cinemas (nom, image, emplacement, gestionnaire_id)
+                "INSERT INTO Eq4_cinema (nom_cinema, image, localisation, gestionnaire_id)
                 VALUES (?,?,?,?);"
             );
             header('Content-type: application/json');
-            $requete->execute([$nom, $image, $emplacement, $gestionnaire]);
+            $requete->execute([$nom, $image, $localisation, $gestionnaire]);
             echo json_encode($requete);
         }
 );
@@ -163,7 +163,7 @@ get('/api/cinemas/gestionnaire/$id', function($id){
     }
 
     $requete = $pdo->prepare(
-        "SELECT  nom, emplacement FROM cinemas WHERE gestionnaire_id = ?;"
+        "SELECT  nom_cinema, localisation FROM Eq4_cinema WHERE gestionnaire_id = ?;"
     );
     $requete->execute([$id]);
     

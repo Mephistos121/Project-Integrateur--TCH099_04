@@ -93,7 +93,7 @@ async function seConnecter(courriel, mot_passe) {
                 const d = new Date();
                 d.setTime(d.getTime()+ (24*60*60*1000));//le temps ajouté est égal à 1 jours. Multiplier par un nombre pour avoir +/- de jours
                 document.cookie = "id="+responseData.id+"; expires="+d+"; path=/;";
-                document.cookie = "privilege="+responseData.privilege+";expires="+d+"; path=/;"; 
+                document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
             }
         } else {
             console.error('Échec de la connexion');
