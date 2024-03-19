@@ -33,8 +33,6 @@ window.addEventListener("load", (event1) => {
 
     var signInSection = document.getElementById('signUpSection');
     closeDiv(signInSection);
-    var signUpSection = document.getElementById('signInSection');
-    closeDiv(signUpSection);
 
     let signInButton = document.querySelector("#signInButton");
     let signUpButton = document.querySelector("#signUpButton");
