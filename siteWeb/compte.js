@@ -52,7 +52,15 @@ window.addEventListener("load", (event1) => {
         showDiv(signUpSection);
         closeDiv(signInSection)
     });
+
+    cacherMenuGestionnaire();
     
+    let logoutButton = document.querySelector("#logoutButton");
+
+    logoutButton.addEventListener("click", () => {
+        deconnecterUtilisateur();
+    });
+
 });
 
 function showDiv(section) {
@@ -133,6 +141,8 @@ async function seConnecter(courriel, mot_passe) {
                 d.setTime(d.getTime()+ (24*60*60*1000));//le temps ajouté est égal à 1 jours. Multiplier par un nombre pour avoir +/- de jours
                 document.cookie = "id="+responseData.id+"; expires="+d+"; path=/;";
                 document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
+
+                cacherMenuGestionnaire();
             }
         } else {
             console.error('Échec de la connexion');
@@ -144,13 +154,9 @@ async function seConnecter(courriel, mot_passe) {
     }
 }
 
-window.addEventListener("DOMContentLoaded", function() {
-    cacherMenuGestionnaire();
-});
-
 function cacherMenuGestionnaire() {
     var menuGestionnaire = document.querySelector("#menu_gestionnaire");
-    if (hasPrivilege()) {
+    if (hasPrivilege() && isConnected()) {
         menuGestionnaire.style.display = "block"; 
     } else {
         menuGestionnaire.style.display = "none";
@@ -171,4 +177,29 @@ function getPrivilegeCookie() {
 function hasPrivilege() {
     const privilegeValue = getPrivilegeCookie();
     return privilegeValue === "gestionnaire";
+}
+
+function getconnecterCookie() {
+    const cookieArray = document.cookie.split('; ');
+    for (const cookie of cookieArray) {
+        const[name, value] = cookie.split('=');
+        if (name === 'id') {
+            return value;
+        }
+    }
+}
+
+function isConnected() {
+    const connecterValue = getconnecterCookie();
+    return connecterValue != null;
+}
+
+function deconnecterUtilisateur() {
+    
+    document.cookie = "id=; Max-Age=-1; path=/;";
+    document.cookie = "privilege=; Max-Age=-1; path=/;";
+
+    cacherMenuGestionnaire();
+
+    alert("Vous avez été déconnecté.");
 }
