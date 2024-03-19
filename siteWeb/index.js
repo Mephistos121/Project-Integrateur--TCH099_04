@@ -1,13 +1,8 @@
-let movies = [{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" }];
-
 let featuredMovie = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
+{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
+{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
+
+let featuredCinema = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
 
@@ -22,12 +17,12 @@ function showMovies(movies) {
         const imgPoster = document.createElement("img");
         const movieTitle = document.createElement("p");
         const movieLink = document.createElement("a");
-
+        
         imgPoster.src = movie.image;
-        imgPoster.alt = movie.title;
-        movieTitle.textContent = movie.title;
+        imgPoster.alt = movie.nom_film;
+        movieTitle.textContent = movie.nom_film;
 
-        movieLink.href =`film.html?title=${movie.title}`;
+        movieLink.href =`film.html?title=${movie.nom_film}`;
         movieLink.appendChild(imgPoster);
         movieLink.appendChild(movieTitle);
         movieListItem.appendChild(movieLink);
@@ -56,20 +51,6 @@ function showFeaturedMovie(movie) {
     });
 }
 
-let cinemas = [{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" }];
-
-let featuredCinema = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
-
-
 
 function showCinemas(cinemas) {
     cinemas.forEach(cinema => {
@@ -79,10 +60,10 @@ function showCinemas(cinemas) {
         const cinemaLink = document.createElement("a");
 
         imgPoster.src = cinema.image;
-        imgPoster.alt = cinema.title;
-        cinemaTitle.textContent = cinema.title;
+        imgPoster.alt = cinema.nom_cinema;
+        cinemaTitle.textContent = cinema.nom_cinema;
 
-        cinemaLink.href =`cinema.html?title=${cinema.title}`;
+        cinemaLink.href =`cinema.html?title=${cinema.nom_cinema}`;
         cinemaLink.appendChild(imgPoster);
         cinemaLink.appendChild(cinemaTitle);
         cinemaListItem.appendChild(cinemaLink);
@@ -90,9 +71,9 @@ function showCinemas(cinemas) {
     });
 }
 
-function showFeaturedCinema(cinema) {
+function showFeaturedCinema(cinemas) {
     let counter = 0;
-    cinema.forEach(cinema => {
+    cinemas.forEach(cinema => {
         const imgPoster = document.createElement("img");
         const cinemaLink = document.createElement("a");
 
@@ -122,10 +103,27 @@ window.addEventListener("load", (event1) => {
     if (chosenType=="cinemas"){
         header.textContent="Cinémas";
         showFeaturedCinema(featuredCinema);
-        showCinemas(cinemas);
+        fetchAllCinema();
     }else{
         header.textContent="Films";
         showFeaturedMovie(featuredMovie);
-        showMovies(movies);
+        fetchAllFilm();
     }
 });
+
+
+async function fetchAllCinema(){
+    const responseCinema = await fetch("http://localhost/api/cinemas");
+    const content = await responseCinema.json();
+    
+    showCinemas(content);
+
+}
+
+async function fetchAllFilm(){
+    const responseFilm = await fetch("http://localhost/api/films");
+    const contenu = await responseFilm.json();
+    
+    showMovies(contenu);
+
+}
