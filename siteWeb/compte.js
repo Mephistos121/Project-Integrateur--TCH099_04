@@ -199,6 +199,8 @@ function deconnecterUtilisateur() {
     document.cookie = "id=; Max-Age=-1; path=/;";
     document.cookie = "privilege=; Max-Age=-1; path=/;";
 
+    location.reload();
+
     cacherMenuGestionnaire();
 
     alert("Vous avez été déconnecté.");
