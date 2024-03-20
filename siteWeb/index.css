@@ -145,14 +145,18 @@
     margin-bottom: 2rem;
 }
 
-#index_list{
+#index_list_container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content:space-evenly;
-    list-style: none;
+    justify-content: center;
 }
 
+#index_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 2rem;
+    list-style: none;
+    max-width: 1200px;
+}
 
 
 #index_list a{
@@ -160,6 +164,11 @@
     color: black;
     text-align: center;
     font-size: 1.5rem;
+}
+
+#index_list li{
+    width : 18rem;
+    height: 26rem;
 }
 
 #index_list li img{
