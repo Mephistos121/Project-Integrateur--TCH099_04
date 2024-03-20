@@ -12,7 +12,7 @@ window.addEventListener("load", (event1) => {
         nom: document.querySelector("#creer_nom").value,
         image: document.querySelector("#creer_image").value,
         localisation: document.querySelector("#creer_localisation").value,
-        gestionnaire: document.cookie=gestionnaireId,//PLACEHOLDER
+        gestionnaire: document.cookie=gestionnaireId,
         };
         
         let check=true;

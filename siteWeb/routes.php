@@ -1,9 +1,5 @@
 <?php
-
 require_once __DIR__ . '/router.php';
-
-
-
 
 // A route with a callback
 get('/api/comptes', function () {
@@ -29,9 +25,6 @@ get('/api/comptes', function () {
     header('Content-type: application/json');
     echo json_encode($compte);
 });
-
-
-
 
 post('/api/comptes', function() {
     $json = file_get_contents('php://input');
@@ -89,8 +82,6 @@ get('/api/comptes/$courriel', function ($courriel) {
     echo json_encode($compte);
 });
 
-
-
 post('/api/connexion', function() {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
@@ -121,17 +112,6 @@ post('/api/connexion', function() {
     echo json_encode($compte);
 });
 post('/api/cinemas', function(){
-    function checkRemoteFile($url){ 
-        $headers = @get_headers($url); 
-        if($headers){
-          foreach ($headers as $line){
-            if(strpos( $line, 'image')) { 
-              return true;
-            } 
-          }
-        }
-        return false;
-    } 
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
 
@@ -231,6 +211,38 @@ get('/api/films', function(){
 
     echo json_encode($films);
 });
+post('/api/films/ajout',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $pdo = new PDO($database, $DBuser, $DBpass);   
+    } catch(PDOException $e) {
+        echo "Error: Unable to connect to MySQL. Error:\n $e";
+    }
+
+        $nom = $data["nom_film"];
+        $image = $data["image"];
+        $description = $data["description"];
+        $valid=checkRemoteFile($image);
+        if($valid){
+            $requete = $pdo->prepare(
+                "INSERT INTO Eq4_film (nom_film, image, description)
+                VALUES (?,?,?);"
+            );
+            header('Content-type: application/json');
+            $requete->execute([$nom, $image, $description]);
+            echo json_encode($requete);
+        }
+        else{
+            $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+            echo json_encode($error);
+        }
+});
 
 get('/api/cinemas/$cinema', function($cinemaId){
     $DBuser = 'sql5686135';
@@ -273,3 +285,14 @@ get('/api/films/$cinema', function($cinema){
 
     echo json_encode($films);
 });
+function checkRemoteFile($url){ 
+    $headers = @get_headers($url); 
+    if($headers){
+      foreach ($headers as $line){
+        if(strpos( $line, 'image')) { 
+          return true;
+        } 
+      }
+    }
+    return false;
+} 
