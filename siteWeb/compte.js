@@ -92,29 +92,33 @@ function error(error){
 
 
 async function ajouterNouveauCompte(compte){
+    const regex = new RegExp('[a-zA-Z0-9_]+@([a-zA-Z0-9_]+.)+[a-zA-Z0-9_]');
 
-    uniqueEmail(compte).then(async function(results){
-        console.log(results);
-        if(results===true){
-            error("Ce courriel est déjà utilisé");
-        }
-        else{
-    const response = await fetch("http://localhost/api/comptes", {
-        method: 'POST',
-
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(compte),
-    });
-    console.log(response);
-    if (response.ok){
-        alert('Success!');
-        document.querySelector("#creer_form").reset();
+    if (regex.test(compte.courriel)){
+        uniqueEmail(compte).then(async function(results){
+            if(results===true){
+                error("Ce courriel est déjà utilisé");
+            }
+            else{
+            const response = await fetch("http://localhost/api/comptes", {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(compte),
+            });
+            if (response.ok){
+                alert('Success!');
+                document.querySelector("#creer_form").reset();
+            }else {
+                alert("Le serveur à refuser");
+            }
+            }
+        })
     }else {
-        alert("Le serveur à refuser");
+        alert("Le courriel entrer n'est pas de la bonne forme.");
     }
-}})}
+}
 
 async function seConnecter(courriel, mot_passe) {
     try {
