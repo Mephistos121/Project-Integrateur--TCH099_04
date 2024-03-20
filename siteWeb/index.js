@@ -1,4 +1,4 @@
-let featuredMovie = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
+let featuredFilm = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
 
@@ -11,41 +11,41 @@ const featuredSlider = document.getElementById("featured_index_slider");
 const featuredContainer = document.getElementById("featured_index_container");
 const sliderNav = document.getElementById("slider_nav");
 
-function showMovies(movies) {
-    movies.forEach(movie => {
-        const movieListItem = document.createElement("li");
+function showFilms(films) {
+    films.forEach(film => {
+        const filmListItem = document.createElement("li");
         const imgPoster = document.createElement("img");
-        const movieTitle = document.createElement("p");
-        const movieLink = document.createElement("a");
+        const filmTitle = document.createElement("p");
+        const filmLink = document.createElement("a");
         
-        imgPoster.src = movie.image;
-        imgPoster.alt = movie.nom_film;
-        movieTitle.textContent = movie.nom_film;
+        imgPoster.src = film.image;
+        imgPoster.alt = film.nom_film;
+        filmTitle.textContent = film.nom_film;
 
-        movieLink.href =`film.html?title=${movie.nom_film}`;
-        movieLink.appendChild(imgPoster);
-        movieLink.appendChild(movieTitle);
-        movieListItem.appendChild(movieLink);
-        list.appendChild(movieListItem);
+        filmLink.href =`film.html?title=${film.nom_film}`;
+        filmLink.appendChild(imgPoster);
+        filmLink.appendChild(filmTitle);
+        filmListItem.appendChild(filmLink);
+        list.appendChild(filmListItem);
     });
 }
 
-function showFeaturedMovie(movie) {
+function showFeaturedFilm(film) {
     let counter = 0;
-    movie.forEach(movie => {
+    film.forEach(film => {
         const imgPoster = document.createElement("img");
-        const movieLink = document.createElement("a");
+        const filmLink = document.createElement("a");
 
         const sliderNavLink = document.createElement("a");
 
-        imgPoster.src = movie.image;
-        imgPoster.alt = movie.title;
-        imgPoster.id = `featured_movie_${counter}`;
-        movieLink.href = `film.html?title=${movie.title}`;
-        movieLink.appendChild(imgPoster);
-        featuredSlider.appendChild(movieLink);
+        imgPoster.src = film.image;
+        imgPoster.alt = film.title;
+        imgPoster.id = `featured_film_${counter}`;
+        filmLink.href = `film.html?title=${film.title}`;
+        filmLink.appendChild(imgPoster);
+        featuredSlider.appendChild(filmLink);
 
-        sliderNavLink.href = `#featured_movie_${counter}`;
+        sliderNavLink.href = `#featured_film_${counter}`;
         counter++;
         sliderNav.appendChild(sliderNavLink);
     });
@@ -106,7 +106,7 @@ window.addEventListener("load", (event1) => {
         fetchAllCinema();
     }else{
         header.textContent="Films";
-        showFeaturedMovie(featuredMovie);
+        showFeaturedFilm(featuredFilm);
         fetchAllFilm();
     }
 });
@@ -124,6 +124,6 @@ async function fetchAllFilm(){
     const responseFilm = await fetch("http://localhost/api/films");
     const contenu = await responseFilm.json();
     
-    showMovies(contenu);
+    showFilms(contenu);
 
 }
