@@ -137,6 +137,7 @@
     display: inline-block;
     padding: 5rem 0;
     background-color:  	#212124;
+    width: 100%;
 }
 
 #index_container h1{
@@ -159,6 +160,11 @@
     color: black;
     text-align: center;
     font-size: 1.5rem;
+}
+
+#index_list li img{
+    width : 16rem;
+    height: 24rem;
 }
 
 #index_list li:hover img{
