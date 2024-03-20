@@ -14,7 +14,8 @@ function connectionBD(){
     return $pdo;
 }
 // A route with a callback
-get('/api/comptes', function () {
+get('/projet4', 'index.html');
+get('/projet4/api/comptes', function () {
    $pdo=connectionBD();
 
     $requete = $pdo->prepare(
@@ -29,7 +30,7 @@ get('/api/comptes', function () {
     echo json_encode($compte);
 });
 
-post('/api/comptes', function() {
+post('/projet4/api/comptes', function() {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
 
@@ -52,7 +53,7 @@ post('/api/comptes', function() {
     $requete->execute([$nom, $courriel, $mot_passe, $gestionnaire]);
     echo json_encode($requete);
 });
-get('/api/comptes/$courriel', function ($courriel) {
+get('/projet4/api/comptes/$courriel', function ($courriel) {
     $pdo=connectionBD();
     $requete = $pdo->prepare(
         "SELECT email FROM Eq4_usager WHERE email = ?;"
@@ -66,7 +67,7 @@ get('/api/comptes/$courriel', function ($courriel) {
     echo json_encode($compte);
 });
 
-post('/api/connexion', function() {
+post('/projet4/api/connexion', function() {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $pdo=connectionBD();
@@ -83,7 +84,7 @@ post('/api/connexion', function() {
     header('Content-type: application/json');   
     echo json_encode($compte);
 });
-post('/api/cinemas', function(){
+post('/projet4/api/cinemas', function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $pdo=connectionBD();
@@ -108,7 +109,7 @@ post('/api/cinemas', function(){
     }
 });
 
-get('/api/cinemas/gestionnaire/$id', function($id){
+get('/projet4/api/cinemas/gestionnaire/$id', function($id){
     $pdo=connectionBD();
 
     $requete = $pdo->prepare(
@@ -121,7 +122,7 @@ get('/api/cinemas/gestionnaire/$id', function($id){
     echo json_encode($cinemas);
         
 });
-get('/api/cinemas', function(){
+get('/projet4/api/cinemas', function(){
     $pdo=connectionBD();
 
     $requete = $pdo->prepare(
@@ -134,7 +135,7 @@ get('/api/cinemas', function(){
     echo json_encode($cinemas);
 });
 
-get('/api/films', function(){
+get('/projet4/api/films', function(){
    $pdo=connectionBD();
 
     $requete = $pdo->prepare(
@@ -147,7 +148,7 @@ get('/api/films', function(){
 
     echo json_encode($films);
 });
-post('/api/films/ajout',function(){
+post('/projet4/api/films/ajout',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $pdo=connectionBD();
@@ -170,7 +171,7 @@ post('/api/films/ajout',function(){
         }
 });
 
-get('/api/cinemas/$cinema', function($cinemaId){
+get('/projet4/api/cinemas/$cinema', function($cinemaId){
     $pdo=connectionBD();
     $requete = $pdo->prepare(
         "SELECT * FROM `Eq4_cinema` WHERE `id`=?"
@@ -182,7 +183,7 @@ get('/api/cinemas/$cinema', function($cinemaId){
     echo json_encode($cinema);
 });
 
-get('/api/films/$cinema', function($cinema){
+get('/projet4/api/films/$cinema', function($cinema){
     $pdo=connectionBD();
 
     $requete = $pdo->prepare(
