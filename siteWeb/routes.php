@@ -231,3 +231,45 @@ get('/api/films', function(){
 
     echo json_encode($films);
 });
+
+get('/api/cinemas/$cinema', function($cinemaId){
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $pdo = new PDO($database, $DBuser, $DBpass);   
+    } catch(PDOException $e) {
+        echo "Error: Unable to connect to MySQL. Error:\n $e";
+    }
+
+    $requete = $pdo->prepare(
+        "SELECT * FROM `Eq4_cinema` WHERE `id`=?"
+    );
+    $requete->execute([$cinemaId]);
+    $cinema = $requete->fetch();
+    header('Content-type: application/json');
+   
+    echo json_encode($cinema);
+});
+
+get('/api/films/$cinema', function($cinema){
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $pdo = new PDO($database, $DBuser, $DBpass);   
+    } catch(PDOException $e) {
+        echo "Error: Unable to connect to MySQL. Error:\n $e";
+    }
+
+    $requete = $pdo->prepare(
+        "SELECT `Eq4_film`.* FROM `Eq4_film`,`Eq4_cinema`,`Eq4_representation` WHERE `Eq4_film`.`id`=`Eq4_representation`.`film_id` AND `Eq4_representation`.`cinema_id`=`Eq4_cinema`.`id` AND `Eq4_cinema`.`id`=?"
+    );
+    $requete->execute([$cinema]);
+    $films = $requete->fetchAll();
+    header('Content-type: application/json');
+
+    echo json_encode($films);
+});

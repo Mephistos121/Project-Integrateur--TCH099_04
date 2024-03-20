@@ -1,33 +1,16 @@
-let films = [{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/300x400" }];
-
-let featuredFilm = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
-
-const list = document.getElementById("index_list");
-const featuredSlider = document.getElementById("featured_index_slider");
-const featuredContainer = document.getElementById("featured_index_container");
-const sliderNav = document.getElementById("slider_nav");
-
 function showFilms(films) {
     films.forEach(film => {
+        const list = document.getElementById("index_list");
         const filmListItem = document.createElement("li");
         const imgPoster = document.createElement("img");
         const filmTitle = document.createElement("p");
         const filmLink = document.createElement("a");
 
         imgPoster.src = film.image;
-        imgPoster.alt = film.title;
-        filmTitle.textContent = film.title;
+        imgPoster.alt = film.nom_film;
+        filmTitle.textContent = film.nom_film;
 
-        filmLink.href =`film.html?title=${film.title}`;
+        filmLink.href =`film.html?title=${film.id}`;
         filmLink.appendChild(imgPoster);
         filmLink.appendChild(filmTitle);
         filmListItem.appendChild(filmLink);
@@ -39,15 +22,28 @@ window.addEventListener("load", (event1) => {
     
     const myKeyValues = window.location.search;
     const typeParams = new URLSearchParams(myKeyValues);
-    const chosenType = typeParams.get("title");
+    const chosenCinemaId = typeParams.get("title");
     
+    
+
+    putCinemaName(chosenCinemaId);
+    fetchAllFilm(chosenCinemaId);
+});
+
+async function putCinemaName(cinemaId){
+    const responseCinema = await fetch("http://localhost/api/cinemas/"+cinemaId);
+    const contenu = await responseCinema.json();
+
     const header = document.getElementById("index_header");
 
-    header.textContent="Films du cinema " + chosenType;
+    header.textContent= "Films du cinema "+contenu.nom_cinema;
 
-    if (chosenType==chosenType){
-        showFilms(films);
-    }else{
-        //no exit film to do....
-    }
-});
+}
+
+async function fetchAllFilm(cinemaId){
+    const responseFilm = await fetch("http://localhost/api/films/"+cinemaId);
+    const contenu = await responseFilm.json();
+
+    showFilms(contenu);
+
+}
