@@ -8,27 +8,26 @@
     <link rel="stylesheet" href="compte.css">
     <title>Compte</title>
 </head>
-<body style="background-color:#3A3B3C;">
-    <div class="header">
-            <div class="dropdown" >
-                <i class="fa-solid fa-bars" id="dropdown_button"></i>
-                <div class="dropdown_content">
-                  <a href="index.html">Index</a>
-                  <a  id="menu_gestionnaire" href="gestionnaire.html">Menu Gestionnaire</a>
-                  <a id="logoutButton" href="#"> Deconnexion </a>
+<body style="background-color:darkgrey;">
+        <div class="header">
+                <div class="dropdown" >
+                    <i class="fa-solid fa-bars" id="dropdown_button"></i>
+                    <div class="dropdown_content">
+                    <a href="index.html">Index</a>
+                    <a  id="menu_gestionnaire" href="gestionnaire.html">Menu Gestionnaire</a>
+                    <a id="logoutButton" href="#"> Deconnexion </a>
+                    </div>
                 </div>
+            <h1>Création de compte</h1>
+            <div class="button_section">
+                <button class="header_button"  id ="signInButton">
+                    <span class="button_text">Sign In</span>
+                </button>
+                <button class="header_button" id ="signUpButton">
+                    <span class="button_text" >Sign Up</span>
+                </button>
             </div>
-
-        <h1>Création de compte</h1>
-        <div class="button_section">
-            <button class="header_button"  id ="signInButton">
-                <span class="button_text">Sign In</span>
-            </button>
-            <button class="header_button" id ="signUpButton">
-                <span class="button_text" >Sign Up</span>
-            </button>
-        </div>
-    </div>     
+        </div>      
     <section>
         <div id = "signUpSection">
             <div id="error_code"></div>
@@ -52,8 +51,8 @@
                     </div>
 
                     <div class="bouttons_form">
-                        <input id="creer_submit" class="edit_submit" type="button" value="Creer compte">
-                        <input class="edit_clear" type="reset" value="Effacer">
+                        <input id="creer_submit" class="button_card" type="button" value="Creer compte">
+                        <input class="button_card" type="reset" value="Effacer">
                     </div>
                 </div>
             </form>
@@ -72,8 +71,8 @@
                     </div> 
                     
                     <div class="buttons_form">
-                        <input id="connecterButton" class="edit_submit" type="button" value="Connecter">
-                        <input class="edit_clear" type="reset" value="Effacer">
+                        <input id="connecterButton" class="button_card" type="button" value="Connecter">
+                        <input class="button_card" type="reset" value="Effacer">
                     </div>
                 </div>
             </form>

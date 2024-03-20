@@ -1,24 +1,28 @@
 .header {
+    position: relative;
+    background-color: black;
     padding: 20px;
+    margin: -8px;
     text-align: center;
-    background: #010020;
-    color: rgb(224, 197, 75);
+    color: white;
     font-size: 30px;
-    h1 {
-        font-size:2.4em;
-        text-transform: uppercase;
-        font-family: 'Gambetta', serif;
-        transition: 700ms ease;
-        font-variation-settings: "wght" 311;
-        margin-bottom: 0.5rem;
-        outline: none;
-        text-align: center;
-      }
-      
-      h1:hover {
-        font-variation-settings: "wght" 582; 
-        letter-spacing: 3px;
-      }
+}
+
+.header h1 {
+  font-size:2.4em;
+  text-transform: uppercase;
+  font-family: 'Gambetta', serif;
+  transition: 700ms ease;
+  font-variation-settings: "wght" 311;
+  margin-bottom: 0.6em;
+  margin-top: -10px;
+  outline: none;
+  text-align: center;
+}
+
+.header h1:hover {
+  font-variation-settings: "wght" 582; 
+  letter-spacing: 3px;
 }
 
 
@@ -30,7 +34,7 @@
 }
 
 #dropdown_button {
-  background-color: goldenrod;
+  background-color: white;
   color: black;
   padding: 16px;
   font-size: 25px;
@@ -70,14 +74,13 @@
     display: grid;
     grid-auto-flow: column;
     grid-column-gap: 2em;  
-    transform: skewY(-3.5deg);
 }
 
 .header_button {
-  background-image: linear-gradient(to right, #713b8a 0%,  #4d074d 66%);
+  background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%); 
   border: 0;
   border-radius: 8px;
-  color: rgb(224, 197, 75);
+  color: white;
   font-family: Phantomsans, sans-serif;
   font-size: 20px;
   max-width: fit-content;
@@ -85,16 +88,17 @@
   min-height: 3em;
   padding: 3px;
   cursor: pointer;
+}
 
-  span {
-    background-color: rgb(5, 6, 45);
-    padding: 16px 24px;
-    border-radius: 6px;
+.header_button span{
+   background: rgb(19, 30, 37);
+    padding: 18px 20px;
     width: 100%;
     height: 100%;
-  }
 }
+
 .header_button:hover span {
+    transition-duration: 0.5s;
     background: none;
 }
 
@@ -107,19 +111,18 @@
 }
 
 .form_layout {
-    background-color: #15172b;
+    background-color: black;
     justify-content: center;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 500px;
+    height: 560px;
     padding: 1.3em;
     width: 420px;
-
   }
   
   .title {
     align-self: center;
-    color: rgb(224, 197, 75);
+    color: white;
     font-family: sans-serif;
     font-size: 28px;
     font-weight: 600;
@@ -131,9 +134,9 @@
     border-radius: 12px;
     border: 0;
     box-sizing: border-box;
-    color: rgb(224, 197, 75);
+    color: white;
     font-size: 18px;
-    height: 100%;
+    height: 2.5em;
     outline: 0;
     padding: 4px 20px 0;
     width: 100%;
@@ -144,42 +147,34 @@
   margin-bottom:  70px;
 }
 
-.edit_submit {
-    background-image: linear-gradient(to right, #713b8a 0%,  #4d074d 66%);
+  .button_card {
+    background:rgb(19, 30, 37) ; 
     border-radius: 12px;
     border: 0;
     box-sizing: border-box;
-    color: rgb(224, 197, 75);
+    color: white;
     cursor: pointer;
     font-size: 18px;
     height: 50px;
     margin-top: 38px;
     text-align: center;
     width: 100%;
+  }
+
+  .button_card:hover{
+      background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
+      transition-duration: 0.5s;
+      transition: 0.5s;
   }
 
   #connecterButton{
-    margin-top: 84px;
-  }
-
-  .edit_clear {
-    background-image: linear-gradient(to right, #713b8a 0%,  #4d074d 66%);
-    border-radius: 12px;
-    border: 0;
-    box-sizing: border-box;
-    color: rgb(224, 197, 75);
-    cursor: pointer;
-    font-size: 18px;
-    height: 50px;
-    margin-top: 38px;
-    text-align: center;
-    width: 100%;
+    margin-top: 103px;
   }
 
   .sub_section_container{
     border: 0;
     box-sizing: border-box;
-    color: rgb(224, 197, 75);
+    color: white;
     font-size: 18px;
     outline: 0;
     padding: 4px 20px 0;
