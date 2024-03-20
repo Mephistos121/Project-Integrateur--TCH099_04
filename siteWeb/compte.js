@@ -112,7 +112,7 @@ async function ajouterNouveauCompte(compte){
         alert('Success!');
         document.querySelector("#creer_form").reset();
     }else {
-        alert("Le serveur a refuser");
+        alert("Le serveur à refuser");
     }
 }})}
 
@@ -132,7 +132,7 @@ async function seConnecter(courriel, mot_passe) {
             const responseData = await response.json();
             console.log(responseData);
             if(responseData===false){
-                console.log("Mauvais mot de passe ou email");
+                alert("Mauvais email ou mot de passe");
             }
             else{
                 const d = new Date();
@@ -141,6 +141,8 @@ async function seConnecter(courriel, mot_passe) {
                 document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
 
                 cacherMenuGestionnaire();
+
+                alert("Vous êtes connecté.");
             }
         } else {
             console.error('Échec de la connexion');
