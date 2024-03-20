@@ -1,4 +1,4 @@
-let movies = [{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
+let films = [{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/300x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/300x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/300x400" },
@@ -7,7 +7,7 @@ let movies = [{ title: "Lorem ipsum", image: "https://placehold.co/300x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/300x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/300x400" }];
 
-let featuredMovie = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
+let featuredFilm = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
 { title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
 
@@ -16,22 +16,22 @@ const featuredSlider = document.getElementById("featured_index_slider");
 const featuredContainer = document.getElementById("featured_index_container");
 const sliderNav = document.getElementById("slider_nav");
 
-function showMovies(movies) {
-    movies.forEach(movie => {
-        const movieListItem = document.createElement("li");
+function showFilms(films) {
+    films.forEach(film => {
+        const filmListItem = document.createElement("li");
         const imgPoster = document.createElement("img");
-        const movieTitle = document.createElement("p");
-        const movieLink = document.createElement("a");
+        const filmTitle = document.createElement("p");
+        const filmLink = document.createElement("a");
 
-        imgPoster.src = movie.image;
-        imgPoster.alt = movie.title;
-        movieTitle.textContent = movie.title;
+        imgPoster.src = film.image;
+        imgPoster.alt = film.title;
+        filmTitle.textContent = film.title;
 
-        movieLink.href =`movie.html?title=${movie.title}`;
-        movieLink.appendChild(imgPoster);
-        movieLink.appendChild(movieTitle);
-        movieListItem.appendChild(movieLink);
-        list.appendChild(movieListItem);
+        filmLink.href =`film.html?title=${film.title}`;
+        filmLink.appendChild(imgPoster);
+        filmLink.appendChild(filmTitle);
+        filmListItem.appendChild(filmLink);
+        list.appendChild(filmListItem);
     });
 }
 
@@ -46,8 +46,8 @@ window.addEventListener("load", (event1) => {
     header.textContent="Films du cinema " + chosenType;
 
     if (chosenType==chosenType){
-        showMovies(movies);
+        showFilms(films);
     }else{
-        //no exit movie to do....
+        //no exit film to do....
     }
 });
