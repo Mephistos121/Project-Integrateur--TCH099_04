@@ -22,7 +22,7 @@ window.addEventListener('load', (event1) =>{
 });
 
 async function ajouterNouveauFilm(film){
-    const filmResponse = await fetch("http://localhost/api/films/ajout", {
+    const filmResponse = await fetch("http://https://equipe500.tch099.ovh/projet4/api/films/ajout", {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',

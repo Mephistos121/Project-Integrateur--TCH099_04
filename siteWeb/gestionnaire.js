@@ -23,7 +23,7 @@ window.addEventListener("load", (event1) => {
     });
     async function ajouterNouveauCinema(cinema){
         //validation du nom de cinema
-        const responseCinema = await fetch("http://localhost/api/cinemas");
+        const responseCinema = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas");
         const content = await responseCinema.json();
         let ajoutValide = true;
         if(content.length){
@@ -46,7 +46,7 @@ window.addEventListener("load", (event1) => {
 
         //si tout est beau on ajoute
         else if(ajoutValide){
-            const response = await fetch("http://localhost/api/cinemas", {
+            const response = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas", {
                     method: 'POST',
                     
                     headers: {
@@ -69,7 +69,7 @@ window.addEventListener("load", (event1) => {
     }   
 });
 async function validationAdresse(adresse){
-    const response = await fetch("https://api.geoapify.com/v1/geocode/search?text="+adresse+" &format=json&apiKey=c79307b333d645cfba222d71ad09c686")
+    const response = await fetch("https://api.geoapify.com/v1/geocode/search?text="+adresse+" &format=json&apiKey=2afe72c7eb67429697a93b09ac956772")
     const content2 = await response.json();
     console.log(content2);
     if(content2.results.length==0){
@@ -79,7 +79,7 @@ async function validationAdresse(adresse){
     return true;
 }
 async function cinemaGetter(id){
-    const responseCinema = await fetch("http://localhost/api/cinemas/gestionnaire/"+id);
+    const responseCinema = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas/gestionnaire/"+id);
     const content = await responseCinema.json();
     if(content.length>0){
         const divList = document.querySelector("div#liste_cinema > div");

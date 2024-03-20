@@ -113,7 +113,7 @@ window.addEventListener("load", (event1) => {
 
 
 async function fetchAllCinema(){
-    const responseCinema = await fetch("http://localhost/api/cinemas");
+    const responseCinema = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas");
     const content = await responseCinema.json();
     
     showCinemas(content);
@@ -121,7 +121,7 @@ async function fetchAllCinema(){
 }
 
 async function fetchAllFilm(){
-    const responseFilm = await fetch("http://localhost/api/films");
+    const responseFilm = await fetch("https://equipe500.tch099.ovh/projet4/api/films");
     const contenu = await responseFilm.json();
     
     showFilms(contenu);
