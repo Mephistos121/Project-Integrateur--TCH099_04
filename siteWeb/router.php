@@ -37,11 +37,11 @@ function any($route, $path_to_include)
 function route($route, $path_to_include)
 {
 	$callback = $path_to_include;
-	if (!is_callable($callback)) {
-		if (!strpos($path_to_include, '.php')) {
-			$path_to_include .= '.php';
-		}
-	}
+	//if (!is_callable($callback)) {
+	//	if (!strpos($path_to_include, '.php')) {
+	//		$path_to_include .= '.php';
+	//	}
+	//}
 	if ($route == "/404") {
 		include_once __DIR__ . "/$path_to_include";
 		exit();
