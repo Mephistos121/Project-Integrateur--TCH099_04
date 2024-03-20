@@ -22,7 +22,7 @@ function showFilms(films) {
         imgPoster.alt = film.nom_film;
         filmTitle.textContent = film.nom_film;
 
-        filmLink.href =`film.html?title=${film.id}`;
+        filmLink.href =`film.html?id=${film.id}`;
         filmLink.appendChild(imgPoster);
         filmLink.appendChild(filmTitle);
         filmListItem.appendChild(filmLink);
@@ -41,7 +41,7 @@ function showFeaturedFilm(film) {
         imgPoster.src = film.image;
         imgPoster.alt = film.title;
         imgPoster.id = `featured_film_${counter}`;
-        filmLink.href = `film.html?title=${film.title}`;
+        filmLink.href = `film.html?id=${film.title}`;
         filmLink.appendChild(imgPoster);
         featuredSlider.appendChild(filmLink);
 
