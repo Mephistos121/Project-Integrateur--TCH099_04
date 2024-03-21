@@ -49,7 +49,7 @@ post('/api/comptes', function() {
         VALUES (?, ?, ?, ?);"
         );
     header('Content-type: application/json');
-    $requete->execute([$nom, $courriel, $mot_passe, $gestionnaire]);
+    $requete->execute([$nom, $courriel, hash('sha256',$mot_passe), $gestionnaire]);
     echo json_encode($requete);
 });
 get('/api/comptes/$courriel', function ($courriel) {
@@ -77,12 +77,13 @@ post('/api/connexion', function() {
         "SELECT id, role FROM Eq4_usager WHERE email = ? AND password = ?;"
     );
 
-    $requete->execute([$courriel, $mot_passe]);
+    $requete->execute([$courriel, hash('sha256',$mot_passe)]);
 
     $compte = $requete->fetch();
     header('Content-type: application/json');   
     echo json_encode($compte);
 });
+
 post('/api/cinemas', function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);

@@ -6,10 +6,10 @@ window.addEventListener("load", (event1) => {
         
         const info_compte = {nom: document.querySelector("#creer_nom").value,
         courriel: document.querySelector("#creer_courriel").value,
-        mot_passe: document.querySelector("#creer_pass").value,
+        mot_passe: hash(document.querySelector("#creer_pass").value),
         privilege: document.querySelector("#privilege").checked,
         };
-        
+        console.log(info_compte.mot_passe);
         let check=true;
         Object.keys(info_compte).forEach(element => {
             if (info_compte[element]==="") check=false;
@@ -114,7 +114,7 @@ async function ajouterNouveauCompte(compte){
                 alert("Le serveur à refuser");
             }
             }
-        })
+        });
     }else {
         alert("Le courriel entrer n'est pas de la bonne forme.");
     }
