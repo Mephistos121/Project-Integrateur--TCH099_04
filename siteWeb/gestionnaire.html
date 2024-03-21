@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Gestionnaire</title>
+    <link rel="stylesheet" href="gestionnaire.css">
     <script src="gestionnaire.js"></script>
+    <script src="https://kit.fontawesome.com/8191dd1c2c.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -14,36 +16,34 @@
             <i class="fa-solid fa-bars" id="dropdown_button"></i>
             <div class="dropdown_content">
                 <a href="index.html">Index</a>
-                <a href="gestionnaire.html"> Menu Gestionnaire</a>
+                <a href="compte.html"> Compte</a>
                  <a href="#">Placeholder 3 </a>
             </div>
         </div>
         <h1>Menu gestion de cinéma</h1>
-        <h2>Gestion des cinémas :</h2>
-        <div id="liste_cinema">
-            <div>Aucun cinéma</div>
-        </div>
+    </div>
+    
+    <h2>Gestion des cinémas :</h2>
+    <div id="liste_cinema">
+    </div>
 
-        <div>
-            <div id="error_code"></div>
+     <div>
+        <div id="error_code"></div>
             <form class="form_container">
                 <div class="form_layout">
                     <div class="title">Ajouter un cinéma</div>
-                    <div>
-                        <input id="creer_nom" class="input_container" type="text" name="creer_nom"
-                            placeholder="Nom du cinéma" value="" required>
-                    </div>
-
-                    <div>
-                        <input id="creer_image" class="input_container" type="url" name="creer_image"
-                            placeholder="image du cinéma ou logo" value="" required>
-                    </div>
-
-                    <div>
-                        <input id="creer_localisation" class="input_container" type="text" name="creer_localisation"
-                            placeholder="localisation" value="" required>
-                    </div>
-
+                        <div>
+                            <input id="creer_nom" class="input_container" type="text" name="creer_nom"
+                                placeholder="Nom du cinéma" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_image" class="input_container" type="url" name="creer_image"
+                                placeholder="image du cinéma ou logo" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_localisation" class="input_container" type="text" name="creer_localisation"
+                                placeholder="localisation" value="" required>
+                        </div>
                     <div class="bouttons_form">
                         <input id="creer_submit" class="edit_submit" type="button" value="Ajouter cinéma">
                         <input class="edit_clear" type="reset" value="Effacer">
