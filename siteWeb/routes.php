@@ -38,6 +38,7 @@ post('/api/comptes', function() {
     $nom = $data["nom"];
     $courriel = $data["courriel"];
     $mot_passe = $data["mot_passe"];
+    $salt = $data["salt"];
     $privilege = $data["privilege"];
     $gestionnaire = "default";
     if($privilege==true){
@@ -45,17 +46,18 @@ post('/api/comptes', function() {
     }
     
     $requete = $pdo->prepare(
-        "INSERT INTO Eq4_usager (nom_usager, email, password, role) 
-        VALUES (?, ?, ?, ?);"
+        "INSERT INTO Eq4_usager (nom_usager, email, password, role, salt) 
+        VALUES (?, ?, ?, ?, ?);"
         );
     header('Content-type: application/json');
-    $requete->execute([$nom, $courriel, hash('sha256',$mot_passe), $gestionnaire]);
+    $saltpass = $salt.$mot_passe;
+    $requete->execute([$nom, $courriel, hash('sha256',$saltpass), $gestionnaire, $salt]);
     echo json_encode($requete);
 });
 get('/api/comptes/$courriel', function ($courriel) {
     $pdo=connectionBD();
     $requete = $pdo->prepare(
-        "SELECT email FROM Eq4_usager WHERE email = ?;"
+        "SELECT * FROM Eq4_usager WHERE email = ?;"
     );
 
     $requete->execute([$courriel]);
@@ -72,12 +74,14 @@ post('/api/connexion', function() {
     $pdo=connectionBD();
     $courriel = $data["courriel"];
     $mot_passe = $data["mot_passe"];
+    $salt = $data["salt"];
 
     $requete = $pdo->prepare(
         "SELECT id, role FROM Eq4_usager WHERE email = ? AND password = ?;"
     );
 
-    $requete->execute([$courriel, hash('sha256',$mot_passe)]);
+    $saltpass = $salt.$mot_passe;
+    $requete->execute([$courriel, hash('sha256',$saltpass)]);
 
     $compte = $requete->fetch();
     header('Content-type: application/json');   
