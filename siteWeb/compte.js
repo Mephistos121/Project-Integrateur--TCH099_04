@@ -8,8 +8,9 @@ window.addEventListener("load", (event1) => {
         courriel: document.querySelector("#creer_courriel").value,
         mot_passe: document.querySelector("#creer_pass").value,
         privilege: document.querySelector("#privilege").checked,
+        salt: makeSalt()
         };
-        
+        console.log(info_compte.mot_passe);
         let check=true;
         Object.keys(info_compte).forEach(element => {
             if (info_compte[element]==="") check=false;
@@ -85,6 +86,13 @@ async function uniqueEmail(compte){
     }
     return false;
 }
+
+async function getSaltByEmail(courriel){
+    const responeMail = await fetch("http://localhost/api/comptes/"+courriel);
+    const content = await responeMail.json();
+    return content.salt;
+}
+
 function error(error){
     const error_div = document.querySelector("#error_code");
     error_div.innerHTML=error;
@@ -114,14 +122,18 @@ async function ajouterNouveauCompte(compte){
                 alert("Le serveur à refuser");
             }
             }
-        })
+        });
     }else {
         alert("Le courriel entrer n'est pas de la bonne forme.");
     }
 }
 
 async function seConnecter(courriel, mot_passe) {
+    
+    
     try {
+        salt = await getSaltByEmail(courriel);
+
         const url = "http://localhost/api/connexion";
 
         const response = await fetch(url, {
@@ -129,7 +141,7 @@ async function seConnecter(courriel, mot_passe) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ courriel, mot_passe }),
+            body: JSON.stringify({ courriel, mot_passe, salt}),
         });
 
         if (response.ok) {
@@ -208,4 +220,16 @@ function deconnecterUtilisateur() {
     cacherMenuGestionnaire();
 
     alert("Vous avez été déconnecté.");
+}
+
+function makeSalt() {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < 16) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
 }

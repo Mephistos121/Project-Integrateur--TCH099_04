@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . '/router.php';
-
-// A route with a callback
-get('/api/comptes', function () {
+function connectionBD(){
     $DBuser = 'sql5686135';
     $DBpass = 'CA2jADw66h';
     $pdo = null;
@@ -13,6 +11,11 @@ get('/api/comptes', function () {
     } catch(PDOException $e) {
         echo "Error: Unable to connect to MySQL. Error:\n $e";
     }
+    return $pdo;
+}
+// A route with a callback
+get('/api/comptes', function () {
+   $pdo=connectionBD();
 
     $requete = $pdo->prepare(
         "SELECT nom_usager, email, password FROM Eq4_usager;"
@@ -30,20 +33,12 @@ post('/api/comptes', function() {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
 
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
+    $pdo=connectionBD();
 
     $nom = $data["nom"];
     $courriel = $data["courriel"];
     $mot_passe = $data["mot_passe"];
+    $salt = $data["salt"];
     $privilege = $data["privilege"];
     $gestionnaire = "default";
     if($privilege==true){
@@ -51,27 +46,18 @@ post('/api/comptes', function() {
     }
     
     $requete = $pdo->prepare(
-        "INSERT INTO Eq4_usager (nom_usager, email, password, role) 
-        VALUES (?, ?, ?, ?);"
+        "INSERT INTO Eq4_usager (nom_usager, email, password, role, salt) 
+        VALUES (?, ?, ?, ?, ?);"
         );
     header('Content-type: application/json');
-    $requete->execute([$nom, $courriel, $mot_passe, $gestionnaire]);
+    $saltpass = $salt.$mot_passe;
+    $requete->execute([$nom, $courriel, hash('sha256',$saltpass), $gestionnaire, $salt]);
     echo json_encode($requete);
 });
 get('/api/comptes/$courriel', function ($courriel) {
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
-
+    $pdo=connectionBD();
     $requete = $pdo->prepare(
-        "SELECT email FROM Eq4_usager WHERE email = ?;"
+        "SELECT * FROM Eq4_usager WHERE email = ?;"
     );
 
     $requete->execute([$courriel]);
@@ -85,79 +71,50 @@ get('/api/comptes/$courriel', function ($courriel) {
 post('/api/connexion', function() {
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
-
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-
-    try {
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-        return;
-    }
-
+    $pdo=connectionBD();
     $courriel = $data["courriel"];
     $mot_passe = $data["mot_passe"];
+    $salt = $data["salt"];
 
     $requete = $pdo->prepare(
         "SELECT id, role FROM Eq4_usager WHERE email = ? AND password = ?;"
     );
 
-    $requete->execute([$courriel, $mot_passe]);
+    $saltpass = $salt.$mot_passe;
+    $requete->execute([$courriel, hash('sha256',$saltpass)]);
 
     $compte = $requete->fetch();
     header('Content-type: application/json');   
     echo json_encode($compte);
 });
+
 post('/api/cinemas', function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
+    $pdo=connectionBD();
 
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-                $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-                $pdo = new PDO($database, $DBuser, $DBpass);   
-            } catch(PDOException $e) {
-                echo "Error: Unable to connect to MySQL. Error:\n $e";
-            }
-    
-            $nom = $data["nom"];
-            $localisation = $data["localisation"];
-            $gestionnaire = $data["gestionnaire"];
-            $image = $data["image"];
-            $valid=checkRemoteFile($image);
-            if($valid){
-                $requete = $pdo->prepare(
-                    "INSERT INTO Eq4_cinema (nom_cinema, image, localisation, gestionnaire_id)
-                    VALUES (?,?,?,?);"
-                );
-                header('Content-type: application/json');
-                $requete->execute([$nom, $image, $localisation, $gestionnaire]);
-                echo json_encode($requete);
-            }
-            else{
-                $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
-                echo json_encode($error);
-            }
-        }
-);
+    $nom = $data["nom"];
+    $localisation = $data["localisation"];
+    $gestionnaire = $data["gestionnaire"];
+    $image = $data["image"];
+    $valid=checkRemoteFile($image);
+    if($valid){
+        $requete = $pdo->prepare(
+            "INSERT INTO Eq4_cinema (nom_cinema, image, localisation, gestionnaire_id)
+            VALUES (?,?,?,?);"
+        );
+        header('Content-type: application/json');
+        $requete->execute([$nom, $image, $localisation, $gestionnaire]);
+        echo json_encode($requete);
+    }
+    else{
+        $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+        echo json_encode($error);
+    }
+});
 
 get('/api/cinemas/gestionnaire/$id', function($id){
-    $json = file_get_contents('php://input');
-
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
+    $pdo=connectionBD();
 
     $requete = $pdo->prepare(
         "SELECT  nom_cinema, localisation FROM Eq4_cinema WHERE gestionnaire_id = ?;"
@@ -170,15 +127,7 @@ get('/api/cinemas/gestionnaire/$id', function($id){
         
 });
 get('/api/cinemas', function(){
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
+    $pdo=connectionBD();
 
     $requete = $pdo->prepare(
         "SELECT * FROM Eq4_cinema;"
@@ -191,15 +140,7 @@ get('/api/cinemas', function(){
 });
 
 get('/api/films', function(){
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
+   $pdo=connectionBD();
 
     $requete = $pdo->prepare(
         "SELECT * FROM Eq4_film;"
@@ -214,17 +155,7 @@ get('/api/films', function(){
 post('/api/films/ajout',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
-
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
-
+    $pdo=connectionBD();
         $nom = $data["nom_film"];
         $image = $data["image"];
         $description = $data["description"];
@@ -245,16 +176,7 @@ post('/api/films/ajout',function(){
 });
 
 get('/api/cinemas/$cinema', function($cinemaId){
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
-
+    $pdo=connectionBD();
     $requete = $pdo->prepare(
         "SELECT * FROM `Eq4_cinema` WHERE `id`=?"
     );
@@ -266,15 +188,7 @@ get('/api/cinemas/$cinema', function($cinemaId){
 });
 
 get('/api/films/$cinema', function($cinema){
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
+    $pdo=connectionBD();
 
     $requete = $pdo->prepare(
         "SELECT `Eq4_film`.* FROM `Eq4_film`,`Eq4_cinema`,`Eq4_representation` WHERE `Eq4_film`.`id`=`Eq4_representation`.`film_id` AND `Eq4_representation`.`cinema_id`=`Eq4_cinema`.`id` AND `Eq4_cinema`.`id`=?"
