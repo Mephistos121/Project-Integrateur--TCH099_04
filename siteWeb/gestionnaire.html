@@ -25,13 +25,14 @@
     
     <h2>Gestion des cinémas :</h2>
     <div id="liste_cinema">
+        <div>Aucun cinéma</div>
     </div>
 
-     <div>
+    <div>
         <div id="error_code"></div>
             <form class="form_container">
                 <div class="form_layout">
-                    <div class="title">Ajouter un cinéma</div>
+                    <div class="title">Demande ajout d'un cinéma</div>
                         <div>
                             <input id="creer_nom" class="input_container" type="text" name="creer_nom"
                                 placeholder="Nom du cinéma" value="" required>
@@ -51,7 +52,68 @@
                 </div>
             </form>
         </div>
-
+    </div>
+    <h2>Gestion des Films :</h2>
+    <div id="liste_film">
+        <div>Aucune demande d'ajout de film</div>
+    </div>
+    <div>
+        <div id="error_code_film"></div>
+            <form class="form_container">
+                <div class="form_layout">
+                    <div class="title">Demande ajout d'un film</div>
+                        <div>
+                            <input id="creer_nom_film" class="input_container" type="text" name="creer_nom_film"
+                                placeholder="Titre du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_image_film" class="input_container" type="url" name="creer_image_film"
+                                placeholder="image du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_image_banniere_film" class="input_container" type="url" name="creer_image_banniere_film"
+                                placeholder="Bannière du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_description_film" class="input_container" type="text" name="creer_description_film"
+                            placeholder="Synopsis" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_genre1_film" class="input_container" type="text" name="creer_genre1_film"
+                            placeholder="genre principal du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_genre2_film" class="input_container" type="text" name="creer_genre2_film"
+                            placeholder="Genre secondaire du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_annee_film" class="input_container" type="number" name="creer_annee_film"
+                            placeholder="Année de parution" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_duree_film" class="input_container" type="number" name="creer_duree_film"
+                            placeholder="Durée du film en minutes" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_realisateur_film" class="input_container" type="text" name="creer_realisateur_film"
+                            placeholder="Réalisateur du film" value="" required>
+                        </div>
+                        <div >
+                            <input id="creer_acteur1_film" class="input_container" type="text" name="creer_acteur1_film"
+                            placeholder="Acteur principal du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="creer_acteur2_film" class="input_container" type="text" name="creer_acteur2_film"
+                            placeholder="Acteur secondaire ou deuxième acteur principal du film" value="" required>
+                        </div>
+                    <div class="bouttons_form">
+                        <input id="creer_submit_film" class="edit_submit" type="button" value="Ajouter film">
+                        <input class="edit_clear" type="reset" value="Effacer">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -1,10 +1,58 @@
 window.addEventListener("load", (event1) => {
     let ajoutCinema = document.querySelector("#creer_submit");
+    let ajoutFilm = document.querySelector("#creer_submit_film");
     gestionnaireId=cookieGetter("id");
     cinemaGetter(gestionnaireId);
     
     if(gestionnaireId===false){
         console.log("Erreur pas de ID");
+    }
+    ajoutFilm.addEventListener("click",(event2) =>{
+        const info_film = {
+            gestionnaire: document.cookie=gestionnaireId,
+            nom: document.querySelector("#creer_nom_film").value,
+            image: document.querySelector("#creer_image_film").value,
+            banniere: document.querySelector("#creer_image_banniere_film").value,
+            description: document.querySelector("#creer_description_film").value,
+            genre1: document.querySelector("#creer_genre1_film").value,
+            genre2: document.querySelector("#creer_genre2_film").value,
+            annee: document.querySelector("#creer_annee_film").value,
+            duree: document.querySelector("#creer_duree_film").value,
+            realisateur: document.querySelector("#creer_realisateur_film").value,
+            acteur1: document.querySelector("#creer_acteur1_film").value,
+            acteur2: document.querySelector("#creer_acteur2_film").value,
+        };
+        let check = true;
+        Object.keys(info_cinema).forEach(element => {
+            if (info_cinema[element]==="") check=false;
+        });
+        check ? ajouterNouveauFilm(info_film) : alert("Veuillez entrer toutes les informations du film")
+    });
+    async function ajouterNouveauFilm(film){
+        if(cookieGetter("privilege")!="gestionnaire"){
+            alert("Vous devez être un gestionnaire pour ajouter des cinémas");
+        }
+        else{
+            const response = await fetch("http://localhost/api/demande/film", {
+                    method: 'POST',
+                    
+                    headers: {
+                    'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(cinema),
+                });
+                const message = await response.json();
+                console.log(message);
+                if(message.erreur){
+                    alert(message.erreur);
+                }
+                else if (response.ok){
+                alert("success");
+                cinemaGetter(gestionnaireId);
+                }else {
+                    alert("Le serveur a refusé");
+                }
+        }
     }
     ajoutCinema.addEventListener("click", (event2) => {
         
@@ -15,7 +63,7 @@ window.addEventListener("load", (event1) => {
         gestionnaire: document.cookie=gestionnaireId,
         };
         
-        let check=true;
+        let check = true;
         Object.keys(info_cinema).forEach(element => {
             if (info_cinema[element]==="") check=false;
         });
@@ -46,7 +94,7 @@ window.addEventListener("load", (event1) => {
 
         //si tout est beau on ajoute
         else if(ajoutValide){
-            const response = await fetch("http://localhost/api/cinemas", {
+            const response = await fetch("http://localhost/api/demande/cinema", {
                     method: 'POST',
                     
                     headers: {
@@ -111,3 +159,4 @@ function cookieGetter(name){
     }
     return false;
 }
+
