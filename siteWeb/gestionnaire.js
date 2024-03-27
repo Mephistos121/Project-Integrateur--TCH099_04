@@ -2,11 +2,11 @@ window.addEventListener("load", (event1) => {
     let ajoutCinema = document.querySelector("#creer_submit");
     let gestionnaireId=cookieGetter("id");
     cinemaGetter(gestionnaireId);
-    
+    filmGetter(gestionnaireId);
     if(gestionnaireId===false){
         console.log("Erreur pas de ID");
     }
-    ajoutCinema.addEventListener("click", (event2) => {
+        ajoutCinema.addEventListener("click", (event2) => {
         
         const info_cinema = {
         nom: document.querySelector("#creer_nom").value,
@@ -71,57 +71,54 @@ window.addEventListener("load", (event1) => {
 
 const ajoutFilm = document.getElementById("creer_film_submit");
 
-    ajoutFilm.addEventListener("click", (event2) => {
-        console.log("click");
-        let gestionnaireId=cookieGetter("id");
+ajoutFilm.addEventListener("click", (event2) => {
+    let gestionnaireId=cookieGetter("id");
             
-            const info_film = {
-            nom_film: document.getElementById("creer_nom_film").value,
-            image: document.getElementById("creer_image_film").value,
-            image_banniere: document.getElementById("creer_image_banniere").value,
-            description: document.getElementById("creer_description").value,
-            genre_principal: document.getElementById("creer_genre_principal").value,
-            genre_secondaire: document.getElementById("creer_genre_secondaire").value,
-            annee: document.getElementById("creer_annee").value,
-            duree: document.getElementById("creer_duree").value,
-            realisateur: document.getElementById("creer_realisateur").value,
-            acteur_principal: document.getElementById("creer_acteur_principal").value,
-            acteur_secondaire: document.getElementById("creer_acteur_secondaire").value,
-            id_usager: gestionnaireId 
-            
-        };
-        console.log(info_film);
+    const info_film = {
+    nom_film: document.getElementById("creer_nom_film").value,
+    image: document.getElementById("creer_image_film").value,
+    image_banniere: document.getElementById("creer_image_banniere").value,
+    description: document.getElementById("creer_description").value,
+    genre_principal: document.getElementById("creer_genre_principal").value,
+    genre_secondaire: document.getElementById("creer_genre_secondaire").value,
+    annee: document.getElementById("creer_annee").value,
+    duree: document.getElementById("creer_duree").value,
+    realisateur: document.getElementById("creer_realisateur").value,
+    acteur_principal: document.getElementById("creer_acteur_principal").value,
+    acteur_secondaire: document.getElementById("creer_acteur_secondaire").value,
+    id_usager: gestionnaireId       
+    };
+    let check=true;
+    Object.keys(info_film).forEach(element => {
+        if (info_film[element]==="") check=false;
+    });
+    check ? ajouterNouveauFilm(info_film) : alert("Veuillez entrer toutes les informations du film");
+});
 
-            let check=true;
-            Object.keys(info_film).forEach(element => {
-                if (info_film[element]==="") check=false;
-            });
-            check ? ajouterNouveauFilm(info_film) : alert("Veuillez entrer toutes les informations du film");
+async function ajouterNouveauFilm(film){
+    if(cookieGetter("privilege")!="gestionnaire"){
+        alert("Vous devez être un gestionnaire pour ajouter des films");
+    }
+    const response = await fetch("http://localhost/api/demande/ajout/film", {
+            method: 'POST',
+            
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(film),
         });
-
-    async function ajouterNouveauFilm(film){
-        if(cookieGetter("privilege")!="gestionnaire"){
-            alert("Vous devez être un gestionnaire pour ajouter des films");
-        }
-            const response = await fetch("http://localhost/api/demandes/ajout/film", {
-                    method: 'POST',
-                    
-                    headers: {
-                    'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(film),
-                });
-                const message = await response.json();
-                console.log(message);
-                if(message.erreur){
-                    alert(message.erreur);
-                }
-                else if (response.ok){
-                alert("success");
-                }else {
-                    alert("Le serveur a refusé");
-                }
-        }
+    const message = await response.json();
+    console.log(message);
+    if(message.erreur){
+        alert(message.erreur);
+    }
+    else if (response.ok){
+    alert("success");
+    filmGetter(gestionnaireId);
+    }else {
+        alert("Le serveur a refusé");
+    }
+}
 
 async function validationAdresse(adresse){
     const response = await fetch("https://api.geoapify.com/v1/geocode/search?text="+adresse+" &format=json&apiKey=c79307b333d645cfba222d71ad09c686")
@@ -136,6 +133,8 @@ async function validationAdresse(adresse){
 async function cinemaGetter(id){
     const responseCinema = await fetch("http://localhost/api/cinemas/gestionnaire/"+id);
     const content = await responseCinema.json();
+    const responseCinemaDemande = await fetch("http://localhost/api/demande/ajout/cinema/gestionnaire/"+id);
+    const contentDemande = await responseCinemaDemande.json();
     if(content.length>0){
         const divList = document.querySelector("div#liste_cinema > div");
         divList.textContent = "";
@@ -154,8 +153,26 @@ async function cinemaGetter(id){
     
         }
     }
+    if(contentDemande.length>0){
+        const divList = document.querySelector("div#liste_cinema_demande > div");
+        divList.textContent = "";
+        const ul = document.createElement('ul');
+        divList.append(ul);
+        for (let cinema of contentDemande) {
+           const li = document.createElement("li");
+           const div = document.createElement("div");
+           div.textContent = cinema.nom_cinema;
+           const div2 = document.createElement("div");
+           div2.textContent = cinema.localisation;
+           
+           ul.append(li);
+           li.append(div);
+           li.append(div2)
     
-}
+        }
+    }
+   
+   }
 
 function cookieGetter(name){
     const cookies = document.cookie.split(';');
@@ -168,3 +185,27 @@ function cookieGetter(name){
     return false;
 }
 
+
+
+async function filmGetter(id){
+    const responseFilm = await fetch("http://localhost/api/demande/ajout/film/gestionnaire/"+id);
+    const content = await responseFilm.json();
+    if(content.length>0){
+        const divList = document.querySelector("div#liste_film > div");
+        divList.textContent = "";
+        const ul = document.createElement('ul');
+        divList.append(ul);
+        for (let film of content) {
+           const li = document.createElement("li");
+           const div = document.createElement("div");
+           div.textContent = film.nom_film;
+           const div2 = document.createElement("div");
+           div2.textContent = "En attente";
+           
+           ul.append(li);
+           li.append(div);
+           li.append(div2)
+    
+        }
+    }
+}

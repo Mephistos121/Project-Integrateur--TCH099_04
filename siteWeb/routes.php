@@ -272,7 +272,7 @@ function checkRemoteFile($url){
     return false;
 } 
 
-post('/api/demandes/ajout/film',function(){
+post('/api/demande/ajout/film',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $pdo=connectionBD();
@@ -307,4 +307,28 @@ post('/api/demandes/ajout/film',function(){
             $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
             echo json_encode($error);
         }
+});
+get('/api/demande/ajout/film/gestionnaire/$id', function($id){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT  nom_film FROM Eq4_demande_film WHERE id_usager = ?;"
+    ); 
+    $requete->execute([$id]);
+    
+    $film = $requete->fetchAll();
+    header('Content-type: application/json');   
+    echo json_encode($film);
+});
+get('/api/demande/ajout/cinema/gestionnaire/$id', function($id){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT  nom_cinema, localisation FROM Eq4_demande_cinema WHERE id_usager = ?;"
+    ); 
+    $requete->execute([$id]);
+    
+    $cinemas = $requete->fetchAll();
+    header('Content-type: application/json');   
+    echo json_encode($cinemas);
 });
