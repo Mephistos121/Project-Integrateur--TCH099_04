@@ -16,18 +16,6 @@
                     <li><a href="index.html?type=cinemas">Cinémas</a></li>
                     <li><a href="index.html?type=films">Films</a></li>
                     <li><input id="search_bar" type="text" placeholder="Rechercher"></li>
-                    <li>
-                        <div id="dropdown_container">
-                            <select id="dropdown_menu">
-                                <option value='trier'>trier</option>
-                                <option value='trier'>trier</option>
-                                <option value='trier'>Trier</option>
-                                <option value='' selected>
-                                    Choisir une option
-                                </option>
-                            </select>
-                        </div>
-                    </li>
                 </ul>
             </div>
             <a id="account_link" href="compte.html">Compte</a>
@@ -35,10 +23,10 @@
     </nav>
     <div id="movie_container">
         <div id="movie_trailer_container">
-            <img src="https://placehold.co/1000x400" alt="trailer">
+            <img id="banniere_image" src="https://placehold.co/1000x400" alt="trailer">
         </div>
-        <span id="titre" class="movie_span"><h1></h1></span>
-        <span id="annee"class="movie_span"><p>Année</p></span>
+        <span id="titre" class="movie_span"></span>
+        <span id="annee"class="movie_span"></span>
         <div id="movie_about_container">
             <div id="movie_poster_container">
                 <img id="image"src="" alt="">
@@ -50,11 +38,11 @@
                 <div class="movie_info_container" id="movie_info_title_container">
                     <div class="movie_info">
                         <h4 class="movie_layout_title">Genre</h4>
-                        <p id="movie_genre">Genre1,Genre2</p>
+                        <p id="movie_genre"></p>
                     </div>
                         <div class="movie_info">
                             <h4 class="movie_layout_title">Durée</h4>
-                            <p id="movie_time">Temps</p>
+                            <p id="movie_time"></p>
                         </div>
                 </div>
                 <div id="movie_synopsis_container">
@@ -66,11 +54,11 @@
                 <div id="movie_show_more_container">
                     <div class="movie_info">
                         <h4 id="movie_layout_title">Acteurs</h4>
-                        <p id="movie_actor">Acteur1,Acteur2</p>
+                        <p id="movie_actor"></p>
                     </div>
                     <div class="movie_info">
                         <h4 id="movie_layout_title">Réalisateur</h4>
-                        <p id="movie_director">Réalisateur</p>
+                        <p id="movie_director"></p>
                     </div>
                 </div>
             </div>

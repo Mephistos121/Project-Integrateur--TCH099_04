@@ -23,18 +23,30 @@ window.addEventListener("load", (event1)=>{
 function showFilm(film){
     const titre = document.getElementById("titre");
     const image = document.getElementById("image");
-    const description = document.getElementById("movie_synopsis")
+    const description = document.getElementById("movie_synopsis");
+    const annee = document.getElementById("annee");
+    const genres = document.getElementById("movie_genre");
+    const temps = document.getElementById("movie_time");
+    const realisateur = document.getElementById("movie_director");
+    const acteurs = document.getElementById("movie_actor");
+    const banniere = document.getElementById("banniere_image");
 
+    banniere.src = film.image_banniere;
+    acteurs.textContent = film.acteur_principal+", "+film.acteur_secondaire;
+    realisateur.textContent = film.realisateur;
+    temps.textContent = film.duree;
+    genres.textContent = film.genre_principal+", "+film.genre_secondaire;
     titre.textContent = film.nom_film;
+    annee.textContent = film.annee;
     image.src = film.image;
-    description.textContent = film.synopsis;
+    description.textContent = film.description;
 
 }
 
 async function fetchFilm(filmId){
-    const responseFilm = await fetch("http://localhost/api/films/"+filmId);
+    const responseFilm = await fetch("http://localhost/api/films/filmid/"+filmId);
     const contenu = await responseFilm.json();
-
+    console.log("aaa");
     showFilm(contenu);
 }
 

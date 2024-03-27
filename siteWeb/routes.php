@@ -117,24 +117,15 @@ get('/api/films/$cinema', function($cinema){
 
     echo json_encode($films);
 });
-get('/api/films/$id', function($id){
-    $DBuser = 'sql5686135';
-    $DBpass = 'CA2jADw66h';
-    $pdo = null;
-    try{
-        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
-        $pdo = new PDO($database, $DBuser, $DBpass);   
-    } catch(PDOException $e) {
-        echo "Error: Unable to connect to MySQL. Error:\n $e";
-    }
+get('/api/films/filmid/$id', function($id){
+    $pdo=connectionBD();
 
     $requete = $pdo->prepare(
-        'SELECT * FROM Eq4_film WHERE id=?'
+        "SELECT * FROM Eq4_film WHERE id=?"
     );
     $requete->execute([$id]);
     $film = $requete->fetch();
     header('Content-type: application/json');
-   
     echo json_encode($film);
 });
 
