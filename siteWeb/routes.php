@@ -232,3 +232,40 @@ function checkRemoteFile($url){
     }
     return false;
 } 
+
+post('/api/demandes/ajout/films',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pdo=connectionBD();
+        $id_usager = intval($data["id_usager"]);
+        $nom = htmlspecialchars($data["nom_film"]);
+        $image = htmlspecialchars($data["image"]);
+        $image_banniere = htmlspecialchars($data["image_banniere"]);
+        $description = htmlspecialchars($data["description"]);
+        $genre_principal = htmlspecialchars($data["genre_principal"]);
+        $genre_secondaire = htmlspecialchars($data["genre_secondaire"]);
+        $annee = intval($data["annee"]);
+        $duree = intval($data["duree"]);
+        $realisateur = htmlspecialchars($data["realisateur"]);
+        $acteur_principal = htmlspecialchars($data["acteur_principal"]);
+        $acteur_secondaire = htmlspecialchars($data["acteur_secondaire"]);
+
+        $valid=checkRemoteFile($image);
+        $valid2=checkRemoteFile($image_banniere);
+        if($valid && $valid2){
+            $requete = $pdo->prepare(
+                "INSERT INTO Eq4_demande_film (id_usager,nom_film, image, description,image_banniere,
+                genre_principal,genre_secondaire,annee,duree,realisateur,acteur_principal,acteur_secondaire)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
+            );
+            header('Content-type: application/json');
+            $requete->execute([$id_usager,$nom, $image, $description,$image_banniere,$genre_principal,
+            $genre_secondaire,$annee,$duree,$realisateur,$acteur_principal,$acteur_secondaire]);
+            $result = $requete->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($result);
+        }
+        else{
+            $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+            echo json_encode($error);
+        }
+});
