@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Gestionnaire</title>
     <link rel="stylesheet" href="gestionnaire.css">
-    <script src="gestionnaire.js"></script>
     <script src="https://kit.fontawesome.com/8191dd1c2c.js" crossorigin="anonymous"></script>
 </head>
 
@@ -25,13 +24,14 @@
     
     <h2>Gestion des cinémas :</h2>
     <div id="liste_cinema">
+        <div>Aucun cinéma</div>
     </div>
 
-     <div>
+    <div>
         <div id="error_code"></div>
             <form class="form_container">
                 <div class="form_layout">
-                    <div class="title">Ajouter un cinéma</div>
+                    <div class="title">Demande ajout d'un cinéma</div>
                         <div>
                             <input id="creer_nom" class="input_container" type="text" name="creer_nom"
                                 placeholder="Nom du cinéma" value="" required>
@@ -52,6 +52,66 @@
             </form>
         </div>
 
+        <h2>Gestion des films :</h2>
+        <div id="liste_film">
+        </div>
+    
+         <div>
+            <div id="error_code"></div>
+                <form class="form_container">
+                    <div class="form_layout">
+                        <div class="title">Ajouter un film</div>
+                            <div>
+                                <input id="creer_nom_film" class="input_container" type="text" name="creer_film"
+                                    placeholder="Nom du film" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_image_film" class="input_container" type="url" name="creer_image"
+                                    placeholder="affiche du film" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_image_banniere" class="input_container" type="url" name="creer_imgae_banniere"
+                                    placeholder="bannière du film">
+                            </div>
+                            <div>
+                                <textarea name="creer_description" id="creer_description" class="input_container" placeholder="description"></textarea>
+                            </div>
+                            <div>
+                                <input id="creer_genre_principal" class="input_container" type="text" name="creer_genre_principal"
+                                    placeholder="genre principal" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_genre_secondaire" class="input_container" type="text" name="creer_genre_secondaire"
+                                    placeholder="genre secondaire" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_annee" class="input_container" type="number" name="creer_annee"
+                                    placeholder="année de parution" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_duree" class="input_container" type="number" name="creer_duree"
+                                    placeholder="durée en minute" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_realisateur" class="input_container" type="text" name="creer_realisateur"
+                                    placeholder="réalisateur" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_acteur_principal" class="input_container" type="text" name="creer_acteur_principal"
+                                    placeholder="acteur principal" value="" required>
+                            </div>
+                            <div>
+                                <input id="creer_acteur_secondaire" class="input_container" type="text" name="creer_acteur_secondaire"
+                                    placeholder="acteur secondaire" value="" required>
+                            </div>
+                        <div class="bouttons_form">
+                            <input id="creer_film_submit" class="edit_submit" type="button" value="Ajouter film">
+                            <input class="edit_clear" type="reset" value="Effacer">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script src="gestionnaire.js"></script>
 </body>
 
 </html>

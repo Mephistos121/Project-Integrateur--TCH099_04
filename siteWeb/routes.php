@@ -127,6 +127,30 @@ post('/api/cinemas', function(){
         echo json_encode($error);
     }
 });
+post('/api/demande/cinema',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pdo=connectionBD();
+
+    $nom = $data["nom"];
+    $localisation = $data["localisation"];
+    $gestionnaire = $data["gestionnaire"];
+    $image = $data["image"];
+    $valid=checkRemoteFile($image);
+    if($valid){
+        $requete = $pdo->prepare(
+            "INSERT INTO Eq4_demande_cinema (id_usager,nom_cinema, image, localisation)
+            VALUES (?,?,?,?);"
+        );
+        header('Content-type: application/json');
+        $requete->execute([$gestionnaire,$nom, $image, $localisation]);
+        echo json_encode($requete);
+    }
+    else{
+        $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+        echo json_encode($error);
+    }
+});
 
 get('/api/cinemas/gestionnaire/$id', function($id){
     $pdo=connectionBD();
@@ -214,6 +238,28 @@ get('/api/films/$cinema', function($cinema){
 
     echo json_encode($films);
 });
+
+get('/api/films/$id', function($id){
+    $DBuser = 'sql5686135';
+    $DBpass = 'CA2jADw66h';
+    $pdo = null;
+    try{
+        $database = 'mysql:host=sql5.freesqldatabase.com:3306;dbname=sql5686135';
+        $pdo = new PDO($database, $DBuser, $DBpass);   
+    } catch(PDOException $e) {
+        echo "Error: Unable to connect to MySQL. Error:\n $e";
+    }
+
+    $requete = $pdo->prepare(
+        'SELECT * FROM Eq4_film WHERE id=?'
+    );
+    $requete->execute([$id]);
+    $film = $requete->fetch();
+    header('Content-type: application/json');
+   
+    echo json_encode($film);
+});
+
 function checkRemoteFile($url){ 
     $headers = @get_headers($url); 
     if($headers){
@@ -225,3 +271,40 @@ function checkRemoteFile($url){
     }
     return false;
 } 
+
+post('/api/demandes/ajout/film',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pdo=connectionBD();
+        $id_usager = intval($data["id_usager"]);
+        $nom = htmlspecialchars($data["nom_film"]);
+        $image = htmlspecialchars($data["image"]);
+        $image_banniere = htmlspecialchars($data["image_banniere"]);
+        $description = htmlspecialchars($data["description"]);
+        $genre_principal = htmlspecialchars($data["genre_principal"]);
+        $genre_secondaire = htmlspecialchars($data["genre_secondaire"]);
+        $annee = intval($data["annee"]);
+        $duree = intval($data["duree"]);
+        $realisateur = htmlspecialchars($data["realisateur"]);
+        $acteur_principal = htmlspecialchars($data["acteur_principal"]);
+        $acteur_secondaire = htmlspecialchars($data["acteur_secondaire"]);
+
+        $valid=checkRemoteFile($image);
+        $valid2=checkRemoteFile($image_banniere);
+        if($valid && $valid2){
+            $requete = $pdo->prepare(
+                "INSERT INTO Eq4_demande_film (id_usager,nom_film, image, description,image_banniere,
+                genre_principal,genre_secondaire,annee,duree,realisateur,acteur_principal,acteur_secondaire)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"
+            );
+            header('Content-type: application/json');
+            $requete->execute([$id_usager,$nom, $image, $description,$image_banniere,$genre_principal,
+            $genre_secondaire,$annee,$duree,$realisateur,$acteur_principal,$acteur_secondaire]);
+            $result = $requete->fetch(PDO::FETCH_ASSOC);
+            echo json_encode($result);
+        }
+        else{
+            $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+            echo json_encode($error);
+        }
+});

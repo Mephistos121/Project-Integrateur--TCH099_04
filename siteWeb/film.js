@@ -14,3 +14,27 @@ showMoreBtn.addEventListener("click", () => {
     }
 });
 
+
+window.addEventListener("load", (event1)=>{
+    let filmId= new URLSearchParams(window.location.search).get("id");
+    fetchFilm(filmId);
+})
+
+function showFilm(film){
+    const titre = document.getElementById("titre");
+    const image = document.getElementById("image");
+    const description = document.getElementById("movie_synopsis")
+
+    titre.textContent = film.nom_film;
+    image.src = film.image;
+    description.textContent = film.synopsis;
+
+}
+
+async function fetchFilm(filmId){
+    const responseFilm = await fetch("http://localhost/api/films/"+filmId);
+    const contenu = await responseFilm.json();
+
+    showFilm(contenu);
+}
+
