@@ -91,6 +91,18 @@ post('/api/connexion', function() {
     echo json_encode($compte);
 });
 
+delete('/api/comptes/$id', function ($id) {
+    $pdo = connectionBD();
+    $requete = $pdo->prepare(
+        "DELETE FROM Eq4_usager WHERE id = ?;"
+    );
+
+    $requete->execute([$id]);
+
+    header('Content-type: application/json');
+    echo json_encode(["message" => "Le compte a été supprimé avec succès"]);
+});
+
 post('/api/cinemas', function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
