@@ -139,9 +139,6 @@ post('/api/demande/cinema',function(){
         echo json_encode($error);
     }
 });
-post('/api/demande/film',function(){
-
-});
 
 get('/api/cinemas/gestionnaire/$id', function($id){
     $pdo=connectionBD();
@@ -263,7 +260,7 @@ function checkRemoteFile($url){
     return false;
 } 
 
-post('/api/demandes/ajout/films',function(){
+post('/api/demandes/ajout/film',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $pdo=connectionBD();
