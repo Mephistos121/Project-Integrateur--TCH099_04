@@ -53,7 +53,7 @@ window.addEventListener("load", (event1) => {
     });
 
     cacherMenuGestionnaire();
-    cacherDeconnexion();
+    cacherBtnHorsConnection();
     
     let logoutButton = document.querySelector("#logoutButton");
 
@@ -61,6 +61,10 @@ window.addEventListener("load", (event1) => {
         deconnecterUtilisateur();
     });
 
+    let deleteButton = document.querySelector("#supprimerButton");
+    deleteButton.addEventListener("click", () => {
+        supprimerCompte();
+    });
 });
 
 function showDiv(section) {
@@ -158,7 +162,7 @@ async function seConnecter(courriel, mot_passe) {
                 document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
 
                 cacherMenuGestionnaire();
-                cacherDeconnexion();
+                cacherBtnHorsConnection();
 
                 alert("Vous êtes connecté.");
             }
@@ -181,12 +185,15 @@ function cacherMenuGestionnaire() {
     }
 }
 
-function cacherDeconnexion() {
+function cacherBtnHorsConnection() {
     let btnDeconnexion = document.querySelector("#logoutButton");
+    let btnSupprimerCompte = document.querySelector("#supprimerButton");
     if (isConnected()) {
         btnDeconnexion.style.display = "block";
+        btnSupprimerCompte.style.display = "block";
     } else {
         btnDeconnexion.style.display = "none";
+        btnSupprimerCompte.style.display = "none";
     }
 }
 
@@ -222,14 +229,13 @@ function isConnected() {
 }
 
 function deconnecterUtilisateur() {
-    
     document.cookie = "id=; Max-Age=-1; path=/;";
     document.cookie = "privilege=; Max-Age=-1; path=/;";
 
     location.reload();
 
     cacherMenuGestionnaire();
-    cacherDeconnexion();
+    cacherBtnHorsConnection();
 
     alert("Vous avez été déconnecté.");
 }
@@ -244,4 +250,30 @@ function makeSalt() {
       counter += 1;
     }
     return result;
+}
+
+async function supprimerCompte() {
+    try {
+        const confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
+        if (!confirmation) {
+            return;
+        }
+        const userID = getconnecterCookie();
+        if (!userID) {
+            alert("Impossible de trouver l'identifiant de l'utilisateur.");
+            return;
+        }
+        const response = await fetch(`http://localhost/api/comptes/${userID}`, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            alert("Le compte a été supprimé avec succès.");
+            deconnecterUtilisateur();
+        } else {
+            alert("Une erreur s'est produite lors de la suppression du compte.");
+        }
+    } catch (error) {
+        console.error("Erreur lors de la suppression du compte :", error);
+        alert("Une erreur s'est produite. Veuillez réessayer plus tard.");
+    }
 }
