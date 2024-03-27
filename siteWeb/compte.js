@@ -53,6 +53,7 @@ window.addEventListener("load", (event1) => {
     });
 
     cacherMenuGestionnaire();
+    cacherDeconnexion();
     
     let logoutButton = document.querySelector("#logoutButton");
 
@@ -157,6 +158,7 @@ async function seConnecter(courriel, mot_passe) {
                 document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
 
                 cacherMenuGestionnaire();
+                cacherDeconnexion();
 
                 alert("Vous êtes connecté.");
             }
@@ -171,11 +173,20 @@ async function seConnecter(courriel, mot_passe) {
 }
 
 function cacherMenuGestionnaire() {
-    var menuGestionnaire = document.querySelector("#menu_gestionnaire");
+    let menuGestionnaire = document.querySelector("#menu_gestionnaire");
     if (hasPrivilege() && isConnected()) {
         menuGestionnaire.style.display = "block"; 
     } else {
         menuGestionnaire.style.display = "none";
+    }
+}
+
+function cacherDeconnexion() {
+    let btnDeconnexion = document.querySelector("#logoutButton");
+    if (isConnected()) {
+        btnDeconnexion.style.display = "block";
+    } else {
+        btnDeconnexion.style.display = "none";
     }
 }
 
@@ -218,6 +229,7 @@ function deconnecterUtilisateur() {
     location.reload();
 
     cacherMenuGestionnaire();
+    cacherDeconnexion();
 
     alert("Vous avez été déconnecté.");
 }

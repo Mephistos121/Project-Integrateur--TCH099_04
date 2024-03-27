@@ -40,9 +40,10 @@ post('/api/comptes', function() {
     $mot_passe = $data["mot_passe"];
     $salt = $data["salt"];
     $privilege = $data["privilege"];
-    $gestionnaire = "default";
-    if($privilege==true){
+    if($privilege){
         $gestionnaire = "gestionnaire";
+    }else{
+        $gestionnaire = "default";
     }
     
     $requete = $pdo->prepare(
@@ -54,6 +55,8 @@ post('/api/comptes', function() {
     $requete->execute([$nom, $courriel, hash('sha256',$saltpass), $gestionnaire, $salt]);
     echo json_encode($requete);
 });
+
+
 get('/api/comptes/$courriel', function ($courriel) {
     $pdo=connectionBD();
     $requete = $pdo->prepare(
@@ -111,6 +114,33 @@ post('/api/cinemas', function(){
         $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
         echo json_encode($error);
     }
+});
+post('/api/demande/cinema',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pdo=connectionBD();
+
+    $nom = $data["nom"];
+    $localisation = $data["localisation"];
+    $gestionnaire = $data["gestionnaire"];
+    $image = $data["image"];
+    $valid=checkRemoteFile($image);
+    if($valid){
+        $requete = $pdo->prepare(
+            "INSERT INTO Eq4_demande_cinema (id_usager,nom_cinema, image, localisation)
+            VALUES (?,?,?,?);"
+        );
+        header('Content-type: application/json');
+        $requete->execute([$gestionnaire,$nom, $image, $localisation]);
+        echo json_encode($requete);
+    }
+    else{
+        $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+        echo json_encode($error);
+    }
+});
+post('/api/demande/film',function(){
+
 });
 
 get('/api/cinemas/gestionnaire/$id', function($id){
