@@ -135,6 +135,7 @@ const ajoutFilm = document.getElementById("creer_film_submit");
             acteur_principal: document.getElementById("creer_acteur_principal").value,
             acteur_secondaire: document.getElementById("creer_acteur_secondaire").value,
             id_usager: gestionnaireId 
+            
         };
         console.log(info_film);
 
