@@ -40,9 +40,10 @@ post('/api/comptes', function() {
     $mot_passe = $data["mot_passe"];
     $salt = $data["salt"];
     $privilege = $data["privilege"];
-    $gestionnaire = "default";
-    if($privilege==true){
+    if($privilege){
         $gestionnaire = "gestionnaire";
+    }else{
+        $gestionnaire = "default";
     }
     
     $requete = $pdo->prepare(
@@ -54,6 +55,8 @@ post('/api/comptes', function() {
     $requete->execute([$nom, $courriel, hash('sha256',$saltpass), $gestionnaire, $salt]);
     echo json_encode($requete);
 });
+
+
 get('/api/comptes/$courriel', function ($courriel) {
     $pdo=connectionBD();
     $requete = $pdo->prepare(
