@@ -13,6 +13,7 @@ function connectionBD(){
         echo "Error: Unable to connect to MySQL. Error:\n $e";
     }
     return $pdo;
+}
 function checkRemoteFile($url){ 
     $headers = @get_headers($url); 
     if($headers){
@@ -364,7 +365,7 @@ put('/api/films/update', function(){
     $requete = $pdo->prepare("UPDATE Eq4_film SET nom_film = ?, image = ?, image_banniere = ?, description = ?, 
     genre_principal = ?, genre_secondaire = ?, annee = ?, duree = ?, 
     realisateur = ?, acteur_principal = ?, acteur_secondaire = ? WHERE id = ?");
-    header('Content-type: application/json');
+    header("Content-type: application/json");
     $requete->execute([$nom, $image, $image_banniere, $description, $genre_principal, 
     $genre_secondaire, $annee, $duree, $realisateur, $acteur_principal, $acteur_secondaire, $id]);
     echo json_encode($requete);
@@ -374,4 +375,17 @@ put('/api/films/update', function(){
         echo json_encode($error);
     }
 });
-?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
