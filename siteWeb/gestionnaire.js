@@ -11,7 +11,7 @@ window.addEventListener("load", (event1) => {
         const info_cinema = {
         nom: document.querySelector("#creer_nom").value,
         image: document.querySelector("#creer_image").value,
-        localisation: document.querySelector("#creer_localisation").value,
+        emplacement: document.querySelector("#creer_emplacement").value,
         gestionnaire: document.cookie=gestionnaireId,
         };
         
@@ -37,7 +37,7 @@ window.addEventListener("load", (event1) => {
             });
         }
         //validation adresse avec geoapify
-         ajoutValide = validationAdresse(cinema.localisation);
+         ajoutValide = validationAdresse(cinema.emplacement);
      
         //validation droit d'ajout
         if(cookieGetter("privilege")!="gestionnaire"){
@@ -145,7 +145,7 @@ async function cinemaGetter(id){
            const div = document.createElement("div");
            div.textContent = cinema.nom_cinema;
            const div2 = document.createElement("div");
-           div2.textContent = cinema.localisation;
+           div2.textContent = cinema.emplacement;
            
            ul.append(li);
            li.append(div);
@@ -163,7 +163,7 @@ async function cinemaGetter(id){
            const div = document.createElement("div");
            div.textContent = cinema.nom_cinema;
            const div2 = document.createElement("div");
-           div2.textContent = cinema.localisation;
+           div2.textContent = cinema.emplacement;
            
            ul.append(li);
            li.append(div);
