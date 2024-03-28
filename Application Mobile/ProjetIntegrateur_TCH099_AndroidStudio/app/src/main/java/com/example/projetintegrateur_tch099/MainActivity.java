@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     TextView gsonPrint;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
        ArrayList<Film> filmList = new ArrayList<>();
        ArrayList<Objects> cinemaList = new ArrayList<>();
 
-        gsonPrint = findViewById(R.id.totalGson);
-        gsonPrint.setText("HELLO WORLD");
+       progressBar = findViewById(R.id.progressBarMain);
 
         fetchMovies(filmList);
         fetchCinemas(cinemaList);
@@ -72,12 +73,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
-
-                Intent intent = new Intent(MainActivity.this, DisplaySpecificMovie.class);
-                intent.putExtra("nom_film",filmList.get(0).getNom_film());
-                intent.putExtra("description",filmList.get(0).getDescription());
-                intent.putExtra("image",filmList.get(0).getImage());
-                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -97,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
 
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
