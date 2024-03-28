@@ -42,7 +42,9 @@ function showFilm(film){
 
     const acheterBilletBtn = document.getElementById("btn_buy_ticket");
 
-    if (getPrivilegeCookie()==='default') {
+    if (getPrivilegeCookie()===null) {
+        acheterBilletBtn.href = "connexion.html";
+    }else {
         acheterBilletBtn.href = "billets.html?id="+film.id;
     }
 }

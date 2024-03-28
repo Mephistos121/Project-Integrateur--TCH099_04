@@ -1,6 +1,8 @@
 package com.example.projetintegrateur_tch099;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +30,18 @@ public class DisplaySpecificMovie extends AppCompatActivity {
         movieDescription = findViewById(R.id.movieDescription);
         goBackButton = findViewById(R.id.goBackButton);
 
-        //Bundle bundle = getIntent().getExtras();
-        Glide.with(this).load("movieImageKey").into(movieImage);
+        Bundle extras = getIntent().getExtras();
+
+        movieTitle.setText(extras.getString("nom_film"));
+        movieDescription.setText(extras.getString("description"));
+        Glide.with(this).load(extras.get("image")).into(movieImage);
+
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DisplaySpecificMovie.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
