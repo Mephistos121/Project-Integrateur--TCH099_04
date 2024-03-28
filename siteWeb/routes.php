@@ -220,6 +220,28 @@ post('/api/cinemas', function(){
         echo json_encode($error);
     }
 });
+post('/api/films/ajout',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pdo=connectionBD();
+        $nom = $data["nom_film"];
+        $image = $data["image"];
+        $description = $data["description"];
+        $valid=checkRemoteFile($image);
+        if($valid){
+            $requete = $pdo->prepare(
+                "INSERT INTO Eq4_film (nom_film, image, description)
+                VALUES (?,?,?);"
+            );
+            header('Content-type: application/json');
+            $requete->execute([$nom, $image, $description]);
+            echo json_encode($requete);
+        }
+        else{
+            $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+            echo json_encode($error);
+        }
+});
 post('/api/demande/cinema',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
@@ -243,28 +265,6 @@ post('/api/demande/cinema',function(){
         $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
         echo json_encode($error);
     }
-});
-post('/api/films/ajout',function(){
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
-    $pdo=connectionBD();
-        $nom = $data["nom_film"];
-        $image = $data["image"];
-        $description = $data["description"];
-        $valid=checkRemoteFile($image);
-        if($valid){
-            $requete = $pdo->prepare(
-                "INSERT INTO Eq4_film (nom_film, image, description)
-                VALUES (?,?,?);"
-            );
-            header('Content-type: application/json');
-            $requete->execute([$nom, $image, $description]);
-            echo json_encode($requete);
-        }
-        else{
-            $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
-            echo json_encode($error);
-        }
 });
 post('/api/demande/ajout/film',function(){
     $json = file_get_contents('php://input');
