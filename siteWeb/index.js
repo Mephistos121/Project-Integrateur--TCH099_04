@@ -63,7 +63,7 @@ function showCinemas(cinemas) {
         imgPoster.alt = cinema.nom_cinema;
         cinemaTitle.textContent = cinema.nom_cinema;
 
-        cinemaLink.href =`cinema.html?title=${cinema.id}`;
+        cinemaLink.href =`cinema.html?id=${cinema.id}`;
         cinemaLink.appendChild(imgPoster);
         cinemaLink.appendChild(cinemaTitle);
         cinemaListItem.appendChild(cinemaLink);
