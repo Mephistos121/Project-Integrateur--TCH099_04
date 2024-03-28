@@ -150,6 +150,33 @@ get('/api/salle/representation/$id', function($id){
     header('Content-type: application/json');
     echo json_encode($sieges);
 });
+
+get('/api/demande/admin/ajout/films',function(){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT id,nom_film FROM Eq4_demande_film;"
+    );
+    $requete->execute();
+    
+    $films = $requete->fetchAll();
+    header('Content-type: application/json');
+    echo json_encode($films);
+});
+
+get('/api/demande/admin/ajout/film/$id',function($id){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT * FROM Eq4_demande_film WHERE id=?;"
+    );
+    $requete->execute([$id]);
+    
+    $films = $requete->fetch();
+    header('Content-type: application/json');
+    echo json_encode($films);
+});
+
 //POST
 post('/api/comptes', function() {
     $json = file_get_contents('php://input');
@@ -248,23 +275,37 @@ post('/api/films/ajout',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $pdo=connectionBD();
-        $nom = $data["nom_film"];
-        $image = $data["image"];
-        $description = $data["description"];
-        $valid=checkRemoteFile($image);
-        if($valid){
-            $requete = $pdo->prepare(
-                "INSERT INTO Eq4_film (nom_film, image, description)
-                VALUES (?,?,?);"
-            );
-            header('Content-type: application/json');
-            $requete->execute([$nom, $image, $description]);
-            echo json_encode($requete);
-        }
-        else{
-            $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
-            echo json_encode($error);
-        }
+
+    $nom = htmlspecialchars($data["nom_film"]);
+    $image = htmlspecialchars($data["image"]);
+    $image_banniere = htmlspecialchars($data["image_banniere"]);
+    $description = htmlspecialchars($data["description"]);
+    $genre_principal = htmlspecialchars($data["genre_principal"]);
+    $genre_secondaire = htmlspecialchars($data["genre_secondaire"]);
+    $annee = intval($data["annee"]);
+    $duree = intval($data["duree"]);
+    $realisateur = htmlspecialchars($data["realisateur"]);
+    $acteur_principal = htmlspecialchars($data["acteur_principal"]);
+    $acteur_secondaire = htmlspecialchars($data["acteur_secondaire"]);
+
+    $valid=checkRemoteFile($image);
+    $valid2=checkRemoteFile($image_banniere);
+    if($valid && $valid2){
+        $requete = $pdo->prepare(
+            "INSERT INTO Eq4_film (nom_film, image, description,image_banniere,
+            genre_principal,genre_secondaire,annee,duree,realisateur,acteur_principal,acteur_secondaire)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?);"
+        );
+        header('Content-type: application/json');
+        $requete->execute([$nom, $image, $description,$image_banniere,$genre_principal,
+        $genre_secondaire,$annee,$duree,$realisateur,$acteur_principal,$acteur_secondaire]);
+        $result = $requete->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($result);
+    }
+    else{
+        $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+        echo json_encode($error);
+    }
 });
 post('/api/demande/ajout/film',function(){
     $json = file_get_contents('php://input');
