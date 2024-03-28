@@ -13,7 +13,6 @@ function connectionBD(){
         echo "Error: Unable to connect to MySQL. Error:\n $e";
     }
     return $pdo;
-}
 function checkRemoteFile($url){ 
     $headers = @get_headers($url); 
     if($headers){
@@ -319,17 +318,39 @@ delete('/api/comptes/$id', function ($id) {
     echo json_encode(["message" => "Le compte a été supprimé avec succès"]);
 });
 
+//UPDATE
+put('/api/films/update', function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pdo=connectionBD();
 
+    $id = intval($data["id"]);
+    $nom = htmlspecialchars($data["nom_film"]);
+    $image = htmlspecialchars($data["image"]);
+    $image_banniere = htmlspecialchars($data["image_banniere"]);
+    $description = htmlspecialchars($data["description"]);
+    $genre_principal = htmlspecialchars($data["genre_principal"]);
+    $genre_secondaire = htmlspecialchars($data["genre_secondaire"]);
+    $annee = intval($data["annee"]);
+    $duree = intval($data["duree"]);
+    $realisateur = htmlspecialchars($data["realisateur"]);
+    $acteur_principal = htmlspecialchars($data["acteur_principal"]);
+    $acteur_secondaire = htmlspecialchars($data["acteur_secondaire"]);
 
-
-
-
-
-
-
-
-
-
-
-
-
+    $valid=checkRemoteFile($image);
+    $valid2=checkRemoteFile($image_banniere);
+    if($valid && $valid2){
+    $requete = $pdo->prepare("UPDATE Eq4_film SET nom_film = ?, image = ?, image_banniere = ?, description = ?, 
+    genre_principal = ?, genre_secondaire = ?, annee = ?, duree = ?, 
+    realisateur = ?, acteur_principal = ?, acteur_secondaire = ? WHERE id = ?");
+    header('Content-type: application/json');
+    $requete->execute([$nom, $image, $image_banniere, $description, $genre_principal, 
+    $genre_secondaire, $annee, $duree, $realisateur, $acteur_principal, $acteur_secondaire, $id]);
+    echo json_encode($requete);
+    }
+    else{
+        $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+        echo json_encode($error);
+    }
+});
+?>

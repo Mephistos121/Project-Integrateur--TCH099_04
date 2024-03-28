@@ -14,5 +14,64 @@
         <input id="film_ajout" type="button" value="Ajouter">
         <input type="reset" value="Effacer">
     </form>
-</body>
+        <div id="liste_films">
+            <ul>
+
+            </ul>
+        </div>
+        <div>
+            <form class="form_container">
+                <div class="form_layout">
+                    <div class="title">Changer un film</div>
+                        <div>
+                            <input id="update_nom_film" class="input_container" type="text" name="update_film"
+                                placeholder="Nom du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_image_film" class="input_container" type="url" name="update_image"
+                                placeholder="affiche du film" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_image_banniere" class="input_container" type="url" name="update_imgae_banniere"
+                                placeholder="bannière du film">
+                        </div>
+                        <div>
+                            <textarea name="update_description" id="update_description" class="input_container" placeholder="description"></textarea>
+                        </div>
+                        <div>
+                            <input id="update_genre_principal" class="input_container" type="text" name="update_genre_principal"
+                                placeholder="genre principal" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_genre_secondaire" class="input_container" type="text" name="update_genre_secondaire"
+                                placeholder="genre secondaire" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_annee" class="input_container" type="number" name="update_annee"
+                                placeholder="année de parution" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_duree" class="input_container" type="number" name="update_duree"
+                                placeholder="durée en minute" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_realisateur" class="input_container" type="text" name="update_realisateur"
+                                placeholder="réalisateur" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_acteur_principal" class="input_container" type="text" name="update_acteur_principal"
+                                placeholder="acteur principal" value="" required>
+                        </div>
+                        <div>
+                            <input id="update_acteur_secondaire" class="input_container" type="text" name="update_acteur_secondaire"
+                                placeholder="acteur secondaire" value="" required>
+                        </div>
+                    <div class="bouttons_form">
+                        <input id="film_update" class="edit_submit" type="button" value="Mettre à jour le film">
+                        <input class="edit_clear" type="reset" value="Effacer">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
 </html>
