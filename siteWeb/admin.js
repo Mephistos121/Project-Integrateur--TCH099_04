@@ -2,6 +2,7 @@ window.addEventListener('load', (event1) =>{
     const perms=cookieGetter("privilege");
     const sbutton = document.querySelector("#film_ajout");
     const ubutton = document.querySelector("#film_update");
+    const dbutton = document.querySelector("#film_delete");
     if(perms==="administrateur"){
         sbutton.addEventListener("click", (event3) => {
             
@@ -41,6 +42,12 @@ window.addEventListener('load', (event1) =>{
             if (info_film[element]==="") check=false;
         });
         check ? updateFilm(info_film) : alert("Veuillez entrer toutes les informations du film");
+    });
+    dbutton.addEventListener("click", (event5) => {
+        if(confirm("Voulez-vous vraiment supprimer ce film?")){
+            const id_film = window.location.hash.substring(1);
+            deleteFilm(id_film);
+        } 
     });
     fetchListeFilms();
 });
@@ -124,7 +131,19 @@ async function updateFilm(film){
     }else{
         alert("Le film a été mis à jour avec succès");
     }
+}
 
+async function deleteFilm(film_id){
+    const filmResponse = await fetch(`http://localhost/api/films/delete/${film_id}`, {
+        method: 'DELETE'
+    });
+    const content = await filmResponse.json();
+    console.log(content);
+    if(content.erreur){
+        alert(content.erreur);
+    }else{
+        alert("Le film a été supprimé avec succès");
+    }
 }
 
 

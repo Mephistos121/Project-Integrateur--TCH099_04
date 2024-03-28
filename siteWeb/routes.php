@@ -340,6 +340,16 @@ delete('/api/comptes/$id', function ($id) {
     echo json_encode(["message" => "Le compte a été supprimé avec succès"]);
 });
 
+delete('/api/films/delete/$id', function($id){
+    $pdo=connectionBD();
+    $requete = $pdo->prepare(
+        "DELETE FROM Eq4_film WHERE id = ?;"
+    );
+    $requete->execute([$id]);
+    header('Content-type: application/json');
+    echo json_encode(["message" => "Le film a été supprimé avec succès"]);
+});
+
 //UPDATE
 put('/api/films/update', function(){
     $json = file_get_contents('php://input');
