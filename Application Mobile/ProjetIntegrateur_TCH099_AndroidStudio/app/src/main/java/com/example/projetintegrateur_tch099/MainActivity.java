@@ -1,6 +1,8 @@
 package com.example.projetintegrateur_tch099;
 
 import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,19 +43,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
        ArrayList<Film> filmList = new ArrayList<>();
-
-
-        //Create an object from a json string;
-        //String data = "{\"id\":1,\"movieName\":\"Dune2\",\"linkOfImage\":\"linkOfImage\"}";
-        //Film filmTest2 = gson.fromJson(data, Film.class);
-        //json = gson.toJson(filmTest2);
+       ArrayList<Objects> cinemaList = new ArrayList<>();
 
         gsonPrint = findViewById(R.id.totalGson);
         gsonPrint.setText("HELLO WORLD");
 
         fetchMovies(filmList);
-
-        //gsonPrint.setText(filmList.get(0).getNom_film());
+        fetchCinemas(cinemaList);
     }
 
     private void fetchMovies(ArrayList<Film> filmList){
@@ -61,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray jsonArray) {
-
-                gsonPrint.setText(jsonArray.toString());
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     try {
@@ -74,9 +69,15 @@ public class MainActivity extends AppCompatActivity {
                         Film film = new Film(nom_film,image,description);
                         filmList.add(film);
                     } catch (JSONException e) {
-                        //throw new RuntimeException(e);
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
+
+                Intent intent = new Intent(MainActivity.this, DisplaySpecificMovie.class);
+                intent.putExtra("nom_film",filmList.get(0).getNom_film());
+                intent.putExtra("description",filmList.get(0).getDescription());
+                intent.putExtra("image",filmList.get(0).getImage());
+                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -87,4 +88,25 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
         requestQueue.add(jsonArrayRequest);
     }
+    public void fetchCinemas(ArrayList<Objects> cinemaList){
+        String url = "https://equipe500.tch099.ovh/projet4/api/cinemas";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray jsonArray) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(MainActivity.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
+        requestQueue.add(jsonArrayRequest);
+    }
+
 }
