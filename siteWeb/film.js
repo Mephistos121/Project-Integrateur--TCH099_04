@@ -42,7 +42,9 @@ function showFilm(film){
 
     const acheterBilletBtn = document.getElementById("btn_buy_ticket");
 
-    acheterBilletBtn.href = "billets.html?id="+film.id;
+    if (getPrivilegeCookie()==='default') {
+        acheterBilletBtn.href = "billets.html?id="+film.id;
+    }
 }
 
 async function fetchFilm(filmId){
@@ -51,3 +53,13 @@ async function fetchFilm(filmId){
     showFilm(contenu);
 }
 
+function getPrivilegeCookie() {
+    const cookieArray = document.cookie.split('; ');
+    for (const cookie of cookieArray) {
+        const [name, value] = cookie.split('=');
+        if (name === 'privilege') {
+            return value;
+        }
+    }
+    return null;
+}
