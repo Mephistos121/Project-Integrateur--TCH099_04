@@ -1,9 +1,7 @@
-
 const showMoreBtn = document.getElementById("btn_show_more");
 const showMoreInfo = document.getElementById("movie_show_more_container");
 
 showMoreBtn.addEventListener("click", () => {
-    console.log("Show more button clicked");
     // Checking if the additional information is currently hidden
     if (showMoreInfo.style.display === "none" || showMoreInfo.style.display === "") {
         showMoreBtn.textContent = "Moins d'informations"; // Change button text to indicate hiding information
@@ -34,19 +32,22 @@ function showFilm(film){
     banniere.src = film.image_banniere;
     acteurs.textContent = film.acteur_principal+", "+film.acteur_secondaire;
     realisateur.textContent = film.realisateur;
-    temps.textContent = film.duree;
+    temps.textContent = film.duree +"min";
     genres.textContent = film.genre_principal+", "+film.genre_secondaire;
     titre.textContent = film.nom_film;
     annee.textContent = film.annee;
     image.src = film.image;
     description.textContent = film.description;
 
+
+    const acheterBilletBtn = document.getElementById("btn_buy_ticket");
+
+    acheterBilletBtn.href = "billets.html?id="+film.id;
 }
 
 async function fetchFilm(filmId){
     const responseFilm = await fetch("http://localhost/api/films/filmid/"+filmId);
     const contenu = await responseFilm.json();
-    console.log("aaa");
     showFilm(contenu);
 }
 

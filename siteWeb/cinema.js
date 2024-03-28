@@ -10,7 +10,7 @@ function showFilms(films) {
         imgPoster.alt = film.nom_film;
         filmTitle.textContent = film.nom_film;
 
-        filmLink.href =`film.html?title=${film.id}`;
+        filmLink.href =`film.html?id=${film.id}`;
         filmLink.appendChild(imgPoster);
         filmLink.appendChild(filmTitle);
         filmListItem.appendChild(filmLink);
@@ -22,7 +22,7 @@ window.addEventListener("load", (event1) => {
     
     const myKeyValues = window.location.search;
     const typeParams = new URLSearchParams(myKeyValues);
-    const chosenCinemaId = typeParams.get("title");
+    const chosenCinemaId = typeParams.get("id");
     
     
 
