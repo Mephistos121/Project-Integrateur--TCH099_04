@@ -8,7 +8,7 @@ function afficherListeCinema(liste){
     const listeR = document.getElementById("liste_representation");
     liste.forEach(film => {
         const newCinema = document.createElement("p");
-        newCinema.textContent = film.nom_cinema+" "+film.localisation;
+        newCinema.textContent = film.nom_cinema+" "+film.emplacement;
         const newRepresentation = document.createElement("p");
         newRepresentation.textContent = film.temps;
         newRepresentation.addEventListener("click", () => {

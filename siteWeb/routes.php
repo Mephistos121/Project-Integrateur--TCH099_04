@@ -60,7 +60,7 @@ get('/api/cinemas/gestionnaire/$id', function($id){
     $pdo=connectionBD();
 
     $requete = $pdo->prepare(
-        "SELECT  nom_cinema, localisation FROM Eq4_cinema WHERE gestionnaire_id = ?;"
+        "SELECT  nom_cinema, emplacement FROM Eq4_cinema WHERE gestionnaire_id = ?;"
     );
     $requete->execute([$id]);
     
@@ -95,7 +95,7 @@ get('/api/cinemas/$cinema', function($cinemaId){
 get('/api/cinemas/film/$id', function($cinemaId){
     $pdo=connectionBD();
     $requete = $pdo->prepare(
-        "SELECT `Eq4_cinema`.nom_cinema,`Eq4_cinema`.localisation,`Eq4_representation`.temps,`Eq4_representation`.salle_id,`Eq4_representation`.cout,`Eq4_representation`.`film_id` FROM `Eq4_cinema`,`Eq4_representation` WHERE `Eq4_cinema`.`id`=`cinema_id` AND `film_id`=?"
+        "SELECT `Eq4_cinema`.nom_cinema,`Eq4_cinema`.emplacement,`Eq4_representation`.temps,`Eq4_representation`.salle_id,`Eq4_representation`.cout,`Eq4_representation`.`film_id` FROM `Eq4_cinema`,`Eq4_representation` WHERE `Eq4_cinema`.`id`=`cinema_id` AND `film_id`=?"
     );
     $requete->execute([$cinemaId]);
     $cinemas = $requete->fetchAll();
@@ -202,17 +202,17 @@ post('/api/cinemas', function(){
     $pdo=connectionBD();
 
     $nom = $data["nom"];
-    $localisation = $data["localisation"];
+    $emplacement = $data["emplacement"];
     $gestionnaire = $data["gestionnaire"];
     $image = $data["image"];
     $valid=checkRemoteFile($image);
     if($valid){
         $requete = $pdo->prepare(
-            "INSERT INTO Eq4_cinema (nom_cinema, image, localisation, gestionnaire_id)
+            "INSERT INTO Eq4_cinema (nom_cinema, image, emplacement, gestionnaire_id)
             VALUES (?,?,?,?);"
         );
         header('Content-type: application/json');
-        $requete->execute([$nom, $image, $localisation, $gestionnaire]);
+        $requete->execute([$nom, $image, $emplacement, $gestionnaire]);
         echo json_encode($requete);
     }
     else{
@@ -226,17 +226,17 @@ post('/api/demande/cinema',function(){
     $pdo=connectionBD();
 
     $nom = $data["nom"];
-    $localisation = $data["localisation"];
+    $emplacement = $data["emplacement"];
     $gestionnaire = $data["gestionnaire"];
     $image = $data["image"];
     $valid=checkRemoteFile($image);
     if($valid){
         $requete = $pdo->prepare(
-            "INSERT INTO Eq4_demande_cinema (id_usager,nom_cinema, image, localisation)
+            "INSERT INTO Eq4_demande_cinema (id_usager,nom_cinema, image, emplacement)
             VALUES (?,?,?,?);"
         );
         header('Content-type: application/json');
-        $requete->execute([$gestionnaire,$nom, $image, $localisation]);
+        $requete->execute([$gestionnaire,$nom, $image, $emplacement]);
         echo json_encode($requete);
     }
     else{
@@ -318,7 +318,7 @@ get('/api/demande/ajout/cinema/gestionnaire/$id', function($id){
     $pdo=connectionBD();
 
     $requete = $pdo->prepare(
-        "SELECT  nom_cinema, localisation FROM Eq4_demande_cinema WHERE id_usager = ?;"
+        "SELECT  nom_cinema, emplacement FROM Eq4_demande_cinema WHERE id_usager = ?;"
     ); 
     $requete->execute([$id]);
     
