@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+/*Form*/
+
+.form_container{
+    margin-top: 3em;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 60%;
+}
+
+.paiement_input{
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: white;
+    font-size: 18px;
+    height: 2.5em;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.button_card {
+    background:rgb(19, 30, 37) ; 
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .button_card:hover{
+    background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
+    transition-duration: 0.5s;
+    transition: 0.5s;
+}
+  
+  .title {
+    align-self: center;
+    color: white;
+    font-family: sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+
+/* Navbar Section */
+#nav_bar_home{
+    background-color: 	#161618;
+    color: white;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    position: sticky;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    top: 0;
+    z-index: 999;
+}
+#nav_bar_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 2%;
+    margin: 0 auto;
+    width: 100%;
+}
+#account_link{
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.4rem;
+}
+
+/* Navbar Left */
+#nav_bar_list_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* If you want space between items */
+    list-style-type: none; /* This property doesn't apply to flex containers */
+    padding: 0;
+    margin: 0;
+}
+
+#nav_bar_list {
+    display: flex;
+    justify-content: space-between; 
+    list-style: none;
+    width: 28rem;
+}
+
+#nav_bar_list a{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+#search_bar{
+    width: 10rem;
+    height: 1.5rem;
+    color: black;
+    border-radius: 10px;
+    box-shadow: none;
+    border: none;
+    padding: 2px;
+    padding-left: 5%;
+}
+
+
+/*Movie Page*/
+#movie_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:  	#212124;
+    padding-bottom: 3rem;
+}
+
