@@ -5,17 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin panel</title>
     <script src="admin.js"></script>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
     <a href="demande.html">Mes demandes</a>
     <form>
-        <input id="film_nom" type="text" name="film_nom" placeholder="Nom du film" value="" required>
-        <input id = "film_img" type="text" name="film_img" placeholder="image" value="" required>
-        <textarea id="film_desc" name="film_desc" placeholder="Description"></textarea>
+        <h2>Ajouter un film</h2>
+        <div>
+            <input id="creer_nom_film" class="input_container" type="text" name="creer_film"
+                placeholder="Nom du film" value="" required>
+        </div>
+        <div>
+            <input id="creer_image_film" class="input_container" type="url" name="creer_image"
+                placeholder="affiche du film" value="" required>
+        </div>
+        <div>
+            <input id="creer_image_banniere" class="input_container" type="url" name="creer_imgae_banniere"
+                placeholder="bannière du film">
+        </div>
+        <div>
+            <textarea name="creer_description" id="creer_description" class="input_container" placeholder="description"></textarea>
+        </div>
+        <div>
+            <input id="creer_genre_principal" class="input_container" type="text" name="creer_genre_principal"
+                placeholder="genre principal" value="" required>
+        </div>
+        <div>
+            <input id="creer_genre_secondaire" class="input_container" type="text" name="creer_genre_secondaire"
+                placeholder="genre secondaire" value="" required>
+        </div>
+        <div>
+            <input id="creer_annee" class="input_container" type="number" name="creer_annee"
+                placeholder="année de parution" value="" required>
+        </div>
+        <div>
+            <input id="creer_duree" class="input_container" type="number" name="creer_duree"
+                placeholder="durée en minute" value="" required>
+        </div>
+        <div>
+            <input id="creer_realisateur" class="input_container" type="text" name="creer_realisateur"
+                placeholder="réalisateur" value="" required>
+        </div>
+        <div>
+            <input id="creer_acteur_principal" class="input_container" type="text" name="creer_acteur_principal"
+                placeholder="acteur principal" value="" required>
+        </div>
+        <div>
+            <input id="creer_acteur_secondaire" class="input_container" type="text" name="creer_acteur_secondaire"
+                placeholder="acteur secondaire" value="" required>
+        </div>
         <input id="film_ajout" type="button" value="Ajouter">
         <input type="reset" value="Effacer">
     </form>
+    <div>
+        <h2>Modifier un film</h2>
         <div id="liste_films">
+            <h3>Liste de films de disponibles</h2>
             <ul>
 
             </ul>
@@ -23,7 +68,7 @@
         <div>
             <form class="form_container">
                 <div class="form_layout">
-                    <div class="title">Changer un film</div>
+                    <h3>Formulaire de modification du film</h2>
                         <div>
                             <input id="update_nom_film" class="input_container" type="text" name="update_film"
                                 placeholder="Nom du film" value="" required>
@@ -74,8 +119,9 @@
                 </div>
             </form>
         </div>
+    </div>
 
-        <div id="film_delete">
+        <div id="film_div_delete">
             <form>
                 <input id="film_delete" type="button" value="Supprimer">
             </form>

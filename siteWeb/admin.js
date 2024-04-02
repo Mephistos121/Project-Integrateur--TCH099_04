@@ -1,89 +1,92 @@
-window.addEventListener('load', (event1) =>{
-    const perms=cookieGetter("privilege");
+window.addEventListener('load', (event1) => {
+    const perms = cookieGetter("privilege");
     const sbutton = document.querySelector("#film_ajout");
     const ubutton = document.querySelector("#film_update");
     const dbutton = document.querySelector("#film_delete");
-    if(perms==="administrateur"){
+    console.log(perms);
+    if (perms === "administrateur") {
         sbutton.addEventListener("click", (event3) => {
-            
+
             const info_film = {
-            nom_film: document.querySelector("#film_nom").value,
-            image: document.querySelector("#film_img").value,
-            description: document.querySelector("#film_desc").value,
+                nom_film: document.querySelector("#film_nom").value,
+                image: document.querySelector("#film_img").value,
+                description: document.querySelector("#film_desc").value,
             };
-            
-            let check=true;
+
+            let check = true;
             Object.keys(info_film).forEach(element => {
-                if (info_film[element]==="") check=false;
+                if (info_film[element] === "") check = false;
             });
-                check ? ajouterNouveauFilm(info_film) : alert("Veuillez entrer toutes les informations du compte");
+            check ? ajouterNouveauFilm(info_film) : alert("Veuillez entrer toutes les informations du compte");
         });
-    }else{
-        sbutton.disabled = true;
-    }
-    ubutton.addEventListener("click", (event4) => {
-        const id_film = window.location.hash.substring(1);
-        const info_film = {
-        id:id_film,
-        nom_film: document.querySelector("#update_nom_film").value,
-        image: document.querySelector("#update_image_film").value,
-        image_banniere: document.querySelector("#update_image_banniere").value,
-        description: document.querySelector("#update_description").value,
-        genre_principal: document.querySelector("#update_genre_principal").value,
-        genre_secondaire: document.querySelector("#update_genre_secondaire").value,
-        annee: document.querySelector("#update_annee").value,
-        duree: document.querySelector("#update_duree").value,
-        realisateur: document.querySelector("#update_realisateur").value,
-        acteur_principal: document.querySelector("#update_acteur_principal").value,
-        acteur_secondaire: document.querySelector("#update_acteur_secondaire").value,
-        };
-        let check=true;
-        Object.keys(info_film).forEach(element => {
-            if (info_film[element]==="") check=false;
-        });
-        check ? updateFilm(info_film) : alert("Veuillez entrer toutes les informations du film");
-    });
-    dbutton.addEventListener("click", (event5) => {
-        if(confirm("Voulez-vous vraiment supprimer ce film?")){
+        ubutton.addEventListener("click", (event4) => {
             const id_film = window.location.hash.substring(1);
-            deleteFilm(id_film);
-        } 
-    });
-    fetchListeFilms();
+            const info_film = {
+                id: id_film,
+                nom_film: document.querySelector("#update_nom_film").value,
+                image: document.querySelector("#update_image_film").value,
+                image_banniere: document.querySelector("#update_image_banniere").value,
+                description: document.querySelector("#update_description").value,
+                genre_principal: document.querySelector("#update_genre_principal").value,
+                genre_secondaire: document.querySelector("#update_genre_secondaire").value,
+                annee: document.querySelector("#update_annee").value,
+                duree: document.querySelector("#update_duree").value,
+                realisateur: document.querySelector("#update_realisateur").value,
+                acteur_principal: document.querySelector("#update_acteur_principal").value,
+                acteur_secondaire: document.querySelector("#update_acteur_secondaire").value,
+            };
+            let check = true;
+            Object.keys(info_film).forEach(element => {
+                if (info_film[element] === "") check = false;
+            });
+            check ? updateFilm(info_film) : alert("Veuillez entrer toutes les informations du film");
+        });
+        dbutton.addEventListener("click", (event5) => {
+            if (confirm("Voulez-vous vraiment supprimer ce film?")) {
+                const id_film = window.location.hash.substring(1);
+                deleteFilm(id_film);
+            }
+        });
+        fetchListeFilms();
+    } else {
+        sbutton.disabled = true;
+        ubutton.disabled = true;
+        dbutton.disabled = true;
+    }
 });
 
-async function ajouterNouveauFilm(film){
+async function ajouterNouveauFilm(film) {
     const filmResponse = await fetch("http://localhost/api/films/ajout", {
         method: 'POST',
         headers: {
-        'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(film),
     });
     const content = await filmResponse.json();
     console.log(content);
-    if(content.erreur){
+    if (content.erreur) {
         alert(content.erreur);
-    }else{
+    } else {
         alert("Le film a été ajouté avec succès");
     }
 }
 
-async function fetchListeFilms(){
+async function fetchListeFilms() {
     const filmResponse = await fetch("http://localhost/api/films")
     const content = await filmResponse.json();
     afficherListeFilm(content);
-    if(content.erreur){
+    if (content.erreur) {
         alert(content.erreur);
     }
 }
 
-function afficherListeFilm(films){
+function afficherListeFilm(films) {
     const itemList = document.querySelector("#liste_films");
     films.forEach(element => {
         const item = document.createElement("li");
         const link = document.createElement("a");
-        link.href = "#"+element.id;
+        link.href = "#" + element.id;
         link.addEventListener("click", (event) => {
             fetchFilm(element.id);
         });
@@ -93,66 +96,66 @@ function afficherListeFilm(films){
     });
 }
 
-async function fetchFilm(id){
+async function fetchFilm(id) {
     const filmResponse = await fetch(`http://localhost/api/films/filmid/${id}`)
     const film = await filmResponse.json();
     updateFormFilm(film);
-    if(film.erreur){
+    if (film.erreur) {
         alert(film.erreur);
     }
 }
 
-function updateFormFilm(film){
-    document.getElementById('update_nom_film').value=film.nom_film;
-    document.getElementById('update_image_film').value=film.image;
-    document.getElementById('update_image_banniere').value=film.image_banniere;
-    document.getElementById('update_description').value=film.description;
-    document.getElementById('update_genre_principal').value=film.genre_principal;
-    document.getElementById('update_genre_secondaire').value=film.genre_secondaire;
-    document.getElementById('update_annee').value=film.annee;
-    document.getElementById('update_duree').value=film.duree;
-    document.getElementById('update_realisateur').value=film.realisateur;
-    document.getElementById('update_acteur_principal').value=film.acteur_principal;
-    document.getElementById('update_acteur_secondaire').value=film.acteur_secondaire;
+function updateFormFilm(film) {
+    document.getElementById('update_nom_film').value = film.nom_film;
+    document.getElementById('update_image_film').value = film.image;
+    document.getElementById('update_image_banniere').value = film.image_banniere;
+    document.getElementById('update_description').value = film.description;
+    document.getElementById('update_genre_principal').value = film.genre_principal;
+    document.getElementById('update_genre_secondaire').value = film.genre_secondaire;
+    document.getElementById('update_annee').value = film.annee;
+    document.getElementById('update_duree').value = film.duree;
+    document.getElementById('update_realisateur').value = film.realisateur;
+    document.getElementById('update_acteur_principal').value = film.acteur_principal;
+    document.getElementById('update_acteur_secondaire').value = film.acteur_secondaire;
 }
 
-async function updateFilm(film){
+async function updateFilm(film) {
     const filmResponse = await fetch(`http://localhost/api/films/update`, {
         method: 'PUT',
         headers: {
-        'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(film),
     });
     const content = await filmResponse.json();
     console.log(content);
-    if(content.erreur){
+    if (content.erreur) {
         alert(content.erreur);
-    }else{
+    } else {
         alert("Le film a été mis à jour avec succès");
     }
 }
 
-async function deleteFilm(film_id){
+async function deleteFilm(film_id) {
     const filmResponse = await fetch(`http://localhost/api/films/delete/${film_id}`, {
         method: 'DELETE'
     });
     const content = await filmResponse.json();
     console.log(content);
-    if(content.erreur){
+    if (content.erreur) {
         alert(content.erreur);
-    }else{
+    } else {
         alert("Le film a été supprimé avec succès");
     }
 }
 
 
 
-function cookieGetter(name){
+function cookieGetter(name) {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
         const [cookieName, cookieValue] = cookie.trim().split('=');
-        if(cookieName === name){
+        if (cookieName === name) {
             return cookieValue;
         }
     }

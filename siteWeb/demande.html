@@ -3,16 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Demande</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+    <a href="admin.html">Vers le menu principal</a>
+    <div id="div_tab_button">
+        <button class="tab_button" id="film_button">Demande d'ajout de film</button>
+        <button class="tab_button" id="cinema_button">Demande d'ajout de cinéma</button>
+    </div>
     <div id="demande_film">
         <p>Demande d'ajout de film</p>
         <ul id="demande_film_liste">
 
         </ul>
     </div>
-    <div id="demande_cinema"></div>
+    <div id="demande_cinema" style="display: none;">
+        <div id="demande_cinema_liste">
+            <p>Demande d'ajout de cinéma</p>
+            <ul id="demande_cinema_liste">
+                <li>test</li>
+            </ul>
+    </div>
     <script src="demande.js"></script>
 </body>
 </html>

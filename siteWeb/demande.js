@@ -1,5 +1,18 @@
 window.addEventListener("load", (event1) => {
+    const btnTabDemandeFilm=document.querySelector("#film_button");
+    const btnTabDemandeCinema=document.querySelector("#cinema_button");
+    btnTabDemandeFilm.addEventListener("click", (event) => {
+        document.querySelector("#demande_film").style.display="block";
+        document.querySelector("#demande_cinema").style.display="none";
+        console.log("film");
+    });
+    btnTabDemandeCinema.addEventListener("click", (event) => {
+        document.querySelector("#demande_film").style.display="none";
+        document.querySelector("#demande_cinema").style.display="block";
+        console.log("cinema");
+    });
     fetchDemandesFilm();
+    
 });
 
 async function fetchDemandesFilm() {
@@ -19,13 +32,14 @@ function afficherDemandesFilm(demandes) {
         const link = document.createElement("a");
         link.href = "#" + element.id;
         link.addEventListener("click", (event) => {
-            if (document.getElementById("div" + element.id).querySelector("#ul"+element.id) == null) {
+            if (document.getElementById("div" + element.id).querySelector("#ul_opened") == null) {
                 fetchInfoFilm(element.id);
             }
-            if(document.getElementById("ul_opened")!=null){
+            else{
                 document.getElementById("ul_opened").remove();
             }
         });
+        div.className = "film_div_demande";
         div.id = "div" + element.id;
         link.appendChild(document.createTextNode(element.nom_film));
         item.appendChild(link);
@@ -37,7 +51,6 @@ function afficherDemandesFilm(demandes) {
 async function fetchInfoFilm(id) {
     const response = await fetch(`http://localhost/api/demande/admin/ajout/film/${id}`);
     const content = await response.json();
-    console.log(content);
     afficherInfoFilm(content);
     if (content.erreur) {
         alert(content.erreur);
@@ -49,8 +62,15 @@ function afficherInfoFilm(info) {
     const ul = document.createElement("ul");
     ul.id = "ul_opened";
     ul.appendChild(document.createElement("li")).textContent = "Nom du film: " + info.nom_film;
-    ul.appendChild(document.createElement("li")).textContent = "Image: " + info.image;
-    ul.appendChild(document.createElement("li")).textContent = "Image bannière: " + info.image_banniere;
+    ul.appendChild(document.createElement("li")).textContent = "Image (URL): " + info.image;
+    img=document.createElement("img");
+    img.src=info.image;
+    ul.appendChild(document.createElement("li")).appendChild(img);
+    imgBanniere=document.createElement("img");
+    imgBanniere.src=info.image_banniere;
+    ul.appendChild(document.createElement("li")).appendChild(imgBanniere);
+    ul.appendChild(document.createElement("li")).textContent = "Image bannière (URL): " + info.image_banniere;
+    ul.appendChild(document.createElement("li")).textContent = "Description: " + info.description;
     ul.appendChild(document.createElement("li")).textContent = "Description: " + info.description;
     ul.appendChild(document.createElement("li")).textContent = "Genre principal: " + info.genre_principal;
     ul.appendChild(document.createElement("li")).textContent = "Genre secondaire: " + info.genre_secondaire;
@@ -64,10 +84,15 @@ function afficherInfoFilm(info) {
     abutton.id = "demande_film_accepter" + info.id;
     abutton.addEventListener("click", (event) => {
         accepterDemande(info);
+        enleverDemande(info);
     });
     const rbutton = document.createElement("button");
     rbutton.textContent = "Refuser";
     rbutton.id = "demande_film_refuser" + info.id;
+    rbutton.addEventListener("click", (event) => {
+        enleverDemande(info);
+
+    });
     ul.appendChild(abutton);
     ul.appendChild(rbutton);
     div.appendChild(ul);
@@ -98,7 +123,21 @@ async function accepterDemande(info) {
     const content = await response.json();
     if (content.erreur) {
         alert(content.erreur);
+        return;
     } else {
-        alert("La demande a été acceptée avec succès");
+    }
+}
+
+async function enleverDemande(info) {
+    const response = await fetch(`http://localhost/api/demande/admin/refus/film/${info.id}`,
+        {
+            method: 'DELETE',
+        });
+    const content = await response.json();
+    if (content.erreur) {
+        alert(content.erreur);
+        return;
+    } else {
+        window.location.reload();
     }
 }
