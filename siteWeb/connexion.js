@@ -1,9 +1,7 @@
 window.addEventListener("load", (event1) => {
 
     let sbutton = document.querySelector("#creer_submit");
-
     sbutton.addEventListener("click", (event3) => {
-        
         const info_compte = {nom: document.querySelector("#creer_nom").value,
         courriel: document.querySelector("#creer_courriel").value,
         mot_passe: document.querySelector("#creer_pass").value,
@@ -19,11 +17,9 @@ window.addEventListener("load", (event1) => {
     });
 
     let connecterButton = document.querySelector("#connecterButton");
-
     connecterButton.addEventListener("click", (event4) => {
         const identifiant = document.querySelector("#connecter_identifiant").value;
         const motDePasse = document.querySelector("#connecter_pass").value;
-
         if (identifiant && motDePasse) {
             seConnecter(identifiant, motDePasse);
         } 
@@ -32,39 +28,27 @@ window.addEventListener("load", (event1) => {
         }
     });
 
-    var signInSection = document.getElementById('signUpSection');
+    let signInSection = document.getElementById('signUpSection');
     closeDiv(signInSection);
 
     let signInButton = document.querySelector("#signInButton");
     let signUpButton = document.querySelector("#signUpButton");
    
     signInButton.addEventListener("click", () => {
-        var signInSection = document.getElementById('signInSection');
-        var signUpSection = document.getElementById('signUpSection');
+        let signInSection = document.getElementById('signInSection');
+        let signUpSection = document.getElementById('signUpSection');
         showDiv(signInSection);
         closeDiv(signUpSection)
     });
 
     signUpButton.addEventListener("click", () => {
-        var signUpSection = document.getElementById('signUpSection');
-        var signInSection = document.getElementById('signInSection');
+        let signUpSection = document.getElementById('signUpSection');
+        let signInSection = document.getElementById('signInSection');
         showDiv(signUpSection);
         closeDiv(signInSection)
     });
 
-    cacherMenuGestionnaire();
     cacherBtnHorsConnection();
-    
-    let logoutButton = document.querySelector("#logoutButton");
-
-    logoutButton.addEventListener("click", () => {
-        deconnecterUtilisateur();
-    });
-
-    let deleteButton = document.querySelector("#supprimerButton");
-    deleteButton.addEventListener("click", () => {
-        supprimerCompte();
-    });
 });
 
 function showDiv(section) {
@@ -134,8 +118,7 @@ async function ajouterNouveauCompte(compte){
 }
 
 async function seConnecter(courriel, mot_passe) {
-    
-    
+     
     try {
         salt = await getSaltByEmail(courriel);
 
@@ -161,7 +144,6 @@ async function seConnecter(courriel, mot_passe) {
                 document.cookie = "id="+responseData.id+"; expires="+d+"; path=/;";
                 document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
 
-                cacherMenuGestionnaire();
                 cacherBtnHorsConnection();
 
                 alert("Vous êtes connecté.");
@@ -176,25 +158,18 @@ async function seConnecter(courriel, mot_passe) {
     }
 }
 
-function cacherMenuGestionnaire() {
-    let menuGestionnaire = document.querySelector("#menu_gestionnaire");
-    if (hasPrivilege() && isConnected()) {
-        menuGestionnaire.style.display = "block"; 
+function cacherBtnHorsConnection() {
+    let btnCompte = document.querySelector("#compteButton");
+    if (isConnected()) {
+        btnCompte.style.display = "block";
     } else {
-        menuGestionnaire.style.display = "none";
+        btnCompte.style.display = "none";
     }
 }
 
-function cacherBtnHorsConnection() {
-    let btnDeconnexion = document.querySelector("#logoutButton");
-    let btnSupprimerCompte = document.querySelector("#supprimerButton");
-    if (isConnected()) {
-        btnDeconnexion.style.display = "block";
-        btnSupprimerCompte.style.display = "block";
-    } else {
-        btnDeconnexion.style.display = "none";
-        btnSupprimerCompte.style.display = "none";
-    }
+function isConnected() {
+    const connecterValue = getconnecterCookie();
+    return connecterValue != null;
 }
 
 function getPrivilegeCookie() {
@@ -208,11 +183,6 @@ function getPrivilegeCookie() {
     return null;
 }
 
-function hasPrivilege() {
-    const privilegeValue = getPrivilegeCookie();
-    return privilegeValue === "gestionnaire";
-}
-
 function getconnecterCookie() {
     const cookieArray = document.cookie.split('; ');
     for (const cookie of cookieArray) {
@@ -221,23 +191,6 @@ function getconnecterCookie() {
             return value;
         }
     }
-}
-
-function isConnected() {
-    const connecterValue = getconnecterCookie();
-    return connecterValue != null;
-}
-
-function deconnecterUtilisateur() {
-    document.cookie = "id=; Max-Age=-1; path=/;";
-    document.cookie = "privilege=; Max-Age=-1; path=/;";
-
-    location.reload();
-
-    cacherMenuGestionnaire();
-    cacherBtnHorsConnection();
-
-    alert("Vous avez été déconnecté.");
 }
 
 function makeSalt() {
@@ -250,30 +203,4 @@ function makeSalt() {
       counter += 1;
     }
     return result;
-}
-
-async function supprimerCompte() {
-    try {
-        const confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
-        if (!confirmation) {
-            return;
-        }
-        const userID = getconnecterCookie();
-        if (!userID) {
-            alert("Impossible de trouver l'identifiant de l'utilisateur.");
-            return;
-        }
-        const response = await fetch(`http://localhost/api/comptes/${userID}`, {
-            method: 'DELETE'
-        });
-        if (response.ok) {
-            alert("Le compte a été supprimé avec succès.");
-            deconnecterUtilisateur();
-        } else {
-            alert("Une erreur s'est produite lors de la suppression du compte.");
-        }
-    } catch (error) {
-        console.error("Erreur lors de la suppression du compte :", error);
-        alert("Une erreur s'est produite. Veuillez réessayer plus tard.");
-    }
 }

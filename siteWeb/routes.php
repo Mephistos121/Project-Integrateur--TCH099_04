@@ -26,7 +26,7 @@ function checkRemoteFile($url){
     return false;
 } 
 
-//Demanses
+//Demandes
 
 //GET
 get('/api/comptes', function () {
@@ -149,6 +149,52 @@ get('/api/salle/representation/$id', function($id){
     $sieges = $requete->fetch();
     header('Content-type: application/json');
     echo json_encode($sieges);
+});
+get('/api/billets/represention/$id', function($id){
+    $pdo=connectionBD();
+    $requete = $pdo->prepare(
+        "SELECT place FROM Eq4_representation,Eq4_billets WHERE id=? AND id=representation_id"
+    );
+    $requete->execute([$id]);
+    $billets = $requete->fetchAll();
+    header('Content-type: application/json');
+   
+    echo json_encode($billets);
+});
+get('/api/representation/$id', function($id){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT nom_film, nom_cinema, cout, emplacement, salle_id FROM Eq4_representation, Eq4_film, Eq4_cinema WHERE Eq4_representation.id=? AND cinema_id=Eq4_cinema.id AND film_id=Eq4_film.id "
+    );
+    $requete->execute([$id]);
+    $rep = $requete->fetch();
+    header('Content-type: application/json');
+    echo json_encode($rep);
+});
+get('/api/demande/ajout/film/gestionnaire/$id', function($id){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT  nom_film FROM Eq4_demande_film WHERE id_usager = ?;"
+    ); 
+    $requete->execute([$id]);
+    
+    $film = $requete->fetchAll();
+    header('Content-type: application/json');   
+    echo json_encode($film);
+});
+get('/api/demande/ajout/cinema/gestionnaire/$id', function($id){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT  nom_cinema, emplacement FROM Eq4_demande_cinema WHERE id_usager = ?;"
+    ); 
+    $requete->execute([$id]);
+    
+    $cinemas = $requete->fetchAll();
+    header('Content-type: application/json');   
+    echo json_encode($cinemas);
 });
 
 get('/api/demande/admin/ajout/films',function(){
@@ -343,29 +389,20 @@ post('/api/demande/ajout/film',function(){
             echo json_encode($error);
         }
 });
-get('/api/demande/ajout/film/gestionnaire/$id', function($id){
+post('/api/billets/ajout',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
     $pdo=connectionBD();
-
+    $usager_id = $data["usager_id"];
+    $place = $data["place"];
+    $representation_id = $data["representation_id"];
     $requete = $pdo->prepare(
-        "SELECT  nom_film FROM Eq4_demande_film WHERE id_usager = ?;"
-    ); 
-    $requete->execute([$id]);
-    
-    $film = $requete->fetchAll();
-    header('Content-type: application/json');   
-    echo json_encode($film);
-});
-get('/api/demande/ajout/cinema/gestionnaire/$id', function($id){
-    $pdo=connectionBD();
-
-    $requete = $pdo->prepare(
-        "SELECT  nom_cinema, emplacement FROM Eq4_demande_cinema WHERE id_usager = ?;"
-    ); 
-    $requete->execute([$id]);
-    
-    $cinemas = $requete->fetchAll();
-    header('Content-type: application/json');   
-    echo json_encode($cinemas);
+        "INSERT INTO Eq4_billets (place, representation_id, usager_id)
+        VALUES (?,?,?);"
+    );
+    header('Content-type: application/json');
+    $requete->execute([$place, $representation_id, $usager_id]);
+    echo json_encode($requete);
 });
 
 //DELETE

@@ -60,16 +60,24 @@ function error(){
 }
 
 
-function afficherListePlace(liste,cout,repid){
+function afficherListePlace(billets,liste,cout,repid){
     const listeP = document.getElementById("liste_place");
     while (listeP.firstChild) {
         listeP.removeChild(listeP.lastChild);
     }
     liste.forEach(siege => {
+        let check = true;
+        billets.forEach(billet => {
+            if(billet.place===siege){
+                check = false;
+            }
+        });
+        if (check){
         const newPlace = document.createElement("a");
         newPlace.textContent = siege+" ";
-        newPlace.href = "payer.html?place="+siege+"?id="+repid;
+        newPlace.href = "payer.html?place="+siege+"&id="+repid;
         listeP.append(newPlace);
+        }
     });
     const prix = document.getElementById("cout_siege");
     prix.textContent = cout +"$";
@@ -87,5 +95,11 @@ async function fetchSalle(repid){
     const responseFilm = await fetch("http://localhost/api/salle/representation/"+repid);
     const salle = await responseFilm.json();
     const liste = (salle.sieges).split(",");
-    afficherListePlace(liste,salle.cout,repid);
+    fetchBillets(liste,salle.cout,repid);
+}
+
+async function fetchBillets(liste,cout,repid){
+    const responseBillets = await fetch("http://localhost/api/billets/represention/"+repid);
+    const billets = await responseBillets.json();
+    afficherListePlace(billets,liste,cout,repid);
 }
