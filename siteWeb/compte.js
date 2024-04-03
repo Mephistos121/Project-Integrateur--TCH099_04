@@ -22,6 +22,12 @@ window.addEventListener("load", (event) => {
 
     cacherMenuGestionnaire();
     cacherMenuAdmin();
+
+    const userID = getconnecterCookie();
+    if (userID) {
+        fetchUserEmail(userID);
+        fetchUserNom(userID);
+    }
 });
 
 function cacherMenuGestionnaire() {
@@ -87,6 +93,24 @@ function deconnecterUtilisateur() {
     alert("Vous avez été déconnecté.");
 }
 
+function fetchUserEmail(userID) {
+    fetch(`/api/comptes/email/${userID}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("emailUtilisateur").innerText = data.email;
+        })
+        .catch(error => console.error('Erreur lors de la récupération de l\'email:', error));
+}
+
+function fetchUserNom(userID) {
+    fetch(`/api/comptes/nom_usager/${userID}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("nomUtilisateur").innerText = data.nom_usager;
+        })
+        .catch(error => console.error('Erreur lors de la récupération du nom:', error));
+}
+
 async function supprimerCompte() {
     try {
         const confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
@@ -110,6 +134,5 @@ async function supprimerCompte() {
     } catch (error) {
         console.error("Erreur lors de la suppression du compte :", error);
         alert("Une erreur s'est produite. Veuillez réessayer plus tard.");
-    }
-    
+    }   
 }
