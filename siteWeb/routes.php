@@ -474,6 +474,28 @@ put('/api/films/update', function(){
     }
 });
 
+put('/api/cinemas/update',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $pdo=connectionBD();
+
+    $id = intval($data["id"]);
+    $nom_cinema = htmlspecialchars($data["nom_cinema"]);
+    $image = $data["image"];
+    $emplacement = htmlspecialchars($data["emplacement"]);
+    $valid=checkRemoteFile($image);
+    if($valid){
+        $requete = $pdo->prepare("UPDATE Eq4_cinema SET nom_cinema = ?, image = ?, emplacement = ? WHERE id = ?");
+        header("Content-type: application/json");
+        $requete->execute([$nom_cinema, $image, $emplacement, $id]);
+        echo json_encode($requete);
+    }
+    else{
+        $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+        echo json_encode($error);
+    }
+});
+
 
 
 

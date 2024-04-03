@@ -120,11 +120,40 @@
             </form>
         </div>
     </div>
-
         <div id="film_div_delete">
             <form>
                 <input id="film_delete" type="button" value="Supprimer">
             </form>
         </div>
+        <div>
+            <h2>Modifier un cinéma</h2>
+            <div id="liste_cinemas">
+                <h3>Liste de cinémas de disponibles</h2>
+                <ul id="liste_cinema">
+
+                </ul>
+        </div>
+        <form class="form_container">
+            <div class="form_layout">
+                <h3>Formulaire de modification de cinéma</h3>
+                    <div>
+                        <input id="update_nom_cinema" class="input_container" type="text" name="creer_nom"
+                            placeholder="Nom du cinéma" value="" required>
+                    </div>
+                    <div>
+                        <input id="update_image_cinema" class="input_container" type="url" name="creer_image"
+                            placeholder="image du cinéma ou logo" value="" required>
+                    </div>
+                    <div>
+                        <input id="update_emplacement_cinema" class="input_container" type="text" name="creer_emplacement"
+                            placeholder="emplacement" value="" required>
+                    </div>
+                <div class="bouttons_form">
+                    <input id="cinema_update" class="edit_submit" type="button" value="Modifier cinéma">
+                    <input class="edit_clear" type="reset" value="Effacer">
+                </div>
+            </div>
+        </form>
+
     </body>
 </html>
