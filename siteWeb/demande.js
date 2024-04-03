@@ -4,11 +4,15 @@ window.addEventListener("load", (event1) => {
     btnTabDemandeFilm.addEventListener("click", (event) => {
         document.querySelector("#demande_film").style.display="block";
         document.querySelector("#demande_cinema").style.display="none";
+        btnTabDemandeFilm.style.backgroundColor="gray";
+        btnTabDemandeCinema.style.backgroundColor="white";
         console.log("film");
     });
     btnTabDemandeCinema.addEventListener("click", (event) => {
         document.querySelector("#demande_film").style.display="none";
         document.querySelector("#demande_cinema").style.display="block";
+        btnTabDemandeFilm.style.backgroundColor="white";
+        btnTabDemandeCinema.style.backgroundColor="gray";
         console.log("cinema");
     });
     fetchDemandesFilm();
@@ -39,12 +43,12 @@ function afficherDemandesFilm(demandes) {
                 document.getElementById("ul_opened").remove();
             }
         });
-        div.className = "film_div_demande";
+        div.className = "demande_div_item";
         div.id = "div" + element.id;
         link.appendChild(document.createTextNode(element.nom_film));
-        item.appendChild(link);
-        div.appendChild(item);
-        itemList.appendChild(div);
+        div.appendChild(link);
+        item.appendChild(div);
+        itemList.appendChild(item);
     });
 }
 

@@ -8,9 +8,17 @@ window.addEventListener('load', (event1) => {
         sbutton.addEventListener("click", (event3) => {
 
             const info_film = {
-                nom_film: document.querySelector("#film_nom").value,
-                image: document.querySelector("#film_img").value,
-                description: document.querySelector("#film_desc").value,
+                nom_film: document.querySelector("#update_nom_film").value,
+                image: document.querySelector("#update_image_film").value,
+                image_banniere: document.querySelector("#update_image_banniere").value,
+                description: document.querySelector("#update_description").value,
+                genre_principal: document.querySelector("#update_genre_principal").value,
+                genre_secondaire: document.querySelector("#update_genre_secondaire").value,
+                annee: document.querySelector("#update_annee").value,
+                duree: document.querySelector("#update_duree").value,
+                realisateur: document.querySelector("#update_realisateur").value,
+                acteur_principal: document.querySelector("#update_acteur_principal").value,
+                acteur_secondaire: document.querySelector("#update_acteur_secondaire").value,
             };
 
             let check = true;
