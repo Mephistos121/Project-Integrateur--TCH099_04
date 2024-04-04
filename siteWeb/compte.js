@@ -1,6 +1,6 @@
 window.addEventListener("load", (event) => {
     
-    let btnMenuGestionnaire = document.querySelector("#menuGestionnaire");
+   /* let btnMenuGestionnaire = document.querySelector("#menuGestionnaire");
     btnMenuGestionnaire.addEventListener("click", () => {
         window.location.href = "gestionnaire.html";
     });
@@ -8,7 +8,7 @@ window.addEventListener("load", (event) => {
     let btnMenuAdmin = document.querySelector("#menuAdmin");
     btnMenuAdmin.addEventListener("click", () => {
         window.location.href = "admin.html";
-    });
+    });*/
 
     let logoutButton = document.querySelector("#logoutButton");
     logoutButton.addEventListener("click", () => {

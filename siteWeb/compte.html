@@ -14,26 +14,30 @@
                     <li><a href="index.html?type=cinemas">Cinémas</a></li>
                     <li><a href="index.html?type=films">Films</a></li>
                     <li><input id="search_bar" type="text" placeholder="Rechercher"></li>
+                    <li><a id="menuGestionnaire" href="gestionnaire.html">Menu Gestionnaire</a></li>
+                    <li><a id="menuAdmin" href="admin.html">Menu Admin</a></li>
                 </ul>
             </div>
+            <a id="logoutButton">Déconnexion</a>
         </div>
     </nav>
-    <div id="movie_container">
+    <div id="main_container">
         <div id="compte_container">
-            <h1>VOTRE COMPTE</h1>
-            <h2>VOS INFORMATION</h2>
+            <h2>Informations personelles</h2>
             <p id="nom">Nom: <span id="nomUtilisateur"></span></p>
             <p id="email">Email: <span id="emailUtilisateur"></span></p>
-            <h3>Vos billets</h3>
             <div class="Gestion">
                 <h3>Menu de gestion</h3>
-                <button id="menuGestionnaire">Menu Gestionnaire</button>
-                <button id="menuAdmin">Menu Administrateur</button>
+                <!--<button id="menuGestionnaire">Menu Gestionnaire</button>
+                <button id="menuAdmin">Menu Administrateur</button>-->
+                <button id="supprimerButton">Supprimer Compte</button>
             </div>
-            <button id="logoutButton">Déconnexion</button>
-            <button id="supprimerButton">Supprimer Compte</button>
-        </div>
-    </div>
+        </div> 
+        <div id="billet_container">
+            <h2>Billets</h2>
+            <a> testing</a>
+        </div>     
+    </div>  
     <script src="compte.js"></script>
 </body>
 </html>
