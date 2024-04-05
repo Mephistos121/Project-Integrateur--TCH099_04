@@ -1,8 +1,10 @@
+body{
+  margin:0px;
+}
 .header {
     position: relative;
     background-color: black;
-    padding: 20px;
-    margin: -8px;
+    padding: 40px;
     text-align: center;
     color: white;
     font-size: 30px;
@@ -23,6 +25,61 @@
 .header h1:hover {
   font-variation-settings: "wght" 582; 
   letter-spacing: 3px;
+}
+ul li span{
+  padding: 5%;
+}
+#menu_bar_home{
+  background-color: 	#161618;
+  color: white;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  top: 0;
+  z-index: 999;
+}
+#menu_bar_container{
+  display: flex;
+  justify-content: center;
+  padding: 0% 2%;
+  margin: 0 auto;
+  width: 100%;
+}
+#account_link{
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1.4rem;
+}
+
+/* menubar Left */
+#menu_bar_list_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* If you want space between items */
+  list-style-type: none; /* This property doesn't apply to flex containers */
+  padding: 0;
+  margin: 0;
+}
+
+#menu_bar_list {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  list-style: none;
+  width: 28rem;
+}
+
+#menu_bar_list span{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.25rem;
 }
 
 .dropdown {
@@ -70,9 +127,6 @@
 
 .form_container{
     margin-top: 3em;
-    align-items: center;
-    display: flex;
-    justify-content: center;
     height: 60%;
 }
 
@@ -113,27 +167,115 @@
   margin-bottom:  70px;
 }
 
+.sub_section_container{
+  border: 0;
+  box-sizing: border-box;
+  color: white;
+  font-size: 18px;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+  margin-top: 30px;
 
-  .sub_section_container{
-    border: 0;
-    box-sizing: border-box;
-    color: white;
-    font-size: 18px;
-    outline: 0;
-    padding: 4px 20px 0;
-    width: 100%;
-    margin-top: 30px;
-
-    input{
-      position: relative;
-      left: 0;
-      top: 0;
-      margin-right: 20px;
-    }
-
-    label{
-      font-size: 22px;
-    }
+  input{
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-right: 20px;
   }
-  
 
+  label{
+    font-size: 22px;
+  }
+}
+
+section{
+  gap: 10%;
+  justify-content: center;
+  
+}
+
+/*Table*/
+#recherche_cinema, #recherche_film {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 0px 12px 0px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+.table{
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  max-height:500px;
+  overflow-y:scroll;
+  display:block;
+}
+
+.table th, .table td {
+  text-align: left;
+  color:black;
+  padding: 12px;
+}
+
+.table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table tr.header, .table tr:hover {
+  background-color: #f1f1f1;
+}
+#nav_bar_home{
+  background-color: 	#161618;
+  color: white;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  top: 0;
+  z-index: 999;
+}
+#nav_bar_container{
+  display: flex;
+  justify-content: space-between;
+  padding: 0% 2%;
+  margin: 0 auto;
+  width: 100%;
+}
+#account_link{
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1.4rem;
+}
+
+/* Navbar Left */
+#nav_bar_list_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly; /* If you want space between items */
+  list-style-type: none; /* This property doesn't apply to flex containers */
+  padding: 0;
+  margin: 0;
+}
+
+#nav_bar_list {
+  display: flex;
+  gap: 5%;
+  list-style: none;
+  width: 28rem;
+}
+
+#nav_bar_list a{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.25rem;
+}

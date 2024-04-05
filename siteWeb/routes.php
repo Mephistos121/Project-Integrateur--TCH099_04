@@ -223,6 +223,28 @@ get('/api/demande/admin/ajout/film/$id',function($id){
     echo json_encode($films);
 });
 
+get('/api/comptes/email/$id', function ($id) {
+    $pdo = connectionBD();
+    $requete = $pdo->prepare(
+        "SELECT email FROM Eq4_usager WHERE id = ?;"
+    );
+    $requete->execute([$id]);
+    $email = $requete->fetch(PDO::FETCH_ASSOC)['email'];
+    header('Content-type: application/json');
+    echo json_encode(['email' => $email]);
+});
+
+get('/api/comptes/nom_usager/$id', function ($id) {
+    $pdo = connectionBD();
+    $requete = $pdo->prepare(
+        "SELECT nom_usager FROM Eq4_usager WHERE id = ?;"
+    );
+    $requete->execute([$id]);
+    $nom_usager = $requete->fetch(PDO::FETCH_ASSOC)['nom_usager'];
+    header('Content-type: application/json');
+    echo json_encode(['nom_usager' => $nom_usager]);
+});
+
 //POST
 post('/api/comptes', function() {
     $json = file_get_contents('php://input');
