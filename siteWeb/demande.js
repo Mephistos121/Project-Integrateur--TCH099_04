@@ -36,6 +36,7 @@ function afficherDemandesFilm(demandes) {
         const link = document.createElement("a");
         link.href = "#" + element.id;
         link.addEventListener("click", (event) => {
+            console.log("click");
             if (document.getElementById("div" + element.id).querySelector("#ul_opened") == null) {
                 fetchInfoFilm(element.id);
             }
@@ -45,9 +46,9 @@ function afficherDemandesFilm(demandes) {
         });
         div.className = "demande_div_item";
         div.id = "div" + element.id;
-        link.appendChild(document.createTextNode(element.nom_film));
-        div.appendChild(link);
-        item.appendChild(div);
+        div.appendChild(document.createTextNode(element.nom_film));
+        link.appendChild(div)
+        item.appendChild(link);
         itemList.appendChild(item);
     });
 }

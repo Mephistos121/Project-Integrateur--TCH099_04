@@ -1,9 +1,14 @@
 window.addEventListener('load', (event1) => {
+    const btnTabAjoutFilm = document.querySelector("#tab_ajouter_film");
+    const btnTabModifFilm = document.querySelector("#tab_modifier_film");
+    const btnTabModifCinema = document.querySelector("#tab_modifier_cinema");
+
     const perms = cookieGetter("privilege");
     const sbutton = document.querySelector("#film_ajout");
     const ubutton = document.querySelector("#film_update");
     const dbutton = document.querySelector("#film_delete");
     const cinemaUpdate = document.querySelector("#cinema_update");
+
     console.log(perms);
     if (perms === "administrateur") {
         sbutton.addEventListener("click", (event3) => {
@@ -77,6 +82,21 @@ window.addEventListener('load', (event1) => {
         check ? updateCinema(info_cinema) : alert("Veuillez entrer toutes les informations du cinema");
     });
     fetchListeCinema();
+    btnTabAjoutFilm.addEventListener("click", (event) => {
+        document.querySelector("#ajouter_film").style.display = "block";
+        document.querySelector("#modifier_film").style.display = "none";
+        document.querySelector("#modifier_cinema").style.display = "none";
+    });
+    btnTabModifFilm.addEventListener("click", (event) => {
+        document.querySelector("#ajouter_film").style.display = "none";
+        document.querySelector("#modifier_film").style.display = "block";
+        document.querySelector("#modifier_cinema").style.display = "none";
+    });
+    btnTabModifCinema.addEventListener("click", (event) => {
+        document.querySelector("#ajouter_film").style.display = "none";
+        document.querySelector("#modifier_film").style.display = "none";
+        document.querySelector("#modifier_cinema").style.display = "block";
+    });
 });
 
 async function ajouterNouveauFilm(film) {

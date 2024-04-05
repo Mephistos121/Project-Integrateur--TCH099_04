@@ -36,7 +36,7 @@
     background-color: #f1f1f1;
 }
 
-#div_tab_button{
+.div_tab_button{
     display: flex;
     overflow: hidden;
     margin-left: 0px;
