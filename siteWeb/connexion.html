@@ -8,25 +8,29 @@
     <link rel="stylesheet" href="connexion.css">
     <title>Compte</title>
 </head>
-<body style="background-color:darkgrey;">
-        <div class="header">
-                <div class="dropdown" >
-                    <i class="fa-solid fa-bars" id="dropdown_button"></i>
-                    <div class="dropdown_content">
-                    <a href="index.html">Index</a>
-                    <a id="compteButton" href="compte.html">Compte</a>
-                    </div>
-                </div>
-            <h1>Création de compte</h1>
-            <div class="button_section">
-                <button class="header_button"  id ="signInButton">
-                    <span class="button_text">Sign In</span>
-                </button>
-                <button class="header_button" id ="signUpButton">
-                    <span class="button_text" >Sign Up</span>
-                </button>
+<body>
+    <nav id="nav_bar_home">
+        <div id="nav_bar_container">
+            <div id="nav_bar_list_container">
+                <ul id="nav_bar_list">
+                    <li><a href="index.html?type=cinemas">Cinémas</a></li>
+                    <li><a href="index.html?type=films">Films</a></li>
+                </ul>
             </div>
-        </div>      
+        </div>
+    </nav>
+        <div class="header">
+            <h1>Création de compte</h1>
+        </div> 
+        <div class="button_section">
+            <button class="header_button"  id ="signInButton">
+                <span class="button_text">Sign In</span>
+            </button>
+            <button class="header_button" id ="signUpButton">
+                <span class="button_text" >Sign Up</span>
+            </button>
+        </div>
+        
     <section>
         <div id = "signUpSection">
             <div id="error_code"></div>

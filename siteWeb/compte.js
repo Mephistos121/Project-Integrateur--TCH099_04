@@ -1,5 +1,4 @@
 window.addEventListener("load", (event) => {
-    
    /* let btnMenuGestionnaire = document.querySelector("#menuGestionnaire");
     btnMenuGestionnaire.addEventListener("click", () => {
         window.location.href = "gestionnaire.html";
@@ -29,6 +28,14 @@ window.addEventListener("load", (event) => {
         fetchUserNom(userID);
     }
 });
+const connecte = isConnected();
+    if(!connecte){
+        let url = window.location.toString();
+        window.location = url.replace('compte.html', 'connexion.html');
+    }
+function  isConnected(){
+    id=cookieGetter("id");
+}
 
 function cacherMenuGestionnaire() {
     let menuGestionnaire = document.querySelector("#menuGestionnaire");

@@ -47,8 +47,6 @@ window.addEventListener("load", (event1) => {
         showDiv(signUpSection);
         closeDiv(signInSection)
     });
-
-    cacherBtnHorsConnection();
 });
 
 function showDiv(section) {
@@ -144,8 +142,6 @@ async function seConnecter(courriel, mot_passe) {
                 document.cookie = "id="+responseData.id+"; expires="+d+"; path=/;";
                 document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
 
-                cacherBtnHorsConnection();
-
                 alert("Vous êtes connecté.");
             }
         } else {
@@ -155,15 +151,6 @@ async function seConnecter(courriel, mot_passe) {
     } catch (error) {
         console.error('Erreur lors de la connexion:', error);
         alert('Erreur lors de la connexion. Veuillez réessayer plus tard.');
-    }
-}
-
-function cacherBtnHorsConnection() {
-    let btnCompte = document.querySelector("#compteButton");
-    if (isConnected()) {
-        btnCompte.style.display = "block";
-    } else {
-        btnCompte.style.display = "none";
     }
 }
 
