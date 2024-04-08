@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,52 +39,34 @@ public class MainActivity extends AppCompatActivity {
     TextView gsonPrint;
     ProgressBar progressBar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-       ArrayList<Film> filmList = new ArrayList<>();
-       ArrayList<Objects> cinemaList = new ArrayList<>();
-
        progressBar = findViewById(R.id.progressBarMain);
 
-        fetchMovies(filmList);
-        fetchCinemas(cinemaList);
+        fetchMovies();
+        //fetchCinemas();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i = new Intent(MainActivity.this, LogingPage.class);
+                startActivity(i);
+            }
+        }, 3000);
+
     }
 
-    private void fetchMovies(ArrayList<Film> filmList){
-        String url = "https://equipe500.tch099.ovh/projet4/api/films";
+    private void fetchMovies(){
+        FilmDao dao = FilmDao.getInstance(getApplicationContext());
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray jsonArray) {
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    try {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String nom_film = jsonObject.getString("nom_film");
-                        String image = jsonObject.getString("image");
-                        String description = jsonObject.getString("description");
-
-                        Film film = new Film(nom_film,image,description);
-                        filmList.add(film);
-                    } catch (JSONException e) {
-                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(MainActivity.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
-        requestQueue.add(jsonArrayRequest);
     }
-    public void fetchCinemas(ArrayList<Objects> cinemaList){
+
+    public void fetchCinemas(){
         String url = "https://equipe500.tch099.ovh/projet4/api/cinemas";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {

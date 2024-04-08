@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ProjetIntegrateur_TCH099</string>
     <string name="gsonPrint">HEHEXD</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
 </resources>
