@@ -5,7 +5,7 @@ window.addEventListener("load", (event1) => {
     const representationAjoutSection = document.getElementById('ajout_representation_section');
     const cinemaAjoutSection = document.getElementById('ajout_cinema_section');
     const filmAjoutSection = document.getElementById('ajout_film_section');
-    const datePicker = document.getElementById('creer_temps');
+    const datePicker = document.getElementById('creer_rep_date');
     datePicker.min = new Date().getDate();
     showDiv(representationAjoutSection);
     closeDiv(cinemaAjoutSection);
@@ -58,7 +58,6 @@ window.addEventListener("load", (event1) => {
     });
     const rechercheParCinema = document.getElementById('recherche_cinema');
     rechercheParCinema.addEventListener("keyup", () =>{
-        console.log("a");
         let input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("recherche_cinema");
         filter = input.value.toUpperCase();
@@ -78,7 +77,6 @@ window.addEventListener("load", (event1) => {
     });
     const rechercheParFilm = document.getElementById('recherche_film');
     rechercheParFilm.addEventListener("keyup", () =>{
-        console.log("a");
         let input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("recherche_film");
         filter = input.value.toUpperCase();
@@ -98,7 +96,44 @@ window.addEventListener("load", (event1) => {
     });
     tableCinemaBuilder(gestionnaireId);
     tableFilmBuilder(gestionnaireId);
+
+    const ajout_representation = document.getElementById('creer_rep_submit');
+    ajout_representation.addEventListener('click', () =>{
+        console.log(document.querySelector('#creer_rep_date'));
+        const info_representation = {
+            nom: document.querySelector("#creer_rep_film").value,
+            cinema: document.querySelector("#creer_rep_cinema").value,
+            date: document.querySelector("#creer_rep_date").value,
+            numero: document.querySelector('#creer_rep_salle').value,
+            cout: document.querySelector('#creer_rep_cout').value,
+        };
+        ajouterNouvelleRepresentation(info_representation);
+    });
 });
+async function ajouterNouvelleRepresentation(rep){
+    const response = await fetch("http://localhost/api/representation", {
+                method: 'POST',
+                
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(rep),
+            });
+            const message = await response.json();
+            if (response.ok){
+                let reponse = JSON.stringify(message).split(":");
+                reponse[0] = reponse[0].replace("\"","").trim();
+                reponse[1] = reponse[1].replace("\"","").trim();
+                if(reponse[0].localeCompare("Erreur")==0){
+                    alert(reponse[1]);
+                }
+                else{
+                    alert("success");
+                }
+            }else {
+                alert("Le serveur a refusé");
+            }
+}
 async function ajouterNouveauCinema(cinema){
     //validation du nom de cinema
     const responseCinema = await fetch("http://localhost/api/cinemas");
@@ -312,7 +347,7 @@ async function tableCinemaBuilder(id){
            tr.append(td_emplacement);
            
            td_nom.addEventListener('click',()=>{
-            const form_nom = document.getElementById('creer_cinema');
+            const form_nom = document.getElementById('creer_rep_cinema');
             form_nom.value=td_nom.textContent;
            });
         }
@@ -335,7 +370,7 @@ async function tableFilmBuilder(id){
            tr.append(td_duree);
 
            td_nom.addEventListener('click',()=>{
-            const form_film = document.getElementById('creer_film');
+            const form_film = document.getElementById('creer_rep_film');
             form_film.value=td_nom.textContent;
            });
     

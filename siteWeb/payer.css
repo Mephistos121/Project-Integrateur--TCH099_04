@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,15 +8,29 @@
 
 /*Form*/
 
-.form_container{
-    margin-top: 3em;
-    align-items: center;
+#form_container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    height: 60%;
+    align-items: center;
+
 }
 
-.paiement_input{
+#form_container .section{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: fit-content;
+    justify-content: center;
+    padding: 5vw;
+}
+
+#form_container div div{
+    width: 25vw;
+    padding: 2vw;
+}
+
+.paiement_input {
     background-color: #303245;
     border-radius: 12px;
     border: 0;
@@ -30,8 +44,33 @@
     margin-top: 30px;
 }
 
+
+.title {
+    align-self: center;
+    color: white;
+    font-family: sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+/* info*/
+#payer_container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 50vw;
+}
+
+/*Bouton*/
+#bouttons_form{
+    display: flex;
+    flex-direction: row;
+    width: 30vw;
+}
+
 .button_card {
-    background:rgb(19, 30, 37) ; 
+    background: rgb(19, 30, 37);
     border-radius: 12px;
     border: 0;
     box-sizing: border-box;
@@ -41,27 +80,19 @@
     height: 50px;
     margin-top: 38px;
     text-align: center;
-    width: 100%;
-  }
+    margin: 5%;
+    width: 40%;
+}
 
-  .button_card:hover{
+.button_card:hover {
     background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
     transition-duration: 0.5s;
     transition: 0.5s;
 }
-  
-  .title {
-    align-self: center;
-    color: white;
-    font-family: sans-serif;
-    font-size: 28px;
-    font-weight: 600;
-    margin-top: 30px;
-  }
 
 /* Navbar Section */
-#nav_bar_home{
-    background-color: 	#161618;
+#nav_bar_home {
+    background-color: #161618;
     color: white;
     height: 10vh;
     width: 100%;
@@ -73,14 +104,16 @@
     top: 0;
     z-index: 999;
 }
-#nav_bar_container{
+
+#nav_bar_container {
     display: flex;
     justify-content: space-between;
     padding: 0% 2%;
     margin: 0 auto;
     width: 100%;
 }
-#account_link{
+
+#account_link {
     color: white;
     text-decoration: none;
     margin: 0 10px;
@@ -91,20 +124,22 @@
 #nav_bar_list_container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly; /* If you want space between items */
-    list-style-type: none; /* This property doesn't apply to flex containers */
+    justify-content: space-evenly;
+    /* If you want space between items */
+    list-style-type: none;
+    /* This property doesn't apply to flex containers */
     padding: 0;
     margin: 0;
 }
 
 #nav_bar_list {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     list-style: none;
     width: 28rem;
 }
 
-#nav_bar_list a{
+#nav_bar_list a {
     color: white;
     display: flex;
     align-items: center;
@@ -113,7 +148,7 @@
     font-size: 1.25rem;
 }
 
-#search_bar{
+#search_bar {
     width: 10rem;
     height: 1.5rem;
     color: black;
@@ -125,13 +160,12 @@
 }
 
 
-/*Movie Page*/
-#movie_container{
+/*Main Page*/
+#main_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color:  	#212124;
-    padding-bottom: 3rem;
+    background-color: #212124;
+    padding: 6rem;
 }
-

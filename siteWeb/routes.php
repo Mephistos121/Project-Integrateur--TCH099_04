@@ -39,9 +39,10 @@ get('/api/comptes', function () {
      $requete->execute();
  
      $compte = $requete->fetchall();
- 
+     $pdo=null;
      header('Content-type: application/json');
      echo json_encode($compte);
+     
 });
 get('/api/comptes/$courriel', function ($courriel) {
     $pdo=connectionBD();
@@ -52,7 +53,7 @@ get('/api/comptes/$courriel', function ($courriel) {
     $requete->execute([$courriel]);
 
     $compte = $requete->fetch();
-
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode($compte);
 });
@@ -65,6 +66,7 @@ get('/api/cinemas/gestionnaire/$id', function($id){
     $requete->execute([$id]);
     
     $cinemas = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');   
     echo json_encode($cinemas);
         
@@ -78,6 +80,7 @@ get('/api/cinemas', function(){
     $requete->execute();
     
     $cinemas = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');   
     echo json_encode($cinemas);
 });
@@ -88,6 +91,7 @@ get('/api/cinemas/$cinema', function($cinemaId){
     );
     $requete->execute([$cinemaId]);
     $cinema = $requete->fetch();
+    $pdo=null;
     header('Content-type: application/json');
    
     echo json_encode($cinema);
@@ -99,6 +103,7 @@ get('/api/cinemas/film/$id', function($cinemaId){
     );
     $requete->execute([$cinemaId]);
     $cinemas = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');
    
     echo json_encode($cinemas);
@@ -112,6 +117,7 @@ get('/api/films', function(){
     $requete->execute();
     
     $films = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');
 
     echo json_encode($films);
@@ -124,6 +130,7 @@ get('/api/films/$cinema', function($cinema){
     );
     $requete->execute([$cinema]);
     $films = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');
 
     echo json_encode($films);
@@ -136,6 +143,7 @@ get('/api/films/filmid/$id', function($id){
     );
     $requete->execute([$id]);
     $film = $requete->fetch();
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode($film);
 });
@@ -147,6 +155,7 @@ get('/api/salle/representation/$id', function($id){
     );
     $requete->execute([$id]);
     $sieges = $requete->fetch();
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode($sieges);
 });
@@ -157,6 +166,7 @@ get('/api/billets/represention/$id', function($id){
     );
     $requete->execute([$id]);
     $billets = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');
    
     echo json_encode($billets);
@@ -169,6 +179,7 @@ get('/api/representation/$id', function($id){
     );
     $requete->execute([$id]);
     $rep = $requete->fetch();
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode($rep);
 });
@@ -181,6 +192,7 @@ get('/api/demande/ajout/film/gestionnaire/$id', function($id){
     $requete->execute([$id]);
     
     $film = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');   
     echo json_encode($film);
 });
@@ -193,6 +205,7 @@ get('/api/demande/ajout/cinema/gestionnaire/$id', function($id){
     $requete->execute([$id]);
     
     $cinemas = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');   
     echo json_encode($cinemas);
 });
@@ -206,6 +219,7 @@ get('/api/demande/admin/ajout/films',function(){
     $requete->execute();
     
     $films = $requete->fetchAll();
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode($films);
 });
@@ -219,6 +233,7 @@ get('/api/demande/admin/ajout/film/$id',function($id){
     $requete->execute([$id]);
     
     $films = $requete->fetch();
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode($films);
 });
@@ -257,6 +272,7 @@ get('/api/comptes/email/$id', function ($id) {
     );
     $requete->execute([$id]);
     $email = $requete->fetch(PDO::FETCH_ASSOC)['email'];
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode(['email' => $email]);
 });
@@ -268,6 +284,7 @@ get('/api/comptes/nom_usager/$id', function ($id) {
     );
     $requete->execute([$id]);
     $nom_usager = $requete->fetch(PDO::FETCH_ASSOC)['nom_usager'];
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode(['nom_usager' => $nom_usager]);
 });
@@ -297,6 +314,7 @@ post('/api/comptes', function() {
     header('Content-type: application/json');
     $saltpass = $salt.$mot_passe;
     $requete->execute([$nom, $courriel, hash('sha256',$saltpass), $gestionnaire, $salt]);
+    $pdo=null;
     echo json_encode($requete);
 });
 post('/api/connexion', function() {
@@ -315,6 +333,7 @@ post('/api/connexion', function() {
     $requete->execute([$courriel, hash('sha256',$saltpass)]);
 
     $compte = $requete->fetch();
+    $pdo=null;
     header('Content-type: application/json');   
     echo json_encode($compte);
 });
@@ -341,6 +360,7 @@ post('/api/cinemas/ajout', function(){
         $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
         echo json_encode($error);
     }
+    $pdo=null;
 });
 post('/api/films/ajout',function(){
     $json = file_get_contents('php://input');
@@ -377,6 +397,7 @@ post('/api/films/ajout',function(){
         $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
         echo json_encode($error);
     }
+    $pdo=null;
 });
 post('/api/demande/cinema',function(){
     $json = file_get_contents('php://input');
@@ -401,6 +422,7 @@ post('/api/demande/cinema',function(){
         $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
         echo json_encode($error);
     }
+    $pdo=null;
 });
 post('/api/demande/ajout/film',function(){
     $json = file_get_contents('php://input');
@@ -437,6 +459,7 @@ post('/api/demande/ajout/film',function(){
             $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
             echo json_encode($error);
         }
+        $pdo=null;
 });
 post('/api/billets/ajout',function(){
     $json = file_get_contents('php://input');
@@ -451,7 +474,84 @@ post('/api/billets/ajout',function(){
     );
     header('Content-type: application/json');
     $requete->execute([$place, $representation_id, $usager_id]);
+    $pdo=null;
     echo json_encode($requete);
+});
+post('/api/representation',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json,true);
+    $pdo = connectionBD();
+    $nom = $data['nom'];
+    $cinema = $data['cinema'];
+    $dateTime = new DateTime();
+    $date = $data['date'];
+    $numero = $data['numero'];
+    $cout = $data['cout'];
+    $requete = $pdo->prepare(
+        "SELECT id FROM Eq4_cinema WHERE nom_cinema = ?;"
+    );
+    $requete->execute([$cinema]);
+    
+    $cinema = $requete->fetch();
+    $requete = $pdo->prepare(
+        "SELECT id FROM Eq4_film WHERE nom_film = ?;"
+    );
+    $requete->execute([$nom]);
+    
+    $id_film = $requete->fetch();
+    if(!$id_film){
+        header('Content-type: application/json');
+        echo json_encode("Erreur : Nom du film inexistant");
+    }
+    else{
+        if(!$cinema){
+            header('Content-type: application/json');
+            echo json_encode("Erreur : Nom du cinema inexistant");
+        }
+        else{
+            $currentDate = new DateTime();
+            $strDate = $date;
+            $date = new DateTime($date);
+
+            if($date < $currentDate){
+                header('Content-type: application/json');
+                echo json_encode("Erreur : Veuillez fournir une date de presentation complete et dans le futur.");
+            }
+            else{
+                $requete = $pdo->prepare(
+                    "SELECT id FROM Eq4_salle;"
+                );
+                $requete->execute();
+                
+                $salleListe = $requete->fetchAll();
+                $valid = false;
+                foreach ($salleListe as $id){
+                    if(intval($id[0])==$numero) { 
+                    $valid=true;
+                    } 
+                }
+                if($valid){
+                    if($cout>0){
+                        $requete = $pdo->prepare(
+                            "INSERT INTO Eq4_representation (cinema_id, film_id, temps ,salle_id ,cout)
+                            VALUES (?,?,?,?,?);"
+                        );
+                        header('Content-type: application/json');
+                        $requete->execute([intval($cinema[0]), intval($id_film[0]), $strDate, $numero, $cout]);
+                        echo json_encode($requete);
+                    }else{
+                        header('Content-type: application/json');
+                        echo json_encode("Erreur : Le cout du billet ne peut pas etre negatif");
+                    }
+                    
+                }
+                else{
+                    header('Content-type: application/json');
+                    echo json_encode("Erreur : Aucune salle n'a ce numero");
+                }
+            }
+        }
+    }
 });
 
 //DELETE
@@ -462,9 +562,9 @@ delete('/api/comptes/$id', function ($id) {
     );
 
     $requete->execute([$id]);
-
+    $pdo=null;
     header('Content-type: application/json');
-    echo json_encode(["message" => "Le compte a été supprimé avec succès"]);
+    echo json_encode(["message" => "Le compte a été supprime avec succes"]);
 });
 
 delete('/api/films/delete/$id', function($id){
@@ -473,6 +573,7 @@ delete('/api/films/delete/$id', function($id){
         "DELETE FROM Eq4_film WHERE id = ?;"
     );
     $requete->execute([$id]);
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode(["message" => "Le film a été supprimé avec succès"]);
 });
@@ -483,6 +584,7 @@ delete('/api/demande/admin/refus/film/${id}', function($id){
         "DELETE FROM Eq4_demande_film WHERE id = ?;"
     );
     $requete->execute([$id]);
+    $pdo=null;
     header('Content-type: application/json');
     echo json_encode(["message" => "La demande a été refusée avec succès"]);
 });
@@ -531,6 +633,7 @@ put('/api/films/update', function(){
         $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
         echo json_encode($error);
     }
+    $pdo=null;
 });
 
 put('/api/cinemas/update',function(){
@@ -553,6 +656,7 @@ put('/api/cinemas/update',function(){
         $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
         echo json_encode($error);
     }
+    $pdo=null;
 });
 
 
