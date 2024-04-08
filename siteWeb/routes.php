@@ -223,6 +223,33 @@ get('/api/demande/admin/ajout/film/$id',function($id){
     echo json_encode($films);
 });
 
+get('/api/demande/admin/ajout/cinemas',function(){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT * FROM Eq4_demande_cinema;"
+    );
+    $requete->execute();
+    
+    $cinemas = $requete->fetchAll();
+    header('Content-type: application/json');
+    echo json_encode($cinemas);
+});
+
+get('/api/demande/admin/ajout/cinema/$id',function($id){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT d.nom_cinema,d.image,d.emplacement,d.id ,d.id_usager,u.nom_usager
+        FROM Eq4_demande_cinema d,Eq4_usager u WHERE d.id_usager=u.id AND d.id=?;"
+    );
+    $requete->execute([$id]);
+    
+    $cinemas = $requete->fetch();
+    header('Content-type: application/json');
+    echo json_encode($cinemas);
+});
+
 get('/api/comptes/email/$id', function ($id) {
     $pdo = connectionBD();
     $requete = $pdo->prepare(
@@ -291,12 +318,12 @@ post('/api/connexion', function() {
     header('Content-type: application/json');   
     echo json_encode($compte);
 });
-post('/api/cinemas', function(){
+post('/api/cinemas/ajout', function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     $pdo=connectionBD();
 
-    $nom = $data["nom"];
+    $nom = $data["nom_cinema"];
     $emplacement = $data["emplacement"];
     $gestionnaire = $data["gestionnaire"];
     $image = $data["image"];
@@ -454,6 +481,16 @@ delete('/api/demande/admin/refus/film/${id}', function($id){
     $pdo=connectionBD();
     $requete = $pdo->prepare(
         "DELETE FROM Eq4_demande_film WHERE id = ?;"
+    );
+    $requete->execute([$id]);
+    header('Content-type: application/json');
+    echo json_encode(["message" => "La demande a été refusée avec succès"]);
+});
+
+delete('/api/demande/admin/refus/cinema/${id}', function($id){
+    $pdo=connectionBD();
+    $requete = $pdo->prepare(
+        "DELETE FROM Eq4_demande_cinema WHERE id = ?;"
     );
     $requete->execute([$id]);
     header('Content-type: application/json');

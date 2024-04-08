@@ -10,163 +10,170 @@
 </head>
 
 <body>
-    <a href="index.html">Retour vers la page principal</a>
-    <a href="demande.html">Mes demandes</a>
-    <div class="div_tab_button">
-        <button class="tab_button" id="tab_ajouter_film">Ajouter un film</button>
-        <button class="tab_button" id="tab_modifier_film">Modifier un film</button>
-        <button class="tab_button" id="tab_modifier_cinema">Modifier un cinéma</button>
-    </div>
-    <div id="ajouter_film" class="tab_content">
-        <form>
-            <h2>Ajouter un film</h2>
-            <div>
-                <input id="creer_nom_film" class="input_container" type="text" name="creer_film"
-                    placeholder="Nom du film" value="" required>
-            </div>
-            <div>
-                <input id="creer_image_film" class="input_container" type="url" name="creer_image"
-                    placeholder="affiche du film" value="" required>
-            </div>
-            <div>
-                <input id="creer_image_banniere" class="input_container" type="url" name="creer_imgae_banniere"
-                    placeholder="bannière du film">
-            </div>
-            <div>
-                <textarea name="creer_description" id="creer_description" class="input_container"
-                    placeholder="description"></textarea>
-            </div>
-            <div>
-                <input id="creer_genre_principal" class="input_container" type="text" name="creer_genre_principal"
-                    placeholder="genre principal" value="" required>
-            </div>
-            <div>
-                <input id="creer_genre_secondaire" class="input_container" type="text" name="creer_genre_secondaire"
-                    placeholder="genre secondaire" value="" required>
-            </div>
-            <div>
-                <input id="creer_annee" class="input_container" type="number" name="creer_annee"
-                    placeholder="année de parution" value="" required>
-            </div>
-            <div>
-                <input id="creer_duree" class="input_container" type="number" name="creer_duree"
-                    placeholder="durée en minute" value="" required>
-            </div>
-            <div>
-                <input id="creer_realisateur" class="input_container" type="text" name="creer_realisateur"
-                    placeholder="réalisateur" value="" required>
-            </div>
-            <div>
-                <input id="creer_acteur_principal" class="input_container" type="text" name="creer_acteur_principal"
-                    placeholder="acteur principal" value="" required>
-            </div>
-            <div>
-                <input id="creer_acteur_secondaire" class="input_container" type="text" name="creer_acteur_secondaire"
-                    placeholder="acteur secondaire" value="" required>
-            </div>
-            <input id="film_ajout" type="button" value="Ajouter">
-            <input type="reset" value="Effacer">
-        </form>
-    </div>
-    <div id="modifier_film" class="tab_content" style="display: none;">
-        <h2>Modifier un film</h2>
-        <div id="liste_films">
-            <h3>Liste de films de disponibles</h2>
-                <ul>
+    <div id="div_pas_admin_erreur">
 
-                </ul>
+    </div>
+    <div id="div_admin">
+        <a href="index.html">Retour vers la page principal</a>
+        <a href="demande.html">Mes demandes</a>
+        <div class="div_tab_button">
+            <button class="tab_button" id="tab_ajouter_film">Ajouter un film</button>
+            <button class="tab_button" id="tab_modifier_film">Modifier un film</button>
+            <button class="tab_button" id="tab_modifier_cinema">Modifier un cinéma</button>
         </div>
-        <div>
-            <form class="form_container">
-                <div class="form_layout">
-                    <h3>Formulaire de modification du film</h2>
-                        <div>
-                            <input id="update_nom_film" class="input_container" type="text" name="update_film"
-                                placeholder="Nom du film" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_image_film" class="input_container" type="url" name="update_image"
-                                placeholder="affiche du film" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_image_banniere" class="input_container" type="url"
-                                name="update_imgae_banniere" placeholder="bannière du film">
-                        </div>
-                        <div>
-                            <textarea name="update_description" id="update_description" class="input_container"
-                                placeholder="description"></textarea>
-                        </div>
-                        <div>
-                            <input id="update_genre_principal" class="input_container" type="text"
-                                name="update_genre_principal" placeholder="genre principal" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_genre_secondaire" class="input_container" type="text"
-                                name="update_genre_secondaire" placeholder="genre secondaire" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_annee" class="input_container" type="number" name="update_annee"
-                                placeholder="année de parution" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_duree" class="input_container" type="number" name="update_duree"
-                                placeholder="durée en minute" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_realisateur" class="input_container" type="text" name="update_realisateur"
-                                placeholder="réalisateur" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_acteur_principal" class="input_container" type="text"
-                                name="update_acteur_principal" placeholder="acteur principal" value="" required>
-                        </div>
-                        <div>
-                            <input id="update_acteur_secondaire" class="input_container" type="text"
-                                name="update_acteur_secondaire" placeholder="acteur secondaire" value="" required>
-                        </div>
-                        <div class="bouttons_form">
-                            <input id="film_update" class="edit_submit" type="button" value="Mettre à jour le film">
-                            <input class="edit_clear" type="reset" value="Effacer">
-                        </div>
-                </div>
-            </form>
-        </div>
-        <div id="film_div_delete">
+        <div id="ajouter_film" class="tab_content">
             <form>
-                <input id="film_delete" type="button" value="Supprimer">
+                <h2>Ajouter un film</h2>
+                <div>
+                    <input id="creer_nom_film" class="input_container" type="text" name="creer_film"
+                        placeholder="Nom du film" value="" required>
+                </div>
+                <div>
+                    <input id="creer_image_film" class="input_container" type="url" name="creer_image"
+                        placeholder="affiche du film" value="" required>
+                </div>
+                <div>
+                    <input id="creer_image_banniere" class="input_container" type="url" name="creer_imgae_banniere"
+                        placeholder="bannière du film">
+                </div>
+                <div>
+                    <textarea name="creer_description" id="creer_description" class="input_container"
+                        placeholder="description"></textarea>
+                </div>
+                <div>
+                    <input id="creer_genre_principal" class="input_container" type="text" name="creer_genre_principal"
+                        placeholder="genre principal" value="" required>
+                </div>
+                <div>
+                    <input id="creer_genre_secondaire" class="input_container" type="text" name="creer_genre_secondaire"
+                        placeholder="genre secondaire" value="" required>
+                </div>
+                <div>
+                    <input id="creer_annee" class="input_container" type="number" name="creer_annee"
+                        placeholder="année de parution" value="" required>
+                </div>
+                <div>
+                    <input id="creer_duree" class="input_container" type="number" name="creer_duree"
+                        placeholder="durée en minute" value="" required>
+                </div>
+                <div>
+                    <input id="creer_realisateur" class="input_container" type="text" name="creer_realisateur"
+                        placeholder="réalisateur" value="" required>
+                </div>
+                <div>
+                    <input id="creer_acteur_principal" class="input_container" type="text" name="creer_acteur_principal"
+                        placeholder="acteur principal" value="" required>
+                </div>
+                <div>
+                    <input id="creer_acteur_secondaire" class="input_container" type="text" name="creer_acteur_secondaire"
+                        placeholder="acteur secondaire" value="" required>
+                </div>
+                <input id="film_ajout" type="button" value="Ajouter">
+                <input type="reset" value="Effacer">
             </form>
         </div>
-    </div>
-
-    <div id="modifier_cinema" class="tab_content" style="display: none;">
-        <h2>Modifier un cinéma</h2>
-        <div id="liste_cinemas">
-            <h3>Liste de cinémas de disponibles</h2>
-                <ul id="liste_cinema">
-
-                </ul>
-        </div>
-        <form class="form_container">
-            <div class="form_layout">
-                <h3>Formulaire de modification de cinéma</h3>
-                <div>
-                    <input id="update_nom_cinema" class="input_container" type="text" name="creer_nom"
-                        placeholder="Nom du cinéma" value="" required>
+        <div id="modifier_film" class="tab_content" style="display: none;">
+            <h2>Modifier un film</h2>
+            <div id="liste_formulaire_films">
+                <div id="liste_films">
+                    <h3>Liste de films de disponibles</h2>
+                        <ul>
+    
+                        </ul>
                 </div>
                 <div>
-                    <input id="update_image_cinema" class="input_container" type="url" name="creer_image"
-                        placeholder="image du cinéma ou logo" value="" required>
-                </div>
-                <div>
-                    <input id="update_emplacement_cinema" class="input_container" type="text" name="creer_emplacement"
-                        placeholder="emplacement" value="" required>
-                </div>
-                <div class="bouttons_form">
-                    <input id="cinema_update" class="edit_submit" type="button" value="Modifier cinéma">
-                    <input class="edit_clear" type="reset" value="Effacer">
+                    <form class="form_container">
+                        <div class="form_layout">
+                            <h3>Formulaire de modification du film</h2>
+                                <div>
+                                    <input id="update_nom_film" class="input_container" type="text" name="update_film"
+                                        placeholder="Nom du film" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_image_film" class="input_container" type="url" name="update_image"
+                                        placeholder="affiche du film" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_image_banniere" class="input_container" type="url"
+                                        name="update_imgae_banniere" placeholder="bannière du film">
+                                </div>
+                                <div>
+                                    <textarea name="update_description" id="update_description" class="input_container"
+                                        placeholder="description"></textarea>
+                                </div>
+                                <div>
+                                    <input id="update_genre_principal" class="input_container" type="text"
+                                        name="update_genre_principal" placeholder="genre principal" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_genre_secondaire" class="input_container" type="text"
+                                        name="update_genre_secondaire" placeholder="genre secondaire" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_annee" class="input_container" type="number" name="update_annee"
+                                        placeholder="année de parution" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_duree" class="input_container" type="number" name="update_duree"
+                                        placeholder="durée en minute" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_realisateur" class="input_container" type="text"
+                                        name="update_realisateur" placeholder="réalisateur" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_acteur_principal" class="input_container" type="text"
+                                        name="update_acteur_principal" placeholder="acteur principal" value="" required>
+                                </div>
+                                <div>
+                                    <input id="update_acteur_secondaire" class="input_container" type="text"
+                                        name="update_acteur_secondaire" placeholder="acteur secondaire" value="" required>
+                                </div>
+                                <div class="bouttons_form">
+                                    <input id="film_update" class="edit_submit" type="button" value="Mettre à jour le film">
+                                    <input class="edit_clear" type="reset" value="Effacer">
+                                    <input id="film_delete" type="button" value="Supprimer">
+                                </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </form>
+        </div>
+    
+        <div id="modifier_cinema" class="tab_content" style="display: none;">
+            <h2>Modifier un cinéma</h2>
+            <div id="liste_formulaire_cinema">
+                <div id="liste_cinemas">
+                    <h3>Liste de cinémas de disponibles</h2>
+                        <ul id="liste_cinema">
+        
+                        </ul>
+                </div>
+                <div>
+                    <form class="form_container">
+                        <div class="form_layout">
+                            <h3>Formulaire de modification de cinéma</h3>
+                            <div>
+                                <input id="update_nom_cinema" class="input_container" type="text" name="creer_nom"
+                                    placeholder="Nom du cinéma" value="" required>
+                            </div>
+                            <div>
+                                <input id="update_image_cinema" class="input_container" type="url" name="creer_image"
+                                    placeholder="image du cinéma ou logo" value="" required>
+                            </div>
+                            <div>
+                                <input id="update_emplacement_cinema" class="input_container" type="text" name="creer_emplacement"
+                                    placeholder="emplacement" value="" required>
+                            </div>
+                            <div class="bouttons_form">
+                                <input id="cinema_update" class="edit_submit" type="button" value="Modifier cinéma">
+                                <input class="edit_clear" type="reset" value="Effacer">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

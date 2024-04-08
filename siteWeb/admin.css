@@ -45,3 +45,10 @@
 #div_tab_button button{
     border: none;
 }
+
+#liste_formulaire_films{
+    display: flex;
+}
+#liste_formulaire_cinema{
+    display: flex;
+}

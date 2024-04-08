@@ -1,22 +1,34 @@
 window.addEventListener("load", (event1) => {
-    const btnTabDemandeFilm=document.querySelector("#film_button");
-    const btnTabDemandeCinema=document.querySelector("#cinema_button");
-    btnTabDemandeFilm.addEventListener("click", (event) => {
-        document.querySelector("#demande_film").style.display="block";
-        document.querySelector("#demande_cinema").style.display="none";
-        btnTabDemandeFilm.style.backgroundColor="gray";
-        btnTabDemandeCinema.style.backgroundColor="white";
-        console.log("film");
-    });
-    btnTabDemandeCinema.addEventListener("click", (event) => {
-        document.querySelector("#demande_film").style.display="none";
-        document.querySelector("#demande_cinema").style.display="block";
-        btnTabDemandeFilm.style.backgroundColor="white";
-        btnTabDemandeCinema.style.backgroundColor="gray";
-        console.log("cinema");
-    });
-    fetchDemandesFilm();
-    
+    const btnTabDemandeFilm = document.querySelector("#film_button");
+    const btnTabDemandeCinema = document.querySelector("#cinema_button");
+    const perms = cookieGetter("privilege");
+    if (perms == 'admin') {
+        btnTabDemandeFilm.addEventListener("click", (event) => {
+            document.querySelector("#demande_film").style.display = "block";
+            document.querySelector("#demande_cinema").style.display = "none";
+            btnTabDemandeFilm.style.backgroundColor = "gray";
+            btnTabDemandeCinema.style.backgroundColor = "white";
+            console.log("film");
+        });
+        btnTabDemandeCinema.addEventListener("click", (event) => {
+            document.querySelector("#demande_film").style.display = "none";
+            document.querySelector("#demande_cinema").style.display = "block";
+            btnTabDemandeFilm.style.backgroundColor = "white";
+            btnTabDemandeCinema.style.backgroundColor = "gray";
+            console.log("cinema");
+        });
+        fetchDemandesFilm();
+        fetchDemandesCinema();
+    }
+    else {
+        document.querySelector("#div_demande").style.display = "none";
+        const divPasAdmin = document.querySelector("#div_pas_admin_erreur")
+        divPasAdmin.appendChild(document.createElement('p')).appendChild(document.createTextNode('Vous n\'avez pas les droits pour accéder à cette page.'));
+        let link = document.createElement("a");
+        link.href = "index.html";
+        link.appendChild(document.createTextNode("Retourner à l'accueil"));
+        divPasAdmin.appendChild(link);
+    }
 });
 
 async function fetchDemandesFilm() {
@@ -37,15 +49,15 @@ function afficherDemandesFilm(demandes) {
         link.href = "#" + element.id;
         link.addEventListener("click", (event) => {
             console.log("click");
-            if (document.getElementById("div" + element.id).querySelector("#ul_opened") == null) {
+            if (document.getElementById("divInfoFilm" + element.id).querySelector("#ul_opened") == null) {
                 fetchInfoFilm(element.id);
             }
-            else{
+            else {
                 document.getElementById("ul_opened").remove();
             }
         });
         div.className = "demande_div_item";
-        div.id = "div" + element.id;
+        div.id = "divInfoFilm" + element.id;
         div.appendChild(document.createTextNode(element.nom_film));
         link.appendChild(div)
         item.appendChild(link);
@@ -63,16 +75,16 @@ async function fetchInfoFilm(id) {
 }
 
 function afficherInfoFilm(info) {
-    const div = document.getElementById("div" + info.id);
+    const div = document.getElementById("divInfoFilm" + info.id);
     const ul = document.createElement("ul");
     ul.id = "ul_opened";
     ul.appendChild(document.createElement("li")).textContent = "Nom du film: " + info.nom_film;
     ul.appendChild(document.createElement("li")).textContent = "Image (URL): " + info.image;
-    img=document.createElement("img");
-    img.src=info.image;
+    img = document.createElement("img");
+    img.src = info.image;
     ul.appendChild(document.createElement("li")).appendChild(img);
-    imgBanniere=document.createElement("img");
-    imgBanniere.src=info.image_banniere;
+    imgBanniere = document.createElement("img");
+    imgBanniere.src = info.image_banniere;
     ul.appendChild(document.createElement("li")).appendChild(imgBanniere);
     ul.appendChild(document.createElement("li")).textContent = "Image bannière (URL): " + info.image_banniere;
     ul.appendChild(document.createElement("li")).textContent = "Description: " + info.description;
@@ -88,8 +100,8 @@ function afficherInfoFilm(info) {
     abutton.textContent = "Accepter";
     abutton.id = "demande_film_accepter" + info.id;
     abutton.addEventListener("click", (event) => {
-        accepterDemande(info);
-        enleverDemande(info);
+        accepterDemandeFilm(info);
+        enleverDemandeFilm(info);
     });
     const rbutton = document.createElement("button");
     rbutton.textContent = "Refuser";
@@ -103,7 +115,80 @@ function afficherInfoFilm(info) {
     div.appendChild(ul);
 }
 
-async function accepterDemande(info) {
+async function fetchDemandesCinema() {
+    const response = await fetch("http://localhost/api/demande/admin/ajout/cinemas");
+    const content = await response.json();
+    afficherDemandesCinema(content);
+    if (content.erreur) {
+        alert(content.erreur);
+    }
+}
+
+function afficherDemandesCinema(demandes) {
+    const itemList = document.getElementById("demande_cinema_liste");
+    demandes.forEach(element => {
+        const div = document.createElement("div");
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "#" + element.id;
+        link.addEventListener("click", (event) => {
+            console.log("click");
+            if (document.getElementById("divInfoCinema" + element.id).querySelector("#ul_opened") == null) {
+                fetchInfoCinema(element.id);
+            }
+            else {
+                document.getElementById("ul_opened").remove();
+            }
+        });
+        div.className = "demande_div_item";
+        div.id = "divInfoCinema" + element.id;
+        div.appendChild(document.createTextNode(element.nom_cinema));
+        link.appendChild(div)
+        item.appendChild(link);
+        itemList.appendChild(item);
+    });
+}
+
+async function fetchInfoCinema(id) {
+    const response = await fetch(`http://localhost/api/demande/admin/ajout/cinema/${id}`);
+    const content = await response.json();
+    afficherInfoCinema(content);
+    if (content.erreur) {
+        alert(content.erreur);
+    }
+}
+
+function afficherInfoCinema(info) {
+    const div = document.getElementById("divInfoCinema" + info.id);
+    const ul = document.createElement("ul");
+    ul.id = "ul_opened";
+    ul.appendChild(document.createElement("li")).textContent = "Nom du cinéma: " + info.nom_cinema;
+    ul.appendChild(document.createElement("li")).textContent = "Image (URL): " + info.image;
+    img = document.createElement("img");
+    img.src = info.image;
+    ul.appendChild(document.createElement("li")).appendChild(img);
+    ul.appendChild(document.createElement("li")).textContent = "Emplacement: " + info.emplacement;
+    ul.appendChild(document.createElement("li")).textContent = "Gestionnaire: " + info.gestionnaire;
+    const abutton = document.createElement("button");
+    abutton.textContent = "Accepter";
+    abutton.id = "demande_cinema_accepter" + info.id;
+    abutton.addEventListener("click", (event) => {
+        accepterDemandeCinema(info);
+        enleverDemandeCinema(info);
+    });
+    const rbutton = document.createElement("button");
+    rbutton.textContent = "Refuser";
+    rbutton.id = "demande_cinema_refuser" + info.id;
+    rbutton.addEventListener("click", (event) => {
+        enleverDemandeCinema(info);
+
+    });
+    ul.appendChild(abutton);
+    ul.appendChild(rbutton);
+    div.appendChild(ul);
+}
+
+async function accepterDemandeFilm(info) {
     const info_film = {
         nom_film: info.nom_film,
         image: info.image,
@@ -133,8 +218,45 @@ async function accepterDemande(info) {
     }
 }
 
-async function enleverDemande(info) {
+async function enleverDemandeFilm(info) {
     const response = await fetch(`http://localhost/api/demande/admin/refus/film/${info.id}`,
+        {
+            method: 'DELETE',
+        });
+    const content = await response.json();
+    if (content.erreur) {
+        alert(content.erreur);
+        return;
+    } else {
+        window.location.reload();
+    }
+}
+
+async function accepterDemandeCinema(info) {
+    const info_cinema = {
+        nom_cinema: info.nom_cinema,
+        image: info.image,
+        emplacement: info.emplacement,
+        gestionnaire: info.id_usager
+    }
+    const response = await fetch(`http://localhost/api/cinemas/ajout`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(info_cinema)
+        });
+    const content = await response.json();
+    if (content.erreur) {
+        alert(content.erreur);
+        return;
+    } else {
+    }
+}
+
+async function enleverDemandeCinema(info) {
+    const response = await fetch(`http://localhost/api/demande/admin/refus/cinema/${info.id}`,
         {
             method: 'DELETE',
         });
