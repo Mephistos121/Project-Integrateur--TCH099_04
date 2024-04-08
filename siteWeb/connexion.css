@@ -1,3 +1,7 @@
+body{
+  margin:0px;
+  background-color: #2b2b2e;
+}
 .header {
     position: relative;
     background-color: black;
@@ -147,51 +151,181 @@
   margin-bottom:  70px;
 }
 
-  .button_card {
-    background:rgb(19, 30, 37) ; 
-    border-radius: 12px;
-    border: 0;
-    box-sizing: border-box;
+.button_card {
+  background:rgb(19, 30, 37) ; 
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  text-align: center;
+  width: 100%;
+}
+
+.button_card:hover{
+    background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
+    transition-duration: 0.5s;
+    transition: 0.5s;
+}
+
+#connecterButton{
+  margin-top: 103px;
+}
+
+.sub_section_container{
+  border: 0;
+  box-sizing: border-box;
+  color: white;
+  font-size: 18px;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+  margin-top: 30px;
+
+  input{
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-right: 20px;
+  }
+
+  label{
+    font-size: 22px;
+  }
+}
+.header {
+  position: relative;
+  background-color: black;
+  padding: 40px;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+font-size:2.4em;
+text-transform: uppercase;
+font-family: 'Gambetta', serif;
+transition: 700ms ease;
+font-variation-settings: "wght" 311;
+margin-bottom: 0.6em;
+margin-top: -10px;
+outline: none;
+text-align: center;
+}
+
+.header h1:hover {
+font-variation-settings: "wght" 582; 
+letter-spacing: 3px;
+}
+/* Navbar Left */
+  #nav_bar_home{
+    background-color: 	#161618;
     color: white;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    position: sticky;
+    align-items: center;
     cursor: pointer;
-    font-size: 18px;
-    height: 50px;
-    margin-top: 38px;
-    text-align: center;
+    text-decoration: none;
+    top: 0;
+    z-index: 999;
+  }
+  #nav_bar_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 2%;
+    margin: 0 auto;
     width: 100%;
   }
-
-  .button_card:hover{
-      background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
-      transition-duration: 0.5s;
-      transition: 0.5s;
-  }
-
-  #connecterButton{
-    margin-top: 103px;
-  }
-
-  .sub_section_container{
-    border: 0;
-    box-sizing: border-box;
+  #account_link{
     color: white;
-    font-size: 18px;
-    outline: 0;
-    padding: 4px 20px 0;
-    width: 100%;
-    margin-top: 30px;
-
-    input{
-      position: relative;
-      left: 0;
-      top: 0;
-      margin-right: 20px;
-    }
-
-    label{
-      font-size: 22px;
-    }
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.4rem;
   }
-
+  #nav_bar_list_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* If you want space between items */
+    list-style-type: none; /* This property doesn't apply to flex containers */
+    padding: 0;
+    margin: 0;
+  }
+  
+  #nav_bar_list {
+    display: flex;
+    gap: 5%;
+    list-style: none;
+    width: 28rem;
+  }
+  
+  #nav_bar_list a{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+  }
+  #menu_bar_home{
+    background-color: 	#161618;
+    color: white;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    top: 0;
+    z-index: 999;
+  }
+  #menu_bar_container{
+    display: flex;
+    justify-content: center;
+    padding: 0% 2%;
+    margin: 0 auto;
+    width: 100%;
+  }
+  #account_link{
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.4rem;
+  }
+  
+  /* menubar Left */
+  #menu_bar_list_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* If you want space between items */
+    list-style-type: none; /* This property doesn't apply to flex containers */
+    padding: 0;
+    margin: 0;
+  }
+  
+  #menu_bar_list {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    list-style: none;
+    width: 28rem;
+  }
+  
+  #menu_bar_list span{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+  }
+  
+  
 
 

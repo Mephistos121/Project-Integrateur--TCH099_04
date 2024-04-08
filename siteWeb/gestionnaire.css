@@ -1,5 +1,13 @@
 body{
   margin:0px;
+  background-color: #2b2b2e;
+}
+h2{
+  color:white;
+}
+form label{
+  color: white;
+  font-size: 1.4rem;
 }
 .header {
     position: relative;
@@ -8,6 +16,7 @@ body{
     text-align: center;
     color: white;
     font-size: 30px;
+    margin-bottom: 500px;
 }
 
 .header h1 {
@@ -127,7 +136,7 @@ ul li span{
 
 .form_container{
     margin-top: 3em;
-    height: 60%;
+    height: fit-content;
 }
 
 .form_layout {
@@ -160,7 +169,7 @@ ul li span{
     outline: 0;
     padding: 4px 20px 0;
     width: 100%;
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 #connecter_pass {
@@ -197,17 +206,21 @@ section{
 
 /*Table*/
 #recherche_cinema, #recherche_film {
+  border-radius: 12px;
   width: 100%;
   font-size: 16px;
   padding: 12px 0px 12px 0px;
-  border: 1px solid #ddd;
+  border: 1px solid #161618;
   margin-bottom: 12px;
+  color: white;
+  background-color:#303245;
 }
 
 .table{
+  border-radius: 12px;
   border-collapse: collapse;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 5px solid black;
   font-size: 18px;
   max-height:500px;
   overflow-y:scroll;
@@ -215,17 +228,18 @@ section{
 }
 
 .table th, .table td {
+  width: 100%;
   text-align: left;
-  color:black;
+  color:white;
   padding: 12px;
 }
 
 .table tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid black;
 }
 
 .table tr.header, .table tr:hover {
-  background-color: #f1f1f1;
+  background-color: black;
 }
 #nav_bar_home{
   background-color: 	#161618;

@@ -18,7 +18,7 @@
                     <li><a href="index.html?type=films">Films</a></li>
                 </ul>
             </div>
-            <a id="account_link" href="connexion.html">Compte</a>
+            <a id="account_link" href="compte.html">Compte</a>
         </div>
     </nav>
     <div class="header">
@@ -171,27 +171,32 @@
                 <div class="form_layout">
                     <div class="title">Ajout représentation à un cinéma</div>
                     <div>
-                        <input id="creer_film" class="input_container" type="text" name="creer_film"
+                        <label for="creer_rep_film">Nom film</label>
+                        <input id="creer_rep_film" class="input_container" type="text" name="film"
                             placeholder="Film" value="" required>
                     </div>
                     <div>
-                        <input id="creer_cinema" class="input_container" type="text" name="creer_cinema"
+                        <label for="creer_rep_cinema">Nom cinéma</label>
+                        <input id="creer_rep_cinema" class="input_container" type="text" name="cinema"
                             placeholder="Cinema" value="" required>
                     </div>
                     <div>
-                        <input id="creer_temps" class="input_container" type="datetime-local" name="creer_temps"
+                        <label for="creer_rep_date">Date de présentation</label>
+                        <input id="creer_rep_date" class="input_container" type="datetime-local" name="temps"
                             placeholder="date" value="" required>
                     </div>
                     <div>
-                        <input id="creer_salle" class="input_container" type="number" name="creer_salle"
+                        <label for="creer_rep_salle">Numéro de la salle</label>
+                        <input id="creer_rep_salle" class="input_container" type="number" name="salle"
                             placeholder="Salle" value="" required>
                     </div>
                     <div>
-                        <input id="creer_cout" class="input_container" type="number" name="creer_cout"
+                        <label for="creer_rep_cinema">Coût du billet</label>
+                        <input id="creer_rep_cout" class="input_container" type="number" name="cout"
                             placeholder="Coût" value="" required>
                     </div>
                     <div class="bouttons_form">
-                        <input id="creer_submit" class="edit_submit" type="button" value="Ajouter représentation">
+                        <input id="creer_rep_submit" class="edit_submit" type="button" value="Ajouter représentation">
                         <input class="edit_clear" type="reset" value="Effacer">
                     </div>
                 </div>

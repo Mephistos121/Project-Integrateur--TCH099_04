@@ -450,6 +450,82 @@ post('/api/billets/ajout',function(){
     $pdo=null;
     echo json_encode($requete);
 });
+post('/api/representation',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json,true);
+    $pdo = connectionBD();
+    $nom = $data['nom'];
+    $cinema = $data['cinema'];
+    $dateTime = new DateTime();
+    $date = $data['date'];
+    $numero = $data['numero'];
+    $cout = $data['cout'];
+    $requete = $pdo->prepare(
+        "SELECT id FROM Eq4_cinema WHERE nom_cinema = ?;"
+    );
+    $requete->execute([$cinema]);
+    
+    $cinema = $requete->fetch();
+    $requete = $pdo->prepare(
+        "SELECT id FROM Eq4_film WHERE nom_film = ?;"
+    );
+    $requete->execute([$nom]);
+    
+    $id_film = $requete->fetch();
+    if(!$id_film){
+        header('Content-type: application/json');
+        echo json_encode("Erreur : Nom du film inexistant");
+    }
+    else{
+        if(!$cinema){
+            header('Content-type: application/json');
+            echo json_encode("Erreur : Nom du cinema inexistant");
+        }
+        else{
+            $currentDate = new DateTime();
+            $strDate = $date;
+            $date = new DateTime($date);
+
+            if($date < $currentDate){
+                header('Content-type: application/json');
+                echo json_encode("Erreur : Veuillez fournir une date de presentation complete et dans le futur.");
+            }
+            else{
+                $requete = $pdo->prepare(
+                    "SELECT id FROM Eq4_salle;"
+                );
+                $requete->execute();
+                
+                $salleListe = $requete->fetchAll();
+                $valid = false;
+                foreach ($salleListe as $id){
+                    if(intval($id[0])==$numero) { 
+                    $valid=true;
+                    } 
+                }
+                if($valid){
+                    if($cout>0){
+                        $requete = $pdo->prepare(
+                            "INSERT INTO Eq4_representation (cinema_id, film_id, temps ,salle_id ,cout)
+                            VALUES (?,?,?,?,?);"
+                        );
+                        header('Content-type: application/json');
+                        $requete->execute([intval($cinema[0]), intval($id_film[0]), $strDate, $numero, $cout]);
+                        echo json_encode($requete);
+                    }else{
+                        header('Content-type: application/json');
+                        echo json_encode("Erreur : Le cout du billet ne peut pas etre negatif");
+                    }
+                    
+                }
+                else{
+                    header('Content-type: application/json');
+                    echo json_encode("Erreur : Aucune salle n'a ce numero");
+                }
+            }
+        }
+    }
+});
 
 //DELETE
 delete('/api/comptes/$id', function ($id) {
@@ -461,7 +537,7 @@ delete('/api/comptes/$id', function ($id) {
     $requete->execute([$id]);
     $pdo=null;
     header('Content-type: application/json');
-    echo json_encode(["message" => "Le compte a été supprimé avec succès"]);
+    echo json_encode(["message" => "Le compte a été supprime avec succes"]);
 });
 
 delete('/api/films/delete/$id', function($id){
