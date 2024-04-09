@@ -1,6 +1,7 @@
 package com.example.projetintegrateur_tch099;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,16 @@ import java.util.ArrayList;
 
 public class FilmListAdapter extends ArrayAdapter<Film> {
 
-
-
-    public FilmListAdapter(Context context, ArrayList<Film> filmList){
-        super(context, R.layout.activity_film_list_view,filmList);
+    private ArrayList<Film> films;
+    private Context contexte;
+    private int viewResourceId;
+    private Resources resources;
+    public FilmListAdapter(Context contexte, int viewResourceId, ArrayList<Film> filmList){
+        super(contexte, viewResourceId, filmList);
+        this.contexte = contexte;
+        this.viewResourceId = viewResourceId;
+        this.resources = contexte.getResources();
+        this.films = filmList;
     }
 
     @NonNull
@@ -30,16 +37,19 @@ public class FilmListAdapter extends ArrayAdapter<Film> {
         View view = convertView;
 
         if(view== null){
-            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-           // view = LayoutInflater.inflate(R.layout.activity_film_list_view, parent, false);
+            LayoutInflater layoutInflater = (LayoutInflater)contexte.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(this.viewResourceId, parent,false);
         }
 
-        Film film = getItem(position);
+        final Film film = this.films.get(position);
 
-        ImageView image = convertView.findViewById(R.id.filmPictureList);
-        TextView movieName = convertView.findViewById(R.id.filmName);
+        if (film != null){
+            final ImageView image = convertView.findViewById(R.id.imageView_filmListItem);
+            final TextView movieName = convertView.findViewById(R.id.textView_filmListItem);
 
-        Glide.with(convertView).load(film.getImage()).into(image);
+            Glide.with(convertView).load(film.getImage()).into(image);
+            movieName.setText(film.getNom_film());
+        }
 
         return view;
     }
