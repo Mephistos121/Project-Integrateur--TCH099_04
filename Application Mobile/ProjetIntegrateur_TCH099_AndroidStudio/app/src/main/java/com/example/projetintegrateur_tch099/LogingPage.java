@@ -1,5 +1,6 @@
 package com.example.projetintegrateur_tch099;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,6 +29,9 @@ public class LogingPage extends AppCompatActivity {
         email = findViewById(R.id.emailLoginInfo);
         password = findViewById(R.id.passwordLoginInfo);
         loginButton = findViewById(R.id.loginButton);
+
+        Intent i = new Intent(LogingPage.this, ShowAllMovies.class);
+        startActivity(i);
 
     }
 }

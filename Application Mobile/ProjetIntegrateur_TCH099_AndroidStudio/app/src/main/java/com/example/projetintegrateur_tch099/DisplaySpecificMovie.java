@@ -39,7 +39,7 @@ public class DisplaySpecificMovie extends AppCompatActivity {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DisplaySpecificMovie.this, MainActivity.class);
+                Intent intent = new Intent(DisplaySpecificMovie.this, ShowAllMovies.class);
                 startActivity(intent);
             }
         });
