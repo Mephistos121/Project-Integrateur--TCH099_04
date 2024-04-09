@@ -5,7 +5,9 @@
     android:id="@+id/movieList"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowAllMovies">
+    android:background="@drawable/loging_backround_color"
+    tools:context=".ShowAllMovies"
+    >
 
     <ListView
         android:id="@+id/listOfAllmovies"
@@ -13,5 +15,9 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
-        tools:listitem="@layout/film_list_item"/>
+        tools:listitem="@layout/film_list_item"
+        android:divider="@drawable/list_divider"
+        android:dividerHeight="1dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

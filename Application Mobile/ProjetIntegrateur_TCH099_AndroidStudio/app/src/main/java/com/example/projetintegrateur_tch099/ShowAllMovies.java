@@ -1,7 +1,10 @@
 package com.example.projetintegrateur_tch099;
 
+import android.content.Intent;
 import android.os.Binder;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -19,15 +22,23 @@ public class ShowAllMovies extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_all_movies);
 
-
         FilmDao dao = FilmDao.getInstance(getApplicationContext());
-        //Film film = new Film("Hello Wolrd","https://media.istockphoto.com/id/161003451/photo/green-iguana.jpg?s=612x612&w=0&k=20&c=eo8ugJRmE3lixeyHxRQ6Sxfj-mnviXCM_hozyEOLVFA=","The iguana movie");
-        ArrayList<Film> testArraylist = dao.getFilms();
-        //testArraylist.add(film);
+        ArrayList<Film> daoFilmArrayList = dao.getFilms();
 
-
-        FilmListAdapter adapter = new FilmListAdapter(this,R.layout.film_list_item, testArraylist);
+        FilmListAdapter adapter = new FilmListAdapter(this,R.layout.film_list_item, daoFilmArrayList);
         filmlist = (ListView) findViewById(R.id.listOfAllmovies);
         filmlist.setAdapter(adapter);
+        filmlist.setClickable(true);
+        filmlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ShowAllMovies.this, DisplaySpecificMovie.class);
+
+                intent.putExtra("nom_film",daoFilmArrayList.get(position).getNom_film());
+                intent.putExtra("description", daoFilmArrayList.get(position).getDescription());
+                intent.putExtra("image", daoFilmArrayList.get(position).getImage());
+                startActivity(intent);
+            }
+        });
     }
 }

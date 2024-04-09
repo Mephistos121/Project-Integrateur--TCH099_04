@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,10 +18,11 @@
 
             <TextView
                 android:id="@+id/textView_filmListItem"
-                android:layout_width="244dp"
+                android:layout_width="207dp"
                 android:layout_height="match_parent"
                 android:text="Place Holder for movie name"
                 android:textAlignment="center"
+                android:textColor="#FFFFFF"
                 android:textSize="24dp"
                 android:textStyle="bold" />
         </LinearLayout>
