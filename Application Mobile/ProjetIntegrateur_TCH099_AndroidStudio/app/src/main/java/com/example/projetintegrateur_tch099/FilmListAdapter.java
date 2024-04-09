@@ -44,7 +44,6 @@ public class FilmListAdapter extends ArrayAdapter<Film> {
         if (film != null){
             final ImageView image = convertView.findViewById(R.id.imageView_filmListItem);
             final TextView movieName = convertView.findViewById(R.id.textView_filmListItem);
-
             Glide.with(convertView).load(film.getImage()).into(image);
             movieName.setText(film.getNom_film());
         }
