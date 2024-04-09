@@ -3,6 +3,10 @@ window.addEventListener('load', (event1) => {
     const btnTabModifFilm = document.querySelector("#tab_modifier_film");
     const btnTabModifCinema = document.querySelector("#tab_modifier_cinema");
 
+    const tabAjouterFilm = document.querySelector("#ajouter_film");
+    const tabModifierFilm = document.querySelector("#modifier_film");
+    const tabModifierCinema = document.querySelector("#modifier_cinema");
+
     const perms = cookieGetter("privilege");
     const sbutton = document.querySelector("#film_ajout");
     const ubutton = document.querySelector("#film_update");
@@ -11,7 +15,6 @@ window.addEventListener('load', (event1) => {
     console.log(perms);
     if (perms === "admin") {
         sbutton.addEventListener("click", (event3) => {
-
             const info_film = {
                 nom_film: document.querySelector("#update_nom_film").value,
                 image: document.querySelector("#update_image_film").value,
@@ -78,19 +81,28 @@ window.addEventListener('load', (event1) => {
         });
         fetchListeCinema();
         btnTabAjoutFilm.addEventListener("click", (event) => {
-            document.querySelector("#ajouter_film").style.display = "block";
-            document.querySelector("#modifier_film").style.display = "none";
-            document.querySelector("#modifier_cinema").style.display = "none";
+            tabAjouterFilm.style.display = "block";
+            tabModifierFilm.style.display = "none";
+            tabModifierCinema.style.display = "none";
+            btnTabAjoutFilm.classList.add("active");
+            btnTabModifFilm.classList.remove("active");
+            btnTabModifCinema.classList.remove("active");
         });
         btnTabModifFilm.addEventListener("click", (event) => {
-            document.querySelector("#ajouter_film").style.display = "none";
-            document.querySelector("#modifier_film").style.display = "block";
-            document.querySelector("#modifier_cinema").style.display = "none";
+            tabAjouterFilm.style.display = "none";
+            tabModifierFilm.style.display = "block";
+            tabModifierCinema.style.display = "none";
+            btnTabAjoutFilm.classList.remove("active");
+            btnTabModifFilm.classList.add("active");
+            btnTabModifCinema.classList.remove("active");
         });
         btnTabModifCinema.addEventListener("click", (event) => {
-            document.querySelector("#ajouter_film").style.display = "none";
-            document.querySelector("#modifier_film").style.display = "none";
-            document.querySelector("#modifier_cinema").style.display = "block";
+            tabAjouterFilm.style.display = "none";
+            tabModifierFilm.style.display = "none";
+            tabModifierCinema.style.display = "block";
+            btnTabAjoutFilm.classList.remove("active");
+            btnTabModifFilm.classList.remove("active");
+            btnTabModifCinema.classList.add("active");
         });
     } else {
         document.querySelector("#div_admin").style.display = "none";
