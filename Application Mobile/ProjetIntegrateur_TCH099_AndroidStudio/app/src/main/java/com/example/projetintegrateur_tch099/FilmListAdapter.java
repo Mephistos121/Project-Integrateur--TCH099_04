@@ -34,11 +34,9 @@ public class FilmListAdapter extends ArrayAdapter<Film> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        View view = convertView;
-
-        if(view== null){
+        if(convertView== null){
             LayoutInflater layoutInflater = (LayoutInflater)contexte.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(this.viewResourceId, parent,false);
+            convertView= layoutInflater.inflate(this.viewResourceId, parent,false);
         }
 
         final Film film = this.films.get(position);
@@ -51,6 +49,6 @@ public class FilmListAdapter extends ArrayAdapter<Film> {
             movieName.setText(film.getNom_film());
         }
 
-        return view;
+        return convertView;
     }
 }
