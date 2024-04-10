@@ -140,7 +140,20 @@ body {
     background-color: darkred;
 }
 
-/*#billet_table tbody tr.rowDynamique td {
+#billet_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0.4em;
+}
+
+#billet_table td {
     background-color: white;
     color: black;
-}*/
+    padding: 0.4em;
+}
+
+#billet_table th {
+    background-color: #a0a0a0;
+    color: black;
+    padding: 0.4em;
+}
