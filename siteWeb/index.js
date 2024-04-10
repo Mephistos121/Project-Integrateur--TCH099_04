@@ -113,18 +113,19 @@ window.addEventListener("load", (event1) => {
 
     if (chosenType=="cinemas"){
         header.textContent="Cinémas";
+        rechercher();
         fetchAllCinema();
     }else{
         header.textContent="Films";
         showFeaturedFilm(featuredFilm);
+        rechercher();
         fetchAllFilm();
     }
 
     cacherMenuConnexion();
     cacherMenuCompte();
-    rechercherParFilm();
 });
-function rechercherParFilm(){
+function rechercher(){
     const rechercheParFilm = document.getElementById('recherche_film');
     rechercheParFilm.addEventListener("keyup", () =>{
         let input, filter, ul, li, p, i, txtValue;

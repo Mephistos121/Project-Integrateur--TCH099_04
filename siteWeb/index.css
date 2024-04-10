@@ -281,9 +281,14 @@ ul#index_list li{
     align-items: center;
     gap: 20px;
     padding: 1%;
+    font-size: 1.5rem;
+    font-weight: bold;
     flex-direction: column;
 }
 #recherche_film{
     color:black;
     width: 50%;
+    max-height: fit-content;
+    font-size: 3rem;
+    border-radius: 10px;
 }
