@@ -1,10 +1,8 @@
-let featuredFilm = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
+let featuredFilm = [
+{ title: "1", image: "https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/08/beemovie-topintro-copy.jpg" },
+{ title: "48", image: "https://news.tfw2005.com/wp-content/uploads/sites/10/2023/04/ROTB-Promotional-poster-01-1278x665.jpg" },
+{ title: "52", image: "https://i.pinimg.com/736x/e1/d2/25/e1d225782ae0adf9f4b09839d43d2b5f.jpg" }];
 
-let featuredCinema = [{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" },
-{ title: "Lorem ipsum", image: "https://placehold.co/1000x400" }];
 
 const list = document.getElementById("index_list");
 const featuredSlider = document.getElementById("featured_index_slider");
@@ -71,26 +69,6 @@ function showCinemas(cinemas) {
     });
 }
 
-function showFeaturedCinema(cinemas) {
-    let counter = 0;
-    cinemas.forEach(cinema => {
-        const imgPoster = document.createElement("img");
-        const cinemaLink = document.createElement("a");
-
-        const sliderNavLink = document.createElement("a");
-
-        imgPoster.src = cinema.image;
-        imgPoster.alt = cinema.title;
-        imgPoster.id = `featured_cinema_${counter}`;
-        cinemaLink.href = `cinema.html?title=${cinema.title}`;
-        cinemaLink.appendChild(imgPoster);
-        featuredSlider.appendChild(cinemaLink);
-
-        sliderNavLink.href = `#featured_cinema_${counter}`;
-        counter++;
-        sliderNav.appendChild(sliderNavLink);
-    });
-}
 
 function getconnecterCookie() {
     const cookieArray = document.cookie.split('; ');
@@ -135,7 +113,6 @@ window.addEventListener("load", (event1) => {
 
     if (chosenType=="cinemas"){
         header.textContent="Cinémas";
-        showFeaturedCinema(featuredCinema);
         fetchAllCinema();
     }else{
         header.textContent="Films";
@@ -145,7 +122,30 @@ window.addEventListener("load", (event1) => {
 
     cacherMenuConnexion();
     cacherMenuCompte();
+    rechercherParFilm();
 });
+function rechercherParFilm(){
+    const rechercheParFilm = document.getElementById('recherche_film');
+    rechercheParFilm.addEventListener("keyup", () =>{
+        let input, filter, ul, li, p, i, txtValue;
+        input = document.getElementById("recherche_film");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("index_list");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            p = li[i].getElementsByTagName("a")[0].getElementsByTagName('p')[0];
+            if (p) {
+                txtValue = p.textContent || p.innerText;
+                
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "block";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }       
+        }
+    });
+}
 
 
 async function fetchAllCinema(){

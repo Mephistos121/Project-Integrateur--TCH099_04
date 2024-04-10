@@ -99,7 +99,7 @@ get('/api/cinemas/$cinema', function($cinemaId){
 get('/api/cinemas/film/$id', function($cinemaId){
     $pdo=connectionBD();
     $requete = $pdo->prepare(
-        "SELECT `Eq4_cinema`.nom_cinema,`Eq4_cinema`.emplacement,`Eq4_representation`.temps,`Eq4_representation`.salle_id,`Eq4_representation`.cout,`Eq4_representation`.`film_id` FROM `Eq4_cinema`,`Eq4_representation` WHERE `Eq4_cinema`.`id`=`cinema_id` AND `film_id`=?"
+        "SELECT `Eq4_cinema`.nom_cinema,`Eq4_cinema`.emplacement,`Eq4_representation`.temps,`Eq4_representation`.id,`Eq4_representation`.cout,`Eq4_representation`.`film_id` FROM `Eq4_cinema`,`Eq4_representation` WHERE `Eq4_cinema`.`id`=`cinema_id` AND `film_id`=?"
     );
     $requete->execute([$cinemaId]);
     $cinemas = $requete->fetchAll();

@@ -16,7 +16,7 @@ function afficherListeCinema(liste) {
     const newRepresentation = document.createElement("p");
     newRepresentation.textContent = cinema.temps;
     newRepresentation.addEventListener("click", () => {
-      fetchSalle(cinema.salle_id);
+      fetchSalle(cinema.id);
     });
     listeC.append(newCinema);
     listeR.append(newRepresentation);
@@ -139,6 +139,7 @@ async function fetchBillets(liste, cout, repid) {
   const responseBillets = await fetch(
     "http://localhost/api/billets/represention/" + repid
   );
+  console.log(repid);
   const billets = await responseBillets.json();
   afficherListePlace(billets, liste, cout, repid);
 }
