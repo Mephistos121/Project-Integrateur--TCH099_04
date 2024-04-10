@@ -106,7 +106,7 @@ function afficherInfoFilm(info) {
     rbutton.id = "demande_film_refuser" + info.id;
     rbutton.className = "form_button delete"
     rbutton.addEventListener("click", (event) => {
-        enleverDemande(info);
+        enleverDemandeFilm(info);
 
     });
     const divButton = document.createElement("div");
