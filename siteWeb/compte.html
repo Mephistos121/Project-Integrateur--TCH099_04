@@ -28,6 +28,45 @@
             <p id="email">Email: <span id="emailUtilisateur"></span></p>
             <div class="Gestion">
                 <h3>Menu de gestion</h3>
+
+                <button id="changeCourrielButtonDisplay">Changer Courriel</button>
+                <div id="formulaireChangerCourriel" style="display: none;">
+                    <form class="form_container">
+                        <div class="form_layout">
+                            <div>
+                                <input id = "connecterAncienCourriel" class = "input_container"  type="text" name="connecterAncienCourriel" placeholder="Ancien courriel" value="" required>
+                            </div>
+                            <div>
+                                <input id = "connecterNouveauCourriel" class = "input_container"  type="text" name="connecterNouveauCourriel" placeholder="Nouveau courriel" value="" required>
+                            </div>            
+                            <div>
+                                <input id = "connecter_pass" class = "input_container"  type="password" name="connecter_pass" placeholder="Mot de Passe" value="" required>
+                            </div>   
+                            <div class="buttons_form">
+                                <input id="changeCourrielButton" class="button_card" type="button" value="Confirmer">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <button id="changeMotDePasseButtonDisplay">Changer Mot De Passe</button>
+                <div id="formulaireChangerMotDePasse" style="display: none;">
+                    <form class="form_container">
+                        <div class="form_layout">
+                            <div>
+                                <input id = "connecterCourriel" class = "input_container"  type="text" name="connecterAncienCourriel" placeholder="Ancien courriel" value="" required>
+                            </div>
+                            <div>
+                                <input id = "connecterAncienMotDePasse" class = "input_container"  type="password" name="connecterAncienMotDePasse" placeholder="Ancien Mot de Passe" value="" required>
+                            </div>            
+                            <div>
+                                <input id = "connecterNouveauMotDePasse" class = "input_container"  type="password" name="connecterNouveauMotDePasse" placeholder="Nouveau Mot de Passe" value="" required>
+                            </div>   
+                            <div class="buttons_form">
+                                <input id="changeMotDePasseButton" class="button_card" type="button" value="Confirmer">
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <button id="supprimerButton">Supprimer Compte</button>
             </div>
         </div> 

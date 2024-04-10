@@ -16,8 +16,8 @@
             android:layout_marginStart="20dp" />
 
         <TextView
-            android:id="@+id/cinemaName"
-            android:layout_width="244dp"
+            android:id="@+id/cinemaNameList"
+            android:layout_width="228dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/audiowide"
             android:text="Nom cinema"

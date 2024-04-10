@@ -10,6 +10,16 @@ window.addEventListener("load", (event) => {
         supprimerCompte();
     });
 
+    let changeCourrielButtonDisplay = document.querySelector("#changeCourrielButtonDisplay");
+    changeCourrielButtonDisplay.addEventListener("click", () => {
+        cacherChangeCourrielForm();
+    });
+
+    let changeMotDePasseButtonDisplay = document.querySelector("#changeMotDePasseButtonDisplay");
+    changeMotDePasseButtonDisplay.addEventListener("click", () => {
+        cacherChangeMotDePasseForm();
+    });
+
     cacherMenuGestionnaire();
     cacherMenuAdmin();
     
@@ -138,9 +148,27 @@ function addBilletsRows(tableau) {
         newRow.append(newSiege);
         newRow.append(newEmplacement);
         tableBody.appendChild(newRow);
-    });
-        
-       
+    });    
+}
+
+function cacherChangeCourrielForm() {
+    let formCourriel = document.querySelector("#formulaireChangerCourriel");
+    if (formulaireChangerCourriel.style.display === "block") {
+        formulaireChangerCourriel.style.display = "none"; 
+    } else {
+        formulaireChangerCourriel.style.display = "block";
+        formulaireChangerMotDePasse.style.display = "none";
+    }
+}
+
+function cacherChangeMotDePasseForm() {
+    let formCourriel = document.querySelector("#formulaireChangerMotDePasse");
+    if (formulaireChangerMotDePasse.style.display === "block") {
+        formulaireChangerMotDePasse.style.display = "none";
+    } else {
+        formulaireChangerMotDePasse.style.display = "block";
+        formulaireChangerCourriel.style.display = "none"; 
+    }
 }
 
 async function supprimerCompte() {
@@ -174,3 +202,4 @@ async function fetchBillets(usagerid){
     const contenu = await responseBillets.json();
     addBilletsRows(contenu);
 }
+
