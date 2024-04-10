@@ -150,6 +150,8 @@ async function seConnecter(courriel, mot_passe) {
                 document.cookie = "privilege="+responseData.role+";expires="+d+"; path=/;"; 
 
                 alert("Vous êtes connecté.");
+                let url = window.location.toString();
+                window.location = url.replace('compte.html', 'connexion.html');
             }
         } else {
             console.error('Échec de la connexion');
