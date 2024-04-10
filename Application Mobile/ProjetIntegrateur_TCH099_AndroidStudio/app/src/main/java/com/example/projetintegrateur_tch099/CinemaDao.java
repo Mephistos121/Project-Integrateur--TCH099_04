@@ -56,4 +56,8 @@ public class CinemaDao {
         }
         return instance;
     }
+
+    public ArrayList<Cinema> getCinemas() {
+        return cinemas;
+    }
 }
