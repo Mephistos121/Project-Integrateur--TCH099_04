@@ -477,6 +477,18 @@ post('/api/billets/ajout',function(){
     $pdo=null;
     echo json_encode($requete);
 });
+get('/api/billets/user/$userid', function($userid){
+    $pdo=connectionBD();
+    $requete = $pdo->prepare(
+        "SELECT nom_film, temps, nom_cinema, salle_id, place, emplacement FROM Eq4_representation,Eq4_billets,Eq4_cinema,Eq4_film WHERE usager_id=? AND representation_id=Eq4_representation.id AND cinema_id=Eq4_cinema.id AND film_id=Eq4_film.id"
+    );
+    $requete->execute([$id]);
+    $billets = $requete->fetchAll();
+    $pdo=null;
+    header('Content-type: application/json');
+   
+    echo json_encode($billets);
+});
 post('/api/representation',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json,true);
