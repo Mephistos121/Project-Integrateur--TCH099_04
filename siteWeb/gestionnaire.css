@@ -160,7 +160,9 @@ div#liste_cinema div, div#liste_film div {
     font-family: sans-serif;
     font-size: 28px;
     font-weight: 600;
-    margin-top: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
   }
 
   .input_container {
@@ -175,6 +177,7 @@ div#liste_cinema div, div#liste_film div {
     padding: 4px 20px 0;
     width: 100%;
     margin-bottom: 30px;
+    margin-top: 10px;
 }
 
 #connecter_pass {
