@@ -75,6 +75,7 @@ input[type=number] {
 }
 
 
+/* Admin Section */
 #div_admin{
     display: block;
     margin:auto;
@@ -99,10 +100,10 @@ input[type=number] {
     padding: 1rem;
 }
 
-#div_tab_button{
+.div_tab_button{
     display: flex;
     justify-content: center;
-    margin: 1rem;
+    gap: 1rem;
 }
 .tab_button{
     background: rgb(19, 30, 37);
@@ -148,13 +149,13 @@ li{
     margin: 1rem;
 }
 
-a{
+#div_admin a{
     text-decoration: none;
     color: white;
     font-size: 1.25rem;
 }
 
-a:hover{
+#div_admin a:hover{
     color:  rgb(255, 163, 77);
 }
 
@@ -174,8 +175,14 @@ a:hover{
     outline:1px solid rgb(255, 163, 77) ;
 }
 
-#film_delete{
+.form_button.delete{
     color: red;
+}
+
+img{
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
 }
 
 /* Input Section */
@@ -199,22 +206,35 @@ a:hover{
 
 
 /*Demande Section*/
+
+#div_demande{
+    display: block;
+    margin:auto;
+    margin-top: 3rem;
+    width: 80%;
+    background: black;
+    color: white;
+    border-radius: 1rem;
+    padding: 1rem;
+}	
+
 .demande_liste{
     list-style: none;
     margin: 0;  
     padding: 0;
 }
 
+.demande_liste a{
+    text-decoration: none;
+    color: white;
+}
+
 .demande_div_item{
     padding: 10px;
     border: #ccc 1px solid;
-}
-
-.demande_div_item a{
-    text-decoration: none;
-    color: #000;
+    border-radius: 0.5rem;
 }
 
 .demande_div_item:hover{
-    background-color: #f1f1f1;
+    background: #303245;
 }

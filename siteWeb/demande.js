@@ -6,16 +6,14 @@ window.addEventListener("load", (event1) => {
         btnTabDemandeFilm.addEventListener("click", (event) => {
             document.querySelector("#demande_film").style.display = "block";
             document.querySelector("#demande_cinema").style.display = "none";
-            btnTabDemandeFilm.style.backgroundColor = "gray";
-            btnTabDemandeCinema.style.backgroundColor = "white";
-            console.log("film");
+            btnTabDemandeFilm.classList.add("active");
+            btnTabDemandeCinema.classList.remove("active");
         });
         btnTabDemandeCinema.addEventListener("click", (event) => {
             document.querySelector("#demande_film").style.display = "none";
             document.querySelector("#demande_cinema").style.display = "block";
-            btnTabDemandeFilm.style.backgroundColor = "white";
-            btnTabDemandeCinema.style.backgroundColor = "gray";
-            console.log("cinema");
+            btnTabDemandeFilm.classList.remove("active");
+            btnTabDemandeCinema.classList.add("active");
         });
         fetchDemandesFilm();
         fetchDemandesCinema();
@@ -48,7 +46,6 @@ function afficherDemandesFilm(demandes) {
         const link = document.createElement("a");
         link.href = "#" + element.id;
         link.addEventListener("click", (event) => {
-            console.log("click");
             if (document.getElementById("divInfoFilm" + element.id).querySelector("#ul_opened") == null) {
                 fetchInfoFilm(element.id);
             }
@@ -99,6 +96,7 @@ function afficherInfoFilm(info) {
     const abutton = document.createElement("button");
     abutton.textContent = "Accepter";
     abutton.id = "demande_film_accepter" + info.id;
+    abutton.className = "form_button"
     abutton.addEventListener("click", (event) => {
         accepterDemandeFilm(info);
         enleverDemandeFilm(info);
@@ -106,12 +104,16 @@ function afficherInfoFilm(info) {
     const rbutton = document.createElement("button");
     rbutton.textContent = "Refuser";
     rbutton.id = "demande_film_refuser" + info.id;
+    rbutton.className = "form_button delete"
     rbutton.addEventListener("click", (event) => {
         enleverDemande(info);
 
     });
-    ul.appendChild(abutton);
-    ul.appendChild(rbutton);
+    const divButton = document.createElement("div");
+    divButton.className="bouttons_form";
+    divButton.appendChild(abutton);
+    divButton.appendChild(rbutton);
+    ul.appendChild(divButton);
     div.appendChild(ul);
 }
 
@@ -132,7 +134,6 @@ function afficherDemandesCinema(demandes) {
         const link = document.createElement("a");
         link.href = "#" + element.id;
         link.addEventListener("click", (event) => {
-            console.log("click");
             if (document.getElementById("divInfoCinema" + element.id).querySelector("#ul_opened") == null) {
                 fetchInfoCinema(element.id);
             }
@@ -172,6 +173,7 @@ function afficherInfoCinema(info) {
     const abutton = document.createElement("button");
     abutton.textContent = "Accepter";
     abutton.id = "demande_cinema_accepter" + info.id;
+    abutton.className = "form_button"
     abutton.addEventListener("click", (event) => {
         accepterDemandeCinema(info);
         enleverDemandeCinema(info);
@@ -179,6 +181,7 @@ function afficherInfoCinema(info) {
     const rbutton = document.createElement("button");
     rbutton.textContent = "Refuser";
     rbutton.id = "demande_cinema_refuser" + info.id;
+    rbutton.className = "form_button delete"
     rbutton.addEventListener("click", (event) => {
         enleverDemandeCinema(info);
 
