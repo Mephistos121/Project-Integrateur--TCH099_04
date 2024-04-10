@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
        progressBar = findViewById(R.id.progressBarMain);
 
         fetchMovies();
-        //fetchCinemas();
+        fetchCinemas();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -67,23 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fetchCinemas(){
-        String url = "https://equipe500.tch099.ovh/projet4/api/cinemas";
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray jsonArray) {
-                for (int i = 0; i < jsonArray.length(); i++) {
-
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(MainActivity.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = VolleySingleton.getInstance(this).getRequestQueue();
-        requestQueue.add(jsonArrayRequest);
+      CinemaDao dao = CinemaDao.getInstance(getApplicationContext());
     }
 
 }
