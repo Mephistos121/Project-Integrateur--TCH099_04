@@ -23,7 +23,7 @@ window.addEventListener("load", (event1) => {
         nom: document.querySelector("#creer_nom").value,
         image: document.querySelector("#creer_image").value,
         emplacement: document.querySelector("#creer_emplacement").value,
-        gestionnaire: document.cookie=gestionnaireId,
+        gestionnaire: gestionnaireId,
         };
         
         let check = true;
@@ -174,6 +174,8 @@ async function ajouterNouveauCinema(cinema){
             }
             else if (response.ok){
             alert("success");
+            gestionnaireId=cookieGetter("id");
+            console.log(gestionnaireId);
             cinemaGetter(gestionnaireId);
             }else {
                 alert("Le serveur a refusé");
