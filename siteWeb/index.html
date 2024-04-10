@@ -14,19 +14,6 @@
                 <ul id="nav_bar_list">
                     <li><a href="index.html?type=cinemas">Cinémas</a></li>
                     <li><a href="index.html?type=films">Films</a></li>
-                    <li><input id="search_bar" type="text" placeholder="Rechercher"></li>
-                    <li>
-                        <div id="dropdown_container">
-                            <select id="dropdown_menu">
-                                <option value='trier'>trier</option>
-                                <option value='trier'>trier</option>
-                                <option value='trier'>Trier</option>
-                                <option value='' selected>
-                                    Choisir une option
-                                </option>
-                            </select>
-                        </div>
-                    </li>
                 </ul>
             </div>
             <a id="account_info" href="compte.html">Compte</a>
@@ -40,6 +27,10 @@
 
     <div id="index_container">
         <h1 id="index_header"></h1>
+        <div id="recherche">
+            <label>Recherche par nom</label>
+            <input type="text" id="recherche_film" placeholder="Rechercher" title="Entrez un nom">
+        </div>
         <div id="index_list_container">
             <ul id="index_list"></ul>
         </div>

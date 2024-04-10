@@ -45,7 +45,7 @@
 #nav_bar_list_container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly; /* If you want space between items */
+    justify-content: left; /* If you want space between items */
     list-style-type: none; /* This property doesn't apply to flex containers */
     padding: 0;
     margin: 0;
@@ -53,7 +53,8 @@
 
 #nav_bar_list {
     display: flex;
-    justify-content: space-between; 
+    justify-content: left; 
+    gap: 10%;
     list-style: none;
     width: 28rem;
 }
@@ -65,27 +66,6 @@
     justify-content: center;
     text-decoration: none;
     font-size: 1.25rem;
-}
-
-#search_bar{
-    width: 10rem;
-    height: 1.5rem;
-    color: black;
-    border-radius: 10px;
-    box-shadow: none;
-    border: none;
-    padding: 2px;
-    padding-left: 5%;
-}
-#dropdown_menu{
-    color: black;
-    border-radius: 10px;
-    box-shadow: none;
-    background-color: white;
-    border: none;
-    height: 1.5rem;
-    padding: 2px;
-    padding-left: 5%;
 }
 
 /* Featured Movie Section */
@@ -279,4 +259,36 @@ padding-bottom: 1rem;
 .movie_span{
     font-size: 1.5rem;
     width: 70%;
+}
+#featured_film_0,#featured_film_1,#featured_film_2{
+    max-width: 1000px;
+    max-height: 400px;
+}
+#banniere_image{
+    max-width: 1000px;
+    max-height: 400px;
+}
+#image{
+    max-width: 400px;
+    max-height: 400px;
+}
+ul#index_list li{
+    display: block;
+}
+#recherche{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 1%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-direction: column;
+}
+#recherche_film{
+    color:black;
+    width: 50%;
+    max-height: fit-content;
+    font-size: 3rem;
+    border-radius: 10px;
 }
