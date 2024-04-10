@@ -139,3 +139,8 @@ body {
 #supprimerButton:hover {
     background-color: darkred;
 }
+
+/*#billet_table tbody tr.rowDynamique td {
+    background-color: white;
+    color: black;
+}*/

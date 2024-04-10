@@ -92,6 +92,39 @@ function showFeaturedCinema(cinemas) {
     });
 }
 
+function getconnecterCookie() {
+    const cookieArray = document.cookie.split('; ');
+    for (const cookie of cookieArray) {
+        const[name, value] = cookie.split('=');
+        if (name === 'id') {
+            return value;
+        }
+    }
+}
+
+function isConnected() {
+    const connecterValue = getconnecterCookie();
+    return connecterValue != null;
+}
+
+function cacherMenuConnexion() {
+    let menuConnexion = document.querySelector("#account_link");
+    if (isConnected()) {
+        menuConnexion.style.display = "none"; 
+    } else {
+        menuConnexion.style.display = "block";
+    }
+}
+
+function cacherMenuCompte() {
+    let menuCompte = document.querySelector("#account_info");
+    if (isConnected()) {
+        menuCompte.style.display = "block"; 
+    } else {
+        menuCompte.style.display = "none";
+    }
+}
+
 window.addEventListener("load", (event1) => {
     
     const myKeyValues = window.location.search;
@@ -109,6 +142,9 @@ window.addEventListener("load", (event1) => {
         showFeaturedFilm(featuredFilm);
         fetchAllFilm();
     }
+
+    cacherMenuConnexion();
+    cacherMenuCompte();
 });
 
 

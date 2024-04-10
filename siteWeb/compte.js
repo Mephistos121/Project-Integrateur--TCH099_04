@@ -1,13 +1,4 @@
 window.addEventListener("load", (event) => {
-   /* let btnMenuGestionnaire = document.querySelector("#menuGestionnaire");
-    btnMenuGestionnaire.addEventListener("click", () => {
-        window.location.href = "gestionnaire.html";
-    });
-
-    let btnMenuAdmin = document.querySelector("#menuAdmin");
-    btnMenuAdmin.addEventListener("click", () => {
-        window.location.href = "admin.html";
-    });*/
 
     let logoutButton = document.querySelector("#logoutButton");
     logoutButton.addEventListener("click", () => {
@@ -21,6 +12,7 @@ window.addEventListener("load", (event) => {
 
     cacherMenuGestionnaire();
     cacherMenuAdmin();
+    /*loadBilletNumber();*/
 
     const userID = getconnecterCookie();
     if (userID) {
@@ -118,6 +110,24 @@ function fetchUserNom(userID) {
         .catch(error => console.error('Erreur lors de la récupération du nom:', error));
 }
 
+/*function addRowsToTable(numberOfRows) {
+    const tableBody = document.querySelector("#billet_table tbody");
+
+    for (let i = 0; i < numberOfRows; i++) {
+        const newRow = document.createElement("tr");
+        newRow.classList.add("rowDynamique");
+        newRow.innerHTML = `
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+        `;
+        tableBody.appendChild(newRow);
+    }
+}
+*/
 async function supprimerCompte() {
     try {
         const confirmation = confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.");
@@ -143,3 +153,21 @@ async function supprimerCompte() {
         alert("Une erreur s'est produite. Veuillez réessayer plus tard.");
     }   
 }
+
+/*async function loadBilletNumber() {
+    const userID = getconnecterCookie();
+    if (userID) {
+        try {
+            console.log("URL de la requête fetch:", `/api/billets/compteur/usager/${userID}`);
+            const response = await fetch(`/api/billets/compteur/usager/${userID}`);
+            console.log("Réponse de la requête fetch:", response);
+            const data = await response.json();
+            console.log("Données extraites de la réponse:", data);
+            const numberOfBillets = data.nombre_occurrences;
+
+            addRowsToTable(numberOfBillets);
+        } catch (error) {
+            console.error("Une erreur s'est produite lors de la récupération du nombre de billets:", error);
+        }
+    }
+}*/
