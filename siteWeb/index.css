@@ -34,6 +34,13 @@
     font-size: 1.4rem;
 }
 
+#account_info{
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.4rem;
+}
+
 /* Navbar Left */
 #nav_bar_list_container {
     display: flex;

@@ -658,17 +658,3 @@ put('/api/cinemas/update',function(){
     }
     $pdo=null;
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
