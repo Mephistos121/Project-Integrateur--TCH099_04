@@ -16,7 +16,6 @@ form label{
     text-align: center;
     color: white;
     font-size: 30px;
-    margin-bottom: 500px;
 }
 
 .header h1 {
@@ -37,6 +36,12 @@ form label{
 }
 ul li span{
   padding: 5%;
+}
+ul li div{
+  color:white;
+}
+div#liste_cinema div, div#liste_film div {
+  color: white;
 }
 #menu_bar_home{
   background-color: 	#161618;

@@ -48,7 +48,14 @@ window.addEventListener("load", (event1) => {
         closeDiv(signInSection)
     });
 });
-
+const connecte = isConnected();
+    if(connecte){
+        let url = window.location.toString();
+        window.location = url.replace('connexion.html', 'compte.html');
+    }
+function  isConnected(){
+    id=cookieGetter("id");
+}
 function showDiv(section) {
     section.style.display = "block";
 }
