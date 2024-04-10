@@ -60,7 +60,7 @@ window.addEventListener('load', (event1) => {
         });
         dbutton.addEventListener("click", (event5) => {
             if (confirm("Voulez-vous vraiment supprimer ce film?")) {
-                const id_film = URLSearchParams(window.location.search).get("filmId");
+                const id_film = new URLSearchParams(window.location.search).get("filmId");
                 deleteFilm(id_film);
             }
         });
@@ -279,3 +279,5 @@ function cookieGetter(name) {
     }
     return false;
 }
+
+
