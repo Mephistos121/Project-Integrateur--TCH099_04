@@ -124,15 +124,14 @@ get('/api/films', function(){
 });
 get('/api/films/$cinema', function($cinema){
     $pdo=connectionBD();
-
+    
     $requete = $pdo->prepare(
         "SELECT DISTINCT `Eq4_film`.* FROM `Eq4_film`,`Eq4_cinema`,`Eq4_representation` WHERE `Eq4_film`.`id`=`Eq4_representation`.`film_id` AND `Eq4_representation`.`cinema_id`=`Eq4_cinema`.`id` AND `Eq4_cinema`.`id`=?"
     );
     $requete->execute([$cinema]);
     $films = $requete->fetchAll();
-    $pdo=null;
     header('Content-type: application/json');
-
+    
     echo json_encode($films);
 });
 get('/api/films/filmid/$id', function($id){
@@ -609,6 +608,40 @@ delete('/api/demande/admin/refus/cinema/${id}', function($id){
         "DELETE FROM Eq4_demande_cinema WHERE id = ?;"
     );
     $requete->execute([$id]);
+    header('Content-type: application/json');
+    echo json_encode(["message" => "La demande a été refusée avec succès"]);
+});
+delete('/api/gestionnaire/cinema/delete',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    //var_dump($data);
+    $nom = $data[1];
+    $nom = $nom['name'];
+    $gestionnaire = $data[0];
+    $gestionnaire= $gestionnaire['id'];
+
+    $pdo=connectionBD();
+    $requete = $pdo->prepare(
+        "DELETE FROM Eq4_cinema WHERE nom_cinema = ? AND gestionnaire_id = ?;"
+    );
+    $requete->execute([$nom, $gestionnaire]);
+    header('Content-type: application/json');
+    echo json_encode(["message" => "La demande a été refusée avec succès"]);
+});
+delete('/api/gestionnaire/cinema/demande/delete',function(){
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    //var_dump($data);
+    $nom = $data[1];
+    $nom = $nom['name'];
+    $gestionnaire = $data[0];
+    $gestionnaire= $gestionnaire['id'];
+
+    $pdo=connectionBD();
+    $requete = $pdo->prepare(
+        "DELETE FROM Eq4_demande_cinema WHERE nom_cinema = ? AND id_usager = ?;"
+    );
+    $requete->execute([$nom, $gestionnaire]);
     header('Content-type: application/json');
     echo json_encode(["message" => "La demande a été refusée avec succès"]);
 });

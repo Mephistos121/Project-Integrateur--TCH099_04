@@ -263,8 +263,27 @@ async function cinemaGetter(id){
         divList.textContent = "";
         const ul = document.createElement('ul');
         divList.append(ul);
+        const deleteContainer = document.createElement('div');
+        deleteContainer.display="flex";
+        const input = document.createElement('input');
+        input.type="text";
+        input.disabled=true;
+        input.id="cinema";
+        const button = document.createElement('button');
+        button.addEventListener('click', () =>{
+            retirerCinema();
+        });
+        button.textContent="Retirer";
+        divList.append(deleteContainer);
+        deleteContainer.append(input);
+        deleteContainer.append(button);
         for (let cinema of content) {
            const li = document.createElement("li");
+           li.addEventListener("click", () =>{
+                const click = li.querySelector("div");
+                console.log(click);
+                input.value = click.textContent;
+           });
            const div = document.createElement("div");
            div.textContent = cinema.nom_cinema;
            const div2 = document.createElement("div");
@@ -273,16 +292,36 @@ async function cinemaGetter(id){
            ul.append(li);
            li.append(div);
            li.append(div2);
-    
+            
         }
     }
+    
     if(contentDemande.length>0){
         const divList = document.querySelector("div#liste_cinema_demande > div");
         divList.textContent = "";
         const ul = document.createElement('ul');
         divList.append(ul);
+        const deleteContainer = document.createElement('div');
+        deleteContainer.display="flex";
+        const input = document.createElement('input');
+        input.type="text";
+        input.disabled=true;
+        input.id = "cinema2";
+        const button = document.createElement('button');
+        button.addEventListener('click', () =>{
+            retirerDemandeCinema();
+        });
+        button.textContent="Retirer";
+        divList.append(deleteContainer);
+        deleteContainer.append(input);
+        deleteContainer.append(button);
         for (let cinema of contentDemande) {
            const li = document.createElement("li");
+           li.addEventListener("click", () =>{
+            const click = li.querySelector("div");
+            console.log(click);
+            input.value = click.textContent;
+       });
            const div = document.createElement("div");
            div.textContent = cinema.nom_cinema;
            const div2 = document.createElement("div");
@@ -307,7 +346,66 @@ function cookieGetter(name){
     }
     return false;
 }
-
+async function retirerCinema(){
+    const input = document.querySelector("#cinema");
+    const gestionnaireId = cookieGetter('id');
+    const retirer = [
+        {id: gestionnaireId},
+        {name: input.value},
+    ];
+    console.log(retirer);
+    if(input.value!=""){
+        const response = await fetch("http://localhost/api/gestionnaire/cinema/delete", {
+            method: 'DELETE',
+            
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(retirer),
+        });
+    const message = await response.json();
+    console.log(message);
+    if(message.erreur){
+        alert(message.erreur);
+    }
+    else if (response.ok){
+    cinemaGetter(gestionnaireId);
+    }else {
+        alert("Le serveur a refusé");
+    }
+    }
+    
+}
+async function retirerDemandeCinema(){
+    const input = document.querySelector("#cinema2");
+    const gestionnaireId = cookieGetter('id');
+    const retirer = [
+        {id: gestionnaireId},
+        {name: input.value},
+    ];
+    console.log(retirer);
+    if(input.value!=""){
+        const response = await fetch("http://localhost/api/gestionnaire/cinema/demande/delete", {
+            method: 'DELETE',
+            
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(retirer),
+        });
+    const message = await response.json();
+    console.log(message);
+    if(message.erreur){
+        alert(message.erreur);
+    }
+    else if (response.ok){
+    cinemaGetter(gestionnaireId);
+    }else {
+        alert("Le serveur a refusé");
+    }
+    }
+    
+}
 
 
 async function filmGetter(id){
