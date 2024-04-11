@@ -2,118 +2,125 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/loging_backround_color"
+    tools:context=".Billeterie">
 
     <TextView
         android:id="@+id/titre_billets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:text="Choix du billet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/base_title_text_style" />
 
     <TextView
         android:id="@+id/titreBilletCinema"
+        style="@style/base_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginBottom="520dp"
         android:text="Cinema"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/titreRepresentation"
+        style="@style/base_subtitle_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="270dp"
         android:layout_marginBottom="520dp"
         android:text="Representation"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/titreCout"
+        style="@style/base_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
         android:layout_marginTop="50dp"
         android:text="Cout"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/titreRepresentation"
         app:layout_constraintTop_toBottomOf="@+id/billetRepresentation" />
 
     <Spinner
         android:id="@+id/billetCinema"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_height="48dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/textbox_backroung_spinner_edges"
+        app:layout_constraintStart_toStartOf="@+id/titreBilletCinema"
         app:layout_constraintTop_toBottomOf="@+id/titreBilletCinema" />
 
     <Spinner
         android:id="@+id/billetRepresentation"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
+        android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
+        android:background="@drawable/textbox_backroung_spinner_edges"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titreRepresentation"
         app:layout_constraintTop_toBottomOf="@+id/titreRepresentation" />
 
     <TextView
         android:id="@+id/titrePlaces"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        style="@style/base_subtitle_text_style"
         android:text="Places"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titreBilletCinema"
         app:layout_constraintTop_toBottomOf="@+id/billetCinema" />
 
     <Spinner
         android:id="@+id/choixPlace"
         android:layout_width="200sp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_height="48dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/textbox_backroung_spinner_edges"
+        app:layout_constraintStart_toStartOf="@+id/titreBilletCinema"
         app:layout_constraintTop_toBottomOf="@+id/titrePlaces" />
 
     <TextView
         android:id="@+id/billetCout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
+        android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
+        android:background="@drawable/textbox_backroung_gray_white_edges"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titreRepresentation"
         app:layout_constraintTop_toBottomOf="@+id/titreCout" />
 
     <Button
         android:id="@+id/button"
+        style="@style/bouton_base_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="65dp"
-        android:text="Choisir"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/choisir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/billetRetour"
+        style="@style/bouton_base_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginBottom="65dp"
-        android:text="Retour"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/retour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
