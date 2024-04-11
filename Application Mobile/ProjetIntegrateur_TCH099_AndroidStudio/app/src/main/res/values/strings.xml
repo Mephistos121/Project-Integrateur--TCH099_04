@@ -4,4 +4,25 @@
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="login">Login</string>
+    <string name="info_billet">Info billet</string>
+    <string name="mode_paiement">Mode de paiement</string>
+    <string name="place">Place :</string>
+    <string name="nom_film">Nom du film :</string>
+    <string name="nom_cinema">Nom du cinema :</string>
+    <string name="emplacement">Emplacement :</string>
+    <string name="numero_salle">Numéro de salle :</string>
+    <string name="cout_billet">Cout du billet :</string>
+    <string name="num_carte">Numéro de carte :</string>
+    <string name="date_carte">Date d\'expiration :</string>
+    <string name="code_carte">Code de securité :</string>
+    <string name="choisir">Choisir</string>
+    <string name="retour">Retour</string>
+    <string name="donne_facturation">Données de facturation</string>
+    <string name="nom">Nom :</string>
+    <string name="prenom">Prenom :</string>
+    <string name="adresse">Adresse :</string>
+    <string name="ville">Ville :</string>
+    <string name="pays">Pays :</string>
+    <string name="code_postal">Code postal :</string>
+    <string name="num_tel">Numéro de télephone : </string>
 </resources>
