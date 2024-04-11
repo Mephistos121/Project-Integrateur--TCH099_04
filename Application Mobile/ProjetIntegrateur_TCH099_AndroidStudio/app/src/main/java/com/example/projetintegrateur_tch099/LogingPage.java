@@ -8,9 +8,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class LogingPage extends AppCompatActivity {
 
@@ -30,8 +27,7 @@ public class LogingPage extends AppCompatActivity {
         password = findViewById(R.id.passwordLoginInfo);
         loginButton = findViewById(R.id.loginButton);
 
-        Intent i = new Intent(LogingPage.this, ShowAllCinemas.class);
+        Intent i = new Intent(LogingPage.this, MainUserPage.class);
         startActivity(i);
-
     }
 }

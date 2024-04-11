@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filmIcon"
+        android:title="Film"
+        android:icon="@drawable/cinema_film_movie"/>
+
+    <item
+        android:id="@+id/cinemaIcon"
+        android:title="Cinéma"
+        android:icon="@drawable/theater_all_cinemas"/>
+
+    <item
+        android:id="@+id/buy"
+        android:title="Billet"
+        android:icon="@drawable/ticket_simple"/>
+
+    <item
+        android:id="@+id/websiteIcon"
+        android:title="Web"
+        android:icon="@drawable/website_ui_web_svgrepo_com"/>
+
+    <item
+        android:id="@+id/userIcon"
+        android:title="Account"
+        android:icon="@drawable/settings"/>
+
+
+
+
+
+</menu>
