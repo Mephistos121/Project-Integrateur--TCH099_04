@@ -18,9 +18,11 @@ public class ShowAllCinemas extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_all_cinemas_list);
         CinemaDao dao = CinemaDao.getInstance(getApplicationContext());
+
+        Cinema cinema = new Cinema(1,"Vector","https://atlas-content-cdn.pixelsquid.com/stock-images/frog-Va4lJ52-600.jpg","146 rue houde", getApplicationContext());
         ArrayList<Cinema> daoCinemaList = dao.getCinemas();
 
-        CinemaListAdapter adapter = new CinemaListAdapter(this, R.layout.activity_show_all_cinemas_list, daoCinemaList);
+        CinemaListAdapter adapter = new CinemaListAdapter(this, R.layout.cinema_list_view, daoCinemaList);
 
         cinemaList = (ListView) findViewById(R.id.listOfAllcinemas);
         cinemaList.setAdapter(adapter);

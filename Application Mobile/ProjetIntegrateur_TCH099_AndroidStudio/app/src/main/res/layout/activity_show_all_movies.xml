@@ -11,13 +11,18 @@
 
     <ListView
         android:id="@+id/listOfAllmovies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:listitem="@layout/film_list_item"
+        android:layout_width="408dp"
+        android:layout_height="661dp"
         android:divider="@drawable/list_divider"
         android:dividerHeight="1dp"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.985"
+        tools:listitem="@layout/film_list_item">
+
+
+    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

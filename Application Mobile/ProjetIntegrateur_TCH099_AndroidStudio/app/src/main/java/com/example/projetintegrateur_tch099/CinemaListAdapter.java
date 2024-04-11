@@ -33,20 +33,22 @@ public class CinemaListAdapter extends ArrayAdapter<Cinema> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        if(convertView== null){
+        View view = convertView;
+
+        if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater)contexte.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView= layoutInflater.inflate(this.viewResourceId, parent,false);
+            view = layoutInflater.inflate(this.viewResourceId, parent,false);
         }
 
         final Cinema cinema = this.cinemas.get(position);
 
         if (cinema != null){
-            final ImageView image = convertView.findViewById(R.id.cinemaPictureList);
-            final TextView cinemaName = convertView.findViewById(R.id.cinemaNameList);
-            Glide.with(convertView).load(cinema.getImage()).into(image);
+            final ImageView image = view.findViewById(R.id.cinemaPictureList);
+            final TextView cinemaName = view.findViewById(R.id.cinemaNameList);
+            Glide.with(view).load(cinema.getImage()).into(image);
             cinemaName.setText(cinema.getNomCinema());
         }
 
-        return convertView;
+        return view;
     }
 }

@@ -36,7 +36,7 @@ public class FilmListAdapter extends ArrayAdapter<Film> {
 
         if(convertView== null){
             LayoutInflater layoutInflater = (LayoutInflater)contexte.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView= layoutInflater.inflate(this.viewResourceId, parent,false);
+            convertView = layoutInflater.inflate(this.viewResourceId, parent,false);
         }
 
         final Film film = this.films.get(position);

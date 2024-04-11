@@ -30,7 +30,7 @@ public class LogingPage extends AppCompatActivity {
         password = findViewById(R.id.passwordLoginInfo);
         loginButton = findViewById(R.id.loginButton);
 
-        Intent i = new Intent(LogingPage.this, ShowAllMovies.class);
+        Intent i = new Intent(LogingPage.this, ShowAllCinemas.class);
         startActivity(i);
 
     }

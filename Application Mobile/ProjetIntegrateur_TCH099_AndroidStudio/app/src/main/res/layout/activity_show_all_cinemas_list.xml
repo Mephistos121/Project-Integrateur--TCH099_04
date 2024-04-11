@@ -13,10 +13,11 @@
         android:id="@+id/listOfAllcinemas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="52dp"
+        android:divider="@drawable/list_divider"
+        android:dividerHeight="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/cinema_list_view"
-        android:divider="@drawable/list_divider"
-        android:dividerHeight="1dp"/>
+        tools:listitem="@layout/cinema_list_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
