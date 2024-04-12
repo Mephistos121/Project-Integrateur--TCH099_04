@@ -39,7 +39,8 @@ public class MainUserPage extends AppCompatActivity {
             }
 
             if(item.getItemId() == R.id.buy){
-                //TO BE CODED
+                Intent intent = new Intent(MainUserPage.this, Billeterie.class);
+                startActivity(intent);
                 return true;
             }
 

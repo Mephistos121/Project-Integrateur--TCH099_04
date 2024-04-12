@@ -2,6 +2,7 @@ package com.example.projetintegrateur_tch099;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +28,12 @@ public class LogingPage extends AppCompatActivity {
         password = findViewById(R.id.passwordLoginInfo);
         loginButton = findViewById(R.id.loginButton);
 
-        Intent i = new Intent(LogingPage.this, MainUserPage.class);
-        startActivity(i);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LogingPage.this, MainUserPage.class);
+                startActivity(i);
+            }
+        });
     }
 }

@@ -56,9 +56,7 @@ public class Cinema {
                         } catch (JSONException e) {
                             System.out.println(e.getMessage());
                         }
-
                     }
-
                 }
             }
         }, new Response.ErrorListener() {
