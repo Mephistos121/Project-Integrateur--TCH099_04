@@ -338,3 +338,15 @@ body {
 #nav_bar_list a:hover {
   color: gray;
 }
+#banniere{
+  background-color:#ff0000;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  z-index: 1000;
+}
