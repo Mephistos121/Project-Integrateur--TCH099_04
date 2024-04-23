@@ -18,6 +18,7 @@ window.addEventListener("load", (event1) => {
   let gestionnaireId = cookieGetter("id");
   cinemaGetter(gestionnaireId);
   filmGetter(gestionnaireId);
+  
   if (gestionnaireId === false) {
     console.log("Erreur pas de ID");
   }
@@ -35,7 +36,7 @@ window.addEventListener("load", (event1) => {
     });
     check
       ? ajouterNouveauCinema(info_cinema)
-      : alert("Veuillez entrer toutes les informations du cinema");
+      : actionReussi("veuillez entrer toutes les informations du cinéma");
   });
   representation_gestion_button.addEventListener("click", () => {
     const representationAjoutSection = document.getElementById(
@@ -136,12 +137,12 @@ async function ajouterNouvelleRepresentation(rep) {
     reponse[0] = reponse[0].replace('"', "").trim();
     reponse[1] = reponse[1].replace('"', "").trim();
     if (reponse[0].localeCompare("Erreur") == 0) {
-      alert(reponse[1]);
+      actionReussi("Erreur dans l'ajout de la représentation");
     } else {
-      alert("success");
+      actionReussi("Représentation ajouté");
     }
   } else {
-    alert("Le serveur a refusé");
+    actionReussi("Le serveur a refusé");
   }
 }
 async function ajouterNouveauCinema(cinema) {
@@ -153,7 +154,7 @@ async function ajouterNouveauCinema(cinema) {
     Object.keys(content).forEach((element) => {
       //console.log("Comparaison entre: "+content[element].nom_cinema +" et "+ cinema.nom);
       if (content[element].nom_cinema == cinema.nom) {
-        alert("Ce nom de cinéma est déjà utilisé");
+        actionReussi("Ce nom de cinéma est déjà utilisé");
         ajoutValide = false;
         //console.log(content[element] + " " + cinema.nom);
       }
@@ -182,12 +183,12 @@ async function ajouterNouveauCinema(cinema) {
     if (message.erreur) {
       alert(message.erreur);
     } else if (response.ok) {
-      alert("success");
+      actionReussi("Demande de cinéma enregistrer");
       gestionnaireId = cookieGetter("id");
       console.log(gestionnaireId);
       cinemaGetter(gestionnaireId);
     } else {
-      alert("Le serveur a refusé");
+      actionReussi("Le serveur a refusé");
     }
   }
 }
@@ -225,7 +226,7 @@ ajoutFilm.addEventListener("click", (event2) => {
   });
   check
     ? ajouterNouveauFilm(info_film)
-    : alert("Veuillez entrer toutes les informations du film");
+    : actionReussi("Veuillez entrez toutes les informations du film");
 });
 
 async function ajouterNouveauFilm(film) {
@@ -245,10 +246,10 @@ async function ajouterNouveauFilm(film) {
   if (message.erreur) {
     alert(message.erreur);
   } else if (response.ok) {
-    alert("success");
+    actionReussi("Film ajouté avec succès");
     filmGetter(gestionnaireId);
   } else {
-    alert("Le serveur a refusé");
+    actionReussi("Le serveur a refusé");
   }
 }
 
@@ -261,7 +262,7 @@ async function validationAdresse(adresse) {
   const content2 = await response.json();
   console.log(content2);
   if (content2.results.length == 0) {
-    alert("adresse non valide");
+    actionReussi("Adresse invalide");
     return false;
   }
   return true;
@@ -311,6 +312,10 @@ async function cinemaGetter(id) {
       li.append(div2);
     }
   }
+  else{
+    const divList = document.querySelector("div#liste_cinema > div");
+    divList.innerText = "Aucun cinéma";
+  }
 
   if (contentDemande.length > 0) {
     const divList = document.querySelector("div#liste_cinema_demande > div");
@@ -348,6 +353,10 @@ async function cinemaGetter(id) {
       li.append(div2);
     }
   }
+  else{
+    const divList = document.querySelector("div#liste_cinema_demande > div");
+    divList.innerText = "Aucun cinéma";
+  }
 }
 
 function cookieGetter(name) {
@@ -384,7 +393,7 @@ async function retirerCinema() {
     } else if (response.ok) {
       cinemaGetter(gestionnaireId);
     } else {
-      alert("Le serveur a refusé");
+      actionReussi("Le serveur a refusé");
     }
   }
 }
@@ -412,7 +421,7 @@ async function retirerDemandeCinema() {
     } else if (response.ok) {
       cinemaGetter(gestionnaireId);
     } else {
-      alert("Le serveur a refusé");
+      actionReussi("Le serveur a refusé");
     }
   }
 }
@@ -421,7 +430,7 @@ async function filmGetter(id) {
   const responseFilm = await fetch(
     "http://localhost/api/demande/ajout/film/gestionnaire/" + id
   );
-  const content = await responseFilm.json();
+  const content = responseFilm.json();
   if (content.length > 0) {
     const divList = document.querySelector("div#liste_film > div");
     divList.textContent = "";
@@ -488,3 +497,13 @@ async function tableFilmBuilder(id) {
     }
   }
 }
+
+function actionReussi(raison){
+    const div = document.querySelector("#banniere");
+    div.hidden = false;
+    div.innerText = "Succès "+raison;
+    setTimeout(() => {
+      div.hidden = true;
+    }, "5000");
+}
+

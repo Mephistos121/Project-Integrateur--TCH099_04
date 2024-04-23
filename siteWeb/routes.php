@@ -505,7 +505,13 @@ post('/api/billets/ajout',function(){
     header('Content-type: application/json');
     $requete->execute([$place, $representation_id, $usager_id]);
     $pdo=null;
-    echo json_encode($requete);
+    if($requete){
+        echo json_encode($requete);
+    }
+    else{
+        $error = array("erreur" => "Ceci ne semble pas etre une image valide, veuillez en prendre une autre.");
+        echo json_encode($error);
+    }
 });
 post('/api/representation',function(){
     $json = file_get_contents('php://input');
