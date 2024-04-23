@@ -123,7 +123,6 @@ function afficherInfoFilm(info) {
   abutton.className = "form_button";
   abutton.addEventListener("click", (event) => {
     accepterDemandeFilm(info);
-    enleverDemandeFilm(info);
   });
   const rbutton = document.createElement("button");
   rbutton.textContent = "Refuser";
@@ -210,7 +209,6 @@ function afficherInfoCinema(info) {
   abutton.className = "form_button";
   abutton.addEventListener("click", (event) => {
     accepterDemandeCinema(info);
-    enleverDemandeCinema(info);
   });
   const rbutton = document.createElement("button");
   rbutton.textContent = "Refuser";
@@ -238,18 +236,31 @@ async function accepterDemandeFilm(info) {
     acteur_principal: info.acteur_principal,
     acteur_secondaire: info.acteur_secondaire,
   };
-  const response = await fetch(`http://localhost/api/films/ajout`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(info_film),
-  });
-  const content = await response.json();
-  if (content.erreur) {
-    alert(content.erreur);
-    return;
-  } else {
+  const filmList = await fetch("http://localhost/api/films");
+  const films = await filmList.json();
+  let check = true;
+  for (let film of films) {
+    if (film.nom_film.toLowerCase().replace(/\s/g, '') == info_film.nom_film.toLowerCase().replace(/\s/g, '')) {
+      check = false;
+    }
+  }
+
+  if (check) {
+    const response = await fetch(`http://localhost/api/films/ajout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info_film),
+    });
+    const content = await response.json();
+    if (content.erreur) {
+      alert(content.erreur);
+      return;
+    }
+    else {
+      enleverDemandeCinema(info);
+    }
   }
 }
 
@@ -276,18 +287,34 @@ async function accepterDemandeCinema(info) {
     emplacement: info.emplacement,
     gestionnaire: info.id_usager,
   };
-  const response = await fetch(`http://localhost/api/cinemas/ajout`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(info_cinema),
-  });
-  const content = await response.json();
-  if (content.erreur) {
-    alert(content.erreur);
-    return;
-  } else {
+
+  const cinemaList = await fetch("http://localhost/api/cinemas");
+  const cinemas = await cinemaList.json();
+  let check = true;
+  for (let cinema of cinemas) {
+    if (cinema.emplacement.toLowerCase().replace(/\s/g, '') == info_cinema.emplacement.toLowerCase().replace(/\s/g, '')) {
+      check = false;
+    }
+  }
+
+  if (check) {
+
+    const response = await fetch(`http://localhost/api/cinemas/ajout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info_cinema),
+    });
+    const content = await response.json();
+    if (content.erreur) {
+      alert(content.erreur);
+      return;
+    } else {
+      enleverDemandeCinema(info);
+    }
+  }else{
+    alert("Ce cinéma existe déjà.");
   }
 }
 
