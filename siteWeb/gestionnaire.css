@@ -196,7 +196,6 @@ ul li div {
   margin-bottom: 30px;
   margin-top: 10px;
 }
-
 #connecter_pass {
   margin-bottom: 70px;
 }
@@ -344,10 +343,9 @@ section {
   cursor: pointer;
 }
 
-#creer_submit, #effacer_ajout_cinema, #creer_film_submit, 
-#effacer_ajout_film, #creer_rep_submit, #effacer_ajout_representation {
-  background-color: lightgray;
-  color: black;
+.bouttons_form input {
+  background-color: #4f4f4f;
+  color: white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -357,7 +355,11 @@ section {
   margin-bottom: 1rem;
 }
 
-#creer_submit:hover, #effacer_ajout_cinema:hover, #creer_film_submit:hover, 
-#effacer_ajout_film:hover, #creer_rep_submit:hover, #effacer_ajout_representation:hover {
-  background-color: #6a6a6a;
+.bouttons_form input:hover {
+  background-color: white;
+  color: black;
 }
+
+div#liste_cinema_demande div {
+  color:white;
+} 
