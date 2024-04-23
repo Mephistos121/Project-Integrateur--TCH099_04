@@ -18,7 +18,7 @@ window.addEventListener("load", (event1) => {
   let gestionnaireId = cookieGetter("id");
   cinemaGetter(gestionnaireId);
   filmGetter(gestionnaireId);
-  
+
   if (gestionnaireId === false) {
     console.log("Erreur pas de ID");
   }
@@ -119,30 +119,78 @@ window.addEventListener("load", (event1) => {
       numero: document.querySelector("#creer_rep_salle").value,
       cout: document.querySelector("#creer_rep_cout").value,
     };
+
     ajouterNouvelleRepresentation(info_representation);
   });
 });
 async function ajouterNouvelleRepresentation(rep) {
-  const response = await fetch("http://localhost/api/representation", {
-    method: "POST",
+  const listRepresentation = await fetch("http://localhost/api/representations");
+  const content = await listRepresentation.json();
+  const listFilm = await fetch("http://localhost/api/films");
+  const contentFilm = await listFilm.json();
+  const film = contentFilm.find((element) => element.nom_film == rep.nom);
+  const dureeFilm = film.duree;
+  const filmHeure = Math.floor(dureeFilm / 60);
+  const filmMinute = dureeFilm % 60;
+  let ajoutValide = true;
+  if (content.length) {
+    if (content.length) {
+      Object.keys(content).forEach((element) => {  
+          if (content[element].salle_id == rep.numero) {
+              const [datePartie, heurePartie] = content[element].temps.split(' ');
+              const [annee, mois, jour] = datePartie.split('-').map(Number);
+              const [heure, minute, seconde] = heurePartie.split(':').map(Number);
 
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(rep),
-  });
-  const message = await response.json();
-  if (response.ok) {
-    let reponse = JSON.stringify(message).split(":");
-    reponse[0] = reponse[0].replace('"', "").trim();
-    reponse[1] = reponse[1].replace('"', "").trim();
-    if (reponse[0].localeCompare("Erreur") == 0) {
-      actionReussi("Erreur dans l'ajout de la représentation");
+              const dateBeginRep = new Date(annee, mois - 1, jour, heure, minute, seconde);
+              console.log("dateB", dateBeginRep);
+  
+              let dateEndRep = new Date(dateBeginRep);
+              dateEndRep.setHours(dateEndRep.getHours() + filmHeure);
+              dateEndRep.setMinutes(dateEndRep.getMinutes() + filmMinute + 15);
+  
+              if (isNaN(dateEndRep.getTime())) {
+                  console.error("Invalid date calculation for dateE");
+                  console.log("dateBeginRep", dateBeginRep);
+                  console.log("filmHeure", filmHeure);
+                  console.log("filmMinute", filmMinute);
+              } else {
+                  console.log("dateE", dateEndRep);
+              }
+  
+              const dateCurrent = new Date(rep.date);
+              console.log("dateCurrent", dateCurrent);
+  
+              if (dateCurrent >= dateBeginRep && dateCurrent <= dateEndRep) {
+                  ajoutValide = false;
+              }
+          }
+      });
+  }
+  }  
+
+  if (ajoutValide) {
+    const response = await fetch("http://localhost/api/representation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(rep),
+    });
+    const message = await response.json();
+    if (response.ok) {
+      let reponse = JSON.stringify(message).split(":");
+      reponse[0] = reponse[0].replace('"', "").trim();
+      reponse[1] = reponse[1].replace('"', "").trim();
+      if (reponse[0].localeCompare("Erreur") == 0) {
+        actionReussi("Erreur dans l'ajout de la représentation");
+      } else {
+        actionReussi("Représentation ajouté");
+      }
     } else {
-      actionReussi("Représentation ajouté");
+      actionReussi("Le serveur a refusé");
     }
-  } else {
-    actionReussi("Le serveur a refusé");
+  }else{
+    alert("La salle est déjà réservée pour ce moment");
   }
 }
 async function ajouterNouveauCinema(cinema) {
@@ -256,8 +304,8 @@ async function ajouterNouveauFilm(film) {
 async function validationAdresse(adresse) {
   const response = await fetch(
     "https://api.geoapify.com/v1/geocode/search?text=" +
-      adresse +
-      " &format=json&apiKey=c79307b333d645cfba222d71ad09c686"
+    adresse +
+    " &format=json&apiKey=c79307b333d645cfba222d71ad09c686"
   );
   const content2 = await response.json();
   console.log(content2);
@@ -312,7 +360,7 @@ async function cinemaGetter(id) {
       li.append(div2);
     }
   }
-  else{
+  else {
     const divList = document.querySelector("div#liste_cinema > div");
     divList.innerText = "Aucun cinéma";
   }
@@ -353,7 +401,7 @@ async function cinemaGetter(id) {
       li.append(div2);
     }
   }
-  else{
+  else {
     const divList = document.querySelector("div#liste_cinema_demande > div");
     divList.innerText = "Aucun cinéma";
   }
@@ -498,12 +546,12 @@ async function tableFilmBuilder(id) {
   }
 }
 
-function actionReussi(raison){
-    const div = document.querySelector("#banniere");
-    div.hidden = false;
-    div.innerText = "Succès "+raison;
-    setTimeout(() => {
-      div.hidden = true;
-    }, "5000");
+function actionReussi(raison) {
+  const div = document.querySelector("#banniere");
+  div.hidden = false;
+  div.innerText = "Succès " + raison;
+  setTimeout(() => {
+    div.hidden = true;
+  }, "5000");
 }
 
