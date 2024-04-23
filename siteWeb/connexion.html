@@ -40,19 +40,24 @@
             <form class="form_container">
                 <div class="form_layout">
                     <div class="title">Créer un nouveau compte</div>
-                    <div>
-                        <input id="creer_nom" class="input_container" type="text" name="creer_nom"
-                            placeholder="Username" value="" required>
-                    </div>
-
-                    <div>
-                        <input id="creer_courriel" class="input_container" type="text" name="creer_courriel"
-                            placeholder="Courriel" value="" required>
-                    </div>
-
-                    <div>
-                        <input id="creer_pass" class="input_container" type="password" name="creer_pass"
-                            placeholder="Mot de Passe" value="" required>
+                    <div class="div_inputs" id="div_inputs_signUp">
+                        <div>
+                            <label for="creer_nom">Nom d'utilisateur:</label>
+                            <input id="creer_nom" class="input_container" type="text" name="creer_nom"
+                                placeholder="Nom d'utilisateur" value="" required>
+                        </div>
+    
+                        <div>
+                            <label for="creer_courriel">Courriel:</label>
+                            <input id="creer_courriel" class="input_container" type="text" name="creer_courriel"
+                                placeholder="Courriel" value="" required>
+                        </div>
+    
+                        <div>
+                            <label for="creer_pass">Mot de Passe:</label>
+                            <input id="creer_pass" class="input_container" type="password" name="creer_pass"
+                                placeholder="Mot de Passe" value="" required>
+                        </div>
                     </div>
 
                     <div class="sub_section_container">
@@ -71,14 +76,18 @@
             <form class="form_container">
                 <div class="form_layout">
                     <div class="title">Se connecter a son compte</div>
-                    <div>
-                        <input id="connecter_identifiant" class="input_container" type="text"
-                            name="connecter_identifiant" placeholder="Courriel" value="" required>
-                    </div>
-
-                    <div>
-                        <input id="connecter_pass" class="input_container" type="password" name="connecter_pass"
-                            placeholder="Mot de Passe" value="" required>
+                    <div class="div_inputs" id="div_inputs_signIn">
+                        <div>
+                            <label for="connecter_identifiant">Courriel:</label>
+                            <input id="connecter_identifiant" class="input_container" type="text"
+                                name="connecter_identifiant" placeholder="Courriel" value="" required>
+                        </div>
+    
+                        <div>
+                            <label for="connecter_pass">Mot de Passe:</label>
+                            <input id="connecter_pass" class="input_container" type="password" name="connecter_pass"
+                                placeholder="Mot de Passe" value="" required>
+                        </div>
                     </div>
 
                     <div class="buttons_form">
