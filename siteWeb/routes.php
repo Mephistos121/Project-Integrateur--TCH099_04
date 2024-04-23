@@ -182,6 +182,18 @@ get('/api/billets/user/$userid', function($userid){
    
     echo json_encode($billets);
 });
+get('/api/billets', function(){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT * FROM Eq4_billets"
+    );
+    $requete->execute();
+    $billets = $requete->fetchAll();
+    $pdo=null;
+    header('Content-type: application/json');
+    echo json_encode($billets);
+});
 get('/api/representation/$id', function($id){
     $pdo=connectionBD();
 
@@ -190,6 +202,18 @@ get('/api/representation/$id', function($id){
     );
     $requete->execute([$id]);
     $rep = $requete->fetch();
+    $pdo=null;
+    header('Content-type: application/json');
+    echo json_encode($rep);
+});
+get('/api/representations', function(){
+    $pdo=connectionBD();
+
+    $requete = $pdo->prepare(
+        "SELECT * FROM Eq4_representation"
+    );
+    $requete->execute();
+    $rep = $requete->fetchAll();
     $pdo=null;
     header('Content-type: application/json');
     echo json_encode($rep);
@@ -220,7 +244,6 @@ get('/api/demande/ajout/cinema/gestionnaire/$id', function($id){
     header('Content-type: application/json');   
     echo json_encode($cinemas);
 });
-
 get('/api/demande/admin/ajout/films',function(){
     $pdo=connectionBD();
 
@@ -234,7 +257,6 @@ get('/api/demande/admin/ajout/films',function(){
     header('Content-type: application/json');
     echo json_encode($films);
 });
-
 get('/api/demande/admin/ajout/film/$id',function($id){
     $pdo=connectionBD();
 
@@ -248,7 +270,6 @@ get('/api/demande/admin/ajout/film/$id',function($id){
     header('Content-type: application/json');
     echo json_encode($films);
 });
-
 get('/api/demande/admin/ajout/cinemas',function(){
     $pdo=connectionBD();
 
@@ -261,7 +282,6 @@ get('/api/demande/admin/ajout/cinemas',function(){
     header('Content-type: application/json');
     echo json_encode($cinemas);
 });
-
 get('/api/demande/admin/ajout/cinema/$id',function($id){
     $pdo=connectionBD();
 
@@ -275,7 +295,6 @@ get('/api/demande/admin/ajout/cinema/$id',function($id){
     header('Content-type: application/json');
     echo json_encode($cinemas);
 });
-
 get('/api/comptes/email/$id', function ($id) {
     $pdo = connectionBD();
     $requete = $pdo->prepare(
@@ -287,7 +306,6 @@ get('/api/comptes/email/$id', function ($id) {
     header('Content-type: application/json');
     echo json_encode(['email' => $email]);
 });
-
 get('/api/comptes/nom_usager/$id', function ($id) {
     $pdo = connectionBD();
     $requete = $pdo->prepare(
@@ -299,7 +317,6 @@ get('/api/comptes/nom_usager/$id', function ($id) {
     header('Content-type: application/json');
     echo json_encode(['nom_usager' => $nom_usager]);
 });
-
 
 
 //POST
@@ -567,6 +584,7 @@ post('/api/representation',function(){
     }
 });
 
+
 //DELETE
 delete('/api/comptes/$id', function ($id) {
     $pdo = connectionBD();
@@ -579,7 +597,6 @@ delete('/api/comptes/$id', function ($id) {
     header('Content-type: application/json');
     echo json_encode(["message" => "Le compte a été supprime avec succes"]);
 });
-
 delete('/api/films/delete/$id', function($id){
     $pdo=connectionBD();
     $requete = $pdo->prepare(
@@ -590,7 +607,6 @@ delete('/api/films/delete/$id', function($id){
     header('Content-type: application/json');
     echo json_encode(["message" => "Le film a été supprimé avec succès"]);
 });
-
 delete('/api/demande/admin/refus/film/${id}', function($id){
     $pdo=connectionBD();
     $requete = $pdo->prepare(
@@ -601,7 +617,6 @@ delete('/api/demande/admin/refus/film/${id}', function($id){
     header('Content-type: application/json');
     echo json_encode(["message" => "La demande a été refusée avec succès"]);
 });
-
 delete('/api/demande/admin/refus/cinema/${id}', function($id){
     $pdo=connectionBD();
     $requete = $pdo->prepare(
@@ -682,7 +697,6 @@ put('/api/films/update', function(){
     }
     $pdo=null;
 });
-
 put('/api/cinemas/update',function(){
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);

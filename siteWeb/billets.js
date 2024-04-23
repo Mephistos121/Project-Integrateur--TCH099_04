@@ -15,7 +15,13 @@ function afficherListeCinema(liste) {
     newCinema.textContent = cinema.nom_cinema + " " + cinema.emplacement;
     const newRepresentation = document.createElement("p");
     newRepresentation.textContent = cinema.temps;
+    newRepresentation.className = "representation";
     newRepresentation.addEventListener("click", () => {
+      const rep = document.getElementById("repchoisi");
+      if (rep !== null) {
+        rep.id = "";
+      }
+      newRepresentation.id = "repchoisi";
       fetchSalle(cinema.id);
     });
     listeC.append(newCinema);

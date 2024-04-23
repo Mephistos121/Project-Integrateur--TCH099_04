@@ -49,31 +49,31 @@
         <article class="form">
             <div>
                 <div id="error_code"></div>
-                    <form class="form_container">
-                        <div class="form_layout">
-                            <div class="title">Demande ajout d'un cinéma</div>
-                                <div>
-                                    <label for="creer_nom">Nom du cinéma</label>
-                                    <input id="creer_nom" class="input_container" type="text" name="creer_nom"
-                                        placeholder="Nom du cinéma" value="" required>
-                                </div>
-                                <div>
-                                    <label for="creer_image">Photo du cinéma</label>
-                                    <input id="creer_image" class="input_container" type="url" name="creer_image"
-                                        placeholder="image du cinéma ou logo" value="" required>
-                                </div>
-                                <div>
-                                    <label for="creer_emplacement">Emplacement</label>
-                                    <input id="creer_emplacement" class="input_container" type="text" name="creer_emplacement"
-                                        placeholder="emplacement" value="" required>
-                                </div>
-                            <div class="bouttons_form">
-                                <input id="creer_submit" class="edit_submit" type="button" value="Ajouter cinéma">
-                                <input class="edit_clear" type="reset" value="Effacer">
-                            </div>
+                <form class="form_container">
+                    <div class="form_layout">
+                        <div class="title">Demande ajout d'un cinéma</div>
+                        <div>
+                            <label for="creer_nom">Nom du cinéma</label>
+                            <input id="creer_nom" class="input_container" type="text" name="creer_nom"
+                                placeholder="Nom du cinéma" value="" required>
                         </div>
-                    </form>
-                </div>
+                        <div>
+                            <label for="creer_image">Photo du cinéma</label>
+                            <input id="creer_image" class="input_container" type="url" name="creer_image"
+                                placeholder="image du cinéma ou logo" value="" required>
+                        </div>
+                        <div>
+                            <label for="creer_emplacement">Emplacement</label>
+                            <input id="creer_emplacement" class="input_container" type="text" name="creer_emplacement"
+                                placeholder="emplacement" value="" required>
+                        </div>
+                        <div class="bouttons_form">
+                            <input id="creer_submit" class="edit_submit" type="button" value="Ajouter cinéma">
+                            <input class="edit_clear" type="reset" value="Effacer">
+                        </div>
+                    </div>
+                </form>
+            </div>
             </div>
         </article>
     </section>
@@ -102,22 +102,23 @@
                         </div>
                         <div>
                             <label for="creer_image_banniere">Bannière du film</label>
-                            <input id="creer_image_banniere" class="input_container" type="url" name="creer_imgae_banniere"
-                                placeholder="bannière du film">
+                            <input id="creer_image_banniere" class="input_container" type="url"
+                                name="creer_imgae_banniere" placeholder="bannière du film">
                         </div>
                         <div>
                             <label for="creer_description">Description du film</label>
-                            <textarea name="creer_description" id="creer_description" class="input_container" placeholder="description"></textarea>
+                            <textarea name="creer_description" id="creer_description" class="input_container"
+                                placeholder="description"></textarea>
                         </div>
                         <div>
                             <label for="creer_genre_principal">Genre principal</label>
-                            <input id="creer_genre_principal" class="input_container" type="text" name="creer_genre_principal"
-                                placeholder="genre principal" value="" required>
+                            <input id="creer_genre_principal" class="input_container" type="text"
+                                name="creer_genre_principal" placeholder="genre principal" value="" required>
                         </div>
                         <div>
                             <label for="creer_genre_secondaire">Genre secondaire</label>
-                            <input id="creer_genre_secondaire" class="input_container" type="text" name="creer_genre_secondaire"
-                                placeholder="genre secondaire" value="" required>
+                            <input id="creer_genre_secondaire" class="input_container" type="text"
+                                name="creer_genre_secondaire" placeholder="genre secondaire" value="" required>
                         </div>
                         <div>
                             <label for="creer_annee">Année de parution</label>
@@ -136,13 +137,13 @@
                         </div>
                         <div>
                             <label for="creer_acteur_principal">Acteur principal</label>
-                            <input id="creer_acteur_principal" class="input_container" type="text" name="creer_acteur_principal"
-                                placeholder="acteur principal" value="" required>
+                            <input id="creer_acteur_principal" class="input_container" type="text"
+                                name="creer_acteur_principal" placeholder="acteur principal" value="" required>
                         </div>
                         <div>
                             <label for="creer_acteur_secondaire">Acteur secondaire</label>
-                            <input id="creer_acteur_secondaire" class="input_container" type="text" name="creer_acteur_secondaire"
-                                placeholder="acteur secondaire" value="" required>
+                            <input id="creer_acteur_secondaire" class="input_container" type="text"
+                                name="creer_acteur_secondaire" placeholder="acteur secondaire" value="" required>
                         </div>
                         <div class="bouttons_form">
                             <input id="creer_film_submit" class="edit_submit" type="button" value="Ajouter film">
@@ -152,20 +153,21 @@
                 </form>
             </div>
         </article>
-        
-    
-         
+
+
+
     </section>
     <section id="ajout_representation_section">
         <article>
             <article class="liste">
                 <h2>Cinémas</h2>
-                <input type="text" id="recherche_cinema" placeholder="Rechercher par nom de cinéma" title="Entrez un nom">
+                <input type="text" id="recherche_cinema" placeholder="Rechercher par nom de cinéma"
+                    title="Entrez un nom">
                 <table class="table" id="table_cinema">
-                <tr class="header">
-                    <th style="width:60%;">Nom</th>
-                    <th style="width:40%;">Emplacement</th>
-                </tr>
+                    <tr class="header">
+                        <th style="width:60%;">Nom</th>
+                        <th style="width:40%;">Emplacement</th>
+                    </tr>
                 </table>
             </article>
             <article class="liste">
@@ -186,8 +188,8 @@
                     <div class="title">Ajout représentation à un cinéma</div>
                     <div>
                         <label for="creer_rep_film">Nom film</label>
-                        <input id="creer_rep_film" class="input_container" type="text" name="film"
-                            placeholder="Film" value="" required>
+                        <input id="creer_rep_film" class="input_container" type="text" name="film" placeholder="Film"
+                            value="" required>
                     </div>
                     <div>
                         <label for="creer_rep_cinema">Nom cinéma</label>
@@ -206,8 +208,8 @@
                     </div>
                     <div>
                         <label for="creer_rep_cinema">Coût du billet</label>
-                        <input id="creer_rep_cout" class="input_container" type="number" name="cout"
-                            placeholder="Coût" value="" required>
+                        <input id="creer_rep_cout" class="input_container" type="number" name="cout" placeholder="Coût"
+                            value="" required>
                     </div>
                     <div class="bouttons_form">
                         <input id="creer_rep_submit" class="edit_submit" type="button" value="Ajouter représentation">
@@ -215,7 +217,7 @@
                     </div>
                 </div>
             </form>
-    </article>
+        </article>
     </section>
     <script src="gestionnaire.js"></script>
 </body>

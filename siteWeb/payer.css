@@ -16,7 +16,7 @@
 
 }
 
-#form_container .section{
+#form_container .section {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -25,7 +25,7 @@
     padding: 5vw;
 }
 
-#form_container div div{
+#form_container div div {
     width: 25vw;
     padding: 2vw;
 }
@@ -63,7 +63,7 @@
 }
 
 /*Bouton*/
-#bouttons_form{
+#bouttons_form {
     display: flex;
     flex-direction: row;
     width: 30vw;
@@ -119,6 +119,10 @@
     margin: 0 10px;
     font-size: 1.4rem;
 }
+#account_link:hover {
+    color: gray;
+}
+
 
 /* Navbar Left */
 #nav_bar_list_container {
@@ -136,7 +140,7 @@
     display: flex;
     justify-content: space-between;
     list-style: none;
-    width: 28rem;
+    width: 14rem;
 }
 
 #nav_bar_list a {
@@ -147,17 +151,10 @@
     text-decoration: none;
     font-size: 1.25rem;
 }
-
-#search_bar {
-    width: 10rem;
-    height: 1.5rem;
-    color: black;
-    border-radius: 10px;
-    box-shadow: none;
-    border: none;
-    padding: 2px;
-    padding-left: 5%;
+#nav_bar_list a:hover {
+    color: gray;
 }
+
 
 
 /*Main Page*/

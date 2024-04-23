@@ -10,7 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.projetintegrateur_tch099.databinding.ActivityMainBinding;
+//import com.example.projetintegrateur_tch099.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainUserPage extends AppCompatActivity {

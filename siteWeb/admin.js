@@ -1,11 +1,11 @@
-window.addEventListener('load', (event1) => {
-    const btnTabAjoutFilm = document.querySelector("#tab_ajouter_film");
-    const btnTabModifFilm = document.querySelector("#tab_modifier_film");
-    const btnTabModifCinema = document.querySelector("#tab_modifier_cinema");
+window.addEventListener("load", (event1) => {
+  const btnTabAjoutFilm = document.querySelector("#tab_ajouter_film");
+  const btnTabModifFilm = document.querySelector("#tab_modifier_film");
+  const btnTabModifCinema = document.querySelector("#tab_modifier_cinema");
 
-    const tabAjouterFilm = document.querySelector("#ajouter_film");
-    const tabModifierFilm = document.querySelector("#modifier_film");
-    const tabModifierCinema = document.querySelector("#modifier_cinema");
+  const tabAjouterFilm = document.querySelector("#ajouter_film");
+  const tabModifierFilm = document.querySelector("#modifier_film");
+  const tabModifierCinema = document.querySelector("#modifier_cinema");
 
     const perms = cookieGetter("privilege");
     const sbutton = document.querySelector("#film_ajout");
@@ -29,12 +29,14 @@ window.addEventListener('load', (event1) => {
                 acteur_secondaire: document.querySelector("#creer_acteur_secondaire").value,
             };
 
-            let check = true;
-            Object.keys(info_film).forEach(element => {
-                if (info_film[element] === "") check = false;
-            });
-            check ? ajouterNouveauFilm(info_film) : alert("Veuillez entrer toutes les informations du compte");
-        });
+      let check = true;
+      Object.keys(info_film).forEach((element) => {
+        if (info_film[element] === "") check = false;
+      });
+      check
+        ? ajouterNouveauFilm(info_film)
+        : alert("Veuillez entrer toutes les informations du compte");
+    });
 
         ubutton.addEventListener("click", (event4) => {
             const id_film = new URLSearchParams(window.location.search).get("filmId");
@@ -144,151 +146,156 @@ async function ajouterNouveauFilm(film) {
 }
 
 async function fetchListeFilms() {
-    const filmResponse = await fetch("http://localhost/api/films")
-    const content = await filmResponse.json();
-    afficherListeFilm(content);
-    if (content.erreur) {
-        alert(content.erreur);
-    }
+  const filmResponse = await fetch("http://localhost/api/films");
+  const content = await filmResponse.json();
+  afficherListeFilm(content);
+  if (content.erreur) {
+    alert(content.erreur);
+  }
 }
 
 function afficherListeFilm(films) {
-    const itemList = document.querySelector("#liste_films");
-    films.forEach(element => {
-        const item = document.createElement("li");
-        const link = document.createElement("a");
-        link.href = "javascript:void(0)";
-        link.addEventListener("click", (event) => {
-            fetchFilm(element.id);
-            window.history.pushState(null, null, 'admin.html?filmId=' + element.id);
-        });
-        link.appendChild(document.createTextNode(element.nom_film));
-        item.appendChild(link);
-        itemList.appendChild(item);
+  const itemList = document.querySelector("#liste_films");
+  films.forEach((element) => {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = "javascript:void(0)";
+    link.addEventListener("click", (event) => {
+      fetchFilm(element.id);
+      window.history.pushState(null, null, "admin.html?filmId=" + element.id);
     });
+    link.appendChild(document.createTextNode(element.nom_film));
+    item.appendChild(link);
+    itemList.appendChild(item);
+  });
 }
 
 async function fetchFilm(id) {
-    const filmResponse = await fetch(`http://localhost/api/films/filmid/${id}`)
-    const film = await filmResponse.json();
-    updateFormFilm(film);
-    if (film.erreur) {
-        alert(film.erreur);
-    }
+  const filmResponse = await fetch(`http://localhost/api/films/filmid/${id}`);
+  const film = await filmResponse.json();
+  updateFormFilm(film);
+  if (film.erreur) {
+    alert(film.erreur);
+  }
 }
 
 function updateFormFilm(film) {
-    document.getElementById('update_nom_film').value = film.nom_film;
-    document.getElementById('update_image_film').value = film.image;
-    document.getElementById('update_image_banniere').value = film.image_banniere;
-    document.getElementById('update_description').value = film.description;
-    document.getElementById('update_genre_principal').value = film.genre_principal;
-    document.getElementById('update_genre_secondaire').value = film.genre_secondaire;
-    document.getElementById('update_annee').value = film.annee;
-    document.getElementById('update_duree').value = film.duree;
-    document.getElementById('update_realisateur').value = film.realisateur;
-    document.getElementById('update_acteur_principal').value = film.acteur_principal;
-    document.getElementById('update_acteur_secondaire').value = film.acteur_secondaire;
+  document.getElementById("update_nom_film").value = film.nom_film;
+  document.getElementById("update_image_film").value = film.image;
+  document.getElementById("update_image_banniere").value = film.image_banniere;
+  document.getElementById("update_description").value = film.description;
+  document.getElementById("update_genre_principal").value =
+    film.genre_principal;
+  document.getElementById("update_genre_secondaire").value =
+    film.genre_secondaire;
+  document.getElementById("update_annee").value = film.annee;
+  document.getElementById("update_duree").value = film.duree;
+  document.getElementById("update_realisateur").value = film.realisateur;
+  document.getElementById("update_acteur_principal").value =
+    film.acteur_principal;
+  document.getElementById("update_acteur_secondaire").value =
+    film.acteur_secondaire;
 }
 
 async function updateFilm(film) {
-    const filmResponse = await fetch(`http://localhost/api/films/update`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(film),
-    });
-    const content = await filmResponse.json();
-    console.log(content);
-    if (content.erreur) {
-        alert(content.erreur);
-    } else {
-        alert("Le film a été mis à jour avec succès");
-    }
+  const filmResponse = await fetch(`http://localhost/api/films/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(film),
+  });
+  const content = await filmResponse.json();
+  console.log(content);
+  if (content.erreur) {
+    alert(content.erreur);
+  } else {
+    alert("Le film a été mis à jour avec succès");
+  }
 }
 
 async function deleteFilm(film_id) {
-    const filmResponse = await fetch(`http://localhost/api/films/delete/${film_id}`, {
-        method: 'DELETE'
-    });
-    const content = await filmResponse.json();
-    console.log(content);
-    if (content.erreur) {
-        alert(content.erreur);
-    } else {
-        alert("Le film a été supprimé avec succès");
+  const filmResponse = await fetch(
+    `http://localhost/api/films/delete/${film_id}`,
+    {
+      method: "DELETE",
     }
+  );
+  const content = await filmResponse.json();
+  console.log(content);
+  if (content.erreur) {
+    alert(content.erreur);
+  } else {
+    alert("Le film a été supprimé avec succès");
+  }
 }
 
 async function fetchListeCinema() {
-    const cinemaResponse = await fetch("http://localhost/api/cinemas")
-    const content = await cinemaResponse.json();
-    afficherListeCinema(content);
-    if (content.erreur) {
-        alert(content.erreur);
-    }
+  const cinemaResponse = await fetch("http://localhost/api/cinemas");
+  const content = await cinemaResponse.json();
+  afficherListeCinema(content);
+  if (content.erreur) {
+    alert(content.erreur);
+  }
 }
 
 function afficherListeCinema(cinemas) {
-    const itemList = document.querySelector("#liste_cinemas");
-    cinemas.forEach(element => {
-        const item = document.createElement("li");
-        const link = document.createElement("a");
-        link.href = "javascript:void(0)";
-        link.addEventListener("click", (event) => {
-            fetchCinema(element.id);
-            window.history.pushState(null, null, 'admin.html?cinemaId=' + element.id);
-        });
-        link.appendChild(document.createTextNode(element.nom_cinema));
-        item.appendChild(link);
-        itemList.appendChild(item);
+  const itemList = document.querySelector("#liste_cinemas");
+  cinemas.forEach((element) => {
+    const item = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = "javascript:void(0)";
+    link.addEventListener("click", (event) => {
+      fetchCinema(element.id);
+      window.history.pushState(null, null, "admin.html?cinemaId=" + element.id);
     });
+    link.appendChild(document.createTextNode(element.nom_cinema));
+    item.appendChild(link);
+    itemList.appendChild(item);
+  });
 }
 
 async function fetchCinema(id) {
-    const cinemaResponse = await fetch(`http://localhost/api/cinemas/${id}`)
-    const cinema = await cinemaResponse.json();
-    console.log(cinema);
-    updateFormCinema(cinema);
-    if (cinema.erreur) {
-        alert(cinema.erreur);
-    }
+  const cinemaResponse = await fetch(`http://localhost/api/cinemas/${id}`);
+  const cinema = await cinemaResponse.json();
+  console.log(cinema);
+  updateFormCinema(cinema);
+  if (cinema.erreur) {
+    alert(cinema.erreur);
+  }
 }
 
 function updateFormCinema(cinema) {
-    document.getElementById('update_nom_cinema').value = cinema.nom_cinema;
-    document.getElementById('update_image_cinema').value = cinema.image;
-    document.getElementById('update_emplacement_cinema').value = cinema.emplacement;
+  document.getElementById("update_nom_cinema").value = cinema.nom_cinema;
+  document.getElementById("update_image_cinema").value = cinema.image;
+  document.getElementById("update_emplacement_cinema").value =
+    cinema.emplacement;
 }
 
 async function updateCinema(cinema) {
-    const cinemaResponse = await fetch(`http://localhost/api/cinemas/update`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(cinema),
-    });
-    const content = await cinemaResponse.json();
-    console.log(content);
-    if (content.erreur) {
-        alert(content.erreur);
-    } else {
-        alert("Le cinema a été mis à jour avec succès");
-    }
+  const cinemaResponse = await fetch(`http://localhost/api/cinemas/update`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(cinema),
+  });
+  const content = await cinemaResponse.json();
+  console.log(content);
+  if (content.erreur) {
+    alert(content.erreur);
+  } else {
+    alert("Le cinema a été mis à jour avec succès");
+  }
 }
 
-    function cookieGetter(name) {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            const [cookieName, cookieValue] = cookie.trim().split('=');
-            if (cookieName === name) {
-                return cookieValue;
-            }
-        }
-        return false;
+function cookieGetter(name) {
+  const cookies = document.cookie.split(";");
+  for (let cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.trim().split("=");
+    if (cookieName === name) {
+      return cookieValue;
     }
-
-
-
+  }
+  return false;
+}
