@@ -13,7 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 #form_container .section {
@@ -43,7 +42,6 @@
     width: 100%;
     margin-top: 30px;
 }
-
 
 .title {
     align-self: center;
@@ -124,7 +122,6 @@
     color: gray;
 }
 
-
 /* Navbar Left */
 #nav_bar_list_container {
     display: flex;
@@ -156,8 +153,6 @@
     color: gray;
 }
 
-
-
 #info_container{
     background-color: #303245;
     padding-right: 3rem;
@@ -166,7 +161,6 @@
     padding-top: 2rem;
     border-radius: 10px;
 }
-
 
 /*Main Page*/
 #main_container {
@@ -188,4 +182,4 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
   
-  }
+}
