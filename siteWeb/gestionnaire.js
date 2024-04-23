@@ -341,6 +341,7 @@ async function cinemaGetter(id) {
       retirerCinema();
     });
     button.textContent = "Retirer";
+    button.id = "retirer_cinema";
     divList.append(deleteContainer);
     deleteContainer.append(input);
     deleteContainer.append(button);
@@ -382,6 +383,7 @@ async function cinemaGetter(id) {
       retirerDemandeCinema();
     });
     button.textContent = "Retirer";
+    button.id = "retirer_cinema_demande";
     divList.append(deleteContainer);
     deleteContainer.append(input);
     deleteContainer.append(button);

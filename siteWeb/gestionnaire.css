@@ -1,6 +1,7 @@
 body {
   margin: 0px;
   background-color: #2b2b2e;
+  font-family: 'Roboto', sans-serif;
 }
 
 h2 {
@@ -368,4 +369,17 @@ section {
 
 #nav_bar_list a:hover {
   color: gray;
+}
+
+#cinema,#cinema2{
+  background-color: #303245;
+  color: white;
+  border: none;
+}
+
+#retirer_cinema,#retirer_cinema_demande{
+  background-color: lightgray;
+  color: black;
+  border: none;
+  border-radius: 0.25rem;
 }
