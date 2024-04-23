@@ -177,6 +177,7 @@
 
     <EditText
         android:id="@+id/input_date"
+        style="@style/base_normal_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -187,6 +188,7 @@
 
     <EditText
         android:id="@+id/input_num"
+        style="@style/base_normal_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -197,6 +199,7 @@
 
     <EditText
         android:id="@+id/input_code"
+        style="@style/base_normal_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"

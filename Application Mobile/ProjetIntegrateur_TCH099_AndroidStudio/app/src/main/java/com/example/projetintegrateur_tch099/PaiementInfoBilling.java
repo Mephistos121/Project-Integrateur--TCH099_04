@@ -17,7 +17,7 @@ public class PaiementInfoBilling extends AppCompatActivity {
     private Button backButton;
     private Film film;
     private Representation representation;
-    private int place;
+    private String place;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

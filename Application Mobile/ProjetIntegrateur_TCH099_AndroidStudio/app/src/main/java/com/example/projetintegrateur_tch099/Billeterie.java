@@ -26,7 +26,7 @@ public class Billeterie extends AppCompatActivity {
     private Button backButton;
     private Film film;
     private Representation representation;
-    private int place;
+    private String place;
 
 
     @Override
@@ -37,7 +37,6 @@ public class Billeterie extends AppCompatActivity {
 
         film = FilmChoisiSingleton.getInstance().getFilmChoisi();
 
-        Log.d("supra", film.getNom_film());
 
         backButton = findViewById(R.id.billetRetour);
         chosirButton = findViewById(R.id.billetChoix);
@@ -133,8 +132,8 @@ public class Billeterie extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Billeterie.this, PaiementInfoCarte.class);
-                //i.putExtra("representation",representation);
-                //i.putExtra("place",place);
+                i.putExtra("representation",representation);
+                i.putExtra("place",place);
                 startActivity(i);
             }
         });

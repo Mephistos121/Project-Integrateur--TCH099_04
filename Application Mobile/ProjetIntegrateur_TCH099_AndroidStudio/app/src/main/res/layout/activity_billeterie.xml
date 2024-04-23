@@ -140,8 +140,9 @@
 
     <TextView
         android:id="@+id/billetNomFilm"
+        style="@style/base_normal_text_style"
+        android:layout_marginStart="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        style="@style/base_normal_text_style" />
+        app:layout_constraintStart_toEndOf="@+id/textView9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
