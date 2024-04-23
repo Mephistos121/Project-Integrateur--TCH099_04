@@ -361,3 +361,7 @@ section {
 #effacer_ajout_film:hover, #creer_rep_submit:hover, #effacer_ajout_representation:hover {
   background-color: #6a6a6a;
 }
+
+#nav_bar_list a:hover {
+  color: gray;
+}
