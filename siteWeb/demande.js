@@ -314,7 +314,7 @@ async function accepterDemandeCinema(info) {
       enleverDemandeCinema(info);
     }
   }else{
-    alert("Ce cinéma existe déjà.");
+   actionReussi("Ce cinéma existe déjà.");
   }
 }
 
@@ -343,4 +343,12 @@ function cookieGetter(name) {
     }
   }
   return false;
+}
+function actionReussi(raison){
+  const div = document.querySelector("#banniere");
+  div.hidden = false;
+  div.innerText = raison;
+  setTimeout(() => {
+    div.hidden = true;
+  }, "5000");
 }

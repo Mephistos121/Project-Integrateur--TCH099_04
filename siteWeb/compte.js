@@ -101,8 +101,6 @@ function deconnecterUtilisateur() {
   document.cookie = "privilege=; Max-Age=-1; path=/;";
 
   window.location.href = "connexion.html";
-
-  alert("Vous avez été déconnecté.");
 }
 
 function fetchUserEmail(userID) {

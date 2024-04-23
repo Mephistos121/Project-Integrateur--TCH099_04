@@ -15,7 +15,7 @@ window.addEventListener("load", (event1) => {
     });
     check
       ? ajouterNouveauCompte(info_compte)
-      : alert("Veuillez entrer toutes les informations du compte");
+      : actionReussi("Veuillez entrez toutes les informations pour le compte");
   });
 
   let connecterButton = document.querySelector("#connecterButton");
@@ -25,7 +25,7 @@ window.addEventListener("load", (event1) => {
     if (identifiant && motDePasse) {
       seConnecter(identifiant, motDePasse);
     } else {
-      alert("Veuillez remplir tous les champs.");
+      actionReussi("Veuillez remplir tous les champs");
     }
   });
 
@@ -111,15 +111,15 @@ async function ajouterNouveauCompte(compte) {
           body: JSON.stringify(compte),
         });
         if (response.ok) {
-          alert("Success!");
+          actionReussi("Succès");
           document.querySelector("#creer_form").reset();
         } else {
-          alert("Le serveur à refuser");
+          actionReussi("Erreur du serveur, veuillez réessayer plus tard");
         }
       }
     });
   } else {
-    alert("Le courriel entrer n'est pas de la bonne forme.");
+    actionReussi("Ceci ne semble pas être un courriel valide");
   }
 }
 
@@ -141,7 +141,7 @@ async function seConnecter(courriel, mot_passe) {
       const responseData = await response.json();
       console.log(responseData);
       if (responseData === false) {
-        alert("Mauvais email ou mot de passe");
+        actionReussi("Mauvais email ou mot de passe");;
       } else {
         const d = new Date();
         d.setTime(d.getTime() + 24 * 60 * 60 * 1000); //le temps ajouté est égal à 1 jours. Multiplier par un nombre pour avoir +/- de jours
@@ -150,17 +150,17 @@ async function seConnecter(courriel, mot_passe) {
         document.cookie =
           "privilege=" + responseData.role + ";expires=" + d + "; path=/;";
 
-        alert("Vous êtes connecté.");
+          actionReussi("Vous êtes connecté");
         let url = window.location.toString();
         window.location = url.replace("compte.html", "connexion.html");
       }
     } else {
       console.error("Échec de la connexion");
-      alert("Échec de la connexion. Vérifiez vos identifiants.");
+      actionReussi("Échec de la connexion, veuillez vérifiez vos identifiants");
     }
   } catch (error) {
     console.error("Erreur lors de la connexion:", error);
-    alert("Erreur lors de la connexion. Veuillez réessayer plus tard.");
+    actionReussi("Erreur lors de la connexion. Veuillez réessayer plus tard.");
   }
 }
 
@@ -201,4 +201,12 @@ function makeSalt() {
     counter += 1;
   }
   return result;
+}
+function actionReussi(raison){
+  const div = document.querySelector("#banniere");
+  div.hidden = false;
+  div.innerText = raison;
+  setTimeout(() => {
+    div.hidden = true;
+  }, "5000");
 }
