@@ -1,6 +1,9 @@
 package com.example.projetintegrateur_tch099;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,8 +37,18 @@ public class showFilmCinemaSpecific extends AppCompatActivity {
 
         listOfMovies.setAdapter(adapter);
         listOfMovies.setClickable(true);
-
-
         cinemaName.setText(daoCinemaList.get(cinemaPosition).getNomCinema());
+
+        listOfMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(showFilmCinemaSpecific.this, DisplaySpecificMovie.class);
+
+                intent.putExtra("film",daoCinemaList.get(cinemaPosition).getListDeFilm().get(position));
+                startActivity(intent);
+            }
+        });
+
+
     }
 }
