@@ -4,6 +4,7 @@ window.addEventListener("load", (event1) => {
   let sbutton = document.querySelector("#payer_submit");
 
   sbutton.addEventListener("click", (event3) => {
+    let raison = "Veuillez remplir tous les champs";
     const info_paiement = {
       num_carte: document.querySelector("#num_carte").value,
       carte_date: document.querySelector("#carte_date").value,
@@ -17,23 +18,32 @@ window.addEventListener("load", (event1) => {
         .value,
       paiement_num_tel: document.querySelector("#paiement_num_tel").value,
     };
+    console.log(info_paiement.num_carte.length);
     let check = true;
     Object.keys(info_paiement).forEach((element) => {
       if (info_paiement[element] === "") check = false;
     });
-
-    if (
-      check &&
-      info_paiement.num_carte.length !== 9 &&
-      info_paiement.carte_code.length !== 3 &&
-      info_paiement.paiement_num_tel.length !== 10
-    ) {
+    if(info_paiement.paiement_code_postal.length !== 6){
+      raison += "Le code postal comporte 6 characteres ";
       check = false;
     }
-
+    if(info_paiement.num_carte.length !== 16){
+      raison += "Numéro de carte devrait être 16 chiffre ";
+      check = false;
+    }
+    if(info_paiement.carte_code.length < 3 || info_paiement.carte_code.length > 4){
+      console.log(info_paiement.carte_code);
+      raison += "CVV devrait avoir 3 ou 4 chiffres ";
+      check = false;
+    }
+    if (info_paiement.paiement_num_tel.length !== 10
+    ) {
+      raison += "Un numéro de téléphone comporte 10 chiffres. Ne pas mettre indicatif de pays ";
+      check = false;
+    }
     check
       ? ajouterBillet()
-      : alert("Veuillez remplir adequatement tous les champs.");
+      :  actionReussi(raison);
   });
 });
 
@@ -72,12 +82,19 @@ async function ajouterBDBillet(billet) {
     },
     body: JSON.stringify(billet),
   });
-  const message = await response.json();
-  if (message) {
-    alert("Success");
-  } else {
-    alert("Le serveur a refusé");
+  try {
+    const message = await response.json();
+    console.log(message[0]);
+    if (message[0]==null) {
+      actionReussi("Billet acheté");
+    } else {
+      actionReussi("Erreur serveur");
+    }
+  } catch (error) {
+    actionReussi("Erreur de l'achat du billet. Ce billet n'est peut-etre plus diponible.");
   }
+  
+  
 }
 
 async function afficherInfos() {
@@ -104,4 +121,12 @@ async function afficherInfos() {
   emplacement.textContent = "Emplacement : " + salle.emplacement;
   num_salle.textContent = "Numero de salle : " + salle.salle_id;
   cout.textContent = "Cout du billet : " + salle.cout + "$";
+}
+function actionReussi(raison){
+  const div = document.querySelector("#banniere");
+  div.hidden = false;
+  div.innerText = raison;
+  setTimeout(() => {
+    div.hidden = true;
+  }, "5000");
 }
