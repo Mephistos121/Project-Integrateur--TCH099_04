@@ -233,8 +233,7 @@ img {
     margin: 0;
     padding: 0;
 }
-
-.demande_liste a {
+a {
     text-decoration: none;
     color: white;
 }
