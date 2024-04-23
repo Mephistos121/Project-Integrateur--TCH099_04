@@ -10,7 +10,7 @@ function showFilms(films) {
         imgPoster.alt = film.nom_film;
         filmTitle.textContent = film.nom_film;
 
-        filmLink.href =`film.html?title=${film.id}`;
+        filmLink.href =`film.html?id=${film.id}`;
         filmLink.appendChild(imgPoster);
         filmLink.appendChild(filmTitle);
         filmListItem.appendChild(filmLink);
@@ -22,7 +22,7 @@ window.addEventListener("load", (event1) => {
     
     const myKeyValues = window.location.search;
     const typeParams = new URLSearchParams(myKeyValues);
-    const chosenCinemaId = typeParams.get("title");
+    const chosenCinemaId = typeParams.get("id");
     
     
 
@@ -31,7 +31,7 @@ window.addEventListener("load", (event1) => {
 });
 
 async function putCinemaName(cinemaId){
-    const responseCinema = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas/"+cinemaId);
+    const responseCinema = await fetch("http://equipe500.tch099.ovh/projet4/api/cinemas/"+cinemaId);
     const contenu = await responseCinema.json();
 
     const header = document.getElementById("index_header");
@@ -41,7 +41,7 @@ async function putCinemaName(cinemaId){
 }
 
 async function fetchAllFilm(cinemaId){
-    const responseFilm = await fetch("https://equipe500.tch099.ovh/projet4/api/films/"+cinemaId);
+    const responseFilm = await fetch("http://equipe500.tch099.ovh/projet4/api/films/"+cinemaId);
     const contenu = await responseFilm.json();
 
     showFilms(contenu);

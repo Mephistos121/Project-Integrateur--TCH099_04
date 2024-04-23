@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+/* Navbar Section */
+#nav_bar_home {
+    background-color: #161618;
+    color: white;
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    position: sticky;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    top: 0;
+    z-index: 999;
+}
+
+#nav_bar_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 2%;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#account_link {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.4rem;
+}
+
+#account_link:hover {
+    color: gray;
+}
+
+/* Navbar Left */
+#nav_bar_list_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* If you want space between items */
+    list-style-type: none;
+    /* This property doesn't apply to flex containers */
+    padding: 0;
+    margin: 0;
+}
+
+#nav_bar_list {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 12rem;
+}
+
+#nav_bar_list a {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+#nav_bar_list a:hover {
+    color: gray;
+}
+
+#choix_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #212124;
+    height: 90vh;
+}
+
+#choix_container h1 {
+    height: 20vh;
+}
+
+#choix_container div {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+#billets_container {
+    display: flex;
+    flex-direction: row;
+}
+
+#billets_container ul {
+    height: 20vh;
+    margin-bottom: 1rem;
+}
+
+#liste_place {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 15vw;
+}
+
+
+#liste_place a {
+    color: white;
+    cursor: pointer;
+    padding-bottom: 1rem;
+}
+
+
+#liste_place a:hover {
+    color: rgb(0, 157, 255);
+}
+
+p.representation {
+    text-align: center;
+    background: #5c6063;
+    background-image: -webkit-linear-gradient(top, #5c6063, #878787);
+    background-image: -moz-linear-gradient(top, #5c6063, #878787);
+    background-image: -ms-linear-gradient(top, #5c6063, #878787);
+    background-image: -o-linear-gradient(top, #5c6063, #878787);
+    background-image: linear-gradient(to bottom, #5c6063, #878787);
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+p.representation:hover {
+    background: gray;
+    background-image: -webkit-linear-gradient(top, lightgray, darkgray);
+    background-image: -moz-linear-gradient(top, lightgray, darkgray);
+    background-image: -ms-linear-gradient(top, lightgray, darkgray);
+    background-image: -o-linear-gradient(top, lightgray, darkgray);
+    background-image: linear-gradient(to bottom, lightgray, darkgray);
+    color: black;
+}
+
+p#repchoisi {
+    color: rgb(0, 157, 255);
+}
+
+#banniere_cinema {
+    width: 30vw;
+    padding: 5px;
+    background-color: grey;
+    margin-bottom: 0.5rem;
+}
+
+#banniere_representation {
+    width: 20vw;
+    padding: 5px;
+    background-color: grey;
+    margin-bottom: 0.5rem;
+}
+
+#banniere_place {
+    width: 20vw;
+    padding: 5px;
+    background-color: grey;
+    margin-bottom: 0.5rem;
+}
+
+#banniere_cout {
+    width: 8vw;
+    padding: 5px;
+    background-color: grey;
+    margin-bottom: 0.5rem;
+}

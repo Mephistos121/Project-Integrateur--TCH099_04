@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,8 +7,8 @@
 }
 
 /* Navbar Section */
-#nav_bar_home{
-    background-color: 	#161618;
+#nav_bar_home {
+    background-color: #161618;
     color: white;
     height: 10vh;
     width: 100%;
@@ -20,14 +20,23 @@
     top: 0;
     z-index: 999;
 }
-#nav_bar_container{
+
+#nav_bar_container {
     display: flex;
     justify-content: space-between;
     padding: 0% 2%;
     margin: 0 auto;
     width: 100%;
 }
-#account_link{
+
+#account_link {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.4rem;
+}
+
+#account_info {
     color: white;
     text-decoration: none;
     margin: 0 10px;
@@ -38,20 +47,23 @@
 #nav_bar_list_container {
     display: flex;
     align-items: center;
-    justify-content: space-evenly; /* If you want space between items */
-    list-style-type: none; /* This property doesn't apply to flex containers */
+    justify-content: left;
+    /* If you want space between items */
+    list-style-type: none;
+    /* This property doesn't apply to flex containers */
     padding: 0;
     margin: 0;
 }
 
 #nav_bar_list {
     display: flex;
-    justify-content: space-between; 
+    justify-content: left;
+    gap: 10%;
     list-style: none;
     width: 28rem;
 }
 
-#nav_bar_list a{
+#nav_bar_list a {
     color: white;
     display: flex;
     align-items: center;
@@ -60,36 +72,15 @@
     font-size: 1.25rem;
 }
 
-#search_bar{
-    width: 10rem;
-    height: 1.5rem;
-    color: black;
-    border-radius: 10px;
-    box-shadow: none;
-    border: none;
-    padding: 2px;
-    padding-left: 5%;
-}
-#dropdown_menu{
-    color: black;
-    border-radius: 10px;
-    box-shadow: none;
-    background-color: white;
-    border: none;
-    height: 1.5rem;
-    padding: 2px;
-    padding-left: 5%;
-}
-
 /* Featured Movie Section */
 
-#featured_index_container{
+#featured_index_container {
     max-width: 100%;
     margin: 0 auto;
-    background-color:  	#212124;
+    background-color: #212124;
 }
 
-#featured_index_slider{
+#featured_index_slider {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -100,17 +91,17 @@
     scrollbar-width: none;
 }
 
-#featured_index_slider img{
+#featured_index_slider img {
     scroll-snap-align: start;
     flex: 1 0 100%;
     object-fit: cover;
 }
 
-#featured_index_slider::-webkit-scrollbar{
+#featured_index_slider::-webkit-scrollbar {
     display: none;
 }
 
-#slider_nav{
+#slider_nav {
     display: flex;
     column-gap: 1rem;
     position: absolute;
@@ -119,7 +110,8 @@
     transform: translateX(-50%);
     z-index: 1;
 }
-#slider_nav a{
+
+#slider_nav a {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
@@ -128,19 +120,19 @@
     transition: opacity ease 250ms;
 }
 
-#slider_nav a:hover{
+#slider_nav a:hover {
     opacity: 1;
 }
 
 /* Movie Section */
-#index_container{
+#index_container {
     display: inline-block;
     padding: 5rem 0;
-    background-color:  	#212124;
+    background-color: #212124;
     width: 100%;
 }
 
-#index_container h1{
+#index_container h1 {
     text-align: center;
     margin-bottom: 2rem;
 }
@@ -159,39 +151,39 @@
 }
 
 
-#index_list a{
+#index_list a {
     text-decoration: none;
     color: black;
     text-align: center;
     font-size: 1.5rem;
 }
 
-#index_list li{
-    width : 18rem;
+#index_list li {
+    width: 18rem;
     height: 26rem;
 }
 
-#index_list li img{
-    width : 16rem;
+#index_list li img {
+    width: 16rem;
     height: 24rem;
 }
 
-#index_list li:hover img{
+#index_list li:hover img {
     outline-offset: -0.25rem;
     outline: 0.25rem solid #0e57aa;
 }
 
 /*Movie Page*/
-#movie_container{
+#movie_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color:  	#212124;
+    background-color: #212124;
     padding-bottom: 3rem;
 }
 
-#movie_trailer_container{
+#movie_trailer_container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,7 +191,7 @@
     padding-bottom: 2rem;
 }
 
-#movie_trailer_container img{
+#movie_trailer_container img {
     height: 50%;
     object-fit: cover;
 }
@@ -213,7 +205,8 @@
 }
 
 #movie_poster_container {
-    margin-right: 20px; /* Adjust as needed */
+    margin-right: 20px;
+    /* Adjust as needed */
 }
 
 #movie_info_and_ticket_container {
@@ -253,13 +246,13 @@
     text-decoration: underline;
 }
 
-#movie_show_more_container{
+#movie_show_more_container {
     display: none;
 }
 
-.movie_info{
-padding-right: 1rem;
-padding-bottom: 1rem;
+.movie_info {
+    padding-right: 1rem;
+    padding-bottom: 1rem;
 }
 
 .movie_info_container {
@@ -269,7 +262,56 @@ padding-bottom: 1rem;
     gap: 10px;
 }
 
-.movie_span{
+.movie_span {
     font-size: 1.5rem;
     width: 70%;
+}
+
+#featured_film_0,
+#featured_film_1,
+#featured_film_2 {
+    max-width: 1000px;
+    max-height: 400px;
+}
+
+#banniere_image {
+    max-width: 1000px;
+    max-height: 400px;
+}
+
+#image {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+ul#index_list li {
+    display: block;
+}
+
+#recherche {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 1%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+#recherche_film {
+    color: black;
+    width: 50%;
+    max-height: fit-content;
+    font-size: 3rem;
+    border-radius: 10px;
+}
+
+#account_link:hover {
+    color: gray;
+}
+
+
+#nav_bar_list a:hover {
+    color: gray;
 }

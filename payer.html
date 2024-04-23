@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="payer.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav id="nav_bar_home">
+        <div id="nav_bar_container">
+            <div id="nav_bar_list_container">
+                <ul id="nav_bar_list">
+                    <li><a href="index.html?type=cinemas">Cinémas</a></li>
+                    <li><a href="index.html?type=films">Films</a></li>
+                </ul>
+            </div>
+            <a id="account_link" href="connexion.html">Compte</a>
+        </div>
+    </nav>
+    <div id="main_container">
+        <div id="info_container">
+            <p class="title">Informations du billet</p>
+            <div id="info_billet">
+                <p id="billet_place"></p>
+                <p id="billet_nom_film"></p>
+                <p id="billet_nom_cinema"></p>
+                <p id="billet_emplacement"></p>
+                <p id="billet_num_salle"></p>
+                <p id="billet_cout"></p>
+            </div>
+        </div>
+        <form id="form_container">
+            <p class="title" id="paiement_titre">Mode de paiement</p>
+            <div class="section">
+                <div>
+                    <label for="num_carte">Numero de carte</label>
+                    <input id="num_carte" class="paiement_input" type="number" name="num_carte"
+                        placeholder="Numero de carte" value="" required>
+                </div>
+
+                <div>
+                    <label for="carte_date">Date de carte</label>
+                    <input id="carte_date" class="paiement_input" type="date" name="carte_date" value="" required>
+                </div>
+
+                <div>
+                    <label for="carte_code">Code de carte</label>
+                    <input id="carte_code" class="paiement_input" type="number" name="carte_code"
+                        placeholder="Code de securite" value="" required>
+                </div>
+            </div>
+            <p class="title" id="facturation_titre">Donne de facturation</p>
+            <div class="section">
+
+                <div>
+                    <label for="paiement_nom">Nom</label>
+                    <input id="paiement_nom" class="paiement_input" type="text" name="paiement_nom" placeholder="Nom"
+                        value="" required>
+                </div>
+
+                <div>
+                    <label for="paiement_prenom">Prenom</label>
+                    <input id="paiement_prenom" class="paiement_input" type="text" name="paiement_prenom"
+                        placeholder="Prenom" value="" required>
+                </div>
+
+                <div>
+                    <label for="paiement_adresse">Adresse</label>
+                    <input id="paiement_adresse" class="paiement_input" type="text" name="paiement_adresse"
+                        placeholder="Adresse" value="" required>
+                </div>
+
+                <div>
+                    <label for="paiement_ville">Ville</label>
+                    <input id="paiement_ville" class="paiement_input" type="text" name="paiement_ville"
+                        placeholder="Ville" value="" required>
+                </div>
+
+                <div>
+                    <label for="paiement_pays">Pays</label>
+                    <input id="paiement_pays" class="paiement_input" type="text" name="paiement_pays" placeholder="Pays"
+                        value="" required>
+                </div>
+
+                <div>
+                    <label for="paiement_code_postal">Code Postal</label>
+                    <input id="paiement_code_postal" class="paiement_input" type="text" name="paiement_code_postal"
+                        placeholder="Code postal" value="" required>
+                </div>
+
+                <div>
+                    <label for="paiement_num_tel">Numero de telephone</label>
+                    <input id="paiement_num_tel" class="paiement_input" type="number" name="paiement_num_tel"
+                        placeholder="Numero de telephone" value="" required>
+                </div>
+            </div>
+            <div id="banniere" hidden>Succès</div>
+            <div id="bouttons_form">
+                <input id="payer_submit" class="button_card" type="button" value="Payer">
+                <input class="button_card" type="reset" value="Effacer">
+            </div>
+        </form>
+    </div>
+    <script src="payer.js"></script>
+</body>
+
+</html>
