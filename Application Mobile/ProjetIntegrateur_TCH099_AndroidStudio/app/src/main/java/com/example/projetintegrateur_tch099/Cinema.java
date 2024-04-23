@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class Cinema {
 
-    int id;
+    private int id;
     String nomCinema;
     String image;
     String localisation;
@@ -40,8 +40,8 @@ public class Cinema {
             public void onResponse(JSONArray jsonArray) {
 
                 if(jsonArray.length() < 1){
-                    Film noFilm = new Film("No movies","https://qph.cf2.quoracdn.net/main-qimg-0125930b81781949d403335295f19b04"
-                            ,"There are no current movies for this cienema");
+                    Film noFilm = new Film(-1,"No movies","https://qph.cf2.quoracdn.net/main-qimg-0125930b81781949d403335295f19b04"
+                            ,"Il n'y a pas de film pour ce cinema");
                     listDeFilm.add(noFilm);
 
                 }else {
@@ -49,7 +49,7 @@ public class Cinema {
                         try {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                            Film film = new Film(jsonObject.getString("nom_film"),jsonObject.getString("image")
+                            Film film = new Film(jsonObject.getInt("id"),jsonObject.getString("nom_film"),jsonObject.getString("image")
                                     , jsonObject.getString("description"));
                             listDeFilm.add(film);
 

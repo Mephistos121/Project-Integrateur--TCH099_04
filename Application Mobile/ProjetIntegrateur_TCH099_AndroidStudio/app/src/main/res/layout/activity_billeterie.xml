@@ -10,11 +10,11 @@
 
     <TextView
         android:id="@+id/titre_billets"
+        style="@style/base_title_text_style"
         android:text="Choix du billet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/base_title_text_style" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titreBilletCinema"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginBottom="520dp"
+        android:layout_marginBottom="450dp"
         android:text="Cinema"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="270dp"
-        android:layout_marginBottom="520dp"
+        android:layout_marginBottom="450dp"
         android:text="Representation"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -60,6 +60,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/textbox_backroung_spinner_edges"
+        android:popupBackground="@color/gray"
         app:layout_constraintStart_toStartOf="@+id/titreBilletCinema"
         app:layout_constraintTop_toBottomOf="@+id/titreBilletCinema" />
 
@@ -70,6 +71,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/textbox_backroung_spinner_edges"
+        android:popupBackground="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/titreRepresentation"
         app:layout_constraintTop_toBottomOf="@+id/titreRepresentation" />
@@ -87,6 +89,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/textbox_backroung_spinner_edges"
+        android:popupBackground="@color/gray"
         app:layout_constraintStart_toStartOf="@+id/titreBilletCinema"
         app:layout_constraintTop_toBottomOf="@+id/titrePlaces" />
 
@@ -97,12 +100,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/textbox_backroung_gray_white_edges"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/titreRepresentation"
         app:layout_constraintTop_toBottomOf="@+id/titreCout" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/billetChoix"
         style="@style/bouton_base_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -122,5 +126,22 @@
         android:text="@string/retour"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/base_subtitle_text_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:text="Nom film :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titre_billets" />
+
+    <TextView
+        android:id="@+id/billetNomFilm"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        style="@style/base_normal_text_style" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
