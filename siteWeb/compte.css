@@ -179,7 +179,7 @@ button {
     border-radius: 12px;
     border: 0;
     box-sizing: border-box;
-    color: white;
+    color: black;
     font-size: 15px;
     height: 2em;
     outline: 0;
@@ -204,9 +204,6 @@ button {
 #changeCourrielButton:hover {
     background-color: #444444;
 }
-
-/*hover suplementaires*/
-
 
 #nav_bar_list a:hover {
     color: gray;

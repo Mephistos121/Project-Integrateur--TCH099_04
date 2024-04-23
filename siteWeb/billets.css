@@ -72,9 +72,6 @@
     color: gray;
 }
 
-
-
-
 #choix_container {
     display: flex;
     flex-direction: column;
@@ -89,8 +86,8 @@
 }
 
 #choix_container div {
-    padding-right: 3rem;
-    padding-left: 3rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 
 #billets_container {
@@ -98,12 +95,9 @@
     flex-direction: row;
 }
 
-#billets_container h2 {
-    height: 10vh;
-}
-
 #billets_container ul {
     height: 20vh;
+    margin-bottom: 1rem;
 }
 
 #liste_place {
@@ -117,11 +111,12 @@
 #liste_place a {
     color: white;
     cursor: pointer;
+    padding-bottom: 1rem;
 }
 
 
 #liste_place a:hover {
-    color: gray;
+    color: rgb(0, 157, 255);
 }
 
 p.representation {
@@ -146,9 +141,33 @@ p.representation:hover {
     background-image: -ms-linear-gradient(top, gray, darkgray);
     background-image: -o-linear-gradient(top, gray, darkgray);
     background-image: linear-gradient(to bottom, gray, darkgray);
-    color: gray;
+    color: black;
 }
 
 p#repchoisi {
-    color: lightskyblue;
+    color: rgb(0, 157, 255);
+}
+
+#banniere_cinema {
+    width: 30vw;
+    padding: 5px;
+    background-color: grey;
+}
+
+#banniere_representation {
+    width: 20vw;
+    padding: 5px;
+    background-color: grey;
+}
+
+#banniere_place {
+    width: 20vw;
+    padding: 5px;
+    background-color: grey;
+}
+
+#banniere_cout {
+    width: 8vw;
+    padding: 5px;
+    background-color: grey;
 }
