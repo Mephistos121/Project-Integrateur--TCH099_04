@@ -136,11 +136,11 @@ p.representation {
 
 p.representation:hover {
     background: gray;
-    background-image: -webkit-linear-gradient(top, gray, darkgray);
-    background-image: -moz-linear-gradient(top, gray, darkgray);
-    background-image: -ms-linear-gradient(top, gray, darkgray);
-    background-image: -o-linear-gradient(top, gray, darkgray);
-    background-image: linear-gradient(to bottom, gray, darkgray);
+    background-image: -webkit-linear-gradient(top, lightgray, darkgray);
+    background-image: -moz-linear-gradient(top, lightgray, darkgray);
+    background-image: -ms-linear-gradient(top, lightgray, darkgray);
+    background-image: -o-linear-gradient(top, lightgray, darkgray);
+    background-image: linear-gradient(to bottom, lightgray, darkgray);
     color: black;
 }
 
@@ -152,22 +152,26 @@ p#repchoisi {
     width: 30vw;
     padding: 5px;
     background-color: grey;
+    margin-bottom: 0.5rem;
 }
 
 #banniere_representation {
     width: 20vw;
     padding: 5px;
     background-color: grey;
+    margin-bottom: 0.5rem;
 }
 
 #banniere_place {
     width: 20vw;
     padding: 5px;
     background-color: grey;
+    margin-bottom: 0.5rem;
 }
 
 #banniere_cout {
     width: 8vw;
     padding: 5px;
     background-color: grey;
+    margin-bottom: 0.5rem;
 }
