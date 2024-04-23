@@ -170,7 +170,7 @@
 
 #index_list li:hover img {
     outline-offset: -0.25rem;
-    outline: 0.25rem solid #0e57aa;
+    outline: 0.4rem solid rgb(255, 163, 77);
 }
 
 /*Movie Page*/
