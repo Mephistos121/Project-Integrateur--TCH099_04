@@ -5,7 +5,7 @@ public class FilmChoisiSingleton {
     private static FilmChoisiSingleton filmChoisiSingleton;
 
     private FilmChoisiSingleton(){
-        filmChoisi=new Film(-1,"Aucun film choisi","Aucun film choisi","Aucun film choisi");
+        filmChoisi=new Film(-999,"Aucun film choisi","Aucun film choisi","Aucun film choisi");
     }
 
     public static synchronized FilmChoisiSingleton getInstance(){

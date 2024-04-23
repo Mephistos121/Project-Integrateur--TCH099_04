@@ -352,3 +352,7 @@ body {
   padding-bottom: 1rem;
   z-index: 1000;
 }
+
+#nav_bar_list a:hover {
+  color: gray;
+}

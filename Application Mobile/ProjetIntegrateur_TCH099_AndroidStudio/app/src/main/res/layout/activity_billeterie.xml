@@ -22,45 +22,48 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginBottom="450dp"
+        android:layout_marginTop="30dp"
         android:text="Cinema"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/titreRepresentation"
         style="@style/base_subtitle_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="270dp"
-        android:layout_marginBottom="450dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
         android:text="Representation"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/billetCinema" />
 
     <TextView
         android:id="@+id/titreCout"
         style="@style/base_subtitle_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="270dp"
+        android:layout_marginTop="20dp"
         android:text="Cout"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/titreRepresentation"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/billetRepresentation" />
 
     <Spinner
         android:id="@+id/billetCinema"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/textbox_backroung_spinner_edges"
         android:popupBackground="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/titreBilletCinema"
         app:layout_constraintTop_toBottomOf="@+id/titreBilletCinema" />
 
@@ -68,7 +71,7 @@
         android:id="@+id/billetRepresentation"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/textbox_backroung_spinner_edges"
         android:popupBackground="@color/gray"
@@ -79,9 +82,10 @@
     <TextView
         android:id="@+id/titrePlaces"
         style="@style/base_subtitle_text_style"
+        android:layout_marginTop="20dp"
         android:text="Places"
         app:layout_constraintStart_toStartOf="@+id/titreBilletCinema"
-        app:layout_constraintTop_toBottomOf="@+id/billetCinema" />
+        app:layout_constraintTop_toBottomOf="@+id/billetRepresentation" />
 
     <Spinner
         android:id="@+id/choixPlace"
@@ -102,7 +106,7 @@
         android:background="@drawable/textbox_backroung_gray_white_edges"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/titreRepresentation"
+        app:layout_constraintStart_toStartOf="@+id/titreCout"
         app:layout_constraintTop_toBottomOf="@+id/titreCout" />
 
     <Button

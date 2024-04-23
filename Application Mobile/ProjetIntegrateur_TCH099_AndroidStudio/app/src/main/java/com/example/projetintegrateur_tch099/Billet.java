@@ -8,13 +8,9 @@ public class Billet {
     int cinemaId;
     String place;
 
-    Billet(int id, int cinemaId, String place, Context context){
+    Billet(int id, int cinemaId, String place){
         this.id=id;
         this.cinemaId=cinemaId;
         this.place=place;
-        fetchAllBillets(context);
-    }
-
-    private void fetchAllBillets(Context context) {
     }
 }
