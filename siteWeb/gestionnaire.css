@@ -336,3 +336,11 @@ section {
   padding-bottom: 1rem;
 
 }
+
+#table_cinema tr:hover {
+  cursor: pointer;
+}
+
+#table_film tr:hover {
+  cursor: pointer;
+}

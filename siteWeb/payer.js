@@ -87,6 +87,7 @@ async function ajouterBDBillet(billet) {
     console.log(message[0]);
     if (message[0]==null) {
       actionReussi("Billet acheté");
+      window.location.href = "compte.html";
     } else {
       actionReussi("Erreur serveur");
     }
