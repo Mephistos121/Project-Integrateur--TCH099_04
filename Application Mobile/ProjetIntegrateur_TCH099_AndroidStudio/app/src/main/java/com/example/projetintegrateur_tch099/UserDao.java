@@ -34,11 +34,12 @@ public class UserDao {
         this.userId = userId;
         this.nomUsager = nomUsager;
         this.email = email;
+        listDeBillet = new ArrayList<>();
         fetchAllBillet(context);
     }
 
     public String getBilletTest(){
-        return  listDeBillet.get(0).toString();
+        return  "HELLO";
     }
 
 

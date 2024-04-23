@@ -31,6 +31,7 @@ public class MainUserPage extends AppCompatActivity {
 
         UserDao userDao = UserDao.getInstance(1,"tomdup","error", getApplicationContext());
 
+
         tmpTextView.setText(userDao.getBilletTest());
 
         bottomNavigationView.setOnItemSelectedListener(item ->{

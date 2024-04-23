@@ -120,14 +120,9 @@ public class LogingPage extends AppCompatActivity {
                 try {
                     UserDao userDao = UserDao.getInstance(jsonObject.getInt("id"),jsonObject.getString("nom_usager"),jsonObject.getString("email"),context);
 
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent i = new Intent(LogingPage.this, MainUserPage.class);
-                            startActivity(i);
-                        }
-                    }, 1000);
+                    Intent i = new Intent(LogingPage.this, MainUserPage.class);
+                    startActivity(i);
+
                 } catch (JSONException e) {
                     Toast.makeText(LogingPage.this, "Error with parsing", Toast.LENGTH_LONG).show();
                 }
