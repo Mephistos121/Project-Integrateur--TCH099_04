@@ -18,10 +18,10 @@ function afficherListeCinema(liste) {
     newRepresentation.className = "representation";
     newRepresentation.addEventListener("click", () => {
       const rep = document.getElementById("repchoisi");
-      if (rep !== null){
+      if (rep !== null) {
         rep.id = "";
       }
-      newRepresentation.id="repchoisi";
+      newRepresentation.id = "repchoisi";
       fetchSalle(cinema.id);
     });
     listeC.append(newCinema);

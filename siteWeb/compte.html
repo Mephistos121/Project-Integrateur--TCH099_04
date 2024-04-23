@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="compte.css">
     <title>Document</title>
 </head>
+
 <body>
     <nav id="nav_bar_home">
         <div id="nav_bar_container">
@@ -13,7 +15,6 @@
                 <ul id="nav_bar_list">
                     <li><a href="index.html?type=cinemas">Cinémas</a></li>
                     <li><a href="index.html?type=films">Films</a></li>
-                    <li><input id="search_bar" type="text" placeholder="Rechercher"></li>
                     <li><a id="menuGestionnaire" href="gestionnaire.html">Menu Gestionnaire</a></li>
                     <li><a id="menuAdmin" href="admin.html">Menu Admin</a></li>
                 </ul>
@@ -34,14 +35,17 @@
                     <form class="form_container">
                         <div class="form_layout">
                             <div>
-                                <input id = "connecterAncienCourriel" class = "input_container"  type="text" name="connecterAncienCourriel" placeholder="Ancien courriel" value="" required>
+                                <input id="connecterAncienCourriel" class="input_container" type="text"
+                                    name="connecterAncienCourriel" placeholder="Ancien courriel" value="" required>
                             </div>
                             <div>
-                                <input id = "connecterNouveauCourriel" class = "input_container"  type="text" name="connecterNouveauCourriel" placeholder="Nouveau courriel" value="" required>
-                            </div>            
+                                <input id="connecterNouveauCourriel" class="input_container" type="text"
+                                    name="connecterNouveauCourriel" placeholder="Nouveau courriel" value="" required>
+                            </div>
                             <div>
-                                <input id = "connecter_pass" class = "input_container"  type="password" name="connecter_pass" placeholder="Mot de Passe" value="" required>
-                            </div>   
+                                <input id="connecter_pass" class="input_container" type="password" name="connecter_pass"
+                                    placeholder="Mot de Passe" value="" required>
+                            </div>
                             <div class="buttons_form">
                                 <input id="changeCourrielButton" class="button_card" type="button" value="Confirmer">
                             </div>
@@ -53,14 +57,19 @@
                     <form class="form_container">
                         <div class="form_layout">
                             <div>
-                                <input id = "connecterCourriel" class = "input_container"  type="text" name="connecterAncienCourriel" placeholder="Ancien courriel" value="" required>
+                                <input id="connecterCourriel" class="input_container" type="text"
+                                    name="connecterAncienCourriel" placeholder="Ancien courriel" value="" required>
                             </div>
                             <div>
-                                <input id = "connecterAncienMotDePasse" class = "input_container"  type="password" name="connecterAncienMotDePasse" placeholder="Ancien Mot de Passe" value="" required>
-                            </div>            
+                                <input id="connecterAncienMotDePasse" class="input_container" type="password"
+                                    name="connecterAncienMotDePasse" placeholder="Ancien Mot de Passe" value=""
+                                    required>
+                            </div>
                             <div>
-                                <input id = "connecterNouveauMotDePasse" class = "input_container"  type="password" name="connecterNouveauMotDePasse" placeholder="Nouveau Mot de Passe" value="" required>
-                            </div>   
+                                <input id="connecterNouveauMotDePasse" class="input_container" type="password"
+                                    name="connecterNouveauMotDePasse" placeholder="Nouveau Mot de Passe" value=""
+                                    required>
+                            </div>
                             <div class="buttons_form">
                                 <input id="changeMotDePasseButton" class="button_card" type="button" value="Confirmer">
                             </div>
@@ -69,7 +78,7 @@
                 </div>
                 <button id="supprimerButton">Supprimer Compte</button>
             </div>
-        </div> 
+        </div>
         <div id="billet_container">
             <h2>Billets</h2>
             <table id="billet_table">
@@ -86,8 +95,9 @@
                 <tbody>
                 </tbody>
             </table>
-        </div>    
-    </div>  
+        </div>
+    </div>
     <script src="compte.js"></script>
 </body>
+
 </html>
