@@ -51,7 +51,8 @@
     font-family: sans-serif;
     font-size: 28px;
     font-weight: 600;
-    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 2rem;
 }
 
 /* info*/
@@ -155,6 +156,16 @@
     color: gray;
 }
 
+
+
+#info_container{
+    background-color: #303245;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+    padding-top: 2rem;
+    border-radius: 10px;
+}
 
 
 /*Main Page*/
