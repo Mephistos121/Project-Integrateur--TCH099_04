@@ -30,7 +30,7 @@ public class CinemaDao {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                         Cinema cinema = new Cinema(jsonObject.getInt("id"), jsonObject.getString("nom_cinema"),
-                                jsonObject.getString("image"), jsonObject.getString("localisation"), context);
+                                jsonObject.getString("image"), jsonObject.getString("emplacement"), context);
                         cinemas.add(cinema);
 
 
