@@ -29,6 +29,7 @@ function checkRemoteFile($url){
 //Demandes
 
 //GET
+get('/projet4', 'index.html');
 get('/projet4/api/comptes', function () {
     $pdo=connectionBD();
  

@@ -125,7 +125,7 @@ function afficherListePlace(billets, liste, cout, repid) {
 
 async function fetchCinema(filmid) {
   const responseCinemas = await fetch(
-    "http://localhost/api/cinemas/film/" + filmid
+    "https://equipe500.tch099.ovh/projet4/api/cinemas/film/" + filmid
   );
   const liste = await responseCinemas.json();
 
@@ -134,7 +134,7 @@ async function fetchCinema(filmid) {
 
 async function fetchSalle(repid) {
   const responseFilm = await fetch(
-    "http://localhost/api/salle/representation/" + repid
+    "https://equipe500.tch099.ovh/projet4/api/salle/representation/" + repid
   );
   const salle = await responseFilm.json();
   const liste = salle.sieges.split(",");
@@ -143,7 +143,7 @@ async function fetchSalle(repid) {
 
 async function fetchBillets(liste, cout, repid) {
   const responseBillets = await fetch(
-    "http://localhost/api/billets/represention/" + repid
+    "https://equipe500.tch099.ovh/projet4/api/billets/represention/" + repid
   );
   console.log(repid);
   const billets = await responseBillets.json();

@@ -74,7 +74,7 @@ function cookieGetter(name) {
 }
 
 async function ajouterBDBillet(billet) {
-  const response = await fetch("http://localhost/api/billets/ajout", {
+  const response = await fetch("https://equipe500.tch099.ovh/projet4/api/billets/ajout", {
     method: "POST",
 
     headers: {
@@ -104,7 +104,7 @@ async function afficherInfos() {
   const repid = typeParams.get("id");
 
   const responseFilm = await fetch(
-    "http://localhost/api/representation/" + repid
+    "https://equipe500.tch099.ovh/projet4/api/representation/" + repid
   );
   const salle = await responseFilm.json();
 

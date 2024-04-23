@@ -118,14 +118,14 @@ window.addEventListener("load", (event1) => {
   });
   
   async function ajouterNouveauFilm(film) {
-      const filmList = await fetch("http://localhost/api/films")
+      const filmList = await fetch("https://equipe500.tch099.ovh/projet4/api/films")
       const response = await filmList.json();
       let check = true;
       response.forEach(element => {
           if (element.nom_film.toLowerCase().replace(/\s/g, '') === film.nom_film.toLowerCase().replace(/\s/g, '')) check = false;
       });
       if (check) {
-          const filmResponse = await fetch("http://localhost/api/films/ajout", {
+          const filmResponse = await fetch("https://equipe500.tch099.ovh/projet4/api/films/ajout", {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ window.addEventListener("load", (event1) => {
   }
   
   async function fetchListeFilms() {
-    const filmResponse = await fetch("http://localhost/api/films");
+    const filmResponse = await fetch("https://equipe500.tch099.ovh/projet4/api/films");
     const content = await filmResponse.json();
     afficherListeFilm(content);
     if (content.erreur) {
@@ -171,7 +171,7 @@ window.addEventListener("load", (event1) => {
   }
   
   async function fetchFilm(id) {
-    const filmResponse = await fetch(`http://localhost/api/films/filmid/${id}`);
+    const filmResponse = await fetch(`https://equipe500.tch099.ovh/projet4/api/films/filmid/${id}`);
     const film = await filmResponse.json();
     updateFormFilm(film);
     if (film.erreur) {
@@ -198,7 +198,7 @@ window.addEventListener("load", (event1) => {
   }
   
   async function updateFilm(film) {
-    const filmResponse = await fetch(`http://localhost/api/films/update`, {
+    const filmResponse = await fetch(`https://equipe500.tch099.ovh/projet4/api/films/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -216,7 +216,7 @@ window.addEventListener("load", (event1) => {
   
   async function deleteFilm(film_id) {
     const filmResponse = await fetch(
-      `http://localhost/api/films/delete/${film_id}`,
+      `https://equipe500.tch099.ovh/projet4/api/films/delete/${film_id}`,
       {
         method: "DELETE",
       }
@@ -231,7 +231,7 @@ window.addEventListener("load", (event1) => {
   }
   
   async function fetchListeCinema() {
-    const cinemaResponse = await fetch("http://localhost/api/cinemas");
+    const cinemaResponse = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas");
     const content = await cinemaResponse.json();
     afficherListeCinema(content);
     if (content.erreur) {
@@ -256,7 +256,7 @@ window.addEventListener("load", (event1) => {
   }
   
   async function fetchCinema(id) {
-    const cinemaResponse = await fetch(`http://localhost/api/cinemas/${id}`);
+    const cinemaResponse = await fetch(`https://equipe500.tch099.ovh/projet4/api/cinemas/${id}`);
     const cinema = await cinemaResponse.json();
     console.log(cinema);
     updateFormCinema(cinema);
@@ -273,7 +273,7 @@ window.addEventListener("load", (event1) => {
   }
   
   async function updateCinema(cinema) {
-    const cinemaResponse = await fetch(`http://localhost/api/cinemas/update`, {
+    const cinemaResponse = await fetch(`https://equipe500.tch099.ovh/projet4/api/cinemas/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

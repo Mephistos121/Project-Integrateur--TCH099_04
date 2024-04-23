@@ -189,7 +189,7 @@ window.addEventListener("load", (event) => {
         alert("Impossible de trouver l'identifiant de l'utilisateur.");
         return;
       }
-      const response = await fetch(`http://equipe500.tch099.ovh/projet4/api/comptes/${userID}`, {
+      const response = await fetch(`https://equipe500.tch099.ovh/projet4/api/comptes/${userID}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -206,7 +206,7 @@ window.addEventListener("load", (event) => {
   
   async function fetchBillets(usagerid) {
     const responseBillets = await fetch(
-      "http://equipe500.tch099.ovh/projet4/api/billets/user/" + usagerid
+      "https://equipe500.tch099.ovh/projet4/api/billets/user/" + usagerid
     );
     const contenu = await responseBillets.json();
     addBilletsRows(contenu);

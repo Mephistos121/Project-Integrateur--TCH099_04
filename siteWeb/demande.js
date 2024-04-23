@@ -36,7 +36,7 @@ window.addEventListener("load", (event1) => {
 
 async function fetchDemandesFilm() {
   const response = await fetch(
-    "http://localhost/api/demande/admin/ajout/films"
+    "https://equipe500.tch099.ovh/projet4/api/demande/admin/ajout/films"
   );
   const content = await response.json();
   afficherDemandesFilm(content);
@@ -74,7 +74,7 @@ function afficherDemandesFilm(demandes) {
 
 async function fetchInfoFilm(id) {
   const response = await fetch(
-    `http://localhost/api/demande/admin/ajout/film/${id}`
+    `https://equipe500.tch099.ovh/projet4/api/demande/admin/ajout/film/${id}`
   );
   const content = await response.json();
   afficherInfoFilm(content);
@@ -141,7 +141,7 @@ function afficherInfoFilm(info) {
 
 async function fetchDemandesCinema() {
   const response = await fetch(
-    "http://localhost/api/demande/admin/ajout/cinemas"
+    "https://equipe500.tch099.ovh/projet4/api/demande/admin/ajout/cinemas"
   );
   const content = await response.json();
   afficherDemandesCinema(content);
@@ -179,7 +179,7 @@ function afficherDemandesCinema(demandes) {
 
 async function fetchInfoCinema(id) {
   const response = await fetch(
-    `http://localhost/api/demande/admin/ajout/cinema/${id}`
+    `https://equipe500.tch099.ovh/projet4/api/demande/admin/ajout/cinema/${id}`
   );
   const content = await response.json();
   afficherInfoCinema(content);
@@ -236,7 +236,7 @@ async function accepterDemandeFilm(info) {
     acteur_principal: info.acteur_principal,
     acteur_secondaire: info.acteur_secondaire,
   };
-  const filmList = await fetch("http://localhost/api/films");
+  const filmList = await fetch("https://equipe500.tch099.ovh/projet4/api/films");
   const films = await filmList.json();
   let check = true;
   for (let film of films) {
@@ -246,7 +246,7 @@ async function accepterDemandeFilm(info) {
   }
 
   if (check) {
-    const response = await fetch(`http://localhost/api/films/ajout`, {
+    const response = await fetch(`https://equipe500.tch099.ovh/projet4/api/films/ajout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -266,7 +266,7 @@ async function accepterDemandeFilm(info) {
 
 async function enleverDemandeFilm(info) {
   const response = await fetch(
-    `http://localhost/api/demande/admin/refus/film/${info.id}`,
+    `https://equipe500.tch099.ovh/projet4/api/demande/admin/refus/film/${info.id}`,
     {
       method: "DELETE",
     }
@@ -288,7 +288,7 @@ async function accepterDemandeCinema(info) {
     gestionnaire: info.id_usager,
   };
 
-  const cinemaList = await fetch("http://localhost/api/cinemas");
+  const cinemaList = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas");
   const cinemas = await cinemaList.json();
   let check = true;
   for (let cinema of cinemas) {
@@ -299,7 +299,7 @@ async function accepterDemandeCinema(info) {
 
   if (check) {
 
-    const response = await fetch(`http://localhost/api/cinemas/ajout`, {
+    const response = await fetch(`https://equipe500.tch099.ovh/projet4/api/cinemas/ajout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -320,7 +320,7 @@ async function accepterDemandeCinema(info) {
 
 async function enleverDemandeCinema(info) {
   const response = await fetch(
-    `http://localhost/api/demande/admin/refus/cinema/${info.id}`,
+    `https://equipe500.tch099.ovh/projet4/api/demande/admin/refus/cinema/${info.id}`,
     {
       method: "DELETE",
     }

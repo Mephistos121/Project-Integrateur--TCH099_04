@@ -123,7 +123,7 @@ window.addEventListener("load", (event1) => {
     });
   });
   async function ajouterNouvelleRepresentation(rep) {
-    const response = await fetch("http://localhost/api/representation", {
+    const response = await fetch("https://equipe500.tch099.ovh/projet4/api/representation", {
       method: "POST",
   
       headers: {
@@ -147,7 +147,7 @@ window.addEventListener("load", (event1) => {
   }
   async function ajouterNouveauCinema(cinema) {
     //validation du nom de cinema
-    const responseCinema = await fetch("http://localhost/api/cinemas");
+    const responseCinema = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas");
     const content = await responseCinema.json();
     let ajoutValide = true;
     if (content.length) {
@@ -170,7 +170,7 @@ window.addEventListener("load", (event1) => {
   
     //si tout est beau on ajoute
     else if (ajoutValide) {
-      const response = await fetch("http://localhost/api/demande/cinema", {
+      const response = await fetch("https://equipe500.tch099.ovh/projet4/api/demande/cinema", {
         method: "POST",
   
         headers: {
@@ -233,7 +233,7 @@ window.addEventListener("load", (event1) => {
     if (cookieGetter("privilege") != "gestionnaire") {
       alert("Vous devez être un gestionnaire pour ajouter des films");
     }
-    const response = await fetch("http://localhost/api/demande/ajout/film", {
+    const response = await fetch("https://equipe500.tch099.ovh/projet4/api/demande/ajout/film", {
       method: "POST",
   
       headers: {
@@ -269,11 +269,11 @@ window.addEventListener("load", (event1) => {
   }
   async function cinemaGetter(id) {
     const responseCinema = await fetch(
-      "http://localhost/api/cinemas/gestionnaire/" + id
+      "https://equipe500.tch099.ovh/projet4/api/cinemas/gestionnaire/" + id
     );
     const content = await responseCinema.json();
     const responseCinemaDemande = await fetch(
-      "http://localhost/api/demande/ajout/cinema/gestionnaire/" + id
+      "https://equipe500.tch099.ovh/projet4/api/demande/ajout/cinema/gestionnaire/" + id
     );
     const contentDemande = await responseCinemaDemande.json();
     if (content.length > 0) {
@@ -376,7 +376,7 @@ window.addEventListener("load", (event1) => {
     console.log(retirer);
     if (input.value != "") {
       const response = await fetch(
-        "http://localhost/api/gestionnaire/cinema/delete",
+        "https://equipe500.tch099.ovh/projet4/api/gestionnaire/cinema/delete",
         {
           method: "DELETE",
   
@@ -404,7 +404,7 @@ window.addEventListener("load", (event1) => {
     console.log(retirer);
     if (input.value != "") {
       const response = await fetch(
-        "http://localhost/api/gestionnaire/cinema/demande/delete",
+        "https://equipe500.tch099.ovh/projet4/api/gestionnaire/cinema/demande/delete",
         {
           method: "DELETE",
   
@@ -428,7 +428,7 @@ window.addEventListener("load", (event1) => {
   
   async function filmGetter(id) {
     const responseFilm = await fetch(
-      "http://localhost/api/demande/ajout/film/gestionnaire/" + id
+      "https://equipe500.tch099.ovh/projet4/api/demande/ajout/film/gestionnaire/" + id
     );
     const content = responseFilm.json();
     if (content.length > 0) {
@@ -451,7 +451,7 @@ window.addEventListener("load", (event1) => {
   }
   async function tableCinemaBuilder(id) {
     const responseCinema = await fetch(
-      "http://localhost/api/cinemas/gestionnaire/" + id
+      "https://equipe500.tch099.ovh/projet4/api/cinemas/gestionnaire/" + id
     );
     const content = await responseCinema.json();
     if (content.length > 0) {
@@ -475,7 +475,7 @@ window.addEventListener("load", (event1) => {
     }
   }
   async function tableFilmBuilder(id) {
-    const responseFilm = await fetch("http://localhost/api/films");
+    const responseFilm = await fetch("https://equipe500.tch099.ovh/projet4/api/films");
     const content = await responseFilm.json();
     if (content.length > 0) {
       const table_film = document.getElementById("table_film");

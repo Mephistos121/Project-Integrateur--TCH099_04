@@ -52,7 +52,7 @@ function showFilm(film) {
 
 async function fetchFilm(filmId) {
   const responseFilm = await fetch(
-    "http://localhost/api/films/filmid/" + filmId
+    "https://equipe500.tch099.ovh/projet4/api/films/filmid/" + filmId
   );
   const contenu = await responseFilm.json();
   showFilm(contenu);

@@ -75,7 +75,7 @@ function toggle(section) {
 
 async function uniqueEmail(compte) {
   const responeMail = await fetch(
-    "http://localhost/api/comptes/" + compte.courriel
+    "https://equipe500.tch099.ovh/projet4/api/comptes/" + compte.courriel
   );
   const content = await responeMail.json();
   if (content.courriel != null) {
@@ -85,7 +85,7 @@ async function uniqueEmail(compte) {
 }
 
 async function getSaltByEmail(courriel) {
-  const responeMail = await fetch("http://localhost/api/comptes/" + courriel);
+  const responeMail = await fetch("https://equipe500.tch099.ovh/projet4/api/comptes/" + courriel);
   const content = await responeMail.json();
   return content.salt;
 }
@@ -103,7 +103,7 @@ async function ajouterNouveauCompte(compte) {
       if (results === true) {
         error("Ce courriel est déjà utilisé");
       } else {
-        const response = await fetch("http://localhost/api/comptes", {
+        const response = await fetch("https://equipe500.tch099.ovh/projet4/api/comptes", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -127,7 +127,7 @@ async function seConnecter(courriel, mot_passe) {
   try {
     salt = await getSaltByEmail(courriel);
 
-    const url = "http://localhost/api/connexion";
+    const url = "https://equipe500.tch099.ovh/projet4/api/connexion";
 
     const response = await fetch(url, {
       method: "POST",
