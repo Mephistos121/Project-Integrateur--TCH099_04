@@ -46,9 +46,12 @@ ul li div {
   color: white;
 }
 
-div#liste_cinema div,
-div#liste_film div {
+#liste_cinema, #liste_film, #liste_cinema, #liste_cinema_demande{
   color: white;
+}
+
+#liste_cinema:hover{
+  cursor: pointer;
 }
 
 #menu_bar_home {
@@ -337,10 +340,24 @@ section {
 
 }
 
-#table_cinema tr:hover {
+#table_cinema tr:hover, #table_film tr:hover {
   cursor: pointer;
 }
 
-#table_film tr:hover {
+#creer_submit, #effacer_ajout_cinema, #creer_film_submit, 
+#effacer_ajout_film, #creer_rep_submit, #effacer_ajout_representation {
+  background-color: lightgray;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+#creer_submit:hover, #effacer_ajout_cinema:hover, #creer_film_submit:hover, 
+#effacer_ajout_film:hover, #creer_rep_submit:hover, #effacer_ajout_representation:hover {
+  background-color: #6a6a6a;
 }
