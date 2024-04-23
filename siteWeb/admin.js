@@ -16,17 +16,17 @@ window.addEventListener('load', (event1) => {
     if (perms === "admin") {
         sbutton.addEventListener("click", (event3) => {
             const info_film = {
-                nom_film: document.querySelector("#update_nom_film").value,
-                image: document.querySelector("#update_image_film").value,
-                image_banniere: document.querySelector("#update_image_banniere").value,
-                description: document.querySelector("#update_description").value,
-                genre_principal: document.querySelector("#update_genre_principal").value,
-                genre_secondaire: document.querySelector("#update_genre_secondaire").value,
-                annee: document.querySelector("#update_annee").value,
-                duree: document.querySelector("#update_duree").value,
-                realisateur: document.querySelector("#update_realisateur").value,
-                acteur_principal: document.querySelector("#update_acteur_principal").value,
-                acteur_secondaire: document.querySelector("#update_acteur_secondaire").value,
+                nom_film: document.querySelector("#creer_nom_film").value,
+                image: document.querySelector("#creer_image_film").value,
+                image_banniere: document.querySelector("#creer_image_banniere").value,
+                description: document.querySelector("#creer_description").value,
+                genre_principal: document.querySelector("#creer_genre_principal").value,
+                genre_secondaire: document.querySelector("#creer_genre_secondaire").value,
+                annee: document.querySelector("#creer_annee").value,
+                duree: document.querySelector("#creer_duree").value,
+                realisateur: document.querySelector("#creer_realisateur").value,
+                acteur_principal: document.querySelector("#creer_acteur_principal").value,
+                acteur_secondaire: document.querySelector("#creer_acteur_secondaire").value,
             };
 
             let check = true;
@@ -54,7 +54,7 @@ window.addEventListener('load', (event1) => {
             };
             let check = true;
             Object.keys(info_film).forEach(element => {
-                if (info_film[element] === "") check = false;
+                if (info_film[element] == "") check = false;
             });
             check ? updateFilm(info_film) : alert("Veuillez entrer toutes les informations du film");
         });
@@ -116,19 +116,30 @@ window.addEventListener('load', (event1) => {
 });
 
 async function ajouterNouveauFilm(film) {
-    const filmResponse = await fetch("http://localhost/api/films/ajout", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(film),
+    const filmList = await fetch("http://localhost/api/films")
+    const response = await filmList.json();
+    let check = true;
+    response.forEach(element => {
+        if (element.nom_film.toLowerCase().replace(/\s/g, '') === film.nom_film.toLowerCase().replace(/\s/g, '')) check = false;
     });
-    const content = await filmResponse.json();
-    console.log(content);
-    if (content.erreur) {
-        alert(content.erreur);
-    } else {
-        alert("Le film a été ajouté avec succès");
+    if (check) {
+        const filmResponse = await fetch("http://localhost/api/films/ajout", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(film),
+        });
+        const content = await filmResponse.json();
+        console.log(content);
+        if (content.erreur) {
+            alert(content.erreur);
+        } else {
+            alert("Le film a été ajouté avec succès");
+        }
+    }
+    else {
+        alert("Ce film existe déjà");
     }
 }
 
@@ -210,7 +221,7 @@ async function deleteFilm(film_id) {
     }
 }
 
-async function fetchListeCinema(){
+async function fetchListeCinema() {
     const cinemaResponse = await fetch("http://localhost/api/cinemas")
     const content = await cinemaResponse.json();
     afficherListeCinema(content);
@@ -268,16 +279,16 @@ async function updateCinema(cinema) {
     }
 }
 
-
-function cookieGetter(name) {
-    const cookies = document.cookie.split(';');
-    for (let cookie of cookies) {
-        const [cookieName, cookieValue] = cookie.trim().split('=');
-        if (cookieName === name) {
-            return cookieValue;
+    function cookieGetter(name) {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [cookieName, cookieValue] = cookie.trim().split('=');
+            if (cookieName === name) {
+                return cookieValue;
+            }
         }
+        return false;
     }
-    return false;
-}
+
 
 
