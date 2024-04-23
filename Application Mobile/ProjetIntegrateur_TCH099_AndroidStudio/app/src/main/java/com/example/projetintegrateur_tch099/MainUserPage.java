@@ -1,8 +1,10 @@
 package com.example.projetintegrateur_tch099;
 
+import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainUserPage extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private TextView tmpTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,11 @@ public class MainUserPage extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationViewMain);
 
+        tmpTextView = findViewById(R.id.textViewTMP);
+
+        UserDao userDao = UserDao.getInstance(1,"tomdup","error", getApplicationContext());
+
+        tmpTextView.setText(userDao.getBilletTest());
 
         bottomNavigationView.setOnItemSelectedListener(item ->{
 
