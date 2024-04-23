@@ -20,7 +20,6 @@ public class DisplaySpecificMovie extends AppCompatActivity {
     private TextView movieDescription;
     private Button chosirFilm;
     private Button goBackButton;
-
     private Film film;
 
     @Override
@@ -52,8 +51,8 @@ public class DisplaySpecificMovie extends AppCompatActivity {
         chosirFilm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FilmChoisiSingleton filmCh = FilmChoisiSingleton.getInstance();
-                filmCh.setFilmChoisi(film);
+                //FilmChoisiSingleton filmCh = FilmChoisiSingleton.getInstance();
+                //filmCh.setFilmChoisi(film);
             }
         });
     }
