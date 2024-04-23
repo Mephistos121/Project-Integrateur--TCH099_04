@@ -290,12 +290,13 @@ async function ajouterNouveauFilm(film) {
     body: JSON.stringify(film),
   });
   const message = await response.json();
-  console.log(message);
   if (message.erreur) {
     alert(message.erreur);
   } else if (response.ok) {
     actionReussi("Film ajouté avec succès");
+    gestionnaireId = cookieGetter("id");
     filmGetter(gestionnaireId);
+    window.location.reload();
   } else {
     actionReussi("Le serveur a refusé");
   }
