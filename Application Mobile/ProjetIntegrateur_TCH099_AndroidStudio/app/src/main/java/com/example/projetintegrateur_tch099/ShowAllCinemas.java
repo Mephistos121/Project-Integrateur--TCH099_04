@@ -3,6 +3,7 @@ package com.example.projetintegrateur_tch099;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -25,8 +26,6 @@ public class ShowAllCinemas extends AppCompatActivity {
         backButton = findViewById(R.id.showAllCinemaBack);
 
         CinemaDao dao = CinemaDao.getInstance(getApplicationContext());
-
-        Cinema cinema = new Cinema(1,"Vector","https://atlas-content-cdn.pixelsquid.com/stock-images/frog-Va4lJ52-600.jpg","146 rue houde", getApplicationContext());
         ArrayList<Cinema> daoCinemaList = dao.getCinemas();
 
         CinemaListAdapter adapter = new CinemaListAdapter(this, R.layout.cinema_list_view, daoCinemaList);
@@ -35,6 +34,15 @@ public class ShowAllCinemas extends AppCompatActivity {
         cinemaList.setAdapter(adapter);
         cinemaList.setClickable(true);
 
+        cinemaList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ShowAllCinemas.this, showFilmCinemaSpecific.class);
+
+                intent.putExtra("cinema", position);
+                startActivity(intent);
+            }
+        });
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

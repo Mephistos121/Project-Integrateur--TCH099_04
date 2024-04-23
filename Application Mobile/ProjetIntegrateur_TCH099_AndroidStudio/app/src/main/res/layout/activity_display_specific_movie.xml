@@ -41,6 +41,7 @@
         android:layout_marginBottom="340dp"
         android:background="@drawable/textbox_backroung_white_edges"
         android:text="description"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,13 +66,15 @@
 
     <Button
         android:id="@+id/btnChoixFilm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="148dp"
+        android:layout_height="52dp"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="160dp"
-        android:text="TempChoixFilm"
+        android:backgroundTint="@color/material_dynamic_primary20"
+        android:text="Billet"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
