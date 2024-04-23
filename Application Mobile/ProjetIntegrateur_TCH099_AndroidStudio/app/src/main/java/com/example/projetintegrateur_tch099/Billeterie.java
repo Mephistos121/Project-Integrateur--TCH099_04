@@ -14,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Billeterie extends AppCompatActivity {
 
@@ -68,18 +69,24 @@ public class Billeterie extends AppCompatActivity {
             }
         }
 
-
-
         ArrayAdapter<String> adapterCin = new ArrayAdapter<String>(this, R.layout.spinner_item,listCin);
 
         spCinema.setAdapter(adapterCin);
 
 
+        ArrayList<String> listRep = new ArrayList<>();
+        ArrayList<Representation> listRepr = new ArrayList<>();
         spCinema.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<String> listRep = new ArrayList<>();
-                listRep.add("aa");
+                listRep.clear();
+                listRepr.clear();
+                for (Representation r :RepresentationDao.getInstance(getApplicationContext()).getRepresentations()){
+                    if(r.getCinema_id()==listCinId.get(position) && r.getFilm_id()==film.getId_film()){
+                        listRep.add(r.getTemps());
+                        listRepr.add(r);
+                    }
+                }
                 ArrayAdapter<String> adapterRep = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item,listRep);
                 spRepresentation.setAdapter(adapterRep);
             }
@@ -89,15 +96,21 @@ public class Billeterie extends AppCompatActivity {
 
             }
         });
-
+        ArrayList<String> listPla = new ArrayList<>();
         spRepresentation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<String> listPla = new ArrayList<>();
-                listPla.add("bb");
-                ArrayAdapter<String> adapterPla = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item,listPla);
-                spPlace.setAdapter(adapterPla);
+                representation = listRepr.get(position);
+                listPla.clear();
+                if(representation.getSalle()!=null) {
+                    listPla.addAll(Arrays.asList(representation.getSalle().getPlaces()));
+
+                    ArrayAdapter<String> adapterPla = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, listPla);
+                    spPlace.setAdapter(adapterPla);
+                    tvCout.setText(String.valueOf(representation.getCout())); //temporaire
+                }
+
             }
 
             @Override
@@ -110,7 +123,7 @@ public class Billeterie extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tvCout.setText("10"); //temporaire
+                place=listPla.get(position);
             }
 
             @Override
@@ -118,8 +131,6 @@ public class Billeterie extends AppCompatActivity {
 
             }
         });
-
-
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,10 +142,12 @@ public class Billeterie extends AppCompatActivity {
         chosirButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Billeterie.this, PaiementInfoCarte.class);
-                i.putExtra("representation",representation);
-                i.putExtra("place",place);
-                startActivity(i);
+                if (representation!=null && place!=null) {
+                    Intent i = new Intent(Billeterie.this, PaiementInfoCarte.class);
+                    i.putExtra("representationId", representation.getId());
+                    i.putExtra("place", place);
+                    startActivity(i);
+                }
             }
         });
 

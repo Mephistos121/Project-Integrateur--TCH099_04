@@ -29,7 +29,7 @@ public class BilletDao {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                         Billet billet = new Billet(jsonObject.getInt("id"), jsonObject.getInt("cinema_id"),
-                                jsonObject.getString("place"), context);
+                                jsonObject.getString("place"));
                         billets.add(billet);
 
 

@@ -48,19 +48,31 @@ public class PaiementInfoCarte extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
-        representation = (Representation) extras.getSerializable("representation");
+        RepresentationDao repDao = RepresentationDao.getInstance(getApplicationContext());
+        for (Representation r : repDao.getRepresentations()){
+            if(r.getId() == extras.getInt("representationId")){
+                representation = r;
+            }
+        }
+
         place = extras.getString("place");
 
         film = FilmChoisiSingleton.getInstance().getFilmChoisi();
         CinemaDao dao = CinemaDao.getInstance(getApplicationContext());
-        cinema = dao.getCinemas().get(representation.getCinema_id());
+        for (Cinema c : dao.getCinemas()){
+            if(c.getId() == representation.getCinema_id()){
+                cinema = c;
+            }
+        }
 
         billetPlace.setText(place);
         billetNomFilm.setText(film.getNom_film());
         billetNomCinema.setText(cinema.getNomCinema());
         billetEmplacement.setText(cinema.getLocalisation());
-        billetSalle.setText(representation.getSalle_id());
+        billetSalle.setText(String.valueOf(representation.getSalle_id()));
         billetCout.setText(String.valueOf(representation.getCout()));
+
+
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +86,7 @@ public class PaiementInfoCarte extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(PaiementInfoCarte.this, PaiementInfoBilling.class);
-                i.putExtra("representation",representation);
+                i.putExtra("representationId",representation.getId());
                 i.putExtra("place",place);
                 startActivity(i);
             }

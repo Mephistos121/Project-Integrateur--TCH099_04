@@ -29,7 +29,7 @@ public class RepresentationDao {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                         Representation representation = new Representation(jsonObject.getInt("id"), jsonObject.getInt("cinema_id"),
-                                jsonObject.getInt("film_id"),jsonObject.getString("temps"),jsonObject.getInt("salle_id"),jsonObject.getDouble("cout"), context);
+                                jsonObject.getInt("film_id"),jsonObject.getString("temps"),jsonObject.getInt("salle_id"),jsonObject.getDouble("cout"),context);
                         representations.add(representation);
 
 
