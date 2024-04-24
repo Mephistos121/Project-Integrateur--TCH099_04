@@ -53,6 +53,9 @@ public class DisplaySpecificMovie extends AppCompatActivity {
             public void onClick(View view) {
                 FilmChoisiSingleton filmCh = FilmChoisiSingleton.getInstance();
                 filmCh.setFilmChoisi(film);
+
+                Intent i = new Intent(DisplaySpecificMovie.this, Billeterie.class);
+                startActivity(i);
             }
         });
     }
