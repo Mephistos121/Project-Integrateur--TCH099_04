@@ -234,6 +234,12 @@ section {
 
 }
 
+#creer_description{
+  height: 10rem;
+  font-family: 'Roboto', sans-serif;
+  resize: none;
+}
+
 /*Table*/
 #recherche_cinema,
 #recherche_film {

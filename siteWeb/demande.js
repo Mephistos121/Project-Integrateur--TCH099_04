@@ -93,12 +93,14 @@ function afficherInfoFilm(info) {
     "Image (URL): " + info.image;
   img = document.createElement("img");
   img.src = info.image;
+  img.id = "img_film";
   ul.appendChild(document.createElement("li")).appendChild(img);
   imgBanniere = document.createElement("img");
   imgBanniere.src = info.image_banniere;
-  ul.appendChild(document.createElement("li")).appendChild(imgBanniere);
+  imgBanniere.id = "img_banniere";
   ul.appendChild(document.createElement("li")).textContent =
     "Image bannière (URL): " + info.image_banniere;
+  ul.appendChild(document.createElement("li")).appendChild(imgBanniere);
   ul.appendChild(document.createElement("li")).textContent =
     "Description: " + info.description;
   ul.appendChild(document.createElement("li")).textContent =
