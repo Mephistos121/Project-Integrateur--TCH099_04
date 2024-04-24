@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, LogingPage.class);
                 startActivity(i);
             }
-        }, 3000);
+        }, 1500);
 
     }
 
