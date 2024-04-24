@@ -1,6 +1,7 @@
 body {
   margin: 0px;
   background-color: #2b2b2e;
+  font-family: 'Roboto', sans-serif;
 }
 
 h2 {
@@ -46,9 +47,16 @@ ul li div {
   color: white;
 }
 
-div#liste_cinema div,
-div#liste_film div {
+#liste_cinema, #liste_film, #liste_cinema, #liste_cinema_demande{
   color: white;
+}
+
+#liste_cinema:hover{
+  cursor: pointer;
+}
+
+#liste_cinema_demande:hover{
+  cursor: pointer;
 }
 
 #menu_bar_home {
@@ -226,6 +234,12 @@ section {
 
 }
 
+#creer_description{
+  height: 10rem;
+  font-family: 'Roboto', sans-serif;
+  resize: none;
+}
+
 /*Table*/
 #recherche_cinema,
 #recherche_film {
@@ -329,10 +343,50 @@ section {
   color: white;
   text-align: center;
   vertical-align: middle;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: fit-content;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  z-index: 1000;
 
+}
+
+#table_cinema tr:hover, #table_film tr:hover {
+  cursor: pointer;
+}
+
+#creer_submit, #effacer_ajout_cinema, #creer_film_submit, 
+#effacer_ajout_film, #creer_rep_submit, #effacer_ajout_representation {
+  background-color: lightgray;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+#creer_submit:hover, #effacer_ajout_cinema:hover, #creer_film_submit:hover, 
+#effacer_ajout_film:hover, #creer_rep_submit:hover, #effacer_ajout_representation:hover {
+  background-color: #6a6a6a;
+}
+
+#nav_bar_list a:hover {
+  color: gray;
+}
+
+#cinema,#cinema2{
+  background-color: #303245;
+  color: white;
+  border: none;
+}
+
+#retirer_cinema,#retirer_cinema_demande{
+  background-color: lightgray;
+  color: black;
+  border: none;
+  border-radius: 0.25rem;
 }

@@ -149,7 +149,7 @@ p#repchoisi {
 }
 
 #banniere_cinema {
-    width: 30vw;
+    width: 40vw;
     padding: 5px;
     background-color: grey;
     margin-bottom: 0.5rem;
@@ -170,7 +170,7 @@ p#repchoisi {
 }
 
 #banniere_cout {
-    width: 8vw;
+    width: 5vw;
     padding: 5px;
     background-color: grey;
     margin-bottom: 0.5rem;

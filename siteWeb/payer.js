@@ -74,7 +74,7 @@ function cookieGetter(name) {
 }
 
 async function ajouterBDBillet(billet) {
-  const response = await fetch("https://equipe500.tch099.ovh/projet4/api/billets/ajout", {
+  const response = await fetch("http://localhost/api/billets/ajout", {
     method: "POST",
 
     headers: {
@@ -87,6 +87,7 @@ async function ajouterBDBillet(billet) {
     console.log(message[0]);
     if (message[0]==null) {
       actionReussi("Billet acheté");
+      window.location.href = "compte.html";
     } else {
       actionReussi("Erreur serveur");
     }
@@ -104,7 +105,7 @@ async function afficherInfos() {
   const repid = typeParams.get("id");
 
   const responseFilm = await fetch(
-    "https://equipe500.tch099.ovh/projet4/api/representation/" + repid
+    "http://localhost/api/representation/" + repid
   );
   const salle = await responseFilm.json();
 
