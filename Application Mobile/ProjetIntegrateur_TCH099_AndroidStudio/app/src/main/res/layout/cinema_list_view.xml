@@ -1,30 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/cinemaPictureList"
-            android:layout_width="142dp"
-            android:layout_height="104dp"
-            android:layout_marginStart="20dp" />
-
-        <TextView
-            android:id="@+id/cinemaNameList"
-            android:layout_width="228dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fontFamily="@font/audiowide"
-            android:text="Nom cinema"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/billetListFilmTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingRight="7dp"
+                android:paddingBottom="5dp"
+                android:text="Film :"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/billetListFilm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/billetListDateTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:paddingRight="7dp"
+                android:paddingBottom="5dp"
+                android:text="Date et heure :"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/billetListDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/billetListCinemaTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:paddingRight="7dp"
+                android:paddingBottom="5dp"
+                android:text="Cinéma :"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/billetListCinemaREAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/billetListEmplacementTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:paddingRight="7dp"
+                android:paddingBottom="5dp"
+                android:text="Emplacement :"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/billetListEmplacementREAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/billetListSalleTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:paddingRight="7dp"
+                android:paddingBottom="5dp"
+                android:text="Salle :"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/billetListSalleREAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/billetListSiegeTitre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="7dp"
+                android:paddingTop="5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:text="Siège :"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/billetListSiegeREAL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
-
