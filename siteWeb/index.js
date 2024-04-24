@@ -138,10 +138,14 @@ window.addEventListener("load", (event1) => {
 
   const header = document.getElementById("index_header");
 
+  console.log(chosenType);
+
   if (chosenType == "cinemas") {
     header.textContent = "Cinémas";
     rechercher();
     fetchAllCinema();
+    const carousel = document.querySelector('.carousel');
+    carousel.style.display = 'none';
   } else {
     header.textContent = "Films";
     showFeaturedFilm(featuredFilm);
