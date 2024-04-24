@@ -41,25 +41,43 @@ function showFilms(films) {
 }
 
 function showFeaturedFilm(film) {
-  let counter = 0;
-  film.forEach((film) => {
-    const imgPoster = document.createElement("img");
-    const filmLink = document.createElement("a");
+  const imageUrls = film.map((film) => film.image);
+  const viewport = document.querySelector('.carousel__viewport');
+  // Get the carousel navigation list
+  const navigationList = document.querySelector('.carousel__navigation-list');
+  // Populate the carousel with images
+  imageUrls.forEach((imageUrl, index) => {
+    // Create a new slide element
+    const slide = document.createElement('li');
+    slide.classList.add('carousel__slide');
+    slide.setAttribute('id', `carousel__slide${index + 1}`);
+    slide.setAttribute('tabindex', '0');
 
-    const sliderNavLink = document.createElement("a");
+    // Create a snapper div
+    const snapper = document.createElement('div');
+    snapper.classList.add('carousel__snapper');
 
-    imgPoster.src = film.image;
-    imgPoster.alt = film.title;
-    imgPoster.id = `featured_film_${counter}`;
-    filmLink.href = `film.html?id=${film.title}`;
-    filmLink.appendChild(imgPoster);
-    featuredSlider.appendChild(filmLink);
+    // Create an image element
+    const image = document.createElement('img');
+    image.setAttribute('src', imageUrl);
+    image.setAttribute('alt', `Slide ${index + 1}`);
+    image.classList.add('featured_film');
+    snapper.appendChild(image);
+    slide.appendChild(snapper);
+    viewport.appendChild(slide);
+    const navButton = document.createElement('li');
+    navButton.classList.add('carousel__navigation-item');
 
-    sliderNavLink.href = `#featured_film_${counter}`;
-    counter++;
-    sliderNav.appendChild(sliderNavLink);
+    const navLink = document.createElement('a');
+    navLink.classList.add('carousel__navigation-button');
+    navLink.setAttribute('href', `#carousel__slide${index + 1}`);
+    navLink.textContent = `Go to slide ${index + 1}`;
+
+    navButton.appendChild(navLink);
+    navigationList.appendChild(navButton);
   });
 }
+
 
 function showCinemas(cinemas) {
   cinemas.forEach((cinema) => {
