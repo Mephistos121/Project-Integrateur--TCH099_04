@@ -33,7 +33,7 @@
             android:name=".ShowAllCinemas"
             android:exported="false" />
         <activity
-            android:name=".LogingPage"
+            android:name=".LoginPage"
             android:exported="false" />
         <activity
             android:name=".ShowAllMovies"

@@ -4,13 +4,13 @@ import android.content.Context;
 
 public class Billet {
 
-    String nomFilm;
-    String temps;
-    String nomCinema;
-    int salleId;
-    int userId;
-    String place;
-    String  emplacement;
+    private String nomFilm;
+    private String temps;
+    private String nomCinema;
+    private int salleId;
+    private int userId;
+    private String place;
+    private String  emplacement;
 
 
     public Billet(String nomFilm, String temps, String nomCinema, int salleId, int userId, String place, String emplacement) {
@@ -28,6 +28,7 @@ public class Billet {
         this.salleId = id;
         this.nomCinema = cinemaId;
         this.place = place;
+
     }
 
     @Override
@@ -40,5 +41,33 @@ public class Billet {
                 ", place='" + place + '\'' +
                 ", emplacement='" + emplacement + '\'' +
                 '}';
+    }
+
+    public String getNomFilm() {
+        return nomFilm;
+    }
+
+    public String getTemps() {
+        return temps;
+    }
+
+    public String getNomCinema() {
+        return nomCinema;
+    }
+
+    public int getSalleId() {
+        return salleId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public String getEmplacement() {
+        return emplacement;
     }
 }
