@@ -32,4 +32,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/goBackFilmDeCinButton"
+        android:layout_width="117dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/material_dynamic_primary20"
+        android:text="Back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
