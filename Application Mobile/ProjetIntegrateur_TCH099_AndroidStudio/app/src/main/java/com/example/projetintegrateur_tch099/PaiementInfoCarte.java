@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +29,9 @@ public class PaiementInfoCarte extends AppCompatActivity {
     private TextView billetEmplacement;
     private TextView billetSalle;
     private TextView billetCout;
+    private EditText inputCarte;
+    private EditText inputCode;
+    private EditText inputDate;
 
 
     @Override
@@ -45,6 +49,10 @@ public class PaiementInfoCarte extends AppCompatActivity {
         billetEmplacement = findViewById(R.id.billet_emplacement);
         billetSalle = findViewById(R.id.billet_salle);
         billetCout = findViewById(R.id.billet_cout);
+
+        inputCarte = findViewById(R.id.input_num);
+        inputCode = findViewById(R.id.input_code);
+        inputDate = findViewById(R.id.input_date);
 
         Bundle extras = getIntent().getExtras();
 
@@ -74,7 +82,6 @@ public class PaiementInfoCarte extends AppCompatActivity {
 
 
 
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,14 +90,30 @@ public class PaiementInfoCarte extends AppCompatActivity {
         });
 
         chosirButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(PaiementInfoCarte.this, PaiementInfoBilling.class);
-                i.putExtra("representationId",representation.getId());
-                i.putExtra("place",place);
-                startActivity(i);
+                if (isCarte() && isCode() && isDate()) {
+                    Intent i = new Intent(PaiementInfoCarte.this, PaiementInfoBilling.class);
+                    i.putExtra("representationId", representation.getId());
+                    i.putExtra("place", place);
+                    startActivity(i);
+                }
             }
         });
 
     }
+
+    private boolean isCarte(){
+        return inputCarte.getText().toString().length() == 16;
+    }
+    private boolean isCode(){
+        return inputCode.getText().toString().length() == 3;
+    }
+
+    private boolean isDate(){
+        return (inputDate.getText().toString().matches("\\d{2}-\\d{2}")) ;
+
+    }
+
 }

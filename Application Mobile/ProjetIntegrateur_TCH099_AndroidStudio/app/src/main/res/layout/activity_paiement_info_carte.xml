@@ -83,14 +83,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="50dp" />
+        app:layout_constraintGuide_begin="28dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="230dp" />
+        app:layout_constraintGuide_begin="205dp" />
 
     <TextView
         android:id="@+id/billet_place"
@@ -156,7 +156,8 @@
         style="@style/base_subtitle_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="52dp"
         android:text="@string/num_carte"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -187,7 +188,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="MM-YY"
         android:inputType="date"
+        android:textColorHint="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView16"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />

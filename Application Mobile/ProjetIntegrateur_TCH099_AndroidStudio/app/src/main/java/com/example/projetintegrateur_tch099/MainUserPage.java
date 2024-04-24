@@ -58,7 +58,7 @@ public class MainUserPage extends AppCompatActivity {
             }
 
             if(item.getItemId() == R.id.websiteIcon){
-                Uri uri = Uri.parse("https://equipe500.tch099.ovh/projet4/");
+                Uri uri = Uri.parse("https://equipe500.tch099.ovh/projet4/connexion.html");
                 startActivity(new Intent(Intent.ACTION_VIEW,uri));
                 return true;
             }

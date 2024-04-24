@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ public class showFilmCinemaSpecific extends AppCompatActivity {
 
     private ListView listOfMovies;
     private TextView cinemaName;
+
+    private Button goBackButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class showFilmCinemaSpecific extends AppCompatActivity {
 
         listOfMovies = findViewById(R.id.listOfFilmsCinema);
         cinemaName = findViewById(R.id.titre_film_cinema);
+        goBackButton = findViewById(R.id.goBackFilmDeCinButton);
 
         listOfMovies.setAdapter(adapter);
         listOfMovies.setClickable(true);
@@ -46,6 +50,13 @@ public class showFilmCinemaSpecific extends AppCompatActivity {
 
                 intent.putExtra("film",daoCinemaList.get(cinemaPosition).getListDeFilm().get(position));
                 startActivity(intent);
+            }
+        });
+
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
 

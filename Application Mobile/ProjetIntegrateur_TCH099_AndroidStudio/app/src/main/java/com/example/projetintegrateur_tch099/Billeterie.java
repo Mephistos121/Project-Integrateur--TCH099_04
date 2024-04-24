@@ -26,6 +26,7 @@ public class Billeterie extends AppCompatActivity {
     private Button chosirButton;
     private Button backButton;
     private Film film;
+    private Cinema cinema;
     private Representation representation;
     private String place;
 
@@ -65,6 +66,7 @@ public class Billeterie extends AppCompatActivity {
                 if (f.getId_film() == film.getId_film()){
                     listCin.add(c.getNomCinema() + " " + c.getLocalisation());
                     listCinId.add(c.getId());
+                    cinema=c;
                 }
             }
         }
@@ -104,7 +106,19 @@ public class Billeterie extends AppCompatActivity {
                 representation = listRepr.get(position);
                 listPla.clear();
                 if(representation.getSalle()!=null) {
-                    listPla.addAll(Arrays.asList(representation.getSalle().getPlaces()));
+                    boolean notAlready=true;
+                    for (String pla :representation.getSalle().getPlaces()){
+                        for (Billet b :BilletDao.getInstance(getApplicationContext()).getBillets()) {
+                            if (b.getNomCinema().equals(cinema.getNomCinema()) && b.getNomFilm().equals(film.getNom_film()) && b.getPlace().equals(pla) && b.getTemps().equals(representation.getTemps())) {
+                                notAlready = false;
+                                break;
+                            }
+                        }
+                        if (notAlready){
+                            listPla.add(pla);
+                        }
+                    }
+
 
                     ArrayAdapter<String> adapterPla = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_item, listPla);
                     spPlace.setAdapter(adapterPla);

@@ -40,7 +40,6 @@ public class BilletListAdapter extends ArrayAdapter<Billet> {
         }
 
         final Billet billet = this.billets.get(position);
-        Log.d("heyo",billet.getEmplacement());
         if (billet != null){
             final TextView film = convertView.findViewById(R.id.billetListFilm);
             final TextView date = convertView.findViewById(R.id.billetListDate);

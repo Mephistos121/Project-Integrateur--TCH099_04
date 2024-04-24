@@ -39,6 +39,11 @@ public class UserDao {
         return instance;
     }
 
+    public void reload(Context context){
+        listDeBillet.clear();
+        fetchAllBillet(context);
+    }
+
     private UserDao(int userId, String nomUsager, String email,  Context context){
         this.userId = userId;
         this.nomUsager = nomUsager;
