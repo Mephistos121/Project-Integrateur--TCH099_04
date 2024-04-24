@@ -2,6 +2,7 @@ package com.example.projetintegrateur_tch099;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,18 +40,18 @@ public class BilletListAdapter extends ArrayAdapter<Billet> {
         }
 
         final Billet billet = this.billets.get(position);
-
+        Log.d("heyo",billet.getEmplacement());
         if (billet != null){
             final TextView film = convertView.findViewById(R.id.billetListFilm);
             final TextView date = convertView.findViewById(R.id.billetListDate);
-            final TextView cinema = convertView.findViewById(R.id.billetListCinema);
-            final TextView salle = convertView.findViewById(R.id.billetListSalle);
-            final TextView siege = convertView.findViewById(R.id.billetListSiege);
-            final TextView emplacement = convertView.findViewById(R.id.billetListEmplacement);
+            final TextView cinema = convertView.findViewById(R.id.billetListCinemaREAL);
+            final TextView salle = convertView.findViewById(R.id.billetListSalleREAL);
+            final TextView siege = convertView.findViewById(R.id.billetListSiegeREAL);
+            final TextView emplacement = convertView.findViewById(R.id.billetListEmplacementREAL);
             film.setText(billet.getNomFilm());
             date.setText(billet.getTemps());
             cinema.setText(billet.getNomCinema());
-            salle.setText(billet.getSalleId());
+            salle.setText(String.valueOf(billet.getSalleId()));
             siege.setText(billet.getPlace());
             emplacement.setText(billet.getEmplacement());
         }

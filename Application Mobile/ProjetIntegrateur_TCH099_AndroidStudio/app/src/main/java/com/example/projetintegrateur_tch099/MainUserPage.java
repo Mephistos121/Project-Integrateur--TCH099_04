@@ -28,7 +28,9 @@ public class MainUserPage extends AppCompatActivity {
 
         lvBillets = findViewById(R.id.listeViewBillets);
 
-        //billets=userDao.getListDeBillet(); crashed
+        UserDao userDao=UserDao.getInstance();
+
+        billets=userDao.getListDeBillet();
         Log.d("vvvvv",String.valueOf(billets.size()));
 
         BilletListAdapter adapter = new BilletListAdapter(this,R.layout.billet_list_view, billets);

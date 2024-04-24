@@ -3,6 +3,7 @@ package com.example.projetintegrateur_tch099;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -116,9 +117,16 @@ public class LoginPage extends AppCompatActivity {
                 try {
                     UserDao userDao = UserDao.getInstance(jsonObject.getInt("id"),jsonObject.getString("nom_usager"),jsonObject.getString("email"),context);
 
-                    Intent i = new Intent(LoginPage.this, MainActivity.class);
-                    i.putExtra("firstpass",false);
-                    startActivity(i);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent i = new Intent(LoginPage.this, MainUserPage.class);
+                            startActivity(i);
+                        }
+                    }, 1500);
+
 
                 } catch (JSONException e) {
                     Toast.makeText(LoginPage.this, "Error with parsing", Toast.LENGTH_LONG).show();

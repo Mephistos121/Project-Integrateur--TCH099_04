@@ -23,41 +23,16 @@ public class MainActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBarMain);
 
-<<<<<<< Updated upstream
         fetchMovies();
         fetchCinemas();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, LogingPage.class);
+                Intent i = new Intent(MainActivity.this, LoginPage.class);
                 startActivity(i);
             }
         }, 1500);
-=======
-        if (getIntent().getExtras() == null) {
-            fetchMovies();
-            fetchCinemas();
->>>>>>> Stashed changes
-
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent i = new Intent(MainActivity.this, LoginPage.class);
-                    startActivity(i);
-                }
-            }, 3000);
-        }else {
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent i = new Intent(MainActivity.this, MainUserPage.class);
-                    startActivity(i);
-                }
-            }, 3000);
-        }
     }
 
     private void fetchMovies(){
