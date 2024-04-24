@@ -29,6 +29,7 @@ public class Billeterie extends AppCompatActivity {
     private Cinema cinema;
     private Representation representation;
     private String place;
+    private boolean canResume;
 
 
     @Override
@@ -37,8 +38,9 @@ public class Billeterie extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_billeterie);
 
-        film = FilmChoisiSingleton.getInstance().getFilmChoisi();
+        canResume=false;
 
+        film = FilmChoisiSingleton.getInstance().getFilmChoisi();
 
         backButton = findViewById(R.id.billetRetour);
         chosirButton = findViewById(R.id.billetChoix);
@@ -106,10 +108,10 @@ public class Billeterie extends AppCompatActivity {
                 representation = listRepr.get(position);
                 listPla.clear();
                 if(representation.getSalle()!=null) {
-                    boolean notAlready=true;
                     for (String pla :representation.getSalle().getPlaces()){
+                        boolean notAlready=true;
                         for (Billet b :BilletDao.getInstance(getApplicationContext()).getBillets()) {
-                            if (b.getNomCinema().equals(cinema.getNomCinema()) && b.getNomFilm().equals(film.getNom_film()) && b.getPlace().equals(pla) && b.getTemps().equals(representation.getTemps())) {
+                            if (b.getRepId()==representation.getId() && b.getPlace().equals(pla)) {
                                 notAlready = false;
                                 break;
                             }
@@ -149,6 +151,7 @@ public class Billeterie extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                canResume=true;
                 finish();
             }
         });
@@ -156,15 +159,26 @@ public class Billeterie extends AppCompatActivity {
         chosirButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                canResume=true;
                 if (representation!=null && place!=null) {
                     Intent i = new Intent(Billeterie.this, PaiementInfoCarte.class);
                     i.putExtra("representationId", representation.getId());
                     i.putExtra("place", place);
                     startActivity(i);
+
                 }
             }
         });
 
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (canResume) {
+            finish();
+            startActivity(getIntent());
+        }
     }
 }

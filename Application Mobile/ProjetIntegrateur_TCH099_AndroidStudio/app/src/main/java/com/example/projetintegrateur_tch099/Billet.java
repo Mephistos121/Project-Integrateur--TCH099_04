@@ -11,6 +11,7 @@ public class Billet {
     private int userId;
     private String place;
     private String  emplacement;
+    private int repId;
 
 
     public Billet(String nomFilm, String temps, String nomCinema, int salleId, int userId, String place, String emplacement) {
@@ -24,9 +25,9 @@ public class Billet {
     }
 
 
-    public Billet(int id, String cinemaId, String place) {
-        this.salleId = id;
-        this.nomCinema = cinemaId;
+    public Billet(int userId, int repId, String place) {
+        this.userId = userId;
+        this.repId = repId;
         this.place = place;
 
     }
@@ -69,5 +70,9 @@ public class Billet {
 
     public String getEmplacement() {
         return emplacement;
+    }
+
+    public int getRepId() {
+        return repId;
     }
 }

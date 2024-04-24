@@ -65,7 +65,7 @@ public class UserDao {
             public void onResponse(JSONArray jsonArray) {
 
                 if(jsonArray.length() < 1){
-                    listDeBillet.add(new Billet(1,"error1", "erro2"));
+                    listDeBillet.add(new Billet(-1,-1, "error1"));
 
                 }else {
                     for (int i = 0; i < jsonArray.length(); i++) {

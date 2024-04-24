@@ -18,12 +18,13 @@ public class MainUserPage extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ListView lvBillets;
     private ArrayList<Billet> billets;
+    private boolean canResume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user_page);
-
+        canResume=false;
         bottomNavigationView = findViewById(R.id.bottomNavigationViewMain);
 
         lvBillets = findViewById(R.id.listeViewBillets);
@@ -31,7 +32,6 @@ public class MainUserPage extends AppCompatActivity {
         UserDao userDao=UserDao.getInstance();
 
         billets=userDao.getListDeBillet();
-        Log.d("vvvvv",String.valueOf(billets.size()));
 
         BilletListAdapter adapter = new BilletListAdapter(this,R.layout.billet_list_view, billets);
 
@@ -52,6 +52,7 @@ public class MainUserPage extends AppCompatActivity {
             }
 
             if(item.getItemId() == R.id.buy){
+                canResume=true;
                 Intent intent = new Intent(MainUserPage.this, Billeterie.class);
                 startActivity(intent);
                 return true;
@@ -64,6 +65,7 @@ public class MainUserPage extends AppCompatActivity {
             }
 
             if(item.getItemId() == R.id.userIcon){
+                canResume=true;
                 Intent intent = new Intent(MainUserPage.this, LoginPage.class);
                 startActivity(intent);
                 return true;
@@ -71,5 +73,14 @@ public class MainUserPage extends AppCompatActivity {
             return false;
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (canResume) {
+            finish();
+            startActivity(getIntent());
+        }
     }
 }

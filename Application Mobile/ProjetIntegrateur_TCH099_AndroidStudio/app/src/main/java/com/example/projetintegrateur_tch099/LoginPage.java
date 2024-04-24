@@ -115,9 +115,13 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {
-                    UserDao userDao = UserDao.getInstance(jsonObject.getInt("id"),jsonObject.getString("nom_usager"),jsonObject.getString("email"),context);
-
-
+                    UserDao userDao = UserDao.getInstance();
+                    if(userDao==null) {
+                        userDao = UserDao.getInstance(jsonObject.getInt("id"), jsonObject.getString("nom_usager"), jsonObject.getString("email"), context);
+                    }else {
+                        userDao.setUser(jsonObject.getInt("id"), jsonObject.getString("nom_usager"), jsonObject.getString("email"), context);
+                    }
+                    loginButton.setEnabled(false);
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -140,5 +144,10 @@ public class LoginPage extends AppCompatActivity {
         });
         RequestQueue requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
         requestQueue.add(jsonObjectRequest);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loginButton.setEnabled(true);
     }
 }
