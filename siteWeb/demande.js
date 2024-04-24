@@ -263,6 +263,8 @@ async function accepterDemandeFilm(info) {
     else {
       enleverDemandeCinema(info);
     }
+  }else{
+    actionReussi("Ce film existe déjà.");
   }
 }
 
