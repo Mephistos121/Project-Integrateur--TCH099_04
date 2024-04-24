@@ -130,6 +130,7 @@
     padding: 5rem 0;
     background-color: #212124;
     width: 100%;
+    min-height: 100%;
 }
 
 #index_container h1 {

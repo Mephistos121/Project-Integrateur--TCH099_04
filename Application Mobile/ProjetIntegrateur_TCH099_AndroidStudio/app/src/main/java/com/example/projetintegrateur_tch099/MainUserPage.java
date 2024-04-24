@@ -1,24 +1,23 @@
 package com.example.projetintegrateur_tch099;
 
-import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.ListView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 //import com.example.projetintegrateur_tch099.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 public class MainUserPage extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private TextView tmpTextView;
+    private ListView lvBillets;
+    private ArrayList<Billet> billets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +26,16 @@ public class MainUserPage extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigationViewMain);
 
-        tmpTextView = findViewById(R.id.textViewTMP);
+        lvBillets = findViewById(R.id.listeViewBillets);
 
-        UserDao userDao = UserDao.getInstance(1,"tomdup","error", getApplicationContext());
+        UserDao userDao=UserDao.getInstance();
 
+        billets=userDao.getListDeBillet();
+        Log.d("vvvvv",String.valueOf(billets.size()));
 
-        tmpTextView.setText(userDao.getBilletTest());
+        BilletListAdapter adapter = new BilletListAdapter(this,R.layout.billet_list_view, billets);
+
+        lvBillets.setAdapter(adapter);
 
         bottomNavigationView.setOnItemSelectedListener(item ->{
 
@@ -61,7 +64,7 @@ public class MainUserPage extends AppCompatActivity {
             }
 
             if(item.getItemId() == R.id.userIcon){
-                Intent intent = new Intent(MainUserPage.this, LogingPage.class);
+                Intent intent = new Intent(MainUserPage.this, LoginPage.class);
                 startActivity(intent);
                 return true;
             }

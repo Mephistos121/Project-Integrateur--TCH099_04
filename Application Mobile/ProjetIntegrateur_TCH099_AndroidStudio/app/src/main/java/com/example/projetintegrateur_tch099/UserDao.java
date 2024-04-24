@@ -18,18 +18,27 @@ public class UserDao {
 
     private static UserDao instance = null;
     private String currentSalt;
+
     private int userId;
     private String nomUsager;
     private String email;
 
     private ArrayList<Billet> listDeBillet;
 
-    public static UserDao getInstance(int userId, String nomUsager, String email, Context context) {
+    public void setUser(int userId, String nomUsager, String email, Context context) {
+        instance = new UserDao(userId, nomUsager, email, context);
+    }
+
+    public static UserDao getInstance() {
+        return instance;
+    }
+    public static UserDao getInstance(int userId, String nomUsager, String email,  Context context) {
         if (instance == null) {
-            instance = new UserDao(userId,nomUsager, email, context);
+            instance = new UserDao(userId, nomUsager, email, context);
         }
         return instance;
     }
+
     private UserDao(int userId, String nomUsager, String email,  Context context){
         this.userId = userId;
         this.nomUsager = nomUsager;
@@ -76,6 +85,26 @@ public class UserDao {
         });
         RequestQueue requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
         requestQueue.add(jsonArrayRequest);
+    }
+
+    public String getCurrentSalt() {
+        return currentSalt;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getNomUsager() {
+        return nomUsager;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public ArrayList<Billet> getListDeBillet() {
+        return listDeBillet;
     }
 
 

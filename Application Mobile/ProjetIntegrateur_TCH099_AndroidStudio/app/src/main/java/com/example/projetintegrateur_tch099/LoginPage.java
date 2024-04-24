@@ -18,15 +18,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.JsonArray;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LogingPage extends AppCompatActivity {
+public class LoginPage extends AppCompatActivity {
 
     private ImageView iconLogo;
     private TextView email;
@@ -68,7 +65,7 @@ public class LogingPage extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(LogingPage.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPage.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         RequestQueue requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
@@ -95,7 +92,7 @@ public class LogingPage extends AppCompatActivity {
             public void onResponse(JSONObject jsonObject) {
 
                 if (jsonObject == null) {
-                    Toast.makeText(LogingPage.this, "Wrong email or password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginPage.this, "Wrong email or password", Toast.LENGTH_LONG).show();
                 } else {
                     fillInUser(context, email.getText().toString());
                 }
@@ -103,7 +100,7 @@ public class LogingPage extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(LogingPage.this, "Error With the user name or password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPage.this, "Error With the user name or password", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -120,17 +117,25 @@ public class LogingPage extends AppCompatActivity {
                 try {
                     UserDao userDao = UserDao.getInstance(jsonObject.getInt("id"),jsonObject.getString("nom_usager"),jsonObject.getString("email"),context);
 
-                    Intent i = new Intent(LogingPage.this, MainUserPage.class);
-                    startActivity(i);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent i = new Intent(LoginPage.this, MainUserPage.class);
+                            startActivity(i);
+                        }
+                    }, 1500);
+
 
                 } catch (JSONException e) {
-                    Toast.makeText(LogingPage.this, "Error with parsing", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginPage.this, "Error with parsing", Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(LogingPage.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPage.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
         RequestQueue requestQueue = VolleySingleton.getInstance(context).getRequestQueue();
