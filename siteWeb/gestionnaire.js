@@ -124,9 +124,9 @@ window.addEventListener("load", (event1) => {
   });
 });
 async function ajouterNouvelleRepresentation(rep) {
-  const listRepresentation = await fetch("http://localhost/api/representations");
+  const listRepresentation = await fetch("https://equipe500.tch099.ovh/projet4/api/representations");
   const content = await listRepresentation.json();
-  const listFilm = await fetch("http://localhost/api/films");
+  const listFilm = await fetch("https://equipe500.tch099.ovh/projet4/api/films");
   const contentFilm = await listFilm.json();
   const film = contentFilm.find((element) => element.nom_film == rep.nom);
   const dureeFilm = film.duree;
@@ -169,7 +169,7 @@ async function ajouterNouvelleRepresentation(rep) {
   }  
 
   if (ajoutValide) {
-    const response = await fetch("http://localhost/api/representation", {
+    const response = await fetch("https://equipe500.tch099.ovh/projet4/api/representation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -195,7 +195,7 @@ async function ajouterNouvelleRepresentation(rep) {
 }
 async function ajouterNouveauCinema(cinema) {
   //validation du nom de cinema
-  const responseCinema = await fetch("http://localhost/api/cinemas");
+  const responseCinema = await fetch("https://equipe500.tch099.ovh/projet4/api/cinemas");
   const content = await responseCinema.json();
   let ajoutValide = true;
   if (content.length) {
@@ -218,7 +218,7 @@ async function ajouterNouveauCinema(cinema) {
 
   //si tout est beau on ajoute
   else if (ajoutValide) {
-    const response = await fetch("http://localhost/api/demande/cinema", {
+    const response = await fetch("https://equipe500.tch099.ovh/projet4/api/demande/cinema", {
       method: "POST",
 
       headers: {
@@ -281,7 +281,7 @@ async function ajouterNouveauFilm(film) {
   if (cookieGetter("privilege") != "gestionnaire") {
     alert("Vous devez être un gestionnaire pour ajouter des films");
   }
-  const response = await fetch("http://localhost/api/demande/ajout/film", {
+  const response = await fetch("https://equipe500.tch099.ovh/projet4/api/demande/ajout/film", {
     method: "POST",
 
     headers: {
@@ -318,11 +318,11 @@ async function validationAdresse(adresse) {
 }
 async function cinemaGetter(id) {
   const responseCinema = await fetch(
-    "http://localhost/api/cinemas/gestionnaire/" + id
+    "https://equipe500.tch099.ovh/projet4/api/cinemas/gestionnaire/" + id
   );
   const content = await responseCinema.json();
   const responseCinemaDemande = await fetch(
-    "http://localhost/api/demande/ajout/cinema/gestionnaire/" + id
+    "https://equipe500.tch099.ovh/projet4/api/demande/ajout/cinema/gestionnaire/" + id
   );
   const contentDemande = await responseCinemaDemande.json();
   if (content.length > 0) {
@@ -427,7 +427,7 @@ async function retirerCinema() {
   console.log(retirer);
   if (input.value != "") {
     const response = await fetch(
-      "http://localhost/api/gestionnaire/cinema/delete",
+      "https://equipe500.tch099.ovh/projet4/api/gestionnaire/cinema/delete",
       {
         method: "DELETE",
 
@@ -455,7 +455,7 @@ async function retirerDemandeCinema() {
   console.log(retirer);
   if (input.value != "") {
     const response = await fetch(
-      "http://localhost/api/gestionnaire/cinema/demande/delete",
+      "https://equipe500.tch099.ovh/projet4/api/gestionnaire/cinema/demande/delete",
       {
         method: "DELETE",
 
@@ -479,7 +479,7 @@ async function retirerDemandeCinema() {
 
 async function filmGetter(id) {
   const responseFilm = await fetch(
-    "http://localhost/api/demande/ajout/film/gestionnaire/" + id
+    "https://equipe500.tch099.ovh/projet4/api/demande/ajout/film/gestionnaire/" + id
   );
   const content = responseFilm.json();
   if (content.length > 0) {
@@ -502,7 +502,7 @@ async function filmGetter(id) {
 }
 async function tableCinemaBuilder(id) {
   const responseCinema = await fetch(
-    "http://localhost/api/cinemas/gestionnaire/" + id
+    "https://equipe500.tch099.ovh/projet4/api/cinemas/gestionnaire/" + id
   );
   const content = await responseCinema.json();
   if (content.length > 0) {
@@ -526,7 +526,7 @@ async function tableCinemaBuilder(id) {
   }
 }
 async function tableFilmBuilder(id) {
-  const responseFilm = await fetch("http://localhost/api/films");
+  const responseFilm = await fetch("https://equipe500.tch099.ovh/projet4/api/films");
   const content = await responseFilm.json();
   if (content.length > 0) {
     const table_film = document.getElementById("table_film");

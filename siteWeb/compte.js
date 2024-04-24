@@ -104,7 +104,7 @@ function deconnecterUtilisateur() {
 }
 
 function fetchUserEmail(userID) {
-  fetch(`/api/comptes/email/${userID}`)
+  fetch(`https://equipe500.tch099.ovh/projet4/api/comptes/email/${userID}`)
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("emailUtilisateur").innerText = data.email;
@@ -115,7 +115,7 @@ function fetchUserEmail(userID) {
 }
 
 function fetchUserNom(userID) {
-  fetch(`/api/comptes/nom_usager/${userID}`)
+  fetch(`https://equipe500.tch099.ovh/projet4/api/comptes/nom_usager/${userID}`)
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("nomUtilisateur").innerText = data.nom_usager;
@@ -187,7 +187,7 @@ async function supprimerCompte() {
       alert("Impossible de trouver l'identifiant de l'utilisateur.");
       return;
     }
-    const response = await fetch(`http://localhost/api/comptes/${userID}`, {
+    const response = await fetch(`https://equipe500.tch099.ovh/projet4/api/comptes/${userID}`, {
       method: "DELETE",
     });
     if (response.ok) {
@@ -204,7 +204,7 @@ async function supprimerCompte() {
 
 async function fetchBillets(usagerid) {
   const responseBillets = await fetch(
-    "http://localhost/api/billets/user/" + usagerid
+    "https://equipe500.tch099.ovh/projet4/api/billets/user/" + usagerid
   );
   const contenu = await responseBillets.json();
   addBilletsRows(contenu);
