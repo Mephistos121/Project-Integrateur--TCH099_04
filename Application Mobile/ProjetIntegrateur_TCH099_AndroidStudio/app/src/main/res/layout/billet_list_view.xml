@@ -110,7 +110,7 @@
                 android:paddingTop="5dp"
                 android:paddingRight="7dp"
                 android:paddingBottom="5dp"
-                android:text="Salle :"
+                android:text="Emplacement :"
                 android:textColor="@color/white" />
 
             <TextView
@@ -136,7 +136,7 @@
                 android:paddingTop="5dp"
                 android:paddingRight="7dp"
                 android:paddingBottom="5dp"
-                android:text="Siège :"
+                android:text="Salle :"
                 android:textColor="@color/white" />
 
             <TextView
@@ -162,7 +162,7 @@
                 android:paddingTop="5dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="5dp"
-                android:text="Emplacement :"
+                android:text="Siège :"
                 android:textColor="@color/white" />
 
             <TextView
