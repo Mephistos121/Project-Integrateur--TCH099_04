@@ -343,11 +343,12 @@ section {
   color: white;
   text-align: center;
   vertical-align: middle;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: fit-content;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  z-index: 1000;
 
 }
 
