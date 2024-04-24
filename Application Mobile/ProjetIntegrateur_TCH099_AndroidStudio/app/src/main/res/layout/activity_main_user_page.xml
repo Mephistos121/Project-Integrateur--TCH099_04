@@ -12,17 +12,17 @@
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="651dp">
 
 
-        <TextView
-            android:id="@+id/textViewTMP"
+        <ListView
+            android:id="@+id/listeViewBillets"
             android:layout_width="match_parent"
-            android:layout_height="550dp"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            tools:listitem="@layout/billet_list_view"
+            android:divider="#FFFFFF"
+            android:dividerHeight="4px"/>
+
     </FrameLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
