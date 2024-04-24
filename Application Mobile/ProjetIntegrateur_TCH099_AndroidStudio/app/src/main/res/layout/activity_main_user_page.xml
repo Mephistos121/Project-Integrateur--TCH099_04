@@ -12,8 +12,16 @@
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="651dp">
 
+
+        <ListView
+            android:id="@+id/listeViewBillets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/billet_list_view"
+            android:divider="#FFFFFF"
+            android:dividerHeight="4px"/>
 
     </FrameLayout>
 

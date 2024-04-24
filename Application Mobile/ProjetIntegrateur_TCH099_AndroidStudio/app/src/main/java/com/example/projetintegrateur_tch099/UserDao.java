@@ -19,9 +19,10 @@ public class UserDao {
     private static UserDao instance = null;
     private String currentSalt;
     private int userId;
-    private ArrayList<Billet> listDeBillet;
     private String nomUsager;
     private String email;
+
+    private ArrayList<Billet> listDeBillet;
 
     public static UserDao getInstance(int userId, String nomUsager, String email, Context context) {
         if (instance == null) {
@@ -33,8 +34,14 @@ public class UserDao {
         this.userId = userId;
         this.nomUsager = nomUsager;
         this.email = email;
+        listDeBillet = new ArrayList<>();
         fetchAllBillet(context);
     }
+
+    public String getBilletTest(){
+        return  "HELLO";
+    }
+
 
     private void fetchAllBillet(Context context){
         //curently only the id 3 has any movies attached to it.
@@ -44,12 +51,16 @@ public class UserDao {
             public void onResponse(JSONArray jsonArray) {
 
                 if(jsonArray.length() < 1){
-                    System.out.println("ERROR");
+                    listDeBillet.add(new Billet(1,"error1", "erro2"));
+
                 }else {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         try {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                            listDeBillet.add(new Billet(jsonObject.getString("nom_film"), jsonObject.getString("temps"),
+                                    jsonObject.getString("nom_cinema"), jsonObject.getInt("salle_id"), userId,
+                                    jsonObject.getString("place"), jsonObject.getString("emplacement")));
 
                         } catch (JSONException e) {
                             System.out.println(e.getMessage());

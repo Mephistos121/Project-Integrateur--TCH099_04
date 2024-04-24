@@ -3,6 +3,7 @@ package com.example.projetintegrateur_tch099;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -118,8 +119,10 @@ public class LogingPage extends AppCompatActivity {
             public void onResponse(JSONObject jsonObject) {
                 try {
                     UserDao userDao = UserDao.getInstance(jsonObject.getInt("id"),jsonObject.getString("nom_usager"),jsonObject.getString("email"),context);
+
                     Intent i = new Intent(LogingPage.this, MainUserPage.class);
                     startActivity(i);
+
                 } catch (JSONException e) {
                     Toast.makeText(LogingPage.this, "Error with parsing", Toast.LENGTH_LONG).show();
                 }

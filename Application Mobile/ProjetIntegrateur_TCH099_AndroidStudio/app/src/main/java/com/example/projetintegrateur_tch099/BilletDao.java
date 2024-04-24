@@ -28,10 +28,9 @@ public class BilletDao {
                     try {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        Billet billet = new Billet(jsonObject.getInt("id"), jsonObject.getInt("cinema_id"),
+                        Billet billet = new Billet(jsonObject.getInt("usager_id"), jsonObject.getString("representation_id"),
                                 jsonObject.getString("place"));
                         billets.add(billet);
-
 
                     } catch (JSONException e) {
                         System.out.println(e.getMessage());
